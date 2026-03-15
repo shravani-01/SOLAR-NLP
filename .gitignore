@@ -1,0 +1,53 @@
+# Virtual environments
+solar_env/
+venv/
+env/
+.venv
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Raw PDFs (too large for git)
+data/raw/contracts/*.pdf
+data/raw/fta_regulations/*.pdf
+data/raw/gtfs/*.pdf
+
+# Models (large checkpoints)
+models/
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Secrets
+.env
+*.key
+secrets.json
+
+# HuggingFace cache
+.cache/
+huggingface/
+
+# Logs
+*.log
+logs/
+wandb/
