@@ -1,0 +1,125 @@
+============================================================
+SOLAR — Annotation Quality Evaluation Report
+Generated : 2026-03-16 16:03
+============================================================
+
+OVERVIEW
+----------------------------------------
+Evaluation pairs    : 110
+Overall accuracy    : 64.5%
+Cohen's Kappa       : 0.3728
+Kappa interpretation: Fair agreement
+Total disagreements : 39
+
+LABEL DISTRIBUTION
+----------------------------------------
+Label                   Human   GPT-4o
+----------------------------------------
+HARD                       59       80
+SOFT                       18       30
+NOT_CONSTRAINT             19        0
+UNCLEAR                    14        0
+
+PER-CLASS METRICS
+----------------------------------------
+(Human = ground truth, GPT-4o = predicted)
+
+                precision    recall  f1-score   support
+
+          HARD       0.68      0.92      0.78        59
+          SOFT       0.57      0.94      0.71        18
+NOT_CONSTRAINT       0.00      0.00      0.00        19
+       UNCLEAR       0.00      0.00      0.00        14
+
+      accuracy                           0.65       110
+     macro avg       0.31      0.46      0.37       110
+  weighted avg       0.45      0.65      0.53       110
+
+
+CONFUSION MATRIX
+----------------------------------------
+Rows = Human (true), Cols = GPT (predicted)
+
+                HARD  SOFT  NOT_CONSTRAINT  UNCLEAR
+HARD              54     5               0        0
+SOFT               1    17               0        0
+NOT_CONSTRAINT    16     3               0        0
+UNCLEAR            9     5               0        0
+
+ERROR TYPE BREAKDOWN
+----------------------------------------
+  NOT_CONSTRAINT → HARD                16  (41.0%)
+  UNCLEAR → HARD                        9  (23.1%)
+  HARD → SOFT                           5  (12.8%)
+  UNCLEAR → SOFT                        5  (12.8%)
+  NOT_CONSTRAINT → SOFT                 3  (7.7%)
+  SOFT → HARD                           1  (2.6%)
+
+TOP 15 DISAGREEMENT EXAMPLES
+----------------------------------------
+
+1. Human=NOT_CONSTRAINT | GPT=SOFT
+   ID   : CONTRACT_0201
+   Text : JOB DESCRIPTION The Traffic Checker job assignments shall include additional duties such as guide-a-ride signage updates
+
+2. Human=NOT_CONSTRAINT | GPT=HARD
+   ID   : CONTRACT_1757
+   Text : (3) minutes or more shall be provided for all runs at terminals to arrange for service to be sent out of terminals on ti
+
+3. Human=NOT_CONSTRAINT | GPT=HARD
+   ID   : CONTRACT_0522
+   Text : The Arbitrator shall issue a written Award, without a written opinion on the Expedited Arbitration Award Form.
+
+4. Human=NOT_CONSTRAINT | GPT=HARD
+   ID   : CONTRACT_2062
+   Text : The dismissal will be rescinded and the time elapsed since the employee's dismissal until the day of restoration will be
+
+5. Human=NOT_CONSTRAINT | GPT=HARD
+   ID   : CONTRACT_0882
+   Text : Section 13-151 subdivision 4 shall only be applicable to those presumed retirement death benefits for deaths of eligible
+
+6. Human=NOT_CONSTRAINT | GPT=HARD
+   ID   : CONTRACT_1952
+   Text : All other provisions covering the Scheduling group shall remain in effect. 312
+
+7. Human=HARD | GPT=SOFT
+   ID   : CONTRACT_1768_p1
+   Text : If an employee is definitely entitled under the foregoing provisions to be excused with pay from part or all of his/her 
+
+8. Human=SOFT | GPT=HARD
+   ID   : CONTRACT_1853
+   Text : Each employee so displaced shall be permitted to displace any employee with less clerical seniority at the same or lower
+
+9. Human=UNCLEAR | GPT=HARD
+   ID   : CONTRACT_1541
+   Text : The Director, Labor Relations, MaBSTOA or his/her designee or designees shall, within eight
+
+10. Human=HARD | GPT=SOFT
+   ID   : CONTRACT_2092
+   Text : The designated Employer official at the facility shall work with the designated Union representative at the facility and
+
+11. Human=UNCLEAR | GPT=HARD
+   ID   : CONTRACT_0960
+   Text : Train Operators operating a train which is involved in a passenger fatality shall be granted three
+
+12. Human=NOT_CONSTRAINT | GPT=HARD
+   ID   : CONTRACT_1577
+   Text : have the pensions currently paid by the Companies, the Operating Authority shall advance his/her monthly pension to each
+
+13. Human=UNCLEAR | GPT=HARD
+   ID   : CONTRACT_1619
+   Text : (1) year but who at the beginning of the vacation year shall not have been employed for more than three
+
+14. Human=NOT_CONSTRAINT | GPT=HARD
+   ID   : CONTRACT_1712
+   Text : The following provisions shall apply with respect to accidental injuries sustained in the course of an employee's employ
+
+15. Human=UNCLEAR | GPT=SOFT
+   ID   : CONTRACT_0665
+   Text : Each such employee who, at the beginning of a vacation year shall have been actively employed for more than three
+
+============================================================
+PAPER WRITEUP SNIPPET
+============================================================
+
+We validate TransitOpsBench annotation quality by comparing GPT-4o-mini auto-labels against human expert labels on a random sample of 110 sentences. Overall agreement is 64.5% with a Cohen's Kappa of 0.3728 (fair agreement). Disagreements are concentrated in three patterns: (1) false positive HARD labels on procedural text containing deontic modals, (2) HARD/SOFT boundary ambiguity on permission verbs, and (3) LLM overconfidence on genuinely unclear cases. Human labels serve as ground truth for all 110 reviewed sentences, overriding GPT labels where they conflict.
