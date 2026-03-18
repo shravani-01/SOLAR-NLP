@@ -1,0 +1,34 @@
+SOLAR Extraction Stats — contract_mou_2017-2019
+Generated: 2026-03-15 18:26
+==================================================
+
+Pages processed       : 46
+Total sentences       : 51
+Candidate constraints : 7
+  → Predicted HARD    : 0
+  → Predicted SOFT    : 2
+High confidence (≥3)  : 0
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [SOFT] score=2
+   With this contract in place we are insulated half for any and all snow removal. against potential federal government cut...
+
+2. [SOFT] score=2
+   Expiration of contract: May 15, 2019
+
+3. [UNCLEAR] score=1
+   Your New Wage Package 3 2.5 Percent Jan. 16, 2017 3 2.5 Percent Feb. 16, 2018 3 $500 Pensionable Cash Bonus March 15, 20...
+
+4. [UNCLEAR] score=1
+   Current 2.5 Percent 2.5 Percent Total $$ New Wage Scales Hourly Increase Increase Hourly & Hourly Increases Wage Jan. 16...
+
+5. [UNCLEAR] score=1
+   Fixes & Enhancements • Cash out of at least 50 percent of any unused sick time upon resignation or re- To the Local 100 ...
+
+6. [UNCLEAR] score=1
+   Previously, only dentures and partials were offered for this • age group Maintainers at MTA Bus will see a reduc• tion i...
+
+7. [UNCLEAR] score=1
+   Atridox is the brand • All MTA Bus depots will now be covered • Occlusal Wear (Night Guards) - Now available (valued by ...

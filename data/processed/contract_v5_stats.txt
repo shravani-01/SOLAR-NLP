@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — contract_v5
+Generated: 2026-03-15 18:26
+==================================================
+
+Pages processed       : 569
+Total sentences       : 5820
+Candidate constraints : 2194
+  → Predicted HARD    : 1640
+  → Predicted SOFT    : 318
+High confidence (≥3)  : 318
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   A warning or reprimand shall be expunged after 12 months, if the employee has no other discipline. • OTHER REVISIONS • D...
+
+2. [HARD] score=4
+   To that end, the parties agree as follows: I) Effective 90 days after final ratification all impediments to the free mov...
+
+3. [SOFT] score=4
+   Assignments during the first ROO are subject to the needs or the Division and may requite holding Cleaners over for a ma...
+
+4. [HARD] score=4
+   2) The Authority shall increase the quota of employees on vacation from an equal number of employees off on each week of...
+
+5. [HARD] score=3
+   This particular provision shall be considered to be effective as ofNovember 15, 2002. 6) Release Time Supplement At the ...
+
+6. [HARD] score=3
+   Any arbitrator who hears a challenge to the imposition of a pre-disciplinary suspension shall not conduct any subsequent...
+
+7. [HARD] score=3
+   It is the intent of the parties to exclude 70% of theTA' employees from the following requirements: • Not be required to...
+
+8. [HARD] score=3
+   All employees whose sick leave banks meet or exceed that level shall be subject to currently applicable sick leave rules...
+
+9. [HARD] score=3
+   The foregoing threshold shall be adjusted on an annual basis such that 70% of the employees will be subject to these exc...
+
+10. [HARD] score=3
+   In the event of consolidation, the parties shall devise a mechanism, which provides that upon consolidation~ the same pe...
