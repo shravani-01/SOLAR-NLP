@@ -45,8 +45,10 @@ DIR_MAP = {
     "max"          : "max", "maximum"       : "max",
     "not more than": "max", "not to exceed" : "max",
     "up to"        : "max", "at most"       : "max",
+    "no more than" : "max", "not exceed"    : "max",
     "min"          : "min", "minimum"       : "min",
     "not less than": "min", "at least"      : "min",
+    "no less than" : "min", "at minimum"    : "min",
 }
 
 VAR_TEMPLATES = {
@@ -66,13 +68,53 @@ VAR_TEMPLATES = {
     ("hearing", "day")       : "max_hearing_days",
     ("notice", "day")        : "min_notice_days",
     ("sick", "day")          : "max_sick_days",
+    ("overtime", "hour")     : "max_overtime_hours",
+    ("shift", "hour")        : "max_shift_hours",
+    ("work", "hour")         : "max_work_hours",
+    ("rest", "hour")         : "min_rest_hours",
+    ("rest", "minute")       : "min_rest_minutes",
+    ("penalty", "day")       : "max_penalty_days",
+    ("probation", "day")     : "max_probation_days",
+    ("probation", "month")   : "max_probation_months",
     ("month", "month")       : "duration_months",
     ("day", "day")           : "duration_days",
     ("week", "week")         : "frequency_per_week",
     ("year", "year")         : "duration_years",
 }
 
-EMPTY_THRESHOLD_VALUES = {"", "nan", "none", "null", "n/a", "na","empty"}
+RATE_TIME_UNITS = {
+    "hour" : "usd_per_hour",
+    "hours": "usd_per_hour",
+    "hr"   : "usd_per_hour",
+    "day"  : "usd_per_day",
+    "days" : "usd_per_day",
+    "week" : "usd_per_week",
+    "weeks": "usd_per_week",
+    "month": "usd_per_month",
+    "year" : "usd_per_year",
+    "shift": "usd_per_shift",
+    "trip" : "usd_per_trip",
+    "mile" : "usd_per_mile",
+}
+
+RATE_VAR_TEMPLATES = {
+    ("rate", "hour")      : "pay_rate_usd_per_hour",
+    ("wage", "hour")      : "wage_rate_usd_per_hour",
+    ("pay", "hour")       : "pay_rate_usd_per_hour",
+    ("overtime", "hour")  : "overtime_rate_usd_per_hour",
+    ("penalty", "day")    : "penalty_rate_usd_per_day",
+    ("reimburs", "mile")  : "reimbursement_usd_per_mile",
+    ("reimburs", "day")   : "reimbursement_usd_per_day",
+    ("reimburs", "trip")  : "reimbursement_usd_per_trip",
+    ("allowance", "day")  : "allowance_usd_per_day",
+    ("allowance", "week") : "allowance_usd_per_week",
+    ("allowance", "shift"): "allowance_usd_per_shift",
+    ("bonus", "week")     : "bonus_usd_per_week",
+    ("bonus", "month")    : "bonus_usd_per_month",
+    ("fee", "hour")       : "fee_usd_per_hour",
+}
+
+EMPTY_THRESHOLD_VALUES = {"", "nan", "none", "null", "n/a", "na", "empty"}
 
 
 def is_empty_threshold(raw: str) -> bool:
@@ -80,30 +122,148 @@ def is_empty_threshold(raw: str) -> bool:
     return str(raw).strip().lower() in EMPTY_THRESHOLD_VALUES
 
 
+def _infer_direction(raw_combined: str) -> str | None:
+    """Infer max/min direction from combined raw threshold + sentence text."""
+    for d_key, d_val in DIR_MAP.items():
+        if d_key in raw_combined:
+            return d_val
+    return None
+
+
+def _parse_numeric_value(raw_lower: str) -> float | None:
+    """
+    Extract a numeric value from a string.
+    Tries: parenthesised number → direct number → written word number.
+    """
+    # Parenthesised number e.g. "twenty (20) days"
+    paren_match = re.search(r'\((\d+)\)', raw_lower)
+    if paren_match:
+        return float(paren_match.group(1))
+
+    # Direct number e.g. "30", "4.5"
+    num_match = re.search(r'\b(\d+\.?\d*)\b', raw_lower)
+    if num_match:
+        return float(num_match.group(1))
+
+    # Written numbers
+    word_nums = {
+        "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+        "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+        "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14,
+        "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18,
+        "nineteen": 19, "twenty": 20, "thirty": 30, "forty": 40,
+        "fifty": 50, "sixty": 60, "seventy": 70, "eighty": 80,
+        "ninety": 90, "hundred": 100, "twenty-four": 24, "forty-eight": 48,
+    }
+    for word, num in word_nums.items():
+        if word in raw_lower:
+            return float(num)
+
+    return None
+
+
 def parse_threshold(raw_threshold: str, raw_text: str) -> list[dict]:
     """
     Convert a raw threshold string into a list of structured threshold dicts.
+
+    Handles:
+      Pattern 0 — dollar amounts    : "$30 per hour", "maximum $5 per day"
+      Pattern 0b— percentages       : "not less than 50%", "maximum 80%"
+      Pattern 1 — key=value format  : "max_hours=4", "min_break=30"
+      Pattern 2 — value + time unit : "30 minutes", "twenty (20) days"
+
     Returns empty list if threshold field is empty or nan.
     """
     if not raw_threshold or pd.isna(raw_threshold):
         return []
 
     raw = str(raw_threshold).strip()
-
-    # Return empty list for nan/empty — not an error, just no threshold
     if is_empty_threshold(raw):
         return []
 
-    raw_lower = raw.lower()
-    thresholds = []
+    raw_lower     = raw.lower()
+    raw_text_lower = raw_text.lower() if raw_text else ""
+    raw_combined  = raw_lower + " " + raw_text_lower
 
-    # Pattern 1: key=value format (e.g. "max_hours=4")
-    kv_match = re.match(r'([a-z_]+)\s*=\s*(\d+\.?\d*)\s*([a-z]*)', raw_lower)
+    # ── Pattern 0: Dollar amounts ─────────────────────────────────────────────
+    # Matches: "$30 per hour", "maximum $5.50/day", "$100 per week"
+    dollar_match = re.search(
+        r'\$\s*(\d+\.?\d*)\s*(?:per\s+|/\s*)?([a-z]+)?', raw_lower
+    )
+    if dollar_match:
+        value    = float(dollar_match.group(1))
+        time_raw = (dollar_match.group(2) or "").strip()
+        unit     = RATE_TIME_UNITS.get(time_raw, "usd")
+        direction = _infer_direction(raw_combined)
+
+        # Infer variable name from context
+        variable = "pay_amount_usd"
+        if time_raw:
+            for (ctx, time_key), var_name in RATE_VAR_TEMPLATES.items():
+                if ctx in raw_text_lower and time_key in time_raw:
+                    variable = var_name
+                    break
+            else:
+                # Fallback: direction + generic rate name
+                prefix   = direction + "_" if direction else ""
+                variable = f"{prefix}rate_{unit}"
+
+        return [{
+            "variable"  : variable,
+            "value"     : value,
+            "unit"      : unit,
+            "direction" : direction,
+            "raw"       : raw,
+        }]
+
+    # ── Pattern 0b: Percentages ───────────────────────────────────────────────
+    # Matches: "50%", "not less than 80%", "maximum 25 percent"
+    pct_match = re.search(
+        r'(\d+\.?\d*)\s*(?:%|percent)', raw_lower
+    )
+    if pct_match:
+        value     = float(pct_match.group(1))
+        direction = _infer_direction(raw_combined)
+
+        # Infer variable from context
+        variable  = "percentage"
+        pct_contexts = {
+            "pay"      : "pay_percentage",
+            "wage"     : "wage_percentage",
+            "salary"   : "salary_percentage",
+            "overtime" : "overtime_percentage",
+            "premium"  : "premium_percentage",
+            "benefit"  : "benefit_percentage",
+            "pension"  : "pension_percentage",
+            "cost"     : "cost_percentage",
+            "capacit"  : "capacity_percentage",
+        }
+        for ctx, var_name in pct_contexts.items():
+            if ctx in raw_text_lower:
+                variable = var_name
+                break
+
+        if direction:
+            variable = f"{direction}_{variable}"
+
+        return [{
+            "variable"  : variable,
+            "value"     : value,
+            "unit"      : "percent",
+            "direction" : direction,
+            "raw"       : raw,
+        }]
+
+    # ── Pattern 1: key=value format ───────────────────────────────────────────
+    # Matches: "max_hours=4", "min_break=30", "max_hours=4hours"
+    kv_match = re.match(
+        r'([a-z_]+)\s*=\s*(\d+\.?\d*)\s*([a-z]*)', raw_lower
+    )
     if kv_match:
         key, val, unit_raw = kv_match.groups()
-        unit = UNIT_MAP.get(unit_raw.rstrip('s'), None) if unit_raw else None
 
-        # Infer unit from variable name if not in raw
+        # Try to get unit from the value suffix first, then from the key name
+        unit = UNIT_MAP.get(unit_raw.rstrip('s'), None) if unit_raw else None
         if unit is None:
             for u_key, u_val in UNIT_MAP.items():
                 if u_key in key:
@@ -116,36 +276,17 @@ def parse_threshold(raw_threshold: str, raw_text: str) -> list[dict]:
         elif key.startswith("min"):
             direction = "min"
 
-        thresholds.append({
+        return [{
             "variable"  : key,
             "value"     : float(val),
             "unit"      : unit,
             "direction" : direction,
             "raw"       : raw,
-        })
-        return thresholds
+        }]
 
-    # Pattern 2: written/numeric value + unit
-    # First try parenthesised number e.g. "twenty (20) days"
-    paren_match = re.search(r'\((\d+)\)', raw)
-    if paren_match:
-        value = float(paren_match.group(1))
-    else:
-        num_match = re.search(r'\b(\d+\.?\d*)\b', raw)
-        if num_match:
-            value = float(num_match.group(1))
-        else:
-            word_nums = {
-                "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
-                "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
-                "fifteen": 15, "twenty": 20, "thirty": 30, "sixty": 60,
-                "ninety": 90, "twelve": 12, "twenty-four": 24,
-            }
-            value = None
-            for word, num in word_nums.items():
-                if word in raw_lower:
-                    value = float(num)
-                    break
+    # ── Pattern 2: numeric/written value + time unit ──────────────────────────
+    # Matches: "30 minutes", "twenty (20) days", "4 hours", "one month"
+    value = _parse_numeric_value(raw_lower)
 
     if value is None:
         return [{
@@ -156,37 +297,29 @@ def parse_threshold(raw_threshold: str, raw_text: str) -> list[dict]:
             "raw"       : raw,
         }]
 
-    # Extract unit
+    # Extract time unit
     unit = None
     for u_key, u_val in UNIT_MAP.items():
         if u_key in raw_lower:
             unit = u_val
             break
 
-    # Infer direction from combined context
-    direction = None
-    raw_combined = (raw_lower + " " + raw_text.lower()) if raw_text else raw_lower
-    for d_key, d_val in DIR_MAP.items():
-        if d_key in raw_combined:
-            direction = d_val
-            break
+    direction = _infer_direction(raw_combined)
 
-    # Infer variable name from context keywords
+    # Infer variable name from sentence context + unit
     variable = "duration_" + (unit or "unknown")
-    raw_text_lower = raw_text.lower() if raw_text else ""
     for (ctx1, ctx2), var_name in VAR_TEMPLATES.items():
         if ctx1 in raw_text_lower and unit and unit.startswith(ctx2[:3]):
             variable = var_name
             break
 
-    thresholds.append({
+    return [{
         "variable"  : variable,
         "value"     : value,
         "unit"      : unit,
         "direction" : direction,
         "raw"       : raw,
-    })
-    return thresholds
+    }]
 
 
 def parse_entities(raw_entities: str) -> dict:

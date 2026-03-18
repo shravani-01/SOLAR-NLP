@@ -553,7 +553,7 @@
         "variable": "max_sick_days",
         "value": 30.0,
         "unit": "days",
-        "direction": null,
+        "direction": "max",
         "raw": "30 days"
       }
     ],
@@ -1504,10 +1504,10 @@
     },
     "thresholds": [
       {
-        "variable": "duration_hours",
+        "variable": "max_work_hours",
         "value": 1.0,
         "unit": "hours",
-        "direction": null,
+        "direction": "max",
         "raw": "1 hour"
       }
     ],
@@ -1733,9 +1733,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "rate_usd",
         "value": 3.75,
-        "unit": null,
+        "unit": "usd",
         "direction": null,
         "raw": "additional annual contributions of $3.75 million dollars"
       }
@@ -1890,9 +1890,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "max_wage_percentage",
         "value": 1.0,
-        "unit": null,
+        "unit": "percent",
         "direction": "max",
         "raw": "1% of the annual wages"
       }
@@ -2006,7 +2006,7 @@
         "variable": "max_sick_days",
         "value": 30.0,
         "unit": "days",
-        "direction": null,
+        "direction": "max",
         "raw": "30 days"
       }
     ],
@@ -3756,7 +3756,7 @@
     },
     "thresholds": [
       {
-        "variable": "duration_hours",
+        "variable": "max_work_hours",
         "value": 8.0,
         "unit": "hours",
         "direction": null,
@@ -4014,7 +4014,7 @@
     },
     "thresholds": [
       {
-        "variable": "duration_hours",
+        "variable": "max_overtime_hours",
         "value": 60.0,
         "unit": "hours",
         "direction": "max",
@@ -4550,7 +4550,7 @@
     },
     "thresholds": [
       {
-        "variable": "duration_hours",
+        "variable": "max_work_hours",
         "value": 3.0,
         "unit": "hours",
         "direction": "min",
@@ -5371,9 +5371,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "pay_percentage",
         "value": 60.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "sixty percent (60%)"
       }
@@ -5548,7 +5548,7 @@
     },
     "thresholds": [
       {
-        "variable": "duration_hours",
+        "variable": "max_work_hours",
         "value": 3.0,
         "unit": "hours",
         "direction": "min",
@@ -6056,7 +6056,7 @@
     },
     "thresholds": [
       {
-        "variable": "duration_hours",
+        "variable": "max_overtime_hours",
         "value": 8.0,
         "unit": "hours",
         "direction": null,
@@ -6095,7 +6095,7 @@
     },
     "thresholds": [
       {
-        "variable": "duration_hours",
+        "variable": "max_work_hours",
         "value": 8.0,
         "unit": "hours",
         "direction": null,
@@ -6166,7 +6166,7 @@
     },
     "thresholds": [
       {
-        "variable": "duration_hours",
+        "variable": "max_work_hours",
         "value": 8.0,
         "unit": "hours",
         "direction": null,
@@ -6680,9 +6680,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_hours",
+        "variable": "rate_usd_per_hour",
         "value": 1.9,
-        "unit": "hours",
+        "unit": "usd_per_hour",
         "direction": null,
         "raw": "differential=$1.90 per hour"
       }
@@ -6943,7 +6943,7 @@
     },
     "thresholds": [
       {
-        "variable": "duration_hours",
+        "variable": "max_overtime_hours",
         "value": 2.0,
         "unit": "hours",
         "direction": "min",
@@ -7296,9 +7296,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "percentage",
         "value": 70.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "70%"
       }
@@ -7331,9 +7331,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_months",
+        "variable": "wage_percentage",
         "value": 85.0,
-        "unit": "months",
+        "unit": "percent",
         "direction": null,
         "raw": "Entrance 85%, 19th Month 90%, 31st Month 100%"
       }
@@ -8523,9 +8523,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_years",
+        "variable": "pay_amount_usd",
         "value": 13.545,
-        "unit": "years",
+        "unit": "usd",
         "direction": null,
         "raw": "1st Year $13.5450, 2nd Year $13.7950, 3rd Year $14.8150, 4th Year $19.3500"
       }
@@ -9032,9 +9032,9 @@
     },
     "thresholds": [
       {
-        "variable": "max_swing_runs",
+        "variable": "max_percentage",
         "value": 30.0,
-        "unit": null,
+        "unit": "percent",
         "direction": "max",
         "raw": "max_swing_runs=30%"
       }
@@ -9991,7 +9991,7 @@
     },
     "thresholds": [
       {
-        "variable": "duration_hours",
+        "variable": "max_work_hours",
         "value": 8.0,
         "unit": "hours",
         "direction": null,
@@ -16021,9 +16021,9 @@
     },
     "thresholds": [
       {
-        "variable": "vacation_benefits",
+        "variable": "benefit_percentage",
         "value": 50.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "vacation_benefits=50%"
       }
@@ -18668,9 +18668,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "percentage",
         "value": 10.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "10%"
       }
@@ -20676,9 +20676,9 @@
     },
     "thresholds": [
       {
-        "variable": "max_swing_runs",
+        "variable": "max_percentage",
         "value": 30.0,
-        "unit": null,
+        "unit": "percent",
         "direction": "max",
         "raw": "max_swing_runs=30%"
       }
@@ -21149,9 +21149,9 @@
     },
     "thresholds": [
       {
-        "variable": "salary_increase",
+        "variable": "salary_percentage",
         "value": 3.75,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "salary_increase=3.75%"
       }
@@ -23457,9 +23457,9 @@
     },
     "thresholds": [
       {
-        "variable": "contribution_rate",
+        "variable": "percentage",
         "value": 50.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "contribution_rate=50%"
       }
@@ -24040,9 +24040,9 @@
     },
     "thresholds": [
       {
-        "variable": "max_deduction",
+        "variable": "max_salary_percentage",
         "value": 30.0,
-        "unit": null,
+        "unit": "percent",
         "direction": "max",
         "raw": "max_deduction=30%"
       }
@@ -24886,9 +24886,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "percentage",
         "value": 50.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "50%"
       }
@@ -24921,9 +24921,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "salary_percentage",
         "value": 50.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "50%"
       }
@@ -24956,9 +24956,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "salary_percentage",
         "value": 50.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "50%"
       }
@@ -25309,9 +25309,9 @@
     },
     "thresholds": [
       {
-        "variable": "min_compliance",
+        "variable": "min_percentage",
         "value": 95.0,
-        "unit": "minutes",
+        "unit": "percent",
         "direction": "min",
         "raw": "min_compliance=95%"
       }
@@ -25343,10 +25343,10 @@
     },
     "thresholds": [
       {
-        "variable": "bonus",
-        "value": 600.0,
-        "unit": null,
-        "direction": null,
+        "variable": "min_percentage",
+        "value": 90.0,
+        "unit": "percent",
+        "direction": "min",
         "raw": "bonus=600, min_jobs=90%"
       }
     ],
@@ -25781,9 +25781,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "min_percentage",
         "value": 10.0,
-        "unit": null,
+        "unit": "percent",
         "direction": "min",
         "raw": "10%"
       }
@@ -30257,9 +30257,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "percentage",
         "value": 10.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "10%"
       }
@@ -35447,9 +35447,9 @@
     },
     "thresholds": [
       {
-        "variable": "max_deduction",
+        "variable": "max_salary_percentage",
         "value": 30.0,
-        "unit": null,
+        "unit": "percent",
         "direction": "max",
         "raw": "max_deduction=30%"
       }
@@ -35482,9 +35482,9 @@
     },
     "thresholds": [
       {
-        "variable": "fine",
+        "variable": "pay_percentage",
         "value": 30.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "fine=30%"
       }
@@ -39150,7 +39150,7 @@
         "variable": "duration_unknown",
         "value": 30.0,
         "unit": null,
-        "direction": "min",
+        "direction": "max",
         "raw": "30"
       }
     ],
@@ -39372,9 +39372,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "pay_percentage",
         "value": 1.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "1%"
       }
@@ -40078,9 +40078,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "wage_percentage",
         "value": 1.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "1%"
       }
@@ -44567,9 +44567,9 @@
     },
     "thresholds": [
       {
-        "variable": "max_vacation",
+        "variable": "max_percentage",
         "value": 10.0,
-        "unit": null,
+        "unit": "percent",
         "direction": "max",
         "raw": "max_vacation=10%"
       }
@@ -44601,9 +44601,9 @@
     },
     "thresholds": [
       {
-        "variable": "max_vacation_percentage",
+        "variable": "max_percentage",
         "value": 16.0,
-        "unit": null,
+        "unit": "percent",
         "direction": "max",
         "raw": "max_vacation_percentage=16%"
       }
@@ -45903,9 +45903,9 @@
     },
     "thresholds": [
       {
-        "variable": "increase_rate",
+        "variable": "pay_percentage",
         "value": 3.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "increase_rate=3%"
       }
@@ -52199,9 +52199,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "pay_percentage",
         "value": 70.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "70%"
       }
@@ -52335,9 +52335,9 @@
     },
     "thresholds": [
       {
-        "variable": "min_sick_leave_bank",
+        "variable": "min_pay_percentage",
         "value": 50.0,
-        "unit": "minutes",
+        "unit": "percent",
         "direction": "min",
         "raw": "min_sick_leave_bank=50%"
       }
@@ -52764,9 +52764,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "percentage",
         "value": 10.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "10%"
       }
@@ -54054,9 +54054,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "pay_amount_usd",
         "value": 55.0,
-        "unit": null,
+        "unit": "usd",
         "direction": null,
         "raw": "$55"
       }
@@ -57260,9 +57260,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "percentage",
         "value": 60.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "60%"
       }
@@ -58991,9 +58991,9 @@
     },
     "thresholds": [
       {
-        "variable": "max_runs",
+        "variable": "max_percentage",
         "value": 65.0,
-        "unit": null,
+        "unit": "percent",
         "direction": "max",
         "raw": "max_runs=65%"
       }
@@ -61019,7 +61019,7 @@
     },
     "thresholds": [
       {
-        "variable": "duration_hours",
+        "variable": "max_overtime_hours",
         "value": 4.0,
         "unit": "hours",
         "direction": null,
@@ -61213,9 +61213,9 @@
     },
     "thresholds": [
       {
-        "variable": "min_jobs",
+        "variable": "min_percentage",
         "value": 90.0,
-        "unit": "minutes",
+        "unit": "percent",
         "direction": "min",
         "raw": "min_jobs=90%"
       }
@@ -61320,9 +61320,9 @@
     },
     "thresholds": [
       {
-        "variable": "flat_rate_time",
+        "variable": "percentage",
         "value": 80.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "flat_rate_time=80%"
       }
@@ -62943,9 +62943,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "min_percentage",
         "value": 1.5,
-        "unit": null,
+        "unit": "percent",
         "direction": "min",
         "raw": "1.5%, 2%, 2.5%"
       }
@@ -62978,9 +62978,9 @@
     },
     "thresholds": [
       {
-        "variable": "flat_rate_time",
+        "variable": "percentage",
         "value": 80.0,
-        "unit": null,
+        "unit": "percent",
         "direction": null,
         "raw": "flat_rate_time=80%"
       }
@@ -63705,9 +63705,9 @@
     },
     "thresholds": [
       {
-        "variable": "retirement_age",
-        "value": 50.0,
-        "unit": null,
+        "variable": "pay_percentage",
+        "value": 2.5,
+        "unit": "percent",
         "direction": null,
         "raw": "retirement_age=50, service_years=20, contribution_rate=2.5%"
       }
@@ -63892,9 +63892,9 @@
     },
     "thresholds": [
       {
-        "variable": "duration_unknown",
+        "variable": "min_pay_percentage",
         "value": 65.0,
-        "unit": null,
+        "unit": "percent",
         "direction": "min",
         "raw": "65%"
       }
