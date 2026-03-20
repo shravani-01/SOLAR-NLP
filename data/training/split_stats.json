@@ -1,0 +1,55 @@
+{
+  "train": {
+    "name": "train",
+    "total": 1678,
+    "type_counts": {
+      "HARD": 1298,
+      "SOFT": 380
+    },
+    "subtype_counts": {
+      "HARD": 950,
+      "HARD-CONDITIONAL": 348,
+      "SOFT": 269,
+      "SOFT-CONDITIONAL": 109,
+      "SOFT-APPROVAL": 2
+    },
+    "with_threshold": 431,
+    "with_exception": 459,
+    "human_annotated": 60
+  },
+  "val": {
+    "name": "val",
+    "total": 209,
+    "type_counts": {
+      "HARD": 162,
+      "SOFT": 47
+    },
+    "subtype_counts": {
+      "HARD": 118,
+      "HARD-CONDITIONAL": 44,
+      "SOFT": 42,
+      "SOFT-CONDITIONAL": 5
+    },
+    "with_threshold": 60,
+    "with_exception": 49,
+    "human_annotated": 7
+  },
+  "test": {
+    "name": "test",
+    "total": 211,
+    "type_counts": {
+      "HARD": 163,
+      "SOFT": 48
+    },
+    "subtype_counts": {
+      "HARD": 113,
+      "SOFT-CONDITIONAL": 14,
+      "HARD-CONDITIONAL": 50,
+      "SOFT": 33,
+      "SOFT-APPROVAL": 1
+    },
+    "with_threshold": 48,
+    "with_exception": 65,
+    "human_annotated": 10
+  }
+}
