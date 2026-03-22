@@ -1,0 +1,10 @@
+{
+  "stats": {
+    "template_numeric": 489,
+    "feasible": 2118,
+    "template_boolean": 1154,
+    "template_soft": 475
+  },
+  "total": 2118,
+  "cfft_pairs": 0
+}
