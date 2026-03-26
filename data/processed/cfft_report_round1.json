@@ -1,0 +1,14 @@
+{
+  "round": 1,
+  "total": 2118,
+  "cfft_pairs": 187,
+  "stats": {
+    "error": 165,
+    "error_SyntaxError": 40,
+    "feasible": 1931,
+    "error_NameError": 56,
+    "error_AttributeError": 22,
+    "infeasible": 22,
+    "error_TypeError": 47
+  }
+}

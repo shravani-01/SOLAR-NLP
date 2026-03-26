@@ -148,7 +148,26 @@ def annotate(csv_path, resume=False):
             df.at[df.index[i], 'constraint_type'] = ctype
 
             # For hard constraints, prompt for quick details
-            if key == 'h':
+            # if key == 'h':
+            #     print(f"\n  Entities (e.g. 'operator, shift') or Enter to skip: ", end="")
+            #     ents = input().strip()
+            #     if ents:
+            #         df.at[df.index[i], 'entities'] = ents
+
+            #     print(f"  Threshold (e.g. 'max_hours=6') or Enter to skip: ", end="")
+            #     thresh = input().strip()
+            #     if thresh:
+            #         df.at[df.index[i], 'threshold'] = thresh
+
+            #     print(f"  Exception clause? (y/n): ", end="")
+            #     exc = input().strip().lower()
+            #     if exc == 'y':
+            #         print(f"  Exception text: ", end="")
+            #         exc_text = input().strip()
+            #         df.at[df.index[i], 'exception'] = exc_text
+                    
+            # Prompt for details on both HARD and SOFT
+            if key in ('h', 's'):
                 print(f"\n  Entities (e.g. 'operator, shift') or Enter to skip: ", end="")
                 ents = input().strip()
                 if ents:
