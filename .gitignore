@@ -56,3 +56,6 @@ data/training/transit/cpsat_test.jsonl
 data/training/transit/train.jsonl
 data/training/transit/val.jsonl
 data/training/transit/test.jsonl
+data/training/transit/cpsat_train.jsonl
+data/training/**/*.jsonl
+data/training/**/*.json
