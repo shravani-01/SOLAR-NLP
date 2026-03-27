@@ -50,4 +50,9 @@ huggingface/
 # Logs
 *.log
 logs/
-wandb/
+wandb/data/training/transit/cpsat_train.jsonl
+data/training/transit/cpsat_val.jsonl
+data/training/transit/cpsat_test.jsonl
+data/training/transit/train.jsonl
+data/training/transit/val.jsonl
+data/training/transit/test.jsonl
