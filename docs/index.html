@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOLAR — Exception Grounding Walkthrough</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue:#1F4E79;--teal:#0D6E56;--amber:#BA7517;--coral:#B73C1D;
+    --light:#F4F1EB;--dark:#1A1A2E;--border:#E0DDD6;
+    --green:#27AE60;--red:#E74C3C;--yellow:#F39C12;--accent:#4A90D9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--light);color:var(--dark);line-height:1.7;}
+
+  .hero{background:var(--dark);color:white;padding:50px 60px 40px;}
+  .hero-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:12px;}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:36px;line-height:1.15;margin-bottom:10px;}
+  .hero h1 span{color:#7EC8E3;}
+  .hero p{font-size:13px;color:rgba(255,255,255,0.55);max-width:680px;line-height:1.7;}
+  .badge{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;padding:4px 12px;border-radius:4px;margin-top:14px;margin-right:8px;}
+  .badge-green{background:rgba(39,174,96,0.2);border:1px solid rgba(39,174,96,0.4);color:#7DCEA0;}
+  .badge-red{background:rgba(231,76,60,0.2);border:1px solid rgba(231,76,60,0.4);color:#F1948A;}
+
+  .container{max-width:1020px;margin:0 auto;padding:50px 40px;}
+
+  .numbers-bar{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:36px;background:white;}
+  .num-item{padding:20px 22px;border-right:1px solid var(--border);text-align:center;}
+  .num-item:last-child{border-right:none;}
+  .num-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:6px;}
+  .num-val{font-family:'DM Serif Display',serif;font-size:32px;line-height:1;}
+  .num-sub{font-size:11px;color:#888;margin-top:4px;}
+
+  .finding-good{background:#F0FFF8;border:1.5px solid #A9DFBF;border-radius:12px;padding:22px 26px;margin-bottom:16px;}
+  .finding-good h4{font-size:14px;font-weight:700;color:#1E8449;margin-bottom:8px;}
+  .finding-good p{font-size:13px;color:#1A5631;line-height:1.7;}
+
+  .finding-bad{background:#FDF2F2;border:1.5px solid #F5B7B1;border-radius:12px;padding:22px 26px;margin-bottom:36px;}
+  .finding-bad h4{font-size:14px;font-weight:700;color:#922B21;margin-bottom:8px;}
+  .finding-bad p{font-size:13px;color:#6E1010;line-height:1.7;}
+
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+  .why-card{background:var(--dark);border-radius:10px;padding:20px 22px;}
+  .why-card h5{font-size:13px;font-weight:600;margin-bottom:8px;}
+  .why-card p{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.6;}
+  .why-card.good{border:1px solid rgba(39,174,96,0.3);}
+  .why-card.bad{border:1px solid rgba(231,76,60,0.3);}
+  .why-card.good h5{color:#7DCEA0;}
+  .why-card.bad h5{color:#F1948A;}
+
+  .levels-strip{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:44px;}
+  .lsi{padding:20px 22px;border-right:1px solid var(--border);background:white;}
+  .lsi:last-child{border-right:none;}
+  .lsi-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;}
+  .l1 .lsi-num{color:var(--yellow);}
+  .l2 .lsi-num{color:var(--accent);}
+  .l3 .lsi-num{color:var(--red);}
+  .lsi h4{font-size:13px;font-weight:600;margin-bottom:4px;}
+  .lsi p{font-size:12px;color:#666;line-height:1.5;}
+  .lsi-score{font-family:'DM Serif Display',serif;font-size:28px;margin-top:6px;}
+  .l1 .lsi-score{color:var(--yellow);}
+  .l2 .lsi-score{color:var(--accent);}
+  .l3 .lsi-score{color:var(--red);}
+  .cfft-pill{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;padding:2px 7px;border-radius:3px;margin-top:6px;}
+  .cfft-y{background:#EAFAF1;color:#1E8449;}
+  .cfft-n{background:#FDEDEC;color:#922B21;}
+
+  .example-block{margin-bottom:50px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:white;}
+  .ex-head{padding:16px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .ex-badge{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:4px;}
+  .b-partial{background:#FEF9E7;color:#B7770D;}
+  .b-wrong{background:#FDEDEC;color:#922B21;}
+  .b-annot{background:#F4ECF7;color:#6C3483;}
+  .ex-id{font-family:'DM Mono',monospace;font-size:11px;color:#999;}
+  .ex-head h3{font-size:14px;font-weight:600;margin-left:auto;text-align:right;}
+
+  .sf{padding:24px;display:flex;flex-direction:column;}
+  .stage{display:grid;grid-template-columns:170px 1fr;gap:0;}
+  .spacer{display:grid;grid-template-columns:170px 1fr;height:16px;}
+  .sl{border-right:2px solid var(--border);display:flex;align-items:center;justify-content:flex-end;padding-right:10px;color:#DDD;font-size:12px;}
+  .stage-l{padding:13px 16px 13px 0;border-right:2px solid var(--border);display:flex;flex-direction:column;align-items:flex-end;gap:3px;}
+  .sn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#CCC;}
+  .st{font-size:13px;font-weight:600;text-align:right;}
+  .sm{font-family:'DM Mono',monospace;font-size:10px;color:#AAA;text-align:right;}
+  .stage-r{padding:13px 0 13px 20px;}
+
+  .raw-box{background:#F8F7F4;border:1px solid #E8E5DF;border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;font-size:13px;color:#333;line-height:1.7;font-style:italic;}
+  .ir-box{font-family:'DM Mono',monospace;font-size:11px;color:#1A5276;background:#EBF5FB;border:1px solid #AED6F1;border-radius:8px;padding:12px 14px;white-space:pre;overflow-x:auto;line-height:1.8;}
+  .code-box{font-family:'DM Mono',monospace;font-size:11px;background:#0D1117;color:#C9D1D9;border-radius:8px;padding:14px;white-space:pre;overflow-x:auto;line-height:1.9;}
+
+  .cc{color:#6E7681;} .ck{color:#FF7B72;} .cs{color:#A5D6FF;}
+  .cm{color:#79C0FF;} .cw{color:#E74C3C;text-decoration:underline wavy #E74C3C;}
+  .cg{color:#3FB950;font-weight:600;} .cy{color:#FFA657;}
+
+  .ex-t{background:rgba(243,156,18,0.18);border-radius:3px;padding:1px 5px;font-weight:600;color:#B7770D;font-style:normal;}
+  .cw-s{background:rgba(231,76,60,0.12);border-radius:3px;padding:1px 5px;color:#C0392B;font-weight:600;}
+  .cg-s{background:rgba(39,174,96,0.12);border-radius:3px;padding:1px 5px;color:#1E8449;font-weight:600;}
+
+  .sol{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:6px;font-family:'DM Mono',monospace;font-size:12px;font-weight:600;margin-top:9px;}
+  .sol-ok{background:#EAFAF1;color:#1E8449;border:1px solid #A9DFBF;}
+
+  .verdict{margin-top:11px;padding:12px 15px;border-radius:8px;font-size:13px;line-height:1.6;}
+  .v-p{background:#FEF9E7;border-left:3px solid #F39C12;color:#6E2F0C;}
+  .v-w{background:#FDEDEC;border-left:3px solid #E74C3C;color:#6E1010;}
+  .v-a{background:#F4ECF7;border-left:3px solid #8E44AD;color:#4A235A;}
+
+  .cfft-note{margin-top:9px;padding:9px 13px;border-radius:6px;font-size:12px;font-family:'DM Mono',monospace;background:#F4F6F7;color:#555;border-left:3px solid #BDC3C7;}
+
+  .pill{display:inline-block;font-size:10px;font-family:'DM Mono',monospace;padding:2px 8px;border-radius:4px;margin:2px 2px;}
+  .pg{background:#EAFAF1;color:#1E8449;}
+  .py{background:#FEF9E7;color:#B7770D;}
+  .pr{background:#FDEDEC;color:#922B21;}
+  .pb{background:#EBF5FB;color:#1A5276;}
+  .pgray{background:#F4F6F7;color:#717D7E;}
+
+  .insight{background:linear-gradient(135deg,#1F4E79,#0D6E56);color:white;border-radius:12px;padding:28px 32px;margin:36px 0;}
+  .insight h4{font-family:'DM Serif Display',serif;font-size:21px;margin-bottom:10px;}
+  .insight p{font-size:14px;color:rgba(255,255,255,0.82);line-height:1.75;}
+
+  .sec-t{font-family:'DM Serif Display',serif;font-size:26px;color:var(--dark);margin-bottom:5px;}
+  .sec-s{font-size:13px;color:#666;margin-bottom:24px;max-width:640px;line-height:1.6;}
+
+  .sum-t{width:100%;border-collapse:collapse;font-size:12px;background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:16px;}
+  .sum-t th{padding:11px 13px;text-align:left;font-size:10px;font-family:'DM Mono',monospace;letter-spacing:1px;text-transform:uppercase;color:#888;background:#FAFAF8;border-bottom:1px solid var(--border);}
+  .sum-t td{padding:11px 13px;border-bottom:1px solid #F0EDE6;vertical-align:top;}
+  .sum-t tr:last-child td{border-bottom:none;}
+
+  code{font-family:'DM Mono',monospace;font-size:11px;background:#F0EDE6;padding:1px 5px;border-radius:3px;color:#333;}
+  .footer{background:var(--dark);color:rgba(255,255,255,0.3);text-align:center;padding:22px;font-size:11px;font-family:'DM Mono',monospace;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">SOLAR · Exception Grounding · Real TransitOpsBench Data · n=50</div>
+  <h1>Exception Handling:<br><span>Extraction → Realization → Grounding</span></h1>
+  <p>5 real MTA CBA examples from grounding_validation_sample.json. Actual pipeline output at each stage. Honest finding: CFFT fixed syntactic code errors but did NOT fix semantic grounding. Zero strict-correct examples found across all 50 samples.</p>
+  <span class="badge badge-green">✓ Real data — grounding_validation_sample.json</span>
+  <span class="badge badge-red">⚠ CFFT did not fix semantic grounding</span>
+</div>
+
+<div class="container">
+
+  <!-- NUMBERS -->
+  <div class="numbers-bar">
+    <div class="num-item">
+      <div class="num-label">L1 Extraction (GPT-4o)</div>
+      <div class="num-val" style="color:var(--amber);">95.3%</div>
+      <div class="num-sub">span copying · not solver-usable</div>
+    </div>
+    <div class="num-item">
+      <div class="num-label">L2 Realization (SOLAR)</div>
+      <div class="num-val" style="color:var(--accent);">94.8%</div>
+      <div class="num-sub">OnlyEnforceIf generated (548/578)</div>
+    </div>
+    <div class="num-item">
+      <div class="num-label">L3 Strict Grounding</div>
+      <div class="num-val" style="color:var(--red);">~0%</div>
+      <div class="num-sub">0/50 samples: all generic vars</div>
+    </div>
+    <div class="num-item">
+      <div class="num-label">CFFT Fixed Grounding?</div>
+      <div class="num-val" style="color:var(--red);">No</div>
+      <div class="num-sub">fixed syntax · not semantics</div>
+    </div>
+  </div>
+
+  <!-- CFFT FINDINGS -->
+  <div class="finding-good">
+    <h4>✅ What CFFT DID fix — syntactic errors</h4>
+    <p>Solver feasibility <strong>91.2% → 94.0%</strong>. TypeError (list indexing) reduced <strong>95.7%</strong> (47→2). NameError, SyntaxError, AttributeError all reduced. These are detectable by OR-Tools — wrong code crashes → INFEASIBLE/ERROR → training pair created → model corrected.</p>
+  </div>
+
+  <div class="finding-bad">
+    <h4>⚠️ What CFFT did NOT fix — semantic grounding</h4>
+    <p>After analysis of all 50 validation samples: <strong>zero cases of semantically named condition variables</strong>. Every variable is <code>exception_contract_XXXX</code> — generic, abstract, no link to exception meaning. CFFT cannot fix this because generic variables still produce <strong>FEASIBLE</strong> solver output. OR-Tools has no mechanism to detect that <code>exception_contract_1161</code> should be <code>health_safety_claim_filed</code>. No INFEASIBLE signal → no training pair → model never corrected. This is the fundamental boundary of binary feasibility as a training signal.</p>
+  </div>
+
+  <!-- WHY -->
+  <div class="why-grid">
+    <div class="why-card good">
+      <h5 class="good">Syntactic error — solver detects ✅</h5>
+      <p>Wrong: <code style="color:#7DCEA0;">model.Add(layover_min &lt;= 5)</code><br>OR-Tools crashes → INFEASIBLE → CFFT pair created → model learns correct indexing <code style="color:#7DCEA0;">layover_min[0]</code>. CFFT works here.</p>
+    </div>
+    <div class="why-card bad">
+      <h5 class="bad">Semantic error — solver cannot detect ❌</h5>
+      <p>Wrong name: <code style="color:#F1948A;">exception_contract_1161</code><br>OR-Tools runs fine → FEASIBLE → no pair created → model never learns <code style="color:#F1948A;">health_safety_claim_filed</code>. CFFT cannot help.</p>
+    </div>
+  </div>
+
+  <!-- LEVELS -->
+  <div class="levels-strip">
+    <div class="lsi l1">
+      <div class="lsi-num">Level 1</div>
+      <h4>Extraction</h4>
+      <p>Identify exception span. GPT-4o copies text. High score — not solver-usable.</p>
+      <div class="lsi-score">95.3%</div>
+      <div style="font-size:11px;color:#999;font-family:'DM Mono',monospace;">GPT-4o CoT</div>
+      <div class="cfft-pill cfft-n">CFFT: N/A</div>
+    </div>
+    <div class="lsi l2">
+      <div class="lsi-num">Level 2</div>
+      <h4>Conditional Realization</h4>
+      <p>Generate OnlyEnforceIf(). Knows exceptions need conditional logic.</p>
+      <div class="lsi-score">94.8%</div>
+      <div style="font-size:11px;color:#999;font-family:'DM Mono',monospace;">SOLAR (548/578)</div>
+      <div class="cfft-pill cfft-y">CFFT: improved feasibility</div>
+    </div>
+    <div class="lsi l3">
+      <div class="lsi-num">Level 3</div>
+      <h4>Semantic Grounding</h4>
+      <p>Condition variable matches exception meaning. 0/50 strict across all samples.</p>
+      <div class="lsi-score">~0%</div>
+      <div style="font-size:11px;color:#999;font-family:'DM Mono',monospace;">All: generic vars</div>
+      <div class="cfft-pill cfft-n">CFFT: did NOT fix</div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 1 -->
+  <div class="sec-t">Example 1 — Best Partial ⚠️</div>
+  <div class="sec-s">CONTRACT_2186 — Closest to correct in our 50 samples. Constraint type (SOFT) is right, OnlyEnforceIf correctly applied. But condition variable still generic — no semantic link to "no prior suspension".</div>
+
+  <div class="example-block">
+    <div class="ex-head">
+      <span class="ex-badge b-partial">⚠️ Best Partial</span>
+      <span class="ex-id">CONTRACT_2186</span>
+      <h3>Discipline — Prior Suspension Exception</h3>
+    </div>
+    <div class="sf">
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Input</div><div class="st">Raw Sentence</div><div class="sm">MTA CBA verbatim</div></div>
+        <div class="stage-r">
+          <div class="raw-box">"<span class="ex-t">If there is no prior suspension on a worker's record</span> the disciplinary procedure should be administered progressively and a written warning should precede any suspension."</div>
+          <div style="margin-top:8px;"><span class="pill pb">SOFT-CONDITIONAL</span><span class="pill py">exception: no prior suspension</span></div>
+        </div>
+      </div>
+      <div class="spacer"><div class="sl">↓</div><div></div></div>
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Stage 1</div><div class="st">IR Extractor</div><div class="sm">Llama-3.1-8B + LoRA</div></div>
+        <div class="stage-r">
+          <div class="ir-box">{
+  "constraint_type": "SOFT",
+  "hardness_subtype": "SOFT-CONDITIONAL",
+  "entities": { "subject": ["worker"] },
+  "thresholds": [],
+  "exceptions": [
+    {
+      "trigger": "no prior suspension on a worker's record",
+      "type": "conditional"
+    }
+  ]
+}</div>
+          <div style="margin-top:7px;font-size:11px;color:#888;font-family:'DM Mono',monospace;">✓ Exception trigger correctly extracted</div>
+        </div>
+      </div>
+      <div class="spacer"><div class="sl">↓</div><div></div></div>
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Stage 2</div><div class="st">CP-SAT Gen.</div><div class="sm">Llama + CFFT</div></div>
+        <div class="stage-r">
+          <div class="code-box"><span class="cc"># CONTRACT_2186 — progressive discipline</span>
+<span class="cc"># Exception: no prior suspension on record</span>
+
+<span class="cm">preference_contract_2186</span> = model.NewBoolVar(<span class="cs">'preference_contract_2186'</span>)
+<span class="cw">exception_contract_2186</span> = model.NewBoolVar(<span class="cs">'exception_contract_2186'</span>)
+
+model.Add(preference_contract_2186 <= <span class="cy">1</span>).OnlyEnforceIf(
+    <span class="cw">exception_contract_2186</span>.Not())
+<span class="cc"># penalize violation if exception doesn't hold</span></div>
+          <div class="sol sol-ok">✅ FEASIBLE</div>
+          <div class="verdict v-p"><strong>⚠️ Best partial in 50 samples.</strong> Constraint type (SOFT) correct. OnlyEnforceIf correctly applied. But <code class="cw-s">exception_contract_2186</code> has no link to "no prior suspension". Should be <code class="cg-s">no_prior_suspension</code>. CFFT cannot fix — generic variable produces FEASIBLE output, no training signal generated.</div>
+          <div class="cfft-note">CFFT: FEASIBLE → no pair created → variable name never corrected by solver feedback</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 2 -->
+  <div class="sec-t">Example 2 — Partial ⚠️</div>
+  <div class="sec-s">CONTRACT_0740 — Sick leave with hire-date exception. Threshold correctly extracted and applied (1 day/month). Condition variable cannot encode "hired after April 29, 1988".</div>
+
+  <div class="example-block">
+    <div class="ex-head">
+      <span class="ex-badge b-partial">⚠️ Partial</span>
+      <span class="ex-id">CONTRACT_0740</span>
+      <h3>Sick Leave — Hire Date Exception</h3>
+    </div>
+    <div class="sf">
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Input</div><div class="st">Raw Sentence</div><div class="sm">MTA CBA verbatim</div></div>
+        <div class="stage-r">
+          <div class="raw-box">"...up to a total of <strong>one day per calendar month</strong>...<span class="ex-t">except that an employee hired on or after April 29, 1988 will not receive any sick leave with pay for the first day of absence during the first year of employment.</span>"</div>
+          <div style="margin-top:8px;"><span class="pill pb">HARD-CONDITIONAL</span><span class="pill py">exception: hired after April 29 1988</span><span class="pill pb">threshold: 1 day/month</span></div>
+        </div>
+      </div>
+      <div class="spacer"><div class="sl">↓</div><div></div></div>
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Stage 1</div><div class="st">IR Extractor</div><div class="sm">Llama-3.1-8B + LoRA</div></div>
+        <div class="stage-r">
+          <div class="ir-box">{
+  "constraint_type": "HARD",
+  "hardness_subtype": "HARD-CONDITIONAL",
+  "entities": { "subject": ["employee"] },
+  "thresholds": [
+    {"variable": "max_absence_days", "value": 1.0,
+     "unit": "days", "direction": "max"}
+  ],
+  "exceptions": [
+    {
+      "trigger": "employees hired on or after April 29, 1988
+                  will not receive pay for the first day during
+                  the first year",
+      "type": "conditional"
+    }
+  ]
+}</div>
+          <div style="margin-top:7px;font-size:11px;color:#888;font-family:'DM Mono',monospace;">✓ Threshold extracted (1.0 day) · ✓ Exception trigger extracted</div>
+        </div>
+      </div>
+      <div class="spacer"><div class="sl">↓</div><div></div></div>
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Stage 2</div><div class="st">CP-SAT Gen.</div><div class="sm">Llama + CFFT</div></div>
+        <div class="stage-r">
+          <div class="code-box"><span class="cc"># CONTRACT_0740 — sick leave max 1 day/month</span>
+<span class="cc"># Exception: hired on/after April 29 1988, first year</span>
+
+<span class="cw">exception_contract_0740</span> = model.NewBoolVar(<span class="cs">'exception_contract_0740'</span>)
+MAX_ABSENCE_DAYS = <span class="cy">1</span>
+
+<span class="ck">for</span> op <span class="ck">in</span> range(N_OPERATORS):
+    model.Add(absence_days[op] <= MAX_ABSENCE_DAYS).OnlyEnforceIf(
+        <span class="cw">exception_contract_0740</span>.Not())</div>
+          <div class="sol sol-ok">✅ FEASIBLE</div>
+          <div class="verdict v-p"><strong>⚠️ Partial.</strong> Threshold (1 day) correctly extracted and used ✓. OnlyEnforceIf correctly applied ✓. But <code class="cw-s">exception_contract_0740</code> encodes nothing about "hired after April 29 1988" or "first year". Should be <code class="cg-s">hired_post_1988_probationary</code>. CFFT cannot fix — FEASIBLE output, no training signal.</div>
+          <div class="cfft-note">CFFT: hire-date semantics undetectable by solver → no training signal → never corrected</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 3 -->
+  <div class="sec-t">Example 3 — Partial ⚠️</div>
+  <div class="sec-s">CONTRACT_1269 — Vacation days subject to management approval. CFFT actually improved the structure here by adding slack constraints — but condition variable remains generic.</div>
+
+  <div class="example-block">
+    <div class="ex-head">
+      <span class="ex-badge b-partial">⚠️ Partial</span>
+      <span class="ex-id">CONTRACT_1269</span>
+      <h3>Vacation — Management Approval</h3>
+    </div>
+    <div class="sf">
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Input</div><div class="st">Raw Sentence</div><div class="sm">MTA CBA verbatim</div></div>
+        <div class="stage-r">
+          <div class="raw-box">"(1) additional week of vacation to be used in single days, as requested during the year, <span class="ex-t">subject to management approval.</span> At the annual vacation pick, all employees with at least <strong>three years of service</strong> shall be entitled to elect to be paid one..."</div>
+          <div style="margin-top:8px;"><span class="pill pb">HARD-CONDITIONAL</span><span class="pill py">exception: management approval</span></div>
+        </div>
+      </div>
+      <div class="spacer"><div class="sl">↓</div><div></div></div>
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Stage 1</div><div class="st">IR Extractor</div><div class="sm">Llama-3.1-8B + LoRA</div></div>
+        <div class="stage-r">
+          <div class="ir-box">{
+  "constraint_type": "HARD",
+  "hardness_subtype": "HARD-CONDITIONAL",
+  "entities": {
+    "subject": ["employees"],
+    "authority": ["management"]
+  },
+  "thresholds": [
+    {"variable": "min_service_years", "value": 3.0,
+     "unit": "years", "direction": "min"}
+  ],
+  "exceptions": [
+    {"trigger": "subject to management approval",
+     "type": "conditional"}
+  ]
+}</div>
+        </div>
+      </div>
+      <div class="spacer"><div class="sl">↓</div><div></div></div>
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Stage 2</div><div class="st">CP-SAT Gen.</div><div class="sm">Llama + CFFT</div></div>
+        <div class="stage-r">
+          <div class="code-box"><span class="cc"># CONTRACT_1269 — vacation, management approval</span>
+
+<span class="cw">exception_contract_1269</span> = model.NewBoolVar(<span class="cs">'exception_contract_1269'</span>)
+DURATION_HOURS = <span class="cy">3</span>
+
+<span class="ck">for</span> op <span class="ck">in</span> range(N_OPERATORS):
+    model.Add(generic_value[op] >= DURATION_HOURS).OnlyEnforceIf(
+        <span class="cw">exception_contract_1269</span>.Not())
+    <span class="cc"># slack when exception (approval granted)</span>
+    model.Add(slack_contract_1269[op] >= <span class="cy">0</span>).OnlyEnforceIf(
+        <span class="cw">exception_contract_1269</span>)</div>
+          <div class="sol sol-ok">✅ FEASIBLE</div>
+          <div class="verdict v-p"><strong>⚠️ Partial — interesting case.</strong> CFFT helped here — slack constraints added for when exception applies, showing the model learned management approval creates flexibility. Structural logic improved via CFFT. But <code class="cw-s">exception_contract_1269</code> still has no link to "management approval". Should be <code class="cg-s">management_approved</code>. Structural improvement ✓, semantic naming ✗.</div>
+          <div class="cfft-note">CFFT: slack structure improved ✓ · variable naming unchanged · FEASIBLE so no further correction possible</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 4 -->
+  <div class="sec-t">Example 4 — Incorrect ❌</div>
+  <div class="sec-s">CONTRACT_1000 — Overtime pay with disciplinary exception. OnlyEnforceIf buried inside comment — never executes. Double failure: broken syntax AND generic variable name.</div>
+
+  <div class="example-block">
+    <div class="ex-head">
+      <span class="ex-badge b-wrong">❌ Incorrect</span>
+      <span class="ex-id">CONTRACT_1000</span>
+      <h3>Overtime Pay — Disciplinary Exception Lost</h3>
+    </div>
+    <div class="sf">
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Input</div><div class="st">Raw Sentence</div><div class="sm">MTA CBA verbatim</div></div>
+        <div class="stage-r">
+          <div class="raw-box">"Any employee ordered to attend schooling outside regularly scheduled hours shall be allowed time and one-half at regular rate of pay, <span class="ex-t">except that when an employee, because of errors or dereliction in the performance of his/her duties, is required by the Transit Authority, in disciplinary proceedings to report for schooling, he/she shall receive no allowance of pay therefor.</span>"</div>
+          <div style="margin-top:8px;"><span class="pill pb">HARD-CONDITIONAL</span><span class="pill py">exception: disciplinary proceedings</span><span class="pill pb">effect: overtime pay waived</span></div>
+        </div>
+      </div>
+      <div class="spacer"><div class="sl">↓</div><div></div></div>
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Stage 1</div><div class="st">IR Extractor</div><div class="sm">Llama-3.1-8B + LoRA</div></div>
+        <div class="stage-r">
+          <div class="ir-box">{
+  "constraint_type": "HARD",
+  "hardness_subtype": "HARD-CONDITIONAL",
+  "entities": {
+    "subject": ["employee"],
+    "authority": ["Transit Authority"]
+  },
+  "exceptions": [
+    {
+      "trigger": "when employee required for schooling due to
+                  errors or dereliction in duties",
+      "type": "conditional"
+    }
+  ]
+}</div>
+          <div style="margin-top:7px;font-size:11px;color:#888;font-family:'DM Mono',monospace;">✓ Exception trigger correctly extracted (disciplinary context)</div>
+        </div>
+      </div>
+      <div class="spacer"><div class="sl">↓</div><div></div></div>
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Stage 2</div><div class="st">CP-SAT Gen.</div><div class="sm">Llama + CFFT</div></div>
+        <div class="stage-r">
+          <div class="code-box"><span class="cc"># CONTRACT_1000 — overtime pay, disciplinary exception</span>
+
+<span class="cw">exception_contract_1000</span> = model.NewBoolVar(<span class="cs">'exception_contract_1000'</span>)
+DURATION_UNKNOWN = <span class="cy">1</span>
+
+<span class="ck">for</span> op <span class="ck">in</span> range(N_OPERATORS):
+    model.Add(generic_value[op] <= DURATION_UNKNOWN)
+    <span class="cw"><span class="cc"># BUG: .OnlyEnforceIf in comment — never executes!</span></span>
+    <span class="cw"><span class="cc"># direction inferred max.OnlyEnforceIf(exception_contract_1000.Not())</span></span>
+
+    model.Add(generic_value[op] > DURATION_UNKNOWN)
+    <span class="cw"><span class="cc"># direction inferred min.OnlyEnforceIf(exception_contract_1000)</span></span></div>
+          <div class="sol sol-ok">✅ FEASIBLE — but OnlyEnforceIf never applied</div>
+          <div class="verdict v-w"><strong>❌ Incorrect — two failures.</strong> (1) <code class="cw-s">exception_contract_1000</code> — generic, no link to "disciplinary proceedings". Should be <code class="cg-s">disciplinary_proceedings</code>. (2) <code>OnlyEnforceIf()</code> is inside comments — constraint runs unconditionally — overtime pay never waived in disciplinary cases. CFFT could potentially fix the comment bug (syntactic) but OR-Tools returns FEASIBLE here so no training signal is generated for this specific case.</div>
+          <div class="cfft-note">CFFT: FEASIBLE despite broken code → no pair created → both failures uncorrected</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 5 -->
+  <div class="sec-t">Example 5 — Annotation Error 🔴</div>
+  <div class="sec-s">CONTRACT_1761 — Empty string trigger. About 7/50 samples have this issue — annotation marked HARD-CONDITIONAL but no exception text was found. Shows annotation quality issues in real CBA data.</div>
+
+  <div class="example-block">
+    <div class="ex-head">
+      <span class="ex-badge b-annot">🔴 Annotation Error</span>
+      <span class="ex-id">CONTRACT_1761</span>
+      <h3>Empty Exception Trigger — Annotation Issue</h3>
+    </div>
+    <div class="sf">
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Input</div><div class="st">Raw Sentence</div><div class="sm">MTA CBA verbatim</div></div>
+        <div class="stage-r">
+          <div class="raw-box">"If he/she shall have been ordered to and does report in person to the place where he/she is directed to report, he/she will be allowed three [hours pay]..."</div>
+          <div style="margin-top:8px;"><span class="pill pb">HARD-CONDITIONAL</span><span class="pill pr">exception trigger: empty string ← annotation error</span></div>
+        </div>
+      </div>
+      <div class="spacer"><div class="sl">↓</div><div></div></div>
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Stage 1</div><div class="st">IR Extractor</div><div class="sm">Llama-3.1-8B + LoRA</div></div>
+        <div class="stage-r">
+          <div class="ir-box">{
+  "constraint_type": "HARD",
+  "hardness_subtype": "HARD-CONDITIONAL",
+  "entities": { "subject": ["employee"] },
+  "exceptions": [
+    {
+      "trigger": "empty string",
+      "type": "conditional"
+    }
+  ]
+}</div>
+          <div style="margin-top:7px;font-size:11px;color:#888;font-family:'DM Mono',monospace;">⚠ Annotation had empty trigger — model faithfully reproduces annotation error</div>
+        </div>
+      </div>
+      <div class="spacer"><div class="sl">↓</div><div></div></div>
+      <div class="stage">
+        <div class="stage-l"><div class="sn">Stage 2</div><div class="st">CP-SAT Gen.</div><div class="sm">Llama + CFFT</div></div>
+        <div class="stage-r">
+          <div class="code-box"><span class="cc"># CONTRACT_1761 — report in person conditional</span>
+<span class="cc"># Exception: empty string (annotation error)</span>
+
+<span class="cm">condition_contract_1761</span> = model.NewBoolVar(<span class="cs">'condition_contract_1761'</span>)
+<span class="cw">exception_contract_1761</span> = model.NewBoolVar(<span class="cs">'exception_contract_1761'</span>)
+
+model.Add(condition_contract_1761 == <span class="cy">1</span>).OnlyEnforceIf(
+    <span class="cw">exception_contract_1761</span>.Not())</div>
+          <div class="sol sol-ok">✅ FEASIBLE</div>
+          <div class="verdict v-a"><strong>🔴 Annotation error propagated.</strong> The exception trigger "empty string" came from the annotation — the sentence doesn't actually contain a clear exception clause. The model faithfully uses the empty trigger and generates a meaningless exception variable. This is an annotation quality issue, not a model failure. ~7/50 samples in the validation set have this pattern — they inflate the apparent realization rate without meaningful grounding. Shows why the human expert review step in annotation is critical.</div>
+          <div class="cfft-note">Not a CFFT failure — upstream annotation error. Affects ~14% of validation sample.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSIGHT -->
+  <div class="insight">
+    <h4>The Complete Picture — 50 Samples, Honest Finding</h4>
+    <p>Across all 50 validation samples: <strong>zero strict-correct semantic groundings found</strong>. Every condition variable is a generic abstract name. CFFT improved solver feasibility (91.2%→94.0%) by fixing syntactic errors OR-Tools can detect. But semantic naming — the difference between <code style="background:rgba(255,255,255,0.15);color:white;">exception_contract_XXXX</code> and <code style="background:rgba(255,255,255,0.15);color:white;">health_safety_claim_filed</code> — requires supervision beyond binary feasibility. This is the paper's deepest finding and clearest future direction: richer training signals such as semantic similarity between condition variables and exception trigger text, or human-in-the-loop correction of condition semantics.</p>
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <div class="sec-t">All 5 Examples — Summary</div>
+  <table class="sum-t">
+    <thead>
+      <tr>
+        <th>Contract</th>
+        <th>Exception in CBA</th>
+        <th>L1 ✓</th>
+        <th>L2 OnlyEnforceIf</th>
+        <th>L3 Semantic var</th>
+        <th>CFFT helped?</th>
+        <th>Verdict</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-family:'DM Mono',monospace;font-size:11px;">CONTRACT_2186</td>
+        <td style="font-size:12px;color:#555;">"no prior suspension on record"</td>
+        <td style="color:#1E8449;">✓</td>
+        <td style="font-size:12px;color:#1E8449;">✓ Correct</td>
+        <td style="font-size:12px;color:#B7770D;">⚠ Generic → <code>no_prior_suspension</code></td>
+        <td style="font-size:12px;color:#888;">Feasibility only</td>
+        <td><span class="pill py">Best Partial</span></td>
+      </tr>
+      <tr>
+        <td style="font-family:'DM Mono',monospace;font-size:11px;">CONTRACT_0740</td>
+        <td style="font-size:12px;color:#555;">"hired after April 29 1988, first year"</td>
+        <td style="color:#1E8449;">✓</td>
+        <td style="font-size:12px;color:#1E8449;">✓ Correct</td>
+        <td style="font-size:12px;color:#B7770D;">⚠ Generic → <code>hired_post_1988_probationary</code></td>
+        <td style="font-size:12px;color:#888;">Feasibility only</td>
+        <td><span class="pill py">Partial</span></td>
+      </tr>
+      <tr>
+        <td style="font-family:'DM Mono',monospace;font-size:11px;">CONTRACT_1269</td>
+        <td style="font-size:12px;color:#555;">"subject to management approval"</td>
+        <td style="color:#1E8449;">✓</td>
+        <td style="font-size:12px;color:#1E8449;">✓ + slack added</td>
+        <td style="font-size:12px;color:#B7770D;">⚠ Generic → <code>management_approved</code></td>
+        <td style="font-size:12px;color:#1E8449;">Slack structure ✓</td>
+        <td><span class="pill py">Partial</span></td>
+      </tr>
+      <tr>
+        <td style="font-family:'DM Mono',monospace;font-size:11px;">CONTRACT_1000</td>
+        <td style="font-size:12px;color:#555;">"disciplinary proceedings, dereliction"</td>
+        <td style="color:#1E8449;">✓</td>
+        <td style="font-size:12px;color:#E74C3C;">❌ In comment</td>
+        <td style="font-size:12px;color:#922B21;">❌ Generic + broken</td>
+        <td style="font-size:12px;color:#888;">FEASIBLE — no signal</td>
+        <td><span class="pill pr">Incorrect</span></td>
+      </tr>
+      <tr>
+        <td style="font-family:'DM Mono',monospace;font-size:11px;">CONTRACT_1761</td>
+        <td style="font-size:12px;color:#555;">"empty string" ← annotation error</td>
+        <td style="color:#E74C3C;">✗</td>
+        <td style="font-size:12px;color:#888;">Generated but meaningless</td>
+        <td style="font-size:12px;color:#922B21;">❌ No trigger to ground</td>
+        <td style="font-size:12px;color:#888;">N/A</td>
+        <td><span class="pill pgray">Annot. Error</span></td>
+      </tr>
+      <tr>
+        <td colspan="7" style="font-size:12px;color:#888;font-style:italic;padding:12px 13px;">GPT-4o / DeepSeek: Level 1 only — span copying, no CP-SAT output. Cannot reach Level 2 or 3. High extraction scores do not indicate solver-usable grounding.</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="footer">
+  SOLAR · Exception Grounding · Real Data (grounding_validation_sample.json, n=50) · CFFT fixed syntax not semantics · March 2026
+</div>
+
+</body>
+</html>
