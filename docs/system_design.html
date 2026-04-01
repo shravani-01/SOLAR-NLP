@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOLAR-NLP — Pipeline vs Research Proposal Coverage</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #0a0c10;
+    color: #e2e8f0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    text-align: center;
+    padding: 48px 20px 12px;
+  }
+  header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+  }
+  header p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-top: 6px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .main { max-width: 1280px; margin: 0 auto; padding: 20px 28px 80px; }
+
+  /* ── COVERAGE LEGEND (top) ── */
+  .coverage-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .cl-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: #94a3b8;
+  }
+  .cl-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+  }
+
+  /* ── SECTION TITLES ── */
+  .sec-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 40px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .sec-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
+  .sec-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  /* ── PHASE CONTAINERS ── */
+  .phase {
+    position: relative;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .phase-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    padding-left: 4px;
+  }
+
+  /* Phase colors */
+  .ph-extract { background: rgba(59,130,246,0.05); }
+  .ph-extract .phase-label { color: #60a5fa; }
+  .ph-annotate { background: rgba(168,85,247,0.05); }
+  .ph-annotate .phase-label { color: #a78bfa; }
+  .ph-ir { background: rgba(244,114,182,0.05); }
+  .ph-ir .phase-label { color: #f472b6; }
+  .ph-train { background: rgba(52,211,153,0.05); }
+  .ph-train .phase-label { color: #34d399; }
+  .ph-cfft { background: rgba(251,191,36,0.05); }
+  .ph-cfft .phase-label { color: #fbbf24; }
+  .ph-eval { background: rgba(244,63,94,0.05); }
+  .ph-eval .phase-label { color: #fb7185; }
+  .ph-missing { background: rgba(239,68,68,0.04); border-color: rgba(239,68,68,0.15); }
+  .ph-missing .phase-label { color: #ef4444; }
+  .ph-data { background: rgba(6,182,212,0.05); }
+  .ph-data .phase-label { color: #22d3ee; }
+
+  /* ── NODE GRID ── */
+  .nodes {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  /* ── SCRIPT CARDS ── */
+  .node {
+    flex: 1;
+    min-width: 210px;
+    max-width: 320px;
+    background: rgba(22,25,35,0.95);
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .node:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  /* Coverage border styles */
+  .node-covered {
+    border: 1px solid rgba(52,211,153,0.3);
+  }
+  .node-covered::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 12px 12px 0 0;
+    background: linear-gradient(90deg, #34d399, #22d3ee);
+  }
+  .node-partial {
+    border: 1px solid rgba(251,191,36,0.3);
+  }
+  .node-partial::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 12px 12px 0 0;
+    background: linear-gradient(90deg, #fbbf24, #f97316);
+  }
+  .node-outside {
+    border: 1px solid rgba(148,163,184,0.2);
+  }
+  .node-outside::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 12px 12px 0 0;
+    background: #475569;
+  }
+  .node-missing {
+    border: 1px dashed rgba(239,68,68,0.35);
+    background: rgba(239,68,68,0.03);
+  }
+  .node-missing::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 12px 12px 0 0;
+    background: linear-gradient(90deg, #ef4444, #f97316);
+  }
+
+  .node-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 2px 8px;
+    display: inline-block;
+    margin-bottom: 8px;
+    width: fit-content;
+  }
+  .id-covered { background: rgba(52,211,153,0.15); color: #6ee7b7; }
+  .id-partial { background: rgba(251,191,36,0.15); color: #fde68a; }
+  .id-outside { background: rgba(148,163,184,0.15); color: #94a3b8; }
+  .id-missing { background: rgba(239,68,68,0.15); color: #fca5a5; }
+
+  .node-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    margin-bottom: 6px;
+  }
+  .node-desc {
+    font-size: 0.76rem;
+    color: #94a3b8;
+    line-height: 1.55;
+    flex: 1;
+  }
+  .node-io {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .io-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #475569;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .io-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #cbd5e1;
+  }
+
+  /* Coverage tag */
+  .coverage-tag {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tag-covered { background: rgba(52,211,153,0.12); color: #34d399; }
+  .tag-partial { background: rgba(251,191,36,0.12); color: #fbbf24; }
+  .tag-outside { background: rgba(148,163,184,0.12); color: #94a3b8; }
+  .tag-missing { background: rgba(239,68,68,0.12); color: #ef4444; }
+  .tag-env {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Proposal reference */
+  .proposal-ref {
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: rgba(96,165,250,0.06);
+    border-radius: 6px;
+    font-size: 0.68rem;
+    color: #60a5fa;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .proposal-ref.none {
+    background: rgba(148,163,184,0.06);
+    color: #64748b;
+  }
+
+  /* ── FLOW ARROWS ── */
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  }
+  .flow-arrow svg { width: 22px; height: 22px; color: #334155; }
+
+  /* ── OR DIVIDER ── */
+  .or-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    min-width: 36px;
+  }
+  .or-div span {
+    background: rgba(255,255,255,0.08);
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #94a3b8;
+  }
+
+  /* inline arrow connector */
+  .arr-conn {
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+  }
+  .arr-conn svg { width: 18px; height: 18px; color: #334155; }
+
+  /* ── CFFT LOOP BOX ── */
+  .cfft-loop {
+    position: relative;
+    margin: 16px 0;
+    border: 2px dashed rgba(251,191,36,0.25);
+    border-radius: 16px;
+    padding: 4px 24px 24px;
+  }
+  .cfft-tag {
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: #0a0c10;
+    padding: 0 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fbbf24;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .cfft-note {
+    text-align: center;
+    color: #fbbf24;
+    font-size: 0.78rem;
+    padding: 6px;
+  }
+
+  /* ── COVERAGE SUMMARY TABLE ── */
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.82rem;
+  }
+  .summary-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #64748b;
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .summary-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+  }
+  .summary-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .st-script {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: #e2e8f0;
+  }
+  .st-stage { color: #94a3b8; font-size: 0.78rem; }
+  .st-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 10px;
+    display: inline-block;
+  }
+  .sts-full { background: rgba(52,211,153,0.12); color: #34d399; }
+  .sts-partial { background: rgba(251,191,36,0.12); color: #fbbf24; }
+  .sts-outside { background: rgba(148,163,184,0.12); color: #94a3b8; }
+  .sts-missing { background: rgba(239,68,68,0.12); color: #ef4444; }
+
+  /* ── DATA CURATION ── */
+  .domain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .domain-card {
+    background: rgba(22,25,35,0.95);
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .domain-card h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .domain-card p {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    line-height: 1.55;
+  }
+  .domain-card .d-status {
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 8px;
+    display: inline-block;
+  }
+  .d-done { background: rgba(52,211,153,0.1); color: #34d399; }
+  .d-need { background: rgba(239,68,68,0.1); color: #ef4444; }
+  .domain-card .d-scripts {
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: #64748b;
+  }
+
+  /* ── MISSING SCRIPTS DETAIL ── */
+  .missing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .missing-card {
+    background: rgba(239,68,68,0.03);
+    border: 1px dashed rgba(239,68,68,0.2);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .missing-card h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fca5a5;
+    margin-bottom: 4px;
+  }
+  .missing-card .m-file {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #ef4444;
+    margin-bottom: 8px;
+  }
+  .missing-card p {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    line-height: 1.55;
+  }
+  .missing-card .m-why {
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: rgba(239,68,68,0.06);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    color: #fca5a5;
+  }
+
+  /* ── UTILS ── */
+  .util-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .util-card {
+    background: rgba(22,25,35,0.7);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .util-card .node-name { font-size: 0.82rem; }
+  .util-card .node-desc { font-size: 0.72rem; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  .stat-box {
+    flex: 1;
+    min-width: 140px;
+    background: rgba(22,25,35,0.95);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: #64748b;
+    margin-top: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .nodes { flex-direction: column; }
+    .node { max-width: 100%; }
+    .domain-grid, .missing-grid { grid-template-columns: 1fr; }
+    .stats-bar { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SOLAR-NLP: Pipeline vs Proposal</h1>
+  <p>Mapping existing Python scripts against the EMNLP research proposal. Identifying what's built, what's partially covered, what's outside the proposal scope, and what still needs to be built.</p>
+</header>
+
+<div class="main">
+
+<!-- ═══════════════════════════════════════
+     COVERAGE STATS
+═══════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stat-box">
+    <div class="stat-num" style="color:#34d399;">13</div>
+    <div class="stat-label">Scripts Covering Proposal</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num" style="color:#fbbf24;">2</div>
+    <div class="stat-label">Partially Covering</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num" style="color:#94a3b8;">5</div>
+    <div class="stat-label">Outside Proposal</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num" style="color:#ef4444;">8</div>
+    <div class="stat-label">Scripts Still Needed</div>
+  </div>
+</div>
+
+<!-- Legend -->
+<div class="coverage-legend">
+  <div class="cl-item"><div class="cl-dot" style="background:linear-gradient(135deg,#34d399,#22d3ee);"></div>Fully covers proposal</div>
+  <div class="cl-item"><div class="cl-dot" style="background:linear-gradient(135deg,#fbbf24,#f97316);"></div>Partially covers</div>
+  <div class="cl-item"><div class="cl-dot" style="background:#475569;"></div>Outside proposal scope</div>
+  <div class="cl-item"><div class="cl-dot" style="background:linear-gradient(135deg,#ef4444,#f97316);border:1px dashed #ef4444;"></div>Needs to be built</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 1: FULL PIPELINE (EXISTING)
+═══════════════════════════════════════ -->
+<div class="sec-bar">
+  <span class="sec-num" style="background:rgba(52,211,153,0.15);color:#34d399;">A</span>
+  <span class="sec-title">Existing Pipeline &mdash; Mapped to Proposal Stages</span>
+</div>
+
+<!-- Phase 1: Extraction -->
+<div class="phase ph-extract">
+  <div class="phase-label">Phase 1 &mdash; Candidate Extraction &nbsp;&nbsp;|&nbsp;&nbsp; Proposal: Stage 1 Preprocessing</div>
+  <div class="nodes">
+    <div class="node node-covered">
+      <span class="coverage-tag tag-covered">Covers Stage 1</span>
+      <div class="node-id id-covered">01</div>
+      <div class="node-name">extract_candidates.py</div>
+      <div class="node-desc">Regex-based extraction of constraint sentences from PDF labor agreements. Scores by deontic modals, thresholds, exception markers.</div>
+      <div class="node-io">
+        <div class="io-label">Input</div>
+        <div class="io-val">data/raw/*.pdf</div>
+        <div class="io-label" style="margin-top:4px">Output</div>
+        <div class="io-val">*_candidates.csv, *_stats.txt</div>
+      </div>
+      <div class="proposal-ref">Proposal Stage 1 &mdash; NL input preprocessing for LLM Extractor</div>
+    </div>
+    <div class="node node-covered">
+      <span class="coverage-tag tag-covered">Covers Stage 1</span>
+      <div class="node-id id-covered">01b</div>
+      <div class="node-name">fix_long_sentences.py</div>
+      <div class="node-desc">Splits sentences &gt;80 words into atomic constraints. Handles numbered, lettered, bullet, and semicolon patterns.</div>
+      <div class="node-io">
+        <div class="io-label">I/O</div>
+        <div class="io-val">*_candidates.csv &rarr; *_candidates.csv (updated)</div>
+      </div>
+      <div class="proposal-ref">Proposal Stage 1 &mdash; text normalization before extraction</div>
+    </div>
+  </div>
+</div>
+
+<div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+
+<!-- Phase 2: Annotation -->
+<div class="phase ph-annotate">
+  <div class="phase-label">Phase 2 &mdash; Annotation &amp; Quality &nbsp;&nbsp;|&nbsp;&nbsp; Proposal: Stage 1 Training Data</div>
+  <div class="nodes">
+    <div class="node node-covered">
+      <span class="coverage-tag tag-covered">Covers Stage 1</span>
+      <div class="node-id id-covered">02</div>
+      <div class="node-name">annotate.py (manual)</div>
+      <div class="node-desc">Interactive terminal UI for human annotation. Labels: HARD, SOFT, NOT_CONSTRAINT, UNCLEAR. Captures entities, thresholds, exceptions.</div>
+      <div class="node-io">
+        <div class="io-label">Output</div>
+        <div class="io-val">data/annotated/*_annotated.csv</div>
+      </div>
+      <div class="proposal-ref">Proposal &mdash; TransitOpsBench gold-standard human labels</div>
+    </div>
+    <div class="or-div"><span>OR</span></div>
+    <div class="node node-covered">
+      <span class="coverage-tag tag-covered">Covers Stage 1</span>
+      <div class="node-id id-covered">03</div>
+      <div class="node-name">auto_annotate.py</div>
+      <div class="node-desc">GPT-4o-mini / Groq Llama-3.1 auto-labeling with confidence filtering, JSON reasoning, cost estimation (~$0.0002/sent).</div>
+      <div class="node-io">
+        <div class="io-label">Output</div>
+        <div class="io-val">data/annotated/*_annotated.csv</div>
+      </div>
+      <div class="proposal-ref">Proposal &mdash; GPT-4 synthetic augmentation for TransitOpsBench</div>
+    </div>
+    <div class="arr-conn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    <div class="node node-covered">
+      <span class="coverage-tag tag-covered">Covers Stage 1</span>
+      <div class="node-id id-covered">04</div>
+      <div class="node-name">evaluate_annotations.py</div>
+      <div class="node-desc">GPT vs human agreement: accuracy, Cohen's Kappa, per-class F1, confusion matrix, error breakdown.</div>
+      <div class="node-io">
+        <div class="io-label">Output</div>
+        <div class="io-val">annotation_quality_report.txt</div>
+      </div>
+      <div class="proposal-ref">Proposal &mdash; annotation quality assurance for benchmark</div>
+    </div>
+  </div>
+</div>
+
+<div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+
+<!-- Phase 3: IR -->
+<div class="phase ph-ir">
+  <div class="phase-label">Phase 3 &mdash; Intermediate Representation &nbsp;&nbsp;|&nbsp;&nbsp; Proposal: Stage 1 Output</div>
+  <div class="nodes">
+    <div class="node node-covered">
+      <span class="coverage-tag tag-covered">Covers Stage 1</span>
+      <div class="node-id id-covered">05</div>
+      <div class="node-name">build_ir.py</div>
+      <div class="node-desc">Converts annotations to structured Constraint IR (JSON). Parses thresholds (value/unit/direction), entities (subject/authority/object), exceptions (trigger/type). Quality flags.</div>
+      <div class="node-io">
+        <div class="io-label">Output</div>
+        <div class="io-val">constraint_ir.json, constraint_ir_issues.csv</div>
+      </div>
+      <div class="proposal-ref">Proposal Stage 1 &mdash; Constraint IR JSON format (type, entities, thresholds, logic)</div>
+    </div>
+    <div class="arr-conn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    <div class="node node-covered">
+      <span class="coverage-tag tag-covered">Covers Stage 1</span>
+      <div class="node-id id-covered">06</div>
+      <div class="node-name">prepare_training_data.py</div>
+      <div class="node-desc">Creates Llama-3 instruct-format prompt-completion pairs from IR. 80/10/10 stratified split by constraint_type.</div>
+      <div class="node-io">
+        <div class="io-label">Output</div>
+        <div class="io-val">train.jsonl, val.jsonl, test.jsonl</div>
+      </div>
+      <div class="proposal-ref">Proposal Stage 1 &mdash; training data for LLM Extractor fine-tuning</div>
+    </div>
+  </div>
+</div>
+
+<div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+
+<!-- Phase 4: Training -->
+<div class="phase ph-train">
+  <div class="phase-label">Phase 4 &mdash; Model Training &nbsp;&nbsp;|&nbsp;&nbsp; Proposal: Stages 1 + 2</div>
+  <div class="nodes">
+    <div class="node node-covered">
+      <span class="coverage-tag tag-covered">Covers Stage 1</span>
+      <div class="node-id id-covered">07</div>
+      <div class="node-name">train_ir_extractor.py</div>
+      <div class="node-desc">Fine-tune Llama-3.1-8B-Instruct with QLoRA (4-bit). Text &rarr; IR JSON extraction. ~2-3 hrs on A100.</div>
+      <div class="node-io">
+        <div class="io-label">Output</div>
+        <div class="io-val">ir_extractor/ (LoRA adapters)</div>
+      </div>
+      <div class="proposal-ref">Proposal Stage 1 &mdash; "Fine-tuned Llama-3/Mistral + LoRA" extractor</div>
+    </div>
+    <div class="arr-conn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    <div class="node node-covered">
+      <span class="coverage-tag tag-covered">Covers Stage 1</span>
+      <div class="node-id id-covered">08</div>
+      <div class="node-name">evaluate_ir_extractor.py</div>
+      <div class="node-desc">Evaluates on test set (n=211). JSON validity, HARD/SOFT F1, threshold &amp; exception accuracy.</div>
+      <div class="node-io">
+        <div class="io-label">Metric</div>
+        <div class="io-val">Macro F1 = 0.858 (best)</div>
+      </div>
+      <div class="proposal-ref">Proposal &mdash; IR extraction evaluation metrics</div>
+    </div>
+  </div>
+  <div style="height:12px"></div>
+  <div class="nodes">
+    <div class="node node-partial">
+      <span class="coverage-tag tag-partial">Partial Stage 2</span>
+      <div class="node-id id-partial">09</div>
+      <div class="node-name">generate_cpsat.py</div>
+      <div class="node-desc">Template-based CP-SAT code generation from IR + OR-Tools sandbox execution. Records FEASIBLE/INFEASIBLE/ERROR. <strong>Uses Python string templates, not Jinja2 as proposal specifies.</strong></div>
+      <div class="node-io">
+        <div class="io-label">Output</div>
+        <div class="io-val">constraint_ir.json (+ cpsat_code), cfft_pairs.json</div>
+      </div>
+      <div class="proposal-ref">Proposal Stages 2+3 &mdash; "Jinja2 templates + OR-Tools format" (partially implemented)</div>
+    </div>
+    <div class="arr-conn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    <div class="node node-covered">
+      <span class="coverage-tag tag-covered">Covers Stage 2</span>
+      <div class="node-id id-covered">10</div>
+      <div class="node-name">prepare_cpsat_training_data.py</div>
+      <div class="node-desc">Creates IR &rarr; CP-SAT code training pairs from FEASIBLE-verified records only. 80/10/10 split.</div>
+      <div class="node-io">
+        <div class="io-label">Output</div>
+        <div class="io-val">cpsat_train.jsonl, cpsat_val.jsonl</div>
+      </div>
+      <div class="proposal-ref">Proposal Stage 2 &mdash; Code Generator training data</div>
+    </div>
+    <div class="arr-conn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    <div class="node node-covered">
+      <span class="coverage-tag tag-covered">Covers Stage 2</span>
+      <div class="node-id id-covered">11</div>
+      <div class="node-name">train_cpsat_generator.py</div>
+      <div class="node-desc">Fine-tune Llama-3.1-8B to generate executable CP-SAT code from IR. LoRA, seq_len=1536. ~15-20 min on A100.</div>
+      <div class="node-io">
+        <div class="io-label">Output</div>
+        <div class="io-val">cpsat_generator/ (LoRA adapters)</div>
+      </div>
+      <div class="proposal-ref">Proposal Stage 2 &mdash; Code Generator "Templates + LLM fallback"</div>
+    </div>
+  </div>
+</div>
+
+<div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+
+<!-- Phase 5: CFFT -->
+<div class="phase ph-cfft">
+  <div class="phase-label">Phase 5 &mdash; CFFT Loop &nbsp;&nbsp;|&nbsp;&nbsp; Proposal: Stage 4 (Core Innovation)</div>
+  <div class="cfft-loop">
+    <div class="cfft-tag">Iterative Feedback Loop (2-3 rounds)</div>
+    <div class="nodes" style="margin-top:16px">
+      <div class="node node-covered">
+        <span class="coverage-tag tag-covered">Covers Stage 4</span>
+        <div class="node-id id-covered">12a<sub>gen</sub></div>
+        <div class="node-name">generate_outputs_colab.py</div>
+        <div class="node-desc">Generate CP-SAT code for ALL IR records using the current fine-tuned model on Colab. ~20-30 min on A100.</div>
+        <div class="node-io">
+          <div class="io-label">Output</div>
+          <div class="io-val">cpsat_generated_outputs.json</div>
+        </div>
+        <div class="proposal-ref">Proposal Stage 4 &mdash; generate code for solver verification</div>
+      </div>
+      <div class="arr-conn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="node node-covered">
+        <span class="coverage-tag tag-covered">Covers Stages 3+4</span>
+        <div class="node-id id-covered">12a<sub>exec</sub></div>
+        <div class="node-name">collect_cfft_pairs.py</div>
+        <div class="node-desc">Execute generated code with OR-Tools locally. Collect solver-rejected pairs: wrong_code vs correct_code. Creates contrastive training signal.</div>
+        <div class="node-io">
+          <div class="io-label">Output</div>
+          <div class="io-val">cfft_pairs_round{N}.json</div>
+        </div>
+        <div class="proposal-ref">Proposal Stage 3+4 &mdash; solver verdicts become CFFT training pairs</div>
+      </div>
+      <div class="arr-conn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="node node-partial">
+        <span class="coverage-tag tag-partial">Partial Stage 4</span>
+        <div class="node-id id-partial">12b</div>
+        <div class="node-name">cfft_finetune.py</div>
+        <div class="node-desc">Contrastive fine-tuning on wrong &rarr; correct pairs. <strong>Uses standard SFT loss, not DPO loss as proposal describes.</strong> Loads previous round's LoRA, trains on solver-rejected pairs.</div>
+        <div class="node-io">
+          <div class="io-label">Output</div>
+          <div class="io-val">cpsat_cfft_round{N}/ (updated LoRA)</div>
+        </div>
+        <div class="proposal-ref">Proposal Stage 4 &mdash; "CFFT IS essentially DPO" (currently SFT, not DPO)</div>
+      </div>
+    </div>
+    <div class="cfft-note">&#x21BB; Repeat until no CFFT pairs remain (100% solver feasibility)</div>
+  </div>
+</div>
+
+<div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+
+<!-- Phase 6: Evaluation -->
+<div class="phase ph-eval">
+  <div class="phase-label">Evaluation &nbsp;&nbsp;|&nbsp;&nbsp; Proposal: Evaluation Section</div>
+  <div class="nodes">
+    <div class="node node-covered" style="max-width:420px">
+      <span class="coverage-tag tag-covered">Covers Eval</span>
+      <div class="node-id id-covered">13</div>
+      <div class="node-name">final_evaluation.py</div>
+      <div class="node-desc">
+        Comprehensive evaluation against 4 baselines (GPT-4o CoT/RAG, DeepSeek CoT/RAG) and 3 SOLAR variants (w/o CFFT, CFFT R1, CFFT R2).<br><br>
+        <strong>Metrics:</strong> JSON validity, Constraint Type F1, Threshold accuracy, Exception accuracy.<br>
+        <strong>Output:</strong> all_results.json + LaTeX table.
+      </div>
+      <div class="proposal-ref">Proposal &mdash; full evaluation framework and baselines</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 2: OUTSIDE PROPOSAL
+═══════════════════════════════════════ -->
+<div class="sec-bar">
+  <span class="sec-num" style="background:rgba(148,163,184,0.15);color:#94a3b8;">B</span>
+  <span class="sec-title">Scripts Outside the Proposal Scope</span>
+</div>
+<p style="font-size:0.82rem;color:#64748b;margin-bottom:16px;">These scripts are useful for development and paper figures but are not part of the research proposal methodology.</p>
+
+<div class="util-grid">
+  <div class="util-card" style="border-color:rgba(148,163,184,0.12);">
+    <div class="node-id id-outside">plot</div>
+    <div class="node-name">plot1.py</div>
+    <div class="node-desc">Matplotlib bar chart of Macro F1 scores across models. Output: <code>figures/figure2_macro_f1.pdf</code></div>
+    <div class="proposal-ref none">Paper figure &mdash; not a proposal component</div>
+  </div>
+  <div class="util-card" style="border-color:rgba(148,163,184,0.12);">
+    <div class="node-id id-outside">plot</div>
+    <div class="node-name">plot2.py</div>
+    <div class="node-desc">Grouped bar chart of exception handling gap (extraction vs grounding). Output: <code>figures/figure3_exception_gap.pdf</code></div>
+    <div class="proposal-ref none">Paper figure &mdash; not a proposal component</div>
+  </div>
+  <div class="util-card" style="border-color:rgba(148,163,184,0.12);">
+    <div class="node-id id-outside">debug</div>
+    <div class="node-name">debug_errors.py</div>
+    <div class="node-desc">Loads CFFT pairs, displays first 8 lines of wrong code + solver status for quick debugging.</div>
+    <div class="proposal-ref none">Dev utility &mdash; not a proposal component</div>
+  </div>
+  <div class="util-card" style="border-color:rgba(148,163,184,0.12);">
+    <div class="node-id id-outside">test</div>
+    <div class="node-name">gounding_test.py</div>
+    <div class="node-desc">Validates exception grounding: samples 50 constraints, checks OnlyEnforceIf usage in CP-SAT code.</div>
+    <div class="proposal-ref none">Validation utility &mdash; not a proposal component</div>
+  </div>
+  <div class="util-card" style="border-color:rgba(148,163,184,0.12);">
+    <div class="node-id id-outside">test</div>
+    <div class="node-name">test.py</div>
+    <div class="node-desc">Tests exception grounding rate: checks constraints with exceptions for OnlyEnforceIf in generated code.</div>
+    <div class="proposal-ref none">Unit test &mdash; not a proposal component</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 3: SCRIPTS STILL NEEDED
+═══════════════════════════════════════ -->
+<div class="sec-bar">
+  <span class="sec-num" style="background:rgba(239,68,68,0.15);color:#ef4444;">C</span>
+  <span class="sec-title">Scripts That Need to Be Built</span>
+</div>
+<p style="font-size:0.82rem;color:#64748b;margin-bottom:16px;">These are required by the research proposal but have no corresponding script in the codebase.</p>
+
+<div class="missing-grid">
+
+  <div class="missing-card">
+    <h4>1. Multi-Domain Data Scraper</h4>
+    <div class="m-file">00_scrape_documents.py</div>
+    <p>The proposal specifies <strong>TransitOpsBench</strong> with 4 data sources: FTA regulatory docs, multiple transit CBAs (MTA, MBTA, WMATA), GTFS/GTFS-RT specs, and GPT-4 synthetic augmentations. Currently only one CBA contract is processed.</p>
+    <div class="m-why">Proposal: "First public NLP benchmark of FTA regulations, union CBAs, and GTFS specs. Cross-document domain shift evaluation included."</div>
+  </div>
+
+  <div class="missing-card">
+    <h4>2. GTFS Constraint Extractor</h4>
+    <div class="m-file">00b_parse_gtfs_spec.py</div>
+    <p>GTFS/GTFS-RT specifications contain formal constraint definitions (field validation rules, required frequencies, timing constraints). These need a specialized parser &mdash; different from CBA/FTA natural language patterns.</p>
+    <div class="m-why">Proposal data source: "GTFS / GTFS-RT Specs" &mdash; structured spec format needs dedicated parsing logic</div>
+  </div>
+
+  <div class="missing-card">
+    <h4>3. Synthetic Augmentation Pipeline</h4>
+    <div class="m-file">03b_synthetic_augment.py</div>
+    <p>Generate synthetic constraint sentences via GPT-4 to augment the training set. Paraphrase existing constraints, create edge cases, generate cross-domain variants. The proposal lists this as a key data source for TransitOpsBench.</p>
+    <div class="m-why">Proposal: "GPT-4 Synthetic Augment." listed as TransitOpsBench data source</div>
+  </div>
+
+  <div class="missing-card">
+    <h4>4. Cross-Domain Split Builder</h4>
+    <div class="m-file">06b_cross_domain_splits.py</div>
+    <p>Create held-out domain-shift evaluation splits: train on CBA, test on FTA; train on FTA, test on GTFS. The proposal specifically mentions "Cross-document domain shift evaluation." Currently splits are random, not domain-aware.</p>
+    <div class="m-why">Proposal novelty: "Cross-document domain shift evaluation included" in TransitOpsBench</div>
+  </div>
+
+  <div class="missing-card">
+    <h4>5. DPO Training Script</h4>
+    <div class="m-file">12c_dpo_finetune.py</div>
+    <p>The proposal states "CFFT as currently designed IS essentially DPO &mdash; solver replaces human preference labeler." But <code>12b_cfft_finetune.py</code> uses standard SFT loss, not DPO loss (which needs chosen/rejected pairs formatted differently). Need <code>trl.DPOTrainer</code>.</p>
+    <div class="m-why">Proposal: "The CFFT training objective is essentially DPO" &mdash; actual implementation uses SFT</div>
+  </div>
+
+  <div class="missing-card">
+    <h4>6. Verifier Model</h4>
+    <div class="m-file">14_train_verifier.py</div>
+    <p>The proposal architecture includes a "Lightweight Predictor" that predicts solver outcome (FEASIBLE/INFEASIBLE/ERROR) <strong>before execution</strong>. This acts as V(s) in the RL framework and as an inference-time filter. No such model exists in the codebase.</p>
+    <div class="m-why">Proposal: "Verifier Model &mdash; Predicts solver outcome pre-execution &mdash; acts as V(s)"</div>
+  </div>
+
+  <div class="missing-card">
+    <h4>7. Jinja2 Template Engine</h4>
+    <div class="m-file">09b_jinja_templates.py</div>
+    <p>The proposal specifies "Jinja2 templates" for code generation. Current <code>09_generate_cpsat.py</code> uses Python f-string templates. Need proper Jinja2 template files for numeric, boolean, soft, and conditional constraint types.</p>
+    <div class="m-why">Proposal Stage 2: "Jinja2 templates fill in IR fields" &mdash; currently uses f-string templates</div>
+  </div>
+
+  <div class="missing-card">
+    <h4>8. TransitOpsBench Packager</h4>
+    <div class="m-file">15_package_benchmark.py</div>
+    <p>Package TransitOpsBench as a shareable, versioned benchmark: standardized format, splits, evaluation script, data cards, license metadata. The proposal claims this as a novel contribution: "First public NLP benchmark."</p>
+    <div class="m-why">Proposal novelty: "TransitOpsBench &mdash; First public NLP benchmark of FTA, CBAs, GTFS"</div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 4: DATASET CURATION PROCESS
+═══════════════════════════════════════ -->
+<div class="sec-bar">
+  <span class="sec-num" style="background:rgba(6,182,212,0.15);color:#22d3ee;">D</span>
+  <span class="sec-title">Dataset Curation Process &mdash; Multi-Domain Coverage</span>
+</div>
+<p style="font-size:0.82rem;color:#64748b;margin-bottom:16px;">The proposal requires <strong>TransitOpsBench</strong>: a multi-source benchmark spanning 4 document domains. Here's the current state and what needs to happen for each.</p>
+
+<div class="domain-grid">
+
+  <div class="domain-card">
+    <h4 style="color:#34d399;">Transit CBAs (Collective Bargaining Agreements)</h4>
+    <p>Union labor contracts from transit agencies. Dense with operational constraints: shift limits, overtime rules, break requirements, seniority rules, bidding procedures. Currently the <strong>only domain</strong> with a working pipeline.</p>
+    <p style="margin-top:8px;color:#cbd5e1;"><strong>Sources:</strong> MTA (NYC), MBTA (Boston), WMATA (DC), SEPTA (Philly), CTA (Chicago), LA Metro</p>
+    <p style="margin-top:4px;color:#cbd5e1;"><strong>Format:</strong> PDF contracts, 50-300 pages each</p>
+    <p style="margin-top:4px;color:#cbd5e1;"><strong>Scraping:</strong> Agency websites, FOIA requests, union archives. Most are publicly available PDFs.</p>
+    <span class="d-status d-done">Partially built</span>
+    <div class="d-scripts">Scripts: 01 &rarr; 01b &rarr; 02/03 &rarr; 04 &rarr; 05 (one contract only)</div>
+    <div style="margin-top:6px;font-size:0.7rem;color:#fbbf24;">Gap: Need to process 5+ CBAs for cross-document evaluation</div>
+  </div>
+
+  <div class="domain-card">
+    <h4 style="color:#ef4444;">FTA Regulatory Documents</h4>
+    <p>Federal Transit Administration regulations. Contains compliance constraints: safety requirements, drug testing rules, ADA requirements, hours-of-service rules, maintenance intervals. Higher formality than CBAs.</p>
+    <p style="margin-top:8px;color:#cbd5e1;"><strong>Sources:</strong> 49 CFR Parts 600-699, FTA Circulars (C 9030.1E, C 4702.1B), National Transit Database reporting rules</p>
+    <p style="margin-top:4px;color:#cbd5e1;"><strong>Format:</strong> PDF regulations, HTML on ecfr.gov, structured subsections</p>
+    <p style="margin-top:4px;color:#cbd5e1;"><strong>Scraping:</strong> ecfr.gov API, FTA.dot.gov document library. Publicly available.</p>
+    <span class="d-status d-need">Not started</span>
+    <div class="d-scripts">Needed: 00_scrape_documents.py (FTA module)</div>
+    <div style="margin-top:6px;font-size:0.7rem;color:#ef4444;">Gap: Different structure than CBAs &mdash; numbered subsections, cross-references, definitions sections. Regex patterns from 01 won't work as-is.</div>
+  </div>
+
+  <div class="domain-card">
+    <h4 style="color:#ef4444;">GTFS / GTFS-RT Specifications</h4>
+    <p>General Transit Feed Specification. Contains field validation constraints (required fields, allowed values, timing constraints), frequency rules, and data format requirements. Semi-structured, more formal than NL.</p>
+    <p style="margin-top:8px;color:#cbd5e1;"><strong>Sources:</strong> GTFS Static spec (gtfs.org), GTFS-RT spec, GTFS-Flex, GTFS-Fares v2</p>
+    <p style="margin-top:4px;color:#cbd5e1;"><strong>Format:</strong> Markdown tables + prose on GitHub, CSV field definitions</p>
+    <p style="margin-top:4px;color:#cbd5e1;"><strong>Scraping:</strong> GitHub raw markdown from google/transit repo. Structured table parsing.</p>
+    <span class="d-status d-need">Not started</span>
+    <div class="d-scripts">Needed: 00b_parse_gtfs_spec.py</div>
+    <div style="margin-top:6px;font-size:0.7rem;color:#ef4444;">Gap: Constraints are embedded in table cells and field definitions, not natural language paragraphs. Needs dedicated table parser.</div>
+  </div>
+
+  <div class="domain-card">
+    <h4 style="color:#ef4444;">GPT-4 Synthetic Augmentation</h4>
+    <p>LLM-generated constraint paraphrases and edge cases. Used to augment training data by creating variants of real constraints with different wording, domains, and threshold values. Also generates adversarial examples.</p>
+    <p style="margin-top:8px;color:#cbd5e1;"><strong>Sources:</strong> Paraphrases of existing annotated constraints, cross-domain transfer examples, edge case generation</p>
+    <p style="margin-top:4px;color:#cbd5e1;"><strong>Format:</strong> Generated JSONL with same schema as real annotations</p>
+    <p style="margin-top:4px;color:#cbd5e1;"><strong>Approach:</strong> Few-shot prompting with real examples, constrained generation to maintain IR-compatible output.</p>
+    <span class="d-status d-need">Not started</span>
+    <div class="d-scripts">Needed: 03b_synthetic_augment.py</div>
+    <div style="margin-top:6px;font-size:0.7rem;color:#ef4444;">Gap: 03_auto_annotate.py labels candidates but doesn't generate new synthetic constraints from scratch.</div>
+  </div>
+
+</div>
+
+<!-- Dataset curation pipeline diagram -->
+<div class="phase ph-data" style="margin-top:20px;">
+  <div class="phase-label">Proposed Dataset Curation Pipeline</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:0.72rem;">
+    <span style="padding:6px 12px;border-radius:8px;background:rgba(239,68,68,0.1);color:#fca5a5;border:1px dashed rgba(239,68,68,0.2);">00 Scrape FTA + CBA PDFs</span>
+    <span style="color:#334155;">&rarr;</span>
+    <span style="padding:6px 12px;border-radius:8px;background:rgba(239,68,68,0.1);color:#fca5a5;border:1px dashed rgba(239,68,68,0.2);">00b Parse GTFS Specs</span>
+    <span style="color:#334155;">&rarr;</span>
+    <span style="padding:6px 12px;border-radius:8px;background:rgba(52,211,153,0.1);color:#6ee7b7;">01 Extract Candidates</span>
+    <span style="color:#334155;">&rarr;</span>
+    <span style="padding:6px 12px;border-radius:8px;background:rgba(52,211,153,0.1);color:#6ee7b7;">01b Fix Long Sentences</span>
+    <span style="color:#334155;">&rarr;</span>
+    <span style="padding:6px 12px;border-radius:8px;background:rgba(52,211,153,0.1);color:#6ee7b7;">02/03 Annotate</span>
+    <span style="color:#334155;">&rarr;</span>
+    <span style="padding:6px 12px;border-radius:8px;background:rgba(239,68,68,0.1);color:#fca5a5;border:1px dashed rgba(239,68,68,0.2);">03b Synthetic Augment</span>
+    <span style="color:#334155;">&rarr;</span>
+    <span style="padding:6px 12px;border-radius:8px;background:rgba(52,211,153,0.1);color:#6ee7b7;">04 Evaluate Quality</span>
+    <span style="color:#334155;">&rarr;</span>
+    <span style="padding:6px 12px;border-radius:8px;background:rgba(52,211,153,0.1);color:#6ee7b7;">05 Build IR</span>
+    <span style="color:#334155;">&rarr;</span>
+    <span style="padding:6px 12px;border-radius:8px;background:rgba(239,68,68,0.1);color:#fca5a5;border:1px dashed rgba(239,68,68,0.2);">06b Cross-Domain Splits</span>
+    <span style="color:#334155;">&rarr;</span>
+    <span style="padding:6px 12px;border-radius:8px;background:rgba(239,68,68,0.1);color:#fca5a5;border:1px dashed rgba(239,68,68,0.2);">15 Package Benchmark</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 5: FULL COVERAGE MATRIX
+═══════════════════════════════════════ -->
+<div class="sec-bar">
+  <span class="sec-num" style="background:rgba(96,165,250,0.15);color:#60a5fa;">E</span>
+  <span class="sec-title">Complete Coverage Matrix</span>
+</div>
+
+<div style="overflow-x:auto;">
+<table class="summary-table">
+  <thead>
+    <tr>
+      <th>Script</th>
+      <th>Proposal Stage</th>
+      <th>Status</th>
+      <th>Gap Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td colspan="4" style="color:#60a5fa;font-weight:600;font-size:0.72rem;letter-spacing:1px;padding:12px 14px 6px;">EXISTING SCRIPTS &mdash; COVERING PROPOSAL</td></tr>
+    <tr>
+      <td class="st-script">01_extract_candidates.py</td>
+      <td class="st-stage">Stage 1 (preprocessing)</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">Works for CBA PDFs. Needs adaption for FTA/GTFS.</td>
+    </tr>
+    <tr>
+      <td class="st-script">01b_fix_long_sentences.py</td>
+      <td class="st-stage">Stage 1 (preprocessing)</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">&mdash;</td>
+    </tr>
+    <tr>
+      <td class="st-script">02_annotate.py</td>
+      <td class="st-stage">Stage 1 (training data)</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">Human gold standard for TransitOpsBench.</td>
+    </tr>
+    <tr>
+      <td class="st-script">03_auto_annotate.py</td>
+      <td class="st-stage">Stage 1 (training data)</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">Auto-labels, but doesn't generate synthetic constraints.</td>
+    </tr>
+    <tr>
+      <td class="st-script">04_evaluate_annotations.py</td>
+      <td class="st-stage">TransitOpsBench QA</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">&mdash;</td>
+    </tr>
+    <tr>
+      <td class="st-script">05_build_ir.py</td>
+      <td class="st-stage">Stage 1 (IR output)</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">Core IR schema matches proposal exactly.</td>
+    </tr>
+    <tr>
+      <td class="st-script">06_prepare_training_data.py</td>
+      <td class="st-stage">Stage 1 (training data)</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">No domain-aware splits yet.</td>
+    </tr>
+    <tr>
+      <td class="st-script">07_train_ir_extractor.py</td>
+      <td class="st-stage">Stage 1 (model)</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">Matches "Llama-3/Mistral + LoRA" spec.</td>
+    </tr>
+    <tr>
+      <td class="st-script">08_evaluate_ir_extractor.py</td>
+      <td class="st-stage">Stage 1 (eval)</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">&mdash;</td>
+    </tr>
+    <tr>
+      <td class="st-script">09_generate_cpsat.py</td>
+      <td class="st-stage">Stages 2 + 3</td>
+      <td><span class="st-status sts-partial">Partial</span></td>
+      <td style="color:#fbbf24;font-size:0.75rem;">Uses Python f-strings, not Jinja2 templates as proposed.</td>
+    </tr>
+    <tr>
+      <td class="st-script">10_prepare_cpsat_training_data.py</td>
+      <td class="st-stage">Stage 2 (training data)</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">&mdash;</td>
+    </tr>
+    <tr>
+      <td class="st-script">11_train_cpsat_generator.py</td>
+      <td class="st-stage">Stage 2 (model)</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">&mdash;</td>
+    </tr>
+    <tr>
+      <td class="st-script">12a_generate_outputs_colab.py</td>
+      <td class="st-stage">Stage 4 (CFFT gen)</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">&mdash;</td>
+    </tr>
+    <tr>
+      <td class="st-script">12a_collect_cfft_pairs.py</td>
+      <td class="st-stage">Stage 3 + 4</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">&mdash;</td>
+    </tr>
+    <tr>
+      <td class="st-script">12b_cfft_finetune.py</td>
+      <td class="st-stage">Stage 4 (CFFT core)</td>
+      <td><span class="st-status sts-partial">Partial</span></td>
+      <td style="color:#fbbf24;font-size:0.75rem;">SFT on correct code only. Proposal says DPO with (preferred, rejected) pairs.</td>
+    </tr>
+    <tr>
+      <td class="st-script">13_final_evaluation.py</td>
+      <td class="st-stage">Evaluation</td>
+      <td><span class="st-status sts-full">Full</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">All baselines and metrics match proposal.</td>
+    </tr>
+
+    <tr><td colspan="4" style="color:#94a3b8;font-weight:600;font-size:0.72rem;letter-spacing:1px;padding:16px 14px 6px;">EXISTING SCRIPTS &mdash; OUTSIDE PROPOSAL</td></tr>
+    <tr>
+      <td class="st-script">plot1.py</td>
+      <td class="st-stage">&mdash;</td>
+      <td><span class="st-status sts-outside">Outside</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">Paper figure (Macro F1 chart)</td>
+    </tr>
+    <tr>
+      <td class="st-script">plot2.py</td>
+      <td class="st-stage">&mdash;</td>
+      <td><span class="st-status sts-outside">Outside</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">Paper figure (exception gap chart)</td>
+    </tr>
+    <tr>
+      <td class="st-script">debug_errors.py</td>
+      <td class="st-stage">&mdash;</td>
+      <td><span class="st-status sts-outside">Outside</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">Dev/debug utility</td>
+    </tr>
+    <tr>
+      <td class="st-script">gounding_test.py</td>
+      <td class="st-stage">&mdash;</td>
+      <td><span class="st-status sts-outside">Outside</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">Validation utility</td>
+    </tr>
+    <tr>
+      <td class="st-script">test.py</td>
+      <td class="st-stage">&mdash;</td>
+      <td><span class="st-status sts-outside">Outside</span></td>
+      <td style="color:#64748b;font-size:0.75rem;">Unit test</td>
+    </tr>
+
+    <tr><td colspan="4" style="color:#ef4444;font-weight:600;font-size:0.72rem;letter-spacing:1px;padding:16px 14px 6px;">SCRIPTS NEEDED &mdash; NOT YET BUILT</td></tr>
+    <tr>
+      <td class="st-script" style="color:#fca5a5;">00_scrape_documents.py</td>
+      <td class="st-stage">TransitOpsBench</td>
+      <td><span class="st-status sts-missing">Missing</span></td>
+      <td style="color:#ef4444;font-size:0.75rem;">Scrape FTA regs (ecfr.gov) + multiple CBA PDFs</td>
+    </tr>
+    <tr>
+      <td class="st-script" style="color:#fca5a5;">00b_parse_gtfs_spec.py</td>
+      <td class="st-stage">TransitOpsBench</td>
+      <td><span class="st-status sts-missing">Missing</span></td>
+      <td style="color:#ef4444;font-size:0.75rem;">Parse GTFS markdown tables into constraint candidates</td>
+    </tr>
+    <tr>
+      <td class="st-script" style="color:#fca5a5;">03b_synthetic_augment.py</td>
+      <td class="st-stage">TransitOpsBench</td>
+      <td><span class="st-status sts-missing">Missing</span></td>
+      <td style="color:#ef4444;font-size:0.75rem;">GPT-4 synthetic constraint generation &amp; paraphrasing</td>
+    </tr>
+    <tr>
+      <td class="st-script" style="color:#fca5a5;">06b_cross_domain_splits.py</td>
+      <td class="st-stage">TransitOpsBench</td>
+      <td><span class="st-status sts-missing">Missing</span></td>
+      <td style="color:#ef4444;font-size:0.75rem;">Domain-aware train/test splits for cross-document evaluation</td>
+    </tr>
+    <tr>
+      <td class="st-script" style="color:#fca5a5;">09b_jinja_templates.py</td>
+      <td class="st-stage">Stage 2</td>
+      <td><span class="st-status sts-missing">Missing</span></td>
+      <td style="color:#ef4444;font-size:0.75rem;">Jinja2 template engine for CP-SAT code generation</td>
+    </tr>
+    <tr>
+      <td class="st-script" style="color:#fca5a5;">12c_dpo_finetune.py</td>
+      <td class="st-stage">Stage 4</td>
+      <td><span class="st-status sts-missing">Missing</span></td>
+      <td style="color:#ef4444;font-size:0.75rem;">DPO training with trl.DPOTrainer on chosen/rejected pairs</td>
+    </tr>
+    <tr>
+      <td class="st-script" style="color:#fca5a5;">14_train_verifier.py</td>
+      <td class="st-stage">Verifier Model</td>
+      <td><span class="st-status sts-missing">Missing</span></td>
+      <td style="color:#ef4444;font-size:0.75rem;">Lightweight predictor for solver outcome (pre-execution filter)</td>
+    </tr>
+    <tr>
+      <td class="st-script" style="color:#fca5a5;">15_package_benchmark.py</td>
+      <td class="st-stage">TransitOpsBench</td>
+      <td><span class="st-status sts-missing">Missing</span></td>
+      <td style="color:#ef4444;font-size:0.75rem;">Package benchmark for public release (data cards, splits, eval script)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+</body>
+</html>

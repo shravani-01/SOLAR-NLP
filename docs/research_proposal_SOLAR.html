@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOLAR — Research Proposal Explainer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070b14;
+    --surface: #0d1526;
+    --border: #1a2640;
+    --accent: #00d4ff;
+    --accent2: #f59e0b;
+    --accent3: #10b981;
+    --accent4: #f43f5e;
+    --accent5: #a78bfa;
+    --text: #e2e8f0;
+    --muted: #4a6080;
+    --card: #0d1828;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.6;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 20%, rgba(0,212,255,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(167,139,250,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 56px 24px 100px; position: relative; z-index: 1; }
+
+  /* ── HEADER ── */
+  .header { margin-bottom: 64px; animation: fadeUp 0.5s ease both; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid rgba(0,212,255,0.3);
+    background: rgba(0,212,255,0.05);
+    padding: 5px 12px; border-radius: 20px; margin-bottom: 24px;
+  }
+  .badge::before { content: '◉'; font-size: 8px; }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 800; line-height: 1.0; margin-bottom: 10px;
+    background: linear-gradient(120deg, #ffffff 0%, var(--accent) 50%, var(--accent2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header-sub {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+    color: var(--muted); letter-spacing: 0.05em; margin-bottom: 10px;
+  }
+  .header-desc { color: #64748b; font-size: 15px; font-style: italic; max-width: 560px; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 56px; animation: fadeUp 0.5s ease both; }
+  .section:nth-child(2){animation-delay:.08s} .section:nth-child(3){animation-delay:.16s}
+  .section:nth-child(4){animation-delay:.24s} .section:nth-child(5){animation-delay:.32s}
+  .section:nth-child(6){animation-delay:.40s} .section:nth-child(7){animation-delay:.48s}
+
+  .sec-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent2); margin-bottom: 12px;
+  }
+  h2 { font-family: 'Syne', sans-serif; font-size: 1.45rem; font-weight: 700; margin-bottom: 18px; }
+  .prose { color: #7a93b0; font-size: 14.5px; line-height: 1.8; }
+  .prose strong { color: #c8d8e8; font-weight: 500; }
+
+  .analogy {
+    background: rgba(0,212,255,0.05); border-left: 3px solid var(--accent);
+    padding: 14px 20px; border-radius: 0 8px 8px 0; margin: 18px 0;
+    font-size: 13.5px; color: #64748b; font-style: italic;
+  }
+  .analogy strong { color: var(--accent); font-style: normal; }
+
+  .problem-card {
+    background: linear-gradient(135deg, rgba(244,63,94,0.07), rgba(13,24,40,0.8));
+    border: 1px solid rgba(244,63,94,0.25); border-radius: 12px; padding: 24px; margin: 18px 0;
+  }
+  .problem-card .ct {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;
+    color: var(--accent4); margin-bottom: 8px;
+  }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+  /* ── IO FLOW ── */
+  .io-flow {
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 16px; margin: 16px 0;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  }
+  .io-box {
+    background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.2);
+    padding: 4px 10px; border-radius: 4px; color: var(--accent);
+  }
+  .io-box.out { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.2); color: var(--accent3); }
+  .io-arr { color: var(--muted); }
+
+  /* ══════════════════════════════
+     VISUAL SYSTEM DESIGN DIAGRAM
+  ══════════════════════════════ */
+  .diagram-wrap {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 36px 28px; margin: 24px 0;
+    position: relative; overflow: hidden;
+  }
+  .diagram-wrap::before {
+    content: '';position: absolute;top:-80px;right:-80px;
+    width:260px;height:260px;
+    background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .diagram-wrap::after {
+    content: '';position: absolute;bottom:-80px;left:-80px;
+    width:260px;height:260px;
+    background: radial-gradient(circle, rgba(167,139,250,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .dtitle {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 32px;
+  }
+
+  /* SVG diagram */
+  .sys-svg { width: 100%; height: auto; display: block; }
+
+  /* ── PIPELINE (vertical list, stages) ── */
+  .pipeline { display: flex; flex-direction: column; gap: 0; }
+  .pnode { display: flex; align-items: flex-start; gap: 14px; }
+  .pleft { display: flex; flex-direction: column; align-items: center; width: 46px; flex-shrink: 0; }
+  .picon {
+    width: 42px; height: 42px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; flex-shrink: 0; z-index: 1;
+  }
+  .pline { width: 2px; flex: 1; min-height: 28px; margin: 3px 0; }
+  .pcontent { flex: 1; padding-bottom: 26px; }
+  .pstage { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 3px; }
+  .pname { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 5px; }
+  .pdesc { font-size: 12.5px; color: #4a6080; line-height: 1.55; }
+  .pdesc em { font-style: normal; color: #7a93b0; }
+
+  .s1 .picon { background: rgba(0,212,255,0.12); border: 1px solid rgba(0,212,255,0.25); }
+  .s1 .pstage { color: var(--accent); }
+  .s1 .pline { background: linear-gradient(to bottom, rgba(0,212,255,0.4), rgba(245,158,11,0.2)); }
+  .s2 .picon { background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.25); }
+  .s2 .pstage { color: var(--accent2); }
+  .s2 .pline { background: linear-gradient(to bottom, rgba(245,158,11,0.4), rgba(16,185,129,0.2)); }
+  .s3 .picon { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.25); }
+  .s3 .pstage { color: var(--accent3); }
+  .s3 .pline { background: linear-gradient(to bottom, rgba(16,185,129,0.4), rgba(244,63,94,0.2)); }
+  .s4 .picon { background: rgba(244,63,94,0.12); border: 1px solid rgba(244,63,94,0.25); }
+  .s4 .pstage { color: var(--accent4); }
+
+  .signals { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+  .sig {
+    padding: 4px 12px; border-radius: 20px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500;
+  }
+  .sig-ok  { background: rgba(16,185,129,0.12); color: var(--accent3); border: 1px solid rgba(16,185,129,0.25); }
+  .sig-bad { background: rgba(244,63,94,0.12);  color: var(--accent4); border: 1px solid rgba(244,63,94,0.25); }
+  .sig-err { background: rgba(245,158,11,0.12); color: var(--accent2); border: 1px solid rgba(245,158,11,0.25); }
+
+  .feedback-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(244,63,94,0.05); border: 1px dashed rgba(244,63,94,0.3);
+    border-radius: 8px; padding: 8px 14px; margin-top: 8px;
+    font-size: 11.5px; color: #64748b;
+  }
+  .feedback-pill .farr { color: var(--accent4); font-size: 16px; }
+
+  /* ══════════════════════════════
+     RL SECTION
+  ══════════════════════════════ */
+  .rl-header-row {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+  }
+  .rl-badge {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent5); border: 1px solid rgba(167,139,250,0.3);
+    background: rgba(167,139,250,0.07); padding: 4px 10px; border-radius: 4px;
+  }
+
+  /* RL mapping table */
+  .rl-map {
+    width: 100%; border-collapse: collapse; margin: 20px 0;
+    font-size: 13px;
+  }
+  .rl-map th {
+    font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); text-align: left; padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .rl-map td {
+    padding: 10px 14px; border-bottom: 1px solid rgba(26,38,64,0.5);
+    vertical-align: top;
+  }
+  .rl-map tr:last-child td { border-bottom: none; }
+  .rl-map .concept { color: var(--accent5); font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+  .rl-map .solar-eq { color: #94a3b8; }
+  .rl-map .note { color: var(--muted); font-size: 11.5px; font-style: italic; }
+  .rl-map tr:hover td { background: rgba(167,139,250,0.03); }
+
+  /* RL algorithms grid */
+  .rl-algo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 22px 0; }
+  @media(max-width:600px) { .rl-algo-grid { grid-template-columns: 1fr; } }
+
+  .algo-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px; position: relative; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .algo-card:hover { border-color: rgba(167,139,250,0.3); }
+  .algo-card.primary { border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.04); }
+  .algo-card.primary::after {
+    content: 'RECOMMENDED';
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 8px;
+    letter-spacing: 0.12em; color: var(--accent5);
+    background: rgba(167,139,250,0.15); padding: 2px 7px; border-radius: 3px;
+  }
+  .algo-name {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+    margin-bottom: 4px; color: var(--text);
+  }
+  .algo-full { font-size: 11px; color: var(--muted); margin-bottom: 10px; font-family: 'IBM Plex Mono', monospace; }
+  .algo-desc { font-size: 12.5px; color: #4a6080; line-height: 1.55; }
+  .algo-desc em { font-style: normal; color: #7a93b0; }
+  .algo-fit {
+    margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border);
+    font-size: 11.5px; color: var(--muted);
+  }
+  .algo-fit strong { color: var(--accent5); font-weight: 500; }
+
+  /* RL trajectory diagram */
+  .traj-box {
+    background: rgba(167,139,250,0.04); border: 1px solid rgba(167,139,250,0.2);
+    border-radius: 12px; padding: 22px; margin: 20px 0;
+  }
+  .traj-title {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent5); margin-bottom: 16px;
+  }
+  .traj-steps { display: flex; flex-direction: column; gap: 0; }
+  .traj-step { display: flex; align-items: flex-start; gap: 12px; }
+  .traj-dot-col { display: flex; flex-direction: column; align-items: center; width: 28px; flex-shrink: 0; }
+  .traj-dot {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500;
+    flex-shrink: 0; z-index: 1;
+  }
+  .traj-vline { width: 1px; flex: 1; min-height: 18px; background: rgba(167,139,250,0.2); margin: 2px 0; }
+  .traj-content { flex: 1; padding-bottom: 16px; }
+  .traj-action { font-size: 12px; color: var(--accent5); font-family: 'IBM Plex Mono', monospace; margin-bottom: 2px; }
+  .traj-detail { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .traj-reward {
+    display: inline-block; font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; padding: 2px 8px; border-radius: 4px; margin-top: 4px;
+  }
+  .r-pos { background: rgba(16,185,129,0.12); color: var(--accent3); }
+  .r-neg { background: rgba(244,63,94,0.12); color: var(--accent4); }
+  .r-part { background: rgba(245,158,11,0.12); color: var(--accent2); }
+
+  /* current vs future */
+  .phase-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+  @media(max-width:600px) { .phase-row { grid-template-columns: 1fr; } }
+  .phase-card {
+    border-radius: 12px; padding: 18px;
+  }
+  .phase-now {
+    background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.2);
+  }
+  .phase-future {
+    background: rgba(167,139,250,0.04); border: 1px solid rgba(167,139,250,0.2);
+  }
+  .phase-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .phase-now .phase-label { color: var(--accent); }
+  .phase-future .phase-label { color: var(--accent5); }
+  .phase-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; }
+  .phase-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .phase-list li { font-size: 12px; color: var(--muted); padding-left: 14px; position: relative; }
+  .phase-now .phase-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); }
+  .phase-future .phase-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent5); }
+
+  /* novelty grid */
+  .contrib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+  @media(max-width:600px) { .contrib-grid { grid-template-columns: 1fr; } }
+  .contrib-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px;
+  }
+  .ci-title {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 12.5px; margin-bottom: 6px; color: var(--accent);
+  }
+  .contrib-item p { font-size: 11.5px; color: var(--muted); line-height: 1.55; }
+
+  /* summary */
+  .summary {
+    background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(245,158,11,0.03));
+    border: 1px solid rgba(0,212,255,0.18); border-radius: 14px; padding: 28px;
+  }
+  .summary h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 14px; color: var(--accent); }
+  .summary ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .summary li { font-size: 13.5px; color: #64748b; padding-left: 20px; position: relative; }
+  .summary li::before { content: '→'; position: absolute; left: 0; color: var(--accent2); font-family: 'IBM Plex Mono', monospace; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <div class="badge">Research Proposal · EMNLP 2025/2026</div>
+    <h1>SOLAR</h1>
+    <div class="header-sub">Solver-in-the-Loop Constraint Acquisition and Refinement</div>
+    <div class="header-desc">Making LLMs reliably translate transit policy documents into formally correct, solver-verified scheduling constraints</div>
+  </div>
+
+  <!-- ── PROBLEM ── -->
+  <div class="section">
+    <div class="sec-label">01 — The Problem</div>
+    <h2>What's broken today?</h2>
+    <p class="prose">Transit agencies (MTA, MBTA, WMATA) hold <strong>hundreds of legally binding documents</strong> — union contracts, federal regulations, GTFS specs. Every rule in them must eventually become formal solver code to generate valid schedules.</p>
+    <div class="analogy">
+      <strong>"No driver shall operate more than 6 consecutive hours without a 30-minute break."</strong><br>
+      Plain English. But a scheduling solver needs this as precise mathematical constraints — and that translation today is done manually by expensive domain experts.
+    </div>
+    <div class="problem-card">
+      <div class="ct">⚠ The Core Failure</div>
+      <p class="prose">LLMs are fluent at reading policy text but <strong>generate broken constraint code</strong>. They hallucinate plausible-sounding but mathematically infeasible rules. They blur "soft preferences" with "hard legal requirements". Worst of all — they have <strong>no feedback loop</strong> to even know when they failed.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ── SOLUTION ── -->
+  <div class="section">
+    <div class="sec-label">02 — The Solution</div>
+    <h2>What does SOLAR do?</h2>
+    <p class="prose" style="margin-bottom:16px;">SOLAR builds a <strong>closed-loop pipeline</strong> where the LLM generates constraint code, a real solver acts as automatic grader, and that verdict feeds back to make the LLM better. No human annotation at scale needed.</p>
+    <div class="io-flow">
+      <span class="io-box">Policy Doc (NL)</span>
+      <span class="io-arr">→</span>
+      <span class="io-box">Constraint IR (JSON)</span>
+      <span class="io-arr">→</span>
+      <span class="io-box">CP-SAT Code</span>
+      <span class="io-arr">→</span>
+      <span class="io-box">Solver Verdict</span>
+      <span class="io-arr">→</span>
+      <span class="io-box out">Train Signal ↺</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ── SYSTEM DESIGN DIAGRAM ── -->
+  <div class="section">
+    <div class="sec-label">03 — System Architecture</div>
+    <h2>Full system design diagram</h2>
+
+    <div class="diagram-wrap">
+      <div class="dtitle">// SOLAR · End-to-End System Design</div>
+
+      <!-- SVG DIAGRAM -->
+      <svg class="sys-svg" viewBox="0 0 860 520" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Glows -->
+          <filter id="glow-blue" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="glow-green" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- Arrow markers -->
+          <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#00d4ff" opacity="0.8"/>
+          </marker>
+          <marker id="arr-amber" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#f59e0b" opacity="0.8"/>
+          </marker>
+          <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#10b981" opacity="0.8"/>
+          </marker>
+          <marker id="arr-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#f43f5e" opacity="0.8"/>
+          </marker>
+          <marker id="arr-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#a78bfa" opacity="0.8"/>
+          </marker>
+        </defs>
+
+        <!-- ── INPUT NODE ── -->
+        <rect x="20" y="30" width="160" height="64" rx="10" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.25)" stroke-width="1.2"/>
+        <text x="100" y="54" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#00d4ff" letter-spacing="1.5">INPUT</text>
+        <text x="100" y="70" text-anchor="middle" font-family="IBM Plex Sans" font-size="12" fill="#c8d8e8" font-weight="600">Policy Document</text>
+        <text x="100" y="85" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#4a6080">CBA / FTA / GTFS</text>
+
+        <!-- ── STAGE 1: LLM EXTRACTOR ── -->
+        <rect x="230" y="14" width="180" height="96" rx="10" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.3)" stroke-width="1.2" filter="url(#glow-blue)"/>
+        <text x="320" y="36" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#00d4ff" letter-spacing="1.5">STAGE 1</text>
+        <text x="320" y="52" text-anchor="middle" font-family="Syne" font-size="13" fill="#e2e8f0" font-weight="700">LLM Extractor</text>
+        <text x="320" y="68" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="#4a6080">Fine-tuned on policy text</text>
+        <text x="320" y="83" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#00d4ff">NL → Constraint IR</text>
+        <text x="320" y="97" text-anchor="middle" font-family="IBM Plex Sans" font-size="9" fill="#3a5070">Llama-3 / Mistral + LoRA</text>
+
+        <!-- ── STAGE 2: CODE GEN ── -->
+        <rect x="460" y="14" width="180" height="96" rx="10" fill="rgba(245,158,11,0.06)" stroke="rgba(245,158,11,0.3)" stroke-width="1.2"/>
+        <text x="550" y="36" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#f59e0b" letter-spacing="1.5">STAGE 2</text>
+        <text x="550" y="52" text-anchor="middle" font-family="Syne" font-size="13" fill="#e2e8f0" font-weight="700">Code Generator</text>
+        <text x="550" y="68" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="#4a6080">Templates + LLM fallback</text>
+        <text x="550" y="83" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#f59e0b">IR → CP-SAT Python</text>
+        <text x="550" y="97" text-anchor="middle" font-family="IBM Plex Sans" font-size="9" fill="#3a5070">Jinja2 + OR-Tools format</text>
+
+        <!-- ── STAGE 3: SOLVER ── -->
+        <rect x="690" y="14" width="152" height="96" rx="10" fill="rgba(16,185,129,0.06)" stroke="rgba(16,185,129,0.3)" stroke-width="1.2" filter="url(#glow-green)"/>
+        <text x="766" y="36" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#10b981" letter-spacing="1.5">STAGE 3</text>
+        <text x="766" y="52" text-anchor="middle" font-family="Syne" font-size="13" fill="#e2e8f0" font-weight="700">CP-SAT Solver</text>
+        <text x="766" y="68" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="#4a6080">Google OR-Tools</text>
+        <text x="766" y="83" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#10b981">Execute &amp; Verify</text>
+        <text x="766" y="97" text-anchor="middle" font-family="IBM Plex Sans" font-size="9" fill="#3a5070">subprocess + timeout</text>
+
+        <!-- ── ARROWS: top row (left to right) ── -->
+        <!-- Input → S1 -->
+        <line x1="181" y1="62" x2="228" y2="62" stroke="#00d4ff" stroke-width="1.4" stroke-opacity="0.6" marker-end="url(#arr-blue)"/>
+        <!-- S1 → S2 -->
+        <line x1="411" y1="62" x2="458" y2="62" stroke="#f59e0b" stroke-width="1.4" stroke-opacity="0.6" marker-end="url(#arr-amber)"/>
+        <text x="434" y="56" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#4a6080">IR JSON</text>
+        <!-- S2 → S3 -->
+        <line x1="641" y1="62" x2="688" y2="62" stroke="#10b981" stroke-width="1.4" stroke-opacity="0.6" marker-end="url(#arr-green)"/>
+        <text x="664" y="56" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#4a6080">exec code</text>
+
+        <!-- ── SOLVER VERDICTS ── -->
+        <!-- FEASIBLE -->
+        <rect x="690" y="148" width="152" height="34" rx="7" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
+        <text x="766" y="169" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#10b981" font-weight="500">✓ FEASIBLE</text>
+        <!-- INFEASIBLE -->
+        <rect x="690" y="192" width="152" height="34" rx="7" fill="rgba(244,63,94,0.1)" stroke="rgba(244,63,94,0.3)" stroke-width="1"/>
+        <text x="766" y="213" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#f43f5e" font-weight="500">✗ INFEASIBLE</text>
+        <!-- ERROR -->
+        <rect x="690" y="236" width="152" height="34" rx="7" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+        <text x="766" y="257" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#f59e0b" font-weight="500">⚡ ERROR</text>
+
+        <!-- Solver → verdicts arrow -->
+        <line x1="766" y1="111" x2="766" y2="146" stroke="#10b981" stroke-width="1.2" stroke-opacity="0.5" marker-end="url(#arr-green)"/>
+
+        <!-- ── STAGE 4: CFFT ── -->
+        <rect x="230" y="148" width="390" height="124" rx="10" fill="rgba(244,63,94,0.05)" stroke="rgba(244,63,94,0.28)" stroke-width="1.4"/>
+        <text x="425" y="170" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#f43f5e" letter-spacing="1.5">STAGE 4 · KEY INNOVATION</text>
+        <text x="425" y="188" text-anchor="middle" font-family="Syne" font-size="14" fill="#e2e8f0" font-weight="700">CFFT — Constraint Faithfulness Fine-Tuning</text>
+        <text x="425" y="207" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="#4a6080">Solver feedback used as contrastive training signal</text>
+        <!-- Contrastive pair illustration -->
+        <rect x="248" y="218" width="166" height="40" rx="6" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.2)" stroke-width="1"/>
+        <text x="331" y="233" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#10b981">FEASIBLE → Positive pair</text>
+        <text x="331" y="249" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="#3a5070">push model toward this IR</text>
+
+        <rect x="436" y="218" width="166" height="40" rx="6" fill="rgba(244,63,94,0.08)" stroke="rgba(244,63,94,0.2)" stroke-width="1"/>
+        <text x="519" y="233" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#f43f5e">FAIL → Negative pair</text>
+        <text x="519" y="249" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="#3a5070">pull model away from this IR</text>
+
+        <!-- Verdicts → CFFT arrows -->
+        <path d="M 690 165 C 660 165 650 200 622 200" stroke="#10b981" stroke-width="1.2" stroke-opacity="0.5" fill="none" marker-end="url(#arr-green)"/>
+        <path d="M 690 209 C 655 209 648 220 622 220" stroke="#f43f5e" stroke-width="1.2" stroke-opacity="0.5" fill="none" marker-end="url(#arr-red)"/>
+        <path d="M 690 253 C 655 253 648 245 622 245" stroke="#f59e0b" stroke-width="1.2" stroke-opacity="0.5" fill="none" marker-end="url(#arr-amber)"/>
+
+        <!-- CFFT → LLM Extractor feedback arrow (big loop back) -->
+        <path d="M 320 148 C 320 118 320 112 320 112" stroke="#f43f5e" stroke-width="1.6" stroke-opacity="0.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
+        <text x="334" y="132" font-family="IBM Plex Mono" font-size="8" fill="#f43f5e" opacity="0.7">fine-tune</text>
+
+        <!-- ── VERIFIER MODEL ── -->
+        <rect x="230" y="302" width="186" height="60" rx="10" fill="rgba(167,139,250,0.06)" stroke="rgba(167,139,250,0.25)" stroke-width="1.2"/>
+        <text x="323" y="322" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#a78bfa" letter-spacing="1.2">VERIFIER MODEL</text>
+        <text x="323" y="338" text-anchor="middle" font-family="Syne" font-size="12" fill="#e2e8f0" font-weight="700">Lightweight Predictor</text>
+        <text x="323" y="352" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="#4a6080">Predicts solver outcome pre-execution</text>
+
+        <!-- CFFT → Verifier -->
+        <line x1="323" y1="273" x2="323" y2="300" stroke="#a78bfa" stroke-width="1.2" stroke-opacity="0.4" marker-end="url(#arr-purple)"/>
+
+        <!-- ── OUTPUT ── -->
+        <rect x="690" y="302" width="152" height="60" rx="10" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.35)" stroke-width="1.4"/>
+        <text x="766" y="322" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#10b981" letter-spacing="1.5">OUTPUT</text>
+        <text x="766" y="340" text-anchor="middle" font-family="Syne" font-size="13" fill="#e2e8f0" font-weight="700">Valid Schedule</text>
+        <text x="766" y="356" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#10b981">All constraints verified ✓</text>
+
+        <!-- S3 → Output -->
+        <line x1="766" y1="272" x2="766" y2="300" stroke="#10b981" stroke-width="1.4" stroke-opacity="0.6" marker-end="url(#arr-green)"/>
+
+        <!-- Verifier → S2 (inference filter) -->
+        <path d="M 416 332 C 480 332 490 220 550 112" stroke="#a78bfa" stroke-width="1" stroke-opacity="0.3" fill="none" stroke-dasharray="4,3" marker-end="url(#arr-purple)"/>
+        <text x="500" y="290" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#a78bfa" opacity="0.6">filter at inference</text>
+
+        <!-- ── BENCHMARK ── -->
+        <rect x="20" y="148" width="186" height="100" rx="10" fill="rgba(245,158,11,0.04)" stroke="rgba(245,158,11,0.2)" stroke-width="1"/>
+        <text x="113" y="168" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#f59e0b" letter-spacing="1.2">TRANSITOPSBENCH</text>
+        <text x="113" y="184" text-anchor="middle" font-family="Syne" font-size="12" fill="#e2e8f0" font-weight="700">Data Sources</text>
+        <text x="30" y="201" font-family="IBM Plex Sans" font-size="10" fill="#4a6080">· FTA Regulatory Docs</text>
+        <text x="30" y="216" font-family="IBM Plex Sans" font-size="10" fill="#4a6080">· Transit CBAs (MTA, MBTA…)</text>
+        <text x="30" y="231" font-family="IBM Plex Sans" font-size="10" fill="#4a6080">· GTFS / GTFS-RT Specs</text>
+        <text x="30" y="246" font-family="IBM Plex Sans" font-size="10" fill="#4a6080">· GPT-4 Synthetic Augment.</text>
+
+        <!-- Benchmark → S1 -->
+        <path d="M 206 200 C 220 200 220 80 228 80" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.35" fill="none" stroke-dasharray="4,3" marker-end="url(#arr-amber)"/>
+
+        <!-- ── LEGEND ── -->
+        <text x="20" y="390" font-family="IBM Plex Mono" font-size="8" fill="#2a3a50" letter-spacing="1.5">LEGEND</text>
+        <line x1="20" y1="406" x2="50" y2="406" stroke="#00d4ff" stroke-width="1.4" stroke-opacity="0.6"/>
+        <text x="56" y="409" font-family="IBM Plex Sans" font-size="9" fill="#3a5070">Forward pass</text>
+        <line x1="140" y1="406" x2="170" y2="406" stroke="#f43f5e" stroke-width="1.4" stroke-opacity="0.6" stroke-dasharray="4,2"/>
+        <text x="176" y="409" font-family="IBM Plex Sans" font-size="9" fill="#3a5070">Training feedback</text>
+        <line x1="290" y1="406" x2="320" y2="406" stroke="#a78bfa" stroke-width="1" stroke-opacity="0.5" stroke-dasharray="3,2"/>
+        <text x="326" y="409" font-family="IBM Plex Sans" font-size="9" fill="#3a5070">Inference filter</text>
+
+        <!-- CFFT loop label -->
+        <rect x="156" y="148" width="70" height="22" rx="4" fill="rgba(244,63,94,0.1)" stroke="rgba(244,63,94,0.2)" stroke-width="1"/>
+        <text x="191" y="163" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" fill="#f43f5e">↻ TRAIN LOOP</text>
+
+      </svg>
+    </div>
+
+    <!-- Stage descriptions below diagram -->
+    <div class="pipeline" style="margin-top:28px;">
+      <div class="pnode s1">
+        <div class="pleft"><div class="picon">🧠</div><div class="pline"></div></div>
+        <div class="pcontent">
+          <div class="pstage">Stage 1</div>
+          <div class="pname">LLM Extractor — NL → Constraint IR</div>
+          <div class="pdesc">Fine-tuned Llama-3/Mistral reads policy text and outputs a structured JSON per rule: <em>type</em> (hard/soft), <em>entities</em> (driver, vehicle), <em>thresholds</em> (max 6h, min 30min), <em>logic</em> (conditionals, exceptions).</div>
+        </div>
+      </div>
+      <div class="pnode s2">
+        <div class="pleft"><div class="picon">⚙️</div><div class="pline"></div></div>
+        <div class="pcontent">
+          <div class="pstage">Stage 2</div>
+          <div class="pname">Code Generator — IR → CP-SAT Python</div>
+          <div class="pdesc">Jinja2 templates fill in IR fields to generate runnable OR-Tools code. Edge cases fall back to an LLM prompt. All output wrapped in try/except before solver execution.</div>
+        </div>
+      </div>
+      <div class="pnode s3">
+        <div class="pleft"><div class="picon">🔬</div><div class="pline" style="background:linear-gradient(to bottom,rgba(16,185,129,0.4),rgba(244,63,94,0.3))"></div></div>
+        <div class="pcontent">
+          <div class="pstage">Stage 3</div>
+          <div class="pname">CP-SAT Solver — Execute &amp; Verify</div>
+          <div class="pdesc">Runs generated code against a minimal synthetic schedule in a sandboxed subprocess (with timeout). Returns one of three verdicts:</div>
+          <div class="signals">
+            <span class="sig sig-ok">✓ FEASIBLE</span>
+            <span class="sig sig-bad">✗ INFEASIBLE</span>
+            <span class="sig sig-err">⚡ ERROR</span>
+          </div>
+        </div>
+      </div>
+      <div class="pnode s4">
+        <div class="pleft"><div class="picon">🔄</div></div>
+        <div class="pcontent">
+          <div class="pstage">Stage 4 · Core Innovation</div>
+          <div class="pname">CFFT — Contrastive Fine-Tuning on Solver Feedback</div>
+          <div class="pdesc">Solver verdicts become training data. FEASIBLE = positive example. INFEASIBLE/ERROR = negative pair. The model is fine-tuned to produce correct IRs — automatically, at scale, with no human labeling.</div>
+          <div class="feedback-pill"><span class="farr">↻</span> Solver feedback loops back into LLM weights — each iteration improves constraint generation quality</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ── RL SECTION ── -->
+  <div class="section">
+    <div class="sec-label">04 — Agentic RL Connection</div>
+    <div class="rl-header-row">
+      <h2 style="margin-bottom:0">How RL fits into SOLAR</h2>
+      <span class="rl-badge">RL-Adjacent</span>
+    </div>
+    <p class="prose" style="margin-bottom:20px;">SOLAR's CFFT loop has the <strong>skeleton of an RL system</strong>. The mapping is precise — and understanding it reveals both what SOLAR already is and where it can go next.</p>
+
+    <!-- RL mapping table -->
+    <table class="rl-map">
+      <thead>
+        <tr>
+          <th>RL Concept</th>
+          <th>SOLAR Equivalent</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="concept">Agent</td>
+          <td class="solar-eq">LLM Extractor + Code Generator</td>
+          <td class="note">The model that takes actions (generates IR / code)</td>
+        </tr>
+        <tr>
+          <td class="concept">Environment</td>
+          <td class="solar-eq">CP-SAT Solver + Scheduling Instance</td>
+          <td class="note">Stateless oracle that responds to every action</td>
+        </tr>
+        <tr>
+          <td class="concept">Action</td>
+          <td class="solar-eq">Generated Constraint IR or Code</td>
+          <td class="note">One constraint extracted = one action</td>
+        </tr>
+        <tr>
+          <td class="concept">Reward Signal</td>
+          <td class="solar-eq">FEASIBLE +1 / INFEASIBLE −1 / ERROR −0.5</td>
+          <td class="note">Binary + partial; directly from solver, no human needed</td>
+        </tr>
+        <tr>
+          <td class="concept">Policy</td>
+          <td class="solar-eq">LLM weights (fine-tuned via CFFT)</td>
+          <td class="note">Updated after each batch of solver verdicts</td>
+        </tr>
+        <tr>
+          <td class="concept">Value Function</td>
+          <td class="solar-eq">Lightweight Verifier Model</td>
+          <td class="note">Predicts solver outcome before execution — acts as V(s)</td>
+        </tr>
+        <tr>
+          <td class="concept">Trajectory</td>
+          <td class="solar-eq">Single-step (v1) → Multi-step revision (v2)</td>
+          <td class="note">Current paper is 1-step; Agentic RL extension adds multi-step</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- RL Algorithms -->
+    <h2 style="margin-top:32px;">Which RL algorithm fits best?</h2>
+    <p class="prose" style="margin-bottom:18px;">Three algorithms are relevant, at different stages of the project's maturity:</p>
+
+    <div class="rl-algo-grid">
+
+      <div class="algo-card primary">
+        <div class="algo-name">DPO</div>
+        <div class="algo-full">Direct Preference Optimization</div>
+        <div class="algo-desc">Trains the LLM directly on <em>(preferred IR, rejected IR)</em> pairs without a separate reward model. Solver verdict determines which is preferred. Stable, simple, no PPO hypertuning.</div>
+        <div class="algo-fit"><strong>CFFT as currently designed IS essentially DPO</strong> — solver replaces human preference labeler. Best fit for SOLAR v1. Lowest implementation complexity.</div>
+      </div>
+
+      <div class="algo-card">
+        <div class="algo-name">GRPO</div>
+        <div class="algo-full">Group Relative Policy Optimization</div>
+        <div class="algo-desc">Sample <em>N</em> constraint IRs for the same policy sentence, score each with the solver, use relative rankings as reward. Same family as DeepSeek-R1. No separate critic model needed.</div>
+        <div class="algo-fit"><strong>Best for SOLAR v1.5:</strong> when you have enough solver calls to rank multiple candidates. More data-efficient than PPO, more signal than DPO.</div>
+      </div>
+
+      <div class="algo-card">
+        <div class="algo-name">PPO</div>
+        <div class="algo-full">Proximal Policy Optimization</div>
+        <div class="algo-desc">Classic actor-critic RL. Full reward model (the verifier) scores outputs. KL penalty keeps LLM from diverging. Proven in RLHF (InstructGPT). Most expressive but most complex to tune.</div>
+        <div class="algo-fit"><strong>Best for SOLAR v2 (Agentic):</strong> when multi-step constraint revision trajectories are added and cumulative reward is needed across a document.</div>
+      </div>
+
+      <div class="algo-card">
+        <div class="algo-name">PRM + REINFORCE</div>
+        <div class="algo-full">Process Reward Model</div>
+        <div class="algo-desc">Instead of rewarding only the final schedule validity, reward each <em>intermediate step</em> — each constraint extraction, each IR field. Finer-grained learning signal.</div>
+        <div class="algo-fit"><strong>Longer-term research direction:</strong> step-level rewards for constraint type classification, threshold extraction, and logic parsing independently.</div>
+      </div>
+
+    </div>
+
+    <!-- Agentic RL trajectory -->
+    <div class="traj-box">
+      <div class="traj-title">// Agentic RL Extension — Multi-Step Trajectory over a Policy Document</div>
+      <div class="traj-steps">
+
+        <div class="traj-step">
+          <div class="traj-dot-col">
+            <div class="traj-dot" style="background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.3);color:#00d4ff;">1</div>
+            <div class="traj-vline"></div>
+          </div>
+          <div class="traj-content">
+            <div class="traj-action">Action: Extract constraint #1</div>
+            <div class="traj-detail">"No driver shall work &gt;6h" → IR JSON generated</div>
+            <span class="traj-reward r-pos">+1 FEASIBLE</span>
+          </div>
+        </div>
+
+        <div class="traj-step">
+          <div class="traj-dot-col">
+            <div class="traj-dot" style="background:rgba(244,63,94,0.15);border:1px solid rgba(244,63,94,0.3);color:#f43f5e;">2</div>
+            <div class="traj-vline"></div>
+          </div>
+          <div class="traj-content">
+            <div class="traj-action">Action: Extract constraint #2</div>
+            <div class="traj-detail">"Minimum layover of 45 minutes at terminus" → IR generated but threshold missed</div>
+            <span class="traj-reward r-neg">−1 INFEASIBLE</span>
+          </div>
+        </div>
+
+        <div class="traj-step">
+          <div class="traj-dot-col">
+            <div class="traj-dot" style="background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);color:#f59e0b;">3</div>
+            <div class="traj-vline"></div>
+          </div>
+          <div class="traj-content">
+            <div class="traj-action">Action: Revise constraint #2 (inspect error, re-generate)</div>
+            <div class="traj-detail">Agent reads solver error message → corrects threshold → re-submits</div>
+            <span class="traj-reward r-pos">+1 FEASIBLE</span>
+          </div>
+        </div>
+
+        <div class="traj-step">
+          <div class="traj-dot-col">
+            <div class="traj-dot" style="background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#10b981;">✓</div>
+          </div>
+          <div class="traj-content">
+            <div class="traj-action">Terminal State: All constraints extracted from document</div>
+            <div class="traj-detail">Cumulative reward = sum over all steps. GRPO/PPO optimizes this trajectory-level signal.</div>
+            <span class="traj-reward r-part">Σ Reward = document-level validity rate</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Current vs Future -->
+    <div class="phase-row">
+      <div class="phase-card phase-now">
+        <div class="phase-label">SOLAR v1 — This Paper</div>
+        <div class="phase-title">DPO / CFFT (Single-Step)</div>
+        <ul class="phase-list">
+          <li>One constraint = one action</li>
+          <li>Solver verdict = binary reward</li>
+          <li>Contrastive pairs = DPO training</li>
+          <li>Verifier = lightweight V(s) proxy</li>
+          <li>No trajectory, no exploration</li>
+        </ul>
+      </div>
+      <div class="phase-card phase-future">
+        <div class="phase-label">SOLAR v2 — Future Work</div>
+        <div class="phase-title">GRPO / PPO (Agentic, Multi-Step)</div>
+        <ul class="phase-list">
+          <li>Multi-step revision over full document</li>
+          <li>Solver = callable tool (MCP-style)</li>
+          <li>Cumulative reward across trajectory</li>
+          <li>PRM for step-level constraint rewards</li>
+          <li>True Agentic RL — same family as R1</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ── NOVELTY ── -->
+  <div class="section">
+    <div class="sec-label">05 — What's Novel</div>
+    <h2>Why hasn't this been done before?</h2>
+    <div class="contrib-grid">
+      <div class="contrib-item">
+        <div class="ci-title">Solver as Automatic Teacher</div>
+        <p>Prior work requires expensive human annotations. SOLAR uses the solver as a ground-truth oracle — scalable, free, and verifiably correct.</p>
+      </div>
+      <div class="contrib-item">
+        <div class="ci-title">Real-World Regulatory Text</div>
+        <p>Other systems use clean toy problem descriptions. SOLAR targets messy, legally-binding policy docs where hard/soft constraint boundaries are implicit.</p>
+      </div>
+      <div class="contrib-item">
+        <div class="ci-title">Hard vs. Soft Classification</div>
+        <p>No prior NLP work explicitly trains a dedicated objective to distinguish hard legal rules from soft scheduling preferences.</p>
+      </div>
+      <div class="contrib-item">
+        <div class="ci-title">TransitOpsBench</div>
+        <p>First public NLP benchmark of FTA regulations, union CBAs, and GTFS specs. Cross-document domain shift evaluation included.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ── TL;DR ── -->
+  <div class="section">
+    <div class="summary">
+      <h3>⚡ TL;DR — The One-Paragraph Version</h3>
+      <ul>
+        <li>Transit agencies have legally binding rules in English that must become formal solver code to generate valid schedules.</li>
+        <li>LLMs generate plausible-but-broken constraint code and have no feedback loop to know they failed.</li>
+        <li>SOLAR inserts Google OR-Tools into the training loop: generate → verify → use solver verdict as reward signal.</li>
+        <li>The CFFT training objective is essentially DPO where the solver replaces human preference labelers — automated, scalable, verifiable.</li>
+        <li>The natural v2 extension replaces CFFT with GRPO/PPO for multi-step agentic constraint revision — same architecture as DeepSeek-R1, grounded in transit operations.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
