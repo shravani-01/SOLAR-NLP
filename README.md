@@ -1,7 +1,7 @@
 # SOLAR — Solver-in-the-Loop Constraint Acquisition and Refinement
 
 **Paper:** SOLAR: Solver-in-the-Loop Constraint Acquisition and Refinement for Operational Policy Documents  
-**Authors:** Shravani Hariprasad, Kapil, Vinija Jain, Aman Chadha  
+**Authors:** Shravani Hariprasad, Kapil Wanaskar, Vinija Jain, Aman Chadha  
 **Target:** ARR April 2026 → EMNLP 2026  
 **Status:** Phase 6 complete — all baselines done, paper draft live
 
@@ -167,7 +167,7 @@ python scripts/13_final_evaluation.py --mode deepseek_rag
   title   = {SOLAR: Solver-in-the-Loop Constraint 
              Acquisition and Refinement for 
              Operational Policy Documents},
-  author  = {Hariprasad, Shravani and Kapil and 
+  author  = {Hariprasad, Shravani and Wanaskar, Kapil and 
              Jain, Vinija and Chadha, Aman},
   journal = {arXiv preprint},
   year    = {2026}
