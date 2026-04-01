@@ -41,7 +41,7 @@ from pathlib import Path
 from collections import Counter
 
 PROJECT_ROOT  = Path(__file__).parent.parent
-PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
+PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"/"transit"
 
 try:
     from ortools.sat.python import cp_model
@@ -296,7 +296,7 @@ def main():
     # Load generated outputs from Colab
     outputs_path = (
         Path(args.outputs) if args.outputs
-        else PROCESSED_DIR / "cpsat_generated_outputs.json"
+        else PROCESSED_DIR / "cpsat_generated_outputs_round3.json"
     )
 
     if not outputs_path.exists():

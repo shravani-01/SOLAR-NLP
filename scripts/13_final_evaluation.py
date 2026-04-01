@@ -36,6 +36,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
+print("DeepSeek key:", os.environ.get("DEEPSEEK_API_KEY", "NOT FOUND")[:10])
 
 PROJECT_ROOT  = Path(__file__).parent.parent
 TRAINING_DIR  = PROJECT_ROOT / "data" / "training" / "transit"
@@ -57,6 +58,8 @@ def load_test_set() -> list[dict]:
     print(f"  Test set loaded: {len(records)} records")
     return records
 
+def fmt(v, fmt_str):
+    return format(v, fmt_str) if v is not None else "--"
 
 # ── Parse IR JSON from model response ────────────────────────────────────────
 def parse_ir_response(response: str) -> dict | None:
@@ -279,20 +282,61 @@ def run_deepseek_baseline(
     mode: str,
     rag_examples: list[dict] | None = None,
 ) -> list[dict | None]:
-    """
-    DeepSeek-V3 via OpenAI-compatible API.
-    Requires DEEPSEEK_API_KEY in .env
-    """
-    client = OpenAI(
+    from openai import OpenAI as OpenAIClient
+    client = OpenAIClient(
         api_key  = os.environ.get("DEEPSEEK_API_KEY", ""),
         base_url = "https://api.deepseek.com",
     )
-    return run_gpt4o_baseline(
-        test_records  = test_records,
-        mode          = mode,
-        rag_examples  = rag_examples,
-        model_name    = "deepseek-chat",
-    )
+
+    predictions = []
+    errors = 0
+
+    print(f"\n  Running deepseek-chat {mode.upper()} on {len(test_records)} records...")
+
+    for i, record in enumerate(test_records):
+        if i % 50 == 0:
+            print(f"  Progress: {i}/{len(test_records)}")
+
+        text = record.get("text", "")
+        sentence = ""
+        if "<|start_header_id|>user<|end_header_id|>" in text:
+            parts = text.split("<|start_header_id|>user<|end_header_id|>")
+            if len(parts) > 1:
+                sentence = parts[1].split("<|eot_id|>")[0].strip()
+                sentence = sentence.replace("Extract constraint IR from this sentence:", "").strip()
+                sentence = sentence.strip('"')
+
+        if not sentence:
+            predictions.append(None)
+            continue
+
+        if mode == "cot":
+            user_prompt = make_cot_prompt(sentence)
+        else:
+            user_prompt = make_rag_prompt(sentence, rag_examples or [])
+
+        try:
+            response = client.chat.completions.create(
+                model       = "deepseek-chat",
+                messages    = [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user",   "content": user_prompt},
+                ],
+                temperature = 0.0,
+                max_tokens  = 512,
+            )
+            content = response.choices[0].message.content.strip()
+            parsed  = parse_ir_response(content)
+            predictions.append(parsed)
+
+        except Exception as e:
+            errors += 1
+            predictions.append(None)
+            if errors <= 3:
+                print(f"  Error on record {i}: {e}")
+
+    print(f"  Done — {len(predictions)} predictions, {errors} errors")
+    return predictions
 
 
 # ── Load RAG examples from training set ──────────────────────────────────────
@@ -392,7 +436,10 @@ def print_results_table(all_results: dict):
             continue
         m   = all_results[key]
         lbl = labels.get(key, key)
-        print(f"  {lbl:<25} {m['macro_f1']:>6.3f} {m['threshold_acc']:>8.1%} {m['exception_acc']:>8.1%} {m['json_validity']:>8.1%}")
+        # print(f"  {lbl:<25} {m['macro_f1']:>6.3f} {m['threshold_acc']:>8.1%} {m['exception_acc']:>8.1%} {m['json_validity']:>8.1%}")
+        
+        print(f"  {lbl:<25} {fmt(m.get('macro_f1'), '.3f'):>6} {fmt(m.get('threshold_acc'), '.1%'):>8} {fmt(m.get('exception_acc'), '.1%'):>8} {fmt(m.get('json_validity'), '.1%'):>8}")
+
 
     print(f"{'='*75}\n")
 
