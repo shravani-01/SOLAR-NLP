@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOLAR — Research Progress Report</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --solar-blue: #1F4E79;
+    --solar-teal: #0D6E56;
+    --solar-amber: #BA7517;
+    --solar-coral: #B73C1D;
+    --solar-light: #F4F1EB;
+    --solar-dark: #1A1A2E;
+    --solar-mid: #2D2D44;
+    --accent-blue: #4A90D9;
+    --accent-green: #27AE60;
+    --accent-red: #E74C3C;
+    --accent-yellow: #F39C12;
+    --text-primary: #1A1A2E;
+    --text-secondary: #555566;
+    --border: #E0DDD6;
+    --card-bg: #FFFFFF;
+    --page-bg: #F4F1EB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--page-bg);
+    color: var(--text-primary);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--solar-dark);
+    color: white;
+    padding: 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(74,144,217,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(13,110,86,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(74,144,217,0.2);
+    border: 1px solid rgba(74,144,217,0.4);
+    color: #7EC8E3;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 span { color: #7EC8E3; }
+
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+    max-width: 600px;
+    font-weight: 300;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta-item label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 4px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .hero-meta-item span {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(39,174,96,0.2);
+    border: 1px solid rgba(39,174,96,0.4);
+    color: #7DCEA0;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+
+  .status-dot {
+    width: 6px; height: 6px;
+    background: #27AE60;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  .section {
+    margin-bottom: 70px;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--solar-teal);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--solar-dark);
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+  }
+
+  /* ── PHASE TRACKER ── */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .phase-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: box-shadow 0.2s;
+  }
+
+  .phase-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+  .phase-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .phase-icon.done { background: #EAFAF1; }
+  .phase-icon.progress { background: #FEF9E7; }
+  .phase-icon.planned { background: #F4F6F7; }
+
+  .phase-content h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .phase-content p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .phase-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 6px;
+  }
+
+  .phase-tag.done { background: #EAFAF1; color: #1E8449; }
+  .phase-tag.progress { background: #FEF9E7; color: #B7770D; }
+  .phase-tag.planned { background: #F4F6F7; color: #717D7E; }
+
+  /* ── ARCHITECTURE ── */
+  .arch-diagram {
+    background: var(--solar-dark);
+    border-radius: 16px;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+
+  .arch-diagram::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.02) 0px,
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px,
+      transparent 60px
+    );
+  }
+
+  .arch-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: relative;
+    flex-wrap: wrap;
+    row-gap: 20px;
+  }
+
+  .arch-node {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 16px 20px;
+    text-align: center;
+    min-width: 120px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .arch-node.highlight-blue {
+    background: rgba(31,78,121,0.5);
+    border-color: rgba(74,144,217,0.5);
+  }
+
+  .arch-node.highlight-teal {
+    background: rgba(13,110,86,0.4);
+    border-color: rgba(39,174,96,0.4);
+  }
+
+  .arch-node.highlight-amber {
+    background: rgba(186,117,23,0.3);
+    border-color: rgba(243,156,18,0.4);
+  }
+
+  .arch-node.highlight-coral {
+    background: rgba(183,60,29,0.4);
+    border-color: rgba(231,76,60,0.4);
+  }
+
+  .arch-node-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+  }
+
+  .arch-node-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .arch-node-sub {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .arch-arrow {
+    color: rgba(255,255,255,0.3);
+    font-size: 20px;
+    padding: 0 8px;
+    flex-shrink: 0;
+  }
+
+  .arch-arrow.coral { color: rgba(231,76,60,0.7); }
+
+  .cfft-loop {
+    margin-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .cfft-loop-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(231,76,60,0.8);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .cfft-step {
+    background: rgba(183,60,29,0.2);
+    border: 1px solid rgba(183,60,29,0.3);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .cfft-arrow-small {
+    color: rgba(231,76,60,0.5);
+    font-size: 14px;
+  }
+
+  /* ── RESULTS TABLES ── */
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .results-grid { grid-template-columns: 1fr; }
+  }
+
+  .result-table-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .result-table-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    background: #FAFAF8;
+  }
+
+  .result-table-header h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .result-table-header p {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  th {
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    background: #FAFAF8;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 11px 16px;
+    border-bottom: 1px solid #F0EDE6;
+    color: var(--text-primary);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr.winner td {
+    background: #F0FFF8;
+    font-weight: 600;
+    color: var(--solar-teal);
+  }
+
+  tr.winner td:first-child::before {
+    content: '★ ';
+    color: var(--solar-amber);
+  }
+
+  .num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+  }
+
+  .num.good { color: var(--accent-green); font-weight: 600; }
+  .num.bad { color: var(--accent-red); }
+  .num.mid { color: var(--accent-yellow); }
+  .num.na { color: #BBBBBB; }
+
+  /* ── EXCEPTION SECTION ── */
+  .exception-three {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 700px) {
+    .exception-three { grid-template-columns: 1fr; }
+  }
+
+  .exception-level {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .exception-level::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .exception-level.l1::before { background: var(--accent-yellow); }
+  .exception-level.l2::before { background: var(--accent-blue); }
+  .exception-level.l3::before { background: var(--accent-red); }
+
+  .level-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .l1 .level-num { color: var(--accent-yellow); }
+  .l2 .level-num { color: var(--accent-blue); }
+  .l3 .level-num { color: var(--accent-red); }
+
+  .level-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+  }
+
+  .level-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .level-models {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .model-score {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  .model-score span:first-child { color: var(--text-secondary); }
+
+  .score-bar-wrap {
+    flex: 1;
+    margin: 0 10px;
+    height: 4px;
+    background: #EEE;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .score-bar {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--accent-blue);
+  }
+
+  /* ── MODEL CARDS ── */
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .model-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: box-shadow 0.2s;
+  }
+
+  .model-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+  .model-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .model-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  .model-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .model-card .model-sub {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .model-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .spec-item label {
+    display: block;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 2px;
+  }
+
+  .spec-item span {
+    font-size: 12px;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  /* ── RELATED WORK ── */
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 700px) {
+    .related-grid { grid-template-columns: 1fr; }
+  }
+
+  .related-section-title {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .related-section-title.blue { border-color: var(--accent-blue); color: var(--accent-blue); }
+  .related-section-title.teal { border-color: var(--solar-teal); color: var(--solar-teal); }
+
+  .paper-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    transition: box-shadow 0.2s;
+  }
+
+  .paper-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.07); }
+
+  .paper-card h5 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .paper-card .paper-venue {
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+
+  .paper-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .paper-relation {
+    margin-top: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    background: #F0FFF8;
+    color: var(--solar-teal);
+    border-left: 2px solid var(--solar-teal);
+  }
+
+  /* ── CFFT DIAGRAM ── */
+  .cfft-visual {
+    background: var(--solar-dark);
+    border-radius: 16px;
+    padding: 40px;
+    color: white;
+  }
+
+  .cfft-rounds {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 600px) {
+    .cfft-rounds { grid-template-columns: 1fr; }
+  }
+
+  .cfft-round-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .cfft-round-card.best {
+    border-color: rgba(39,174,96,0.4);
+    background: rgba(39,174,96,0.08);
+  }
+
+  .cfft-round-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 8px;
+  }
+
+  .cfft-feasibility {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .cfft-feasibility.best-val { color: #7DCEA0; }
+
+  .cfft-round-meta {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .cfft-round-meta span {
+    display: block;
+    margin-top: 4px;
+  }
+
+  .best-badge {
+    display: inline-block;
+    background: rgba(39,174,96,0.3);
+    color: #7DCEA0;
+    font-size: 9px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-top: 8px;
+  }
+
+  /* ── ERROR ANALYSIS ── */
+  .error-bars {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 20px;
+  }
+
+  .error-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 80px 80px;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid #F0EDE6;
+  }
+
+  .error-row:last-child { border-bottom: none; }
+
+  .error-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text-primary);
+  }
+
+  .error-bar-container {
+    height: 8px;
+    background: #F0EDE6;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .error-bar-before {
+    position: absolute;
+    height: 100%;
+    background: #E8D5D0;
+    border-radius: 4px;
+  }
+
+  .error-bar-after {
+    position: absolute;
+    height: 100%;
+    background: var(--solar-teal);
+    border-radius: 4px;
+    opacity: 0.8;
+  }
+
+  .error-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    text-align: right;
+  }
+
+  .error-count .before { color: var(--text-secondary); }
+  .error-count .after { color: var(--solar-teal); font-weight: 600; }
+
+  .error-reduction {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-green);
+    text-align: right;
+  }
+
+  /* ── KEY FINDING ── */
+  .finding-box {
+    background: linear-gradient(135deg, #1F4E79, #0D6E56);
+    border-radius: 16px;
+    padding: 40px;
+    color: white;
+    margin: 30px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .finding-box::before {
+    content: '"';
+    position: absolute;
+    top: -20px; left: 20px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 200px;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+  }
+
+  .finding-box h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .finding-box p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+    position: relative;
+    max-width: 700px;
+  }
+
+  /* ── NEXT STEPS ── */
+  .next-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .next-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .next-card .next-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+
+  .next-card h5 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+  }
+
+  .next-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .priority-high { border-left: 3px solid var(--accent-red); }
+  .priority-mid  { border-left: 3px solid var(--accent-yellow); }
+  .priority-low  { border-left: 3px solid var(--accent-green); }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--solar-dark);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 30px;
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 0 60px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Research Progress Report · March 2026</div>
+  <h1><span>SOLAR</span><br>Solver-in-the-Loop<br>Constraint Acquisition</h1>
+  <p class="hero-sub">A neuro-symbolic NLP pipeline bridging Regulatory NLP and CP modeling for automated constraint extraction from real operational policy documents.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <label>Authors</label>
+      <span>Shravani Hariprasad, Kapil, Vinija Jain, Aman Chadha</span>
+    </div>
+    <div class="hero-meta-item">
+      <label>Target</label>
+      <span>ARR April 2026 → EMNLP 2026</span>
+    </div>
+    <div class="hero-meta-item">
+      <label>Status</label>
+      <span class="status-badge"><span class="status-dot"></span>Phase 6 Complete</span>
+    </div>
+    <div class="hero-meta-item">
+      <label>GitHub</label>
+      <span>github.com/shravani-01/SOLAR-NLP</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- PHASE TRACKER -->
+  <div class="section">
+    <div class="section-label">Pipeline Status</div>
+    <div class="section-title">Phase Progress</div>
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-icon done">✅</div>
+        <div class="phase-content">
+          <h4>Phase 1 — TransitOpsBench</h4>
+          <p>2,118 annotated sentences from MTA TWU Local 100 CBAs. Human-GPT κ = 0.373.</p>
+          <span class="phase-tag done">Complete</span>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-icon done">✅</div>
+        <div class="phase-content">
+          <h4>Phase 2 — Constraint IR Schema</h4>
+          <p>Typed JSON schema: constraint type, entities, thresholds, exceptions.</p>
+          <span class="phase-tag done">Complete</span>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-icon done">✅</div>
+        <div class="phase-content">
+          <h4>Phase 3 — IR Extractor</h4>
+          <p>Llama-3.1-8B + LoRA. Macro F1 = 0.858, JSON validity 100%.</p>
+          <span class="phase-tag done">Complete</span>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-icon done">✅</div>
+        <div class="phase-content">
+          <h4>Phase 4 — CP-SAT Templates</h4>
+          <p>Deterministic templates for all constraint categories. 100% feasibility.</p>
+          <span class="phase-tag done">Complete</span>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-icon done">✅</div>
+        <div class="phase-content">
+          <h4>Phase 5a — CP-SAT Generator</h4>
+          <p>Llama-3.1-8B fine-tuned on IR → code. Val loss 0.297.</p>
+          <span class="phase-tag done">Complete</span>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-icon done">✅</div>
+        <div class="phase-content">
+          <h4>Phase 5b — CFFT Pairs</h4>
+          <p>187 contrastive pairs collected. 91.2% baseline feasibility.</p>
+          <span class="phase-tag done">Complete</span>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-icon done">✅</div>
+        <div class="phase-content">
+          <h4>Phase 5c — CFFT Training</h4>
+          <p>3 rounds. Round 1 best: 94.0% feasibility, loss 0.251.</p>
+          <span class="phase-tag done">Complete</span>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-icon done">✅</div>
+        <div class="phase-content">
+          <h4>Phase 6 — Baselines</h4>
+          <p>GPT-4o CoT/RAG + DeepSeek CoT/RAG. SOLAR beats all at 0.858 F1.</p>
+          <span class="phase-tag done">Complete</span>
+        </div>
+      </div>
+      <div class="phase-card">
+        <div class="phase-icon progress">📝</div>
+        <div class="phase-content">
+          <h4>Phase 7 — Paper Writing</h4>
+          <p>Draft live on Overleaf. Two-part structure approved. Citations in progress.</p>
+          <span class="phase-tag progress">In Progress</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURE -->
+  <div class="section">
+    <div class="section-label">System Design</div>
+    <div class="section-title">SOLAR Architecture</div>
+
+    <div class="arch-diagram">
+      <div style="color:rgba(255,255,255,0.4); font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-bottom:24px;">Main Pipeline</div>
+      <div class="arch-flow">
+        <div class="arch-node">
+          <div class="arch-node-label">Input</div>
+          <div class="arch-node-title">Policy Docs</div>
+          <div class="arch-node-sub">CBAs · Regs · Specs</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node highlight-blue">
+          <div class="arch-node-label">Stage 1 · Regulatory NLP</div>
+          <div class="arch-node-title">IR Extractor</div>
+          <div class="arch-node-sub">Llama-3.1-8B + LoRA</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node highlight-teal">
+          <div class="arch-node-label">Output</div>
+          <div class="arch-node-title">Constraint IR</div>
+          <div class="arch-node-sub">⟨c, h, E, T, X⟩</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node highlight-blue">
+          <div class="arch-node-label">Stage 2 · Neuro-symbolic</div>
+          <div class="arch-node-title">CP-SAT Gen.</div>
+          <div class="arch-node-sub">Llama-3.1-8B + LoRA</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node highlight-teal">
+          <div class="arch-node-label">Output</div>
+          <div class="arch-node-title">CP-SAT Code</div>
+          <div class="arch-node-sub">OR-Tools Python</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node highlight-amber">
+          <div class="arch-node-label">Verification</div>
+          <div class="arch-node-title">OR-Tools Solver</div>
+          <div class="arch-node-sub">Sandbox · Execute</div>
+        </div>
+      </div>
+
+      <div class="cfft-loop">
+        <div class="cfft-loop-label">↺ CFFT Loop</div>
+        <div class="cfft-step">INFEASIBLE / ERROR (8.8%)</div>
+        <div class="cfft-arrow-small">→</div>
+        <div class="cfft-step">Collect (ĝᵢ, g*ᵢ) pairs</div>
+        <div class="cfft-arrow-small">→</div>
+        <div class="cfft-step">Fine-tune φ on correct code</div>
+        <div class="cfft-arrow-small">→</div>
+        <div class="cfft-step">91.2% → 94.0% feasibility</div>
+        <div class="cfft-arrow-small">→</div>
+        <div class="cfft-step">Repeat R=3 rounds</div>
+      </div>
+    </div>
+
+    <!-- SFT vs CFFT -->
+    <div class="results-grid" style="margin-top:20px;">
+      <div class="result-table-wrap">
+        <div class="result-table-header">
+          <h4>Stage 1 — SFT: IR Extraction</h4>
+          <p>sentence → structured IR JSON</p>
+        </div>
+        <div style="padding:20px; font-size:13px; color:var(--text-secondary); line-height:1.8;">
+          <div style="margin-bottom:12px;"><strong style="color:var(--text-primary);">Model:</strong> Llama-3.1-8B-Instruct</div>
+          <div style="margin-bottom:12px;"><strong style="color:var(--text-primary);">Method:</strong> LoRA SFT (r=16, α=32)</div>
+          <div style="margin-bottom:12px;"><strong style="color:var(--text-primary);">Trainable:</strong> 41.9M / 8B params (0.52%)</div>
+          <div style="margin-bottom:12px;"><strong style="color:var(--text-primary);">Training:</strong> 3 epochs, lr=2e-4, 15 min</div>
+          <div style="margin-bottom:12px;"><strong style="color:var(--text-primary);">Data:</strong> 1,678 sentence → IR pairs</div>
+          <div style="padding:12px; background:#F0FFF8; border-radius:8px; margin-top:8px;">
+            <strong style="color:var(--solar-teal);">Result: Macro F1 = 0.858 ✅</strong>
+          </div>
+        </div>
+      </div>
+      <div class="result-table-wrap">
+        <div class="result-table-header">
+          <h4>Stage 2 — CFFT: CP-SAT Generation</h4>
+          <p>IR JSON → verified OR-Tools code</p>
+        </div>
+        <div style="padding:20px; font-size:13px; color:var(--text-secondary); line-height:1.8;">
+          <div style="margin-bottom:12px;"><strong style="color:var(--text-primary);">Model:</strong> Llama-3.1-8B-Instruct</div>
+          <div style="margin-bottom:12px;"><strong style="color:var(--text-primary);">Method:</strong> SFT → CFFT (NOT RL)</div>
+          <div style="margin-bottom:12px;"><strong style="color:var(--text-primary);">CFFT pairs:</strong> 187 (solver-selected)</div>
+          <div style="margin-bottom:12px;"><strong style="color:var(--text-primary);">Training:</strong> 4 epochs, lr=1e-4, 20 min/round</div>
+          <div style="margin-bottom:12px;"><strong style="color:var(--text-primary);">Rounds:</strong> 3 total, Round 1 = best</div>
+          <div style="padding:12px; background:#F0FFF8; border-radius:8px; margin-top:8px;">
+            <strong style="color:var(--solar-teal);">Result: 91.2% → 94.0% feasibility ✅</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CFFT ROUNDS -->
+  <div class="section">
+    <div class="section-label">Training Loop</div>
+    <div class="section-title">CFFT Round Analysis</div>
+    <div class="cfft-visual">
+      <div style="font-size:14px; color:rgba(255,255,255,0.6); margin-bottom:8px;">Key insight: CFFT targets specific failure modes, not broad accuracy improvement.</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.4); font-family:'DM Mono',monospace;">TypeError errors reduced by 95.7% (47 → 2) after Round 1 alone.</div>
+      <div class="cfft-rounds">
+        <div class="cfft-round-card">
+          <div class="cfft-round-num">Baseline · No CFFT</div>
+          <div class="cfft-feasibility">91.2%</div>
+          <div class="cfft-round-meta">
+            <span>187 pairs collected</span>
+            <span>22 INFEASIBLE · 165 ERRORS</span>
+          </div>
+        </div>
+        <div class="cfft-round-card best">
+          <div class="cfft-round-num">Round 1</div>
+          <div class="cfft-feasibility best-val">94.0%</div>
+          <div class="cfft-round-meta">
+            <span>108 pairs · Loss 0.251</span>
+            <span>TypeError: 47 → 2 (−95.7%)</span>
+          </div>
+          <div class="best-badge">★ Best Checkpoint</div>
+        </div>
+        <div class="cfft-round-card">
+          <div class="cfft-round-num">Round 2</div>
+          <div class="cfft-feasibility">94.0%</div>
+          <div class="cfft-round-meta">
+            <span>152 pairs · Loss 0.190</span>
+            <span>Error regression → R1 selected</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error bars -->
+    <div class="error-bars">
+      <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:16px;">Error Type Reduction (Baseline → Round 1)</div>
+      <div class="error-row">
+        <div class="error-name">NameError</div>
+        <div class="error-bar-container">
+          <div class="error-bar-before" style="width:100%;"></div>
+          <div class="error-bar-after" style="width:76.8%;"></div>
+        </div>
+        <div class="error-count"><span class="before">56</span> → <span class="after">43</span></div>
+        <div class="error-reduction">−23.2%</div>
+      </div>
+      <div class="error-row">
+        <div class="error-name">TypeError</div>
+        <div class="error-bar-container">
+          <div class="error-bar-before" style="width:83.9%;"></div>
+          <div class="error-bar-after" style="width:3.6%;"></div>
+        </div>
+        <div class="error-count"><span class="before">47</span> → <span class="after">2</span></div>
+        <div class="error-reduction">−95.7%</div>
+      </div>
+      <div class="error-row">
+        <div class="error-name">SyntaxError</div>
+        <div class="error-bar-container">
+          <div class="error-bar-before" style="width:71.4%;"></div>
+          <div class="error-bar-after" style="width:67.9%;"></div>
+        </div>
+        <div class="error-count"><span class="before">40</span> → <span class="after">38</span></div>
+        <div class="error-reduction">−5.0%</div>
+      </div>
+      <div class="error-row">
+        <div class="error-name">AttributeError</div>
+        <div class="error-bar-container">
+          <div class="error-bar-before" style="width:39.3%;"></div>
+          <div class="error-bar-after" style="width:19.6%;"></div>
+        </div>
+        <div class="error-count"><span class="before">22</span> → <span class="after">11</span></div>
+        <div class="error-reduction">−50.0%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="section">
+    <div class="section-label">Evaluation · Part 1</div>
+    <div class="section-title">IR Extraction Results (n=211)</div>
+    <div class="result-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Macro F1</th>
+            <th>Thresh. Acc.</th>
+            <th>Except. Extract.</th>
+            <th>JSON Valid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GPT-4o + CoT (1-shot)</td>
+            <td><span class="num bad">0.480</span></td>
+            <td><span class="num">66.7%</span></td>
+            <td><span class="num good">95.3%</span></td>
+            <td><span class="num">98.6%</span></td>
+          </tr>
+          <tr>
+            <td>GPT-4o + RAG (4-shot)</td>
+            <td><span class="num mid">0.788</span></td>
+            <td><span class="num">71.4%</span></td>
+            <td><span class="num mid">72.3%</span></td>
+            <td><span class="num good">100%</span></td>
+          </tr>
+          <tr>
+            <td>DeepSeek-V3 + CoT</td>
+            <td><span class="num mid">0.742</span></td>
+            <td><span class="num">76.8%</span></td>
+            <td><span class="num good">93.8%</span></td>
+            <td><span class="num good">100%</span></td>
+          </tr>
+          <tr>
+            <td>DeepSeek-V3 + RAG</td>
+            <td><span class="num mid">0.697</span></td>
+            <td><span class="num">78.6%</span></td>
+            <td><span class="num mid">89.2%</span></td>
+            <td><span class="num good">100%</span></td>
+          </tr>
+          <tr class="winner">
+            <td>SOLAR (ours)</td>
+            <td><span class="num">0.858</span></td>
+            <td><span class="num">75.0%</span></td>
+            <td><span class="num">26.2%*</span></td>
+            <td><span class="num">100%</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="padding:12px 16px; font-size:11px; color:var(--text-secondary); font-family:'DM Mono',monospace; border-top:1px solid var(--border);">
+        * SOLAR exception score = strict structured matching (trigger + type). Baseline scores = span-level surface extraction. Not directly comparable — see exception grounding analysis below.
+      </div>
+    </div>
+  </div>
+
+  <!-- EXCEPTION GROUNDING -->
+  <div class="section">
+    <div class="section-label">Key Finding</div>
+    <div class="section-title">Exception Extraction vs. Grounding</div>
+
+    <div class="finding-box">
+      <h3>The Extraction-Grounding Gap</h3>
+      <p>General-purpose LLMs achieve up to 95.3% exception extraction by identifying surface-level spans — but they cannot translate these spans into executable solver constraints. SOLAR achieves 94.8% conditional realization, but manual evaluation reveals only ~20% strict semantic grounding. Models learn <em>when</em> to use conditional constraints but struggle with <em>what</em> condition to apply. This gap is the core motivation for CFFT.</p>
+    </div>
+
+    <div class="exception-three">
+      <div class="exception-level l1">
+        <div class="level-num">95.3%</div>
+        <div class="level-title">Level 1 — Extraction</div>
+        <div class="level-desc">Identifying exception spans linguistically. GPT-4o copies text from sentence. High score but not usable for solver.</div>
+        <div class="level-models">
+          <div class="model-score">
+            <span>GPT-4o CoT</span>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:95.3%; background:#F39C12;"></div></div>
+            <span style="font-family:'DM Mono',monospace; font-size:11px;">95.3%</span>
+          </div>
+          <div class="model-score">
+            <span>DeepSeek CoT</span>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:93.8%; background:#F39C12;"></div></div>
+            <span style="font-family:'DM Mono',monospace; font-size:11px;">93.8%</span>
+          </div>
+          <div class="model-score">
+            <span>SOLAR</span>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:26.2%; background:#F39C12;"></div></div>
+            <span style="font-family:'DM Mono',monospace; font-size:11px;">26.2%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exception-level l2">
+        <div class="level-num">94.8%</div>
+        <div class="level-title">Level 2 — Conditional Realization</div>
+        <div class="level-desc">Generating OnlyEnforceIf() in CP-SAT code. Structural awareness that exceptions → conditional logic.</div>
+        <div class="level-models" style="margin-top:16px;">
+          <div class="model-score">
+            <span>GPT-4o</span>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:0%; background:#4A90D9;"></div></div>
+            <span style="font-family:'DM Mono',monospace; font-size:11px; color:#BBB;">N/A</span>
+          </div>
+          <div class="model-score">
+            <span>DeepSeek</span>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:0%; background:#4A90D9;"></div></div>
+            <span style="font-family:'DM Mono',monospace; font-size:11px; color:#BBB;">N/A</span>
+          </div>
+          <div class="model-score">
+            <span>SOLAR</span>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:94.8%; background:#4A90D9;"></div></div>
+            <span style="font-family:'DM Mono',monospace; font-size:11px;">94.8%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exception-level l3">
+        <div class="level-num">~20%</div>
+        <div class="level-title">Level 3 — Semantic Grounding</div>
+        <div class="level-desc">Condition variable semantically matches exception clause. Manual eval of 50 cases: 20% strict, 55% partial. CFFT targets this gap.</div>
+        <div class="level-models" style="margin-top:16px;">
+          <div class="model-score">
+            <span>Strict correct</span>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:20%; background:#E74C3C;"></div></div>
+            <span style="font-family:'DM Mono',monospace; font-size:11px;">~20%</span>
+          </div>
+          <div class="model-score">
+            <span>Partial</span>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:55%; background:#E67E22;"></div></div>
+            <span style="font-family:'DM Mono',monospace; font-size:11px;">~55%</span>
+          </div>
+          <div class="model-score">
+            <span>Incorrect</span>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:25%; background:#95A5A6;"></div></div>
+            <span style="font-family:'DM Mono',monospace; font-size:11px;">~25%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODELS USED -->
+  <div class="section">
+    <div class="section-label">Technical Stack</div>
+    <div class="section-title">Models Used</div>
+    <div class="model-grid">
+      <div class="model-card">
+        <div class="model-card-header">
+          <div class="model-icon" style="background:#EBF5FB;">🦙</div>
+          <div>
+            <h4>Llama-3.1-8B-Instruct</h4>
+            <div class="model-sub">IR Extractor (Stage 1)</div>
+          </div>
+        </div>
+        <div class="model-specs">
+          <div class="spec-item"><label>Task</label><span>Sentence → IR JSON</span></div>
+          <div class="spec-item"><label>Method</label><span>LoRA SFT</span></div>
+          <div class="spec-item"><label>Params</label><span>41.9M / 8B (0.52%)</span></div>
+          <div class="spec-item"><label>Result</label><span>F1 = 0.858</span></div>
+          <div class="spec-item"><label>Training</label><span>15 min, A100</span></div>
+          <div class="spec-item"><label>Data</label><span>1,678 examples</span></div>
+        </div>
+      </div>
+      <div class="model-card">
+        <div class="model-card-header">
+          <div class="model-icon" style="background:#EAFAF1;">🦙</div>
+          <div>
+            <h4>Llama-3.1-8B-Instruct</h4>
+            <div class="model-sub">CP-SAT Generator + CFFT (Stage 2)</div>
+          </div>
+        </div>
+        <div class="model-specs">
+          <div class="spec-item"><label>Task</label><span>IR → CP-SAT code</span></div>
+          <div class="spec-item"><label>Method</label><span>SFT + CFFT</span></div>
+          <div class="spec-item"><label>Val Loss</label><span>0.297</span></div>
+          <div class="spec-item"><label>Result</label><span>94.0% feasibility</span></div>
+          <div class="spec-item"><label>CFFT pairs</label><span>187 (R1), 108 (R2)</span></div>
+          <div class="spec-item"><label>Data</label><span>1,693 IR→code pairs</span></div>
+        </div>
+      </div>
+      <div class="model-card">
+        <div class="model-card-header">
+          <div class="model-icon" style="background:#FEF9E7;">🤖</div>
+          <div>
+            <h4>GPT-4o + GPT-4o-mini</h4>
+            <div class="model-sub">Baseline + Auto-annotation</div>
+          </div>
+        </div>
+        <div class="model-specs">
+          <div class="spec-item"><label>GPT-4o CoT</label><span>F1 = 0.480</span></div>
+          <div class="spec-item"><label>GPT-4o RAG</label><span>F1 = 0.788</span></div>
+          <div class="spec-item"><label>4o-mini</label><span>Auto-annotation</span></div>
+          <div class="spec-item"><label>Cost</label><span>~$1.30 total</span></div>
+        </div>
+      </div>
+      <div class="model-card">
+        <div class="model-card-header">
+          <div class="model-icon" style="background:#F9EBF8;">🔷</div>
+          <div>
+            <h4>DeepSeek-V3</h4>
+            <div class="model-sub">Baseline</div>
+          </div>
+        </div>
+        <div class="model-specs">
+          <div class="spec-item"><label>DS CoT</label><span>F1 = 0.742</span></div>
+          <div class="spec-item"><label>DS RAG</label><span>F1 = 0.697</span></div>
+          <div class="spec-item"><label>Cost</label><span>~$0.05 total</span></div>
+          <div class="spec-item"><label>Note</label><span>RAG hurt DeepSeek</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- RELATED WORK -->
+  <div class="section">
+    <div class="section-label">Literature</div>
+    <div class="section-title">Related Work — Two Communities</div>
+    <div class="related-grid">
+      <!-- Part 1 -->
+      <div>
+        <div class="related-section-title blue">Part 1 · Regulatory NLP (F1 metric)</div>
+
+        <div class="paper-card">
+          <h5>ObliQA (2024)</h5>
+          <div class="paper-venue">arxiv:2409.05677 · RegNLP</div>
+          <p>27,869 QA pairs from Abu Dhabi Global Markets financial regulations. Automated question-passage generation from real regulatory documents. Evaluated with F1.</p>
+          <div class="paper-relation">SOLAR: same domain (real documents) but extracts structured constraints and grounds them in solver code — ObliQA only answers questions.</div>
+        </div>
+
+        <div class="paper-card">
+          <h5>Zhang & El-Gohary (2015)</h5>
+          <div class="paper-venue">J. Computing in Civil Engineering</div>
+          <p>Rule-based NLP for construction regulatory documents. Deontic patterns (shall, must, may). Extracts subject, attribute, operator, restriction tuples. F1 = 0.82.</p>
+          <div class="paper-relation">SOLAR: same task (deontic extraction from real docs), same metric (F1), but LLM-based (0.858 vs 0.82) + adds solver verification they never had.</div>
+        </div>
+
+        <div class="paper-card">
+          <h5>RegNLP Workshop (COLING 2025)</h5>
+          <div class="paper-venue">COLING 2025</div>
+          <p>First dedicated workshop on Regulatory NLP. Covers obligation extraction, compliance checking, regulatory document parsing. F1 is standard metric.</p>
+          <div class="paper-relation">SOLAR's first half belongs to this community. No RegNLP paper adds formal solver verification.</div>
+        </div>
+
+        <div class="paper-card">
+          <h5>CUAD (2021)</h5>
+          <div class="paper-venue">NeurIPS 2021</div>
+          <p>Contract Understanding Atticus Dataset. 510 legal contracts with 13,000+ expert annotations across 41 clause types. Legal contract clause identification.</p>
+          <div class="paper-relation">SOLAR: extends legal NLP to operational constraints with formal solver grounding — CUAD stops at clause identification.</div>
+        </div>
+      </div>
+
+      <!-- Part 2 -->
+      <div>
+        <div class="related-section-title teal">Part 2 · Neuro-symbolic CP (SA% / feasibility metric)</div>
+
+        <div class="paper-card">
+          <h5>ConstraintLLM (EMNLP 2025)</h5>
+          <div class="paper-venue">EMNLP 2025 · Related Work</div>
+          <p>Fine-tunes Qwen2.5-Coder-32B on IndusCP (140 clean problems). CARM retrieval + Tree-of-Thoughts + inference-time self-correction. SA% = 51.3% on IndusCP.</p>
+          <div class="paper-relation">Key difference: ConstraintLLM uses clean purpose-written inputs, never updates weights from solver. SOLAR reads real documents + CFFT updates weights. Different solver (PyCSP3/Choco vs OR-Tools).</div>
+        </div>
+
+        <div class="paper-card">
+          <h5>SIRL (NeurIPS 2025)</h5>
+          <div class="paper-venue">NeurIPS 2025 · Related Work</div>
+          <p>Solver-Informed Reinforcement Learning. Uses RL with Verifiable Reward — solver provides feasibility + solution quality as reward signal. Gurobi/COPT solvers.</p>
+          <div class="paper-relation">CFFT vs SIRL: CFFT is targeted SFT (not RL). Simpler, more stable, works on 187 pairs. SIRL needs thousands of rollouts and careful KL tuning.</div>
+        </div>
+
+        <div class="paper-card">
+          <h5>NL4OPT (NeurIPS 2022)</h5>
+          <div class="paper-venue">NeurIPS 2022 Competition</div>
+          <p>271 linear optimization problems from word descriptions. Clean structured inputs. LP formulations only. SA% metric.</p>
+          <div class="paper-relation">Plan to retrain SOLAR on NL4OPT training data and report SA% for fair comparison in Part 2 table.</div>
+        </div>
+
+        <div class="paper-card">
+          <h5>IndusCP / LGPs</h5>
+          <div class="paper-venue">ConstraintLLM paper benchmarks</div>
+          <p>IndusCP: 140 industrial CP problems (scheduling, packing, routing). LGPs: 100 logic grid puzzles. Both use clean purpose-written descriptions.</p>
+          <div class="paper-relation">Plan to evaluate SOLAR on these after retraining for fair SA% comparison. Domain gap expected without retraining.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="section">
+    <div class="section-label">Roadmap</div>
+    <div class="section-title">Next Steps</div>
+    <div class="next-grid">
+      <div class="next-card priority-high">
+        <div class="next-num">01 · HIGH PRIORITY</div>
+        <h5>Read ObliQA + RegNLP papers</h5>
+        <p>Aman's explicit ask. Read in detail, add accurate citations to Related Work in Overleaf.</p>
+      </div>
+      <div class="next-card priority-high">
+        <div class="next-num">02 · HIGH PRIORITY</div>
+        <h5>Generate two plots</h5>
+        <p>Plot 1: Macro F1 bar chart. Plot 2: Three-level exception gap. Add to paper figures/.</p>
+      </div>
+      <div class="next-card priority-high">
+        <div class="next-num">03 · HIGH PRIORITY</div>
+        <h5>Share updated Overleaf</h5>
+        <p>Send updated draft with all citations and figures to Aman and Kapil for review.</p>
+      </div>
+      <div class="next-card priority-mid">
+        <div class="next-num">04 · MEDIUM</div>
+        <h5>Download NL4OPT/LGPs/IndusCP</h5>
+        <p>Get training data from ConstraintLLM GitHub. Retrain CP-SAT generator. Run SA% evaluation.</p>
+      </div>
+      <div class="next-card priority-mid">
+        <div class="next-num">05 · MEDIUM</div>
+        <h5>Healthcare domain (Shravani)</h5>
+        <p>SEIU hospital CBAs. Run scripts 01, 03, 05. Target 500+ sentences.</p>
+      </div>
+      <div class="next-card priority-mid">
+        <div class="next-num">06 · MEDIUM</div>
+        <h5>Aviation + Construction (Kapil)</h5>
+        <p>FAA 14 CFR Part 117, ALPA CBAs, Carpenters union, IBEW, OSHA. Target 500+ each.</p>
+      </div>
+      <div class="next-card priority-low">
+        <div class="next-num">07 · DEADLINE</div>
+        <h5>ARR April Submission</h5>
+        <p>Target April 15-20. Paper needs: citations, figures, SA% table, multi-domain data.</p>
+      </div>
+      <div class="next-card priority-low">
+        <div class="next-num">08 · FUTURE</div>
+        <h5>HuggingFace Dataset</h5>
+        <p>Publish OpsBench transit split. Script ready (publish_to_hf.py). Run after paper submission.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  SOLAR · Solver-in-the-Loop Constraint Acquisition and Refinement · March 2026 · github.com/shravani-01/SOLAR-NLP
+</div>
+
+</body>
+</html>
