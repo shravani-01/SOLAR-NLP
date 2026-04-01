@@ -1,0 +1,552 @@
+[
+  {
+    "constraint_id": "CONTRACT_1161",
+    "raw_text": "Such decision may be made subject to the grievance procedure of this Agreement, where it is claimed that the decision imperils the health or safety or unreasonably disregards the normal seniority rights of any employee.",
+    "exceptions": [
+      {
+        "trigger": "where it is claimed that the decision imperils the health or safety or unreasonably disregards the normal seniority rights of any employee",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1161\n# Type: SOFT-CONDITIONAL (soft \u2014 penalized)\n# Text: Such decision may be made subject to the grievance procedure of this Agreement,...\n\n# Soft boolean preference\npreference_contract_1161 = model.NewBoolVar('preference_contract_1161')\n# objective_terms.append(preference_contract_1161.Not())  # penalize violation in objective\n\n# Exception (conditional)\nexception_contract_1161 = model.NewBoolVar('exception_contract_1161')\nmodel.Add(preference_contract_1161 <= 1).OnlyEnforceIf(exception_contract_1161.Not())  # conditional constraint\n# objective_terms.append(exception_contract_1161)  # penalize exception in objective"
+  },
+  {
+    "constraint_id": "CONTRACT_0740",
+    "raw_text": "unfit for work on account of illness, up to a total of one day per calendar month during which, or the major part of which, the employee shall have been in such employ, except that an employee hired on or after April 29, 1988 will not receive any sick leave with pay for the first day of absence for any sick leave instances during the first year of employment.",
+    "exceptions": [
+      {
+        "trigger": "employees hired on or after April 29, 1988 will not receive pay for the first day of absence during the first year",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0740\n# Type: HARD-CONDITIONAL\n# Text: unfit for work on account of illness, up to a total of one day per calendar mont...\n\n# Exception: employees hired on or after April 29, 1988 will not receive pay for the\nexception_contract_0740 = model.NewBoolVar('exception_contract_0740')\n\n# Config value\nMAX_ABSENCE_DAYS = 1  # 1.0 days \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(absence_days[op] <= MAX_ABSENCE_DAYS).OnlyEnforceIf(exception_contract_0740.Not())\nmodel.Add(absence_days[op] <= MAX_ABSENCE_DAYS)  # direction inferred max.OnlyEnforceIf(exception_contract_0740)"
+  },
+  {
+    "constraint_id": "CONTRACT_2024",
+    "raw_text": "Such program or medical authority must be licensed by the State of New York or equivalent licensing authority. 9.1 The restoration provisions of this porq instruction are not available to erfl)loyees who are dismissed from service following detection of use of Controlled Substances or Drugs through testing precipitated by an incidenVaocident which resulted in harm or injury to any Issued By: Effective Page of 10 362",
+    "exceptions": [
+      {
+        "trigger": "employees who are dismissed from service following detection of use of Controlled Substances or Drugs",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_2024\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: Such program or medical authority must be licensed by the State of New York or e...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_2024 = model.NewBoolVar('condition_contract_2024')\n# Exception (conditional): employees who are dismissed from service following detection o\nexception_contract_2024 = model.NewBoolVar('exception_contract_2024')\nmodel.Add(condition_contract_2024 == 1).OnlyEnforceIf(exception_contract_2024.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1761",
+    "raw_text": "If he/she shall have been ordered to and does report in person to the place where he/she is directed to report, he/she will be allowed three",
+    "exceptions": [
+      {
+        "trigger": "empty string",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1761\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: If he/she shall have been ordered to and does report in person to the place wher...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1761 = model.NewBoolVar('condition_contract_1761')\n# Exception (conditional): empty string\nexception_contract_1761 = model.NewBoolVar('exception_contract_1761')\nmodel.Add(condition_contract_1761 == 1).OnlyEnforceIf(exception_contract_1761.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1165",
+    "raw_text": "All newly hired employees employed as Helpers shall, as far as practicable, be assigned to the least desirable types of work within the title.",
+    "exceptions": [
+      {
+        "trigger": "as far as practicable",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1165\n# Type: SOFT-CONDITIONAL (soft \u2014 penalized)\n# Text: All newly hired employees employed as Helpers shall, as far as practicable, be...\n\n# Soft boolean preference\npreference_contract_1165 = model.NewBoolVar('preference_contract_1165')\n# objective_terms.append(preference_contract_1165.Not())  # penalize violation in objective\nonly_contract_1165 = model.NewBoolVar('only_contract_1165')\n# Exception (conditional): as far as practicable\nexception_contract_1165 = model.NewBoolVar('exception_contract_1165')\nmodel.Add(preference_contract_1165 <= 1).OnlyEnforceIf(exception_contract_1165.Not())  # penalize violation when exception does not apply\nmodel.Add(generic_value[0] >= 0).OnlyEnforceIf(exception_contract_1165)  # soft constraint when exception applies\nmodel.Add(generic_value[0] >= 0)  # penalize violation when exception does not apply\n# Minimize the number of violations in the objective\n# objective_terms.append(preference_contract_1165.Not())  # penalize violation in objective\n# objective_terms.append(exception_contract"
+  },
+  {
+    "constraint_id": "CONTRACT_0759",
+    "raw_text": "The failure to cause notice to be given as herein provided shall not be excused unless the Transit Authority is convinced that special circumstances made it impossible and is also convinced that notice was given as soon as the special circumstances permitted.",
+    "exceptions": [
+      {
+        "trigger": "special circumstances",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0759\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: The failure to cause notice to be given as herein provided shall not be excused u...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_0759 = model.NewBoolVar('condition_contract_0759')\n# Exception (conditional): special circumstances\nexception_contract_0759 = model.NewBoolVar('exception_contract_0759')\nmodel.Add(condition_contract_0759 == 1).OnlyEnforceIf(exception_contract_0759.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1269",
+    "raw_text": "(1) additional week of vacation to be used in single days, as requested during the year, subject to management approval. 3) At the annual vacation pick, all employees with at least three years of service shall be entitled to elect to be paid one",
+    "exceptions": [
+      {
+        "trigger": "subject to management approval",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1269\n# Type: HARD-CONDITIONAL\n# Text: (1) additional week of vacation to be used in single days, as requested during th...\n\n# Exception: subject to management approval\nexception_contract_1269 = model.NewBoolVar('exception_contract_1269')\n\n# Config value\nDURATION_HOURS = 3  # 3.0 hours \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] >= DURATION_HOURS).OnlyEnforceIf(exception_contract_1269.Not())\nmodel.Add(generic_value[op] >= 0).EnforceIf(exception_contract_1269)  # slack constraint\n# Exception (conditional): subject to management approval\nmodel.Add(slack_contract_1269[op] >= 0).OnlyEnforceIf(exception_contract_1269)  # slack constraint\n# Exception (conditional): subject to management approval\nmodel.Add(generic_value[op] >= DURATION_HOURS - slack_contract_1269[op]).OnlyEnforceIf(exception_contract_1269)  # slack constraint\n# Exception (conditional): subject to management approval\nmodel.Add(generic_value[op] <= DURATION"
+  },
+  {
+    "constraint_id": "CONTRACT_1000",
+    "raw_text": "Any employee ordered to attend schooling or instruction outside of, and in addition to, his/her regularly scheduled working hours on any day shall be allowed for such attendance time and one-half at his/her regular rate of pay, except that when an employee, because of errors or dereliction in the performance of his/her duties, is required by the Transit Authority, in disciplinary proceedings to report for schooling or instructions, he/she shall receive no allowance of pay therefor.",
+    "exceptions": [
+      {
+        "trigger": "when an employee is required to report for schooling or instructions due to errors or dereliction in the performance of duties",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1000\n# Type: HARD-CONDITIONAL\n# Text: Any employee ordered to attend schooling or instruction outside of, and in addit...\n\n# Exception: when an employee is required to report for schooling or instructions due\nexception_contract_1000 = model.NewBoolVar('exception_contract_1000')\n\n# Config value\nDURATION_UNKNOWN = 1  # 1.0  \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= DURATION_UNKNOWN)  # direction inferred max.OnlyEnforceIf(exception_contract_1000.Not())\n# Exception (conditional): when an employee is required to report for schooling or instr\nmodel.Add(generic_value[op] > DURATION_UNKNOWN)  # direction inferred min.OnlyEnforceIf(exception_contract_1000)"
+  },
+  {
+    "constraint_id": "CONTRACT_1861_p1",
+    "raw_text": "4) Every employee who shall be absent from duty on account of sickness or injury must at once notify his/her immediate superior, and the employee shall not be entitled to benefits for time previous to such notice, unless delay shall be shown to have been unavoidable and satisfactory evidence of disability is furnished.",
+    "exceptions": [
+      {
+        "trigger": "unless delay shall be shown to have been unavoidable and satisfactory evidence of disability is furnished",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1861_p1\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: 4) Every employee who shall be absent from duty on account of sickness or injury...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1861_p1 = model.NewBoolVar('condition_contract_1861_p1')\n# Exception (conditional): unless delay shall be shown to have been unavoidable and sat\nexception_contract_1861_p1 = model.NewBoolVar('exception_contract_1861_p1')\nmodel.Add(condition_contract_1861_p1 == 1).OnlyEnforceIf(exception_contract_1861_p1.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1485",
+    "raw_text": "Employees appointed to the Brooklyn Division will be \"frozen\" in that Division, except: 1) A) That they may be eligible for transfer to 126th Street, (Manhattan) or B) to the extent that employees may become excess or be covered by the restricted duty policy.",
+    "exceptions": [
+      {
+        "trigger": "employees may become excess or be covered by the restricted duty policy",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1485\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: Employees appointed to the Brooklyn Division will be \"frozen\" in that Division,...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1485 = model.NewBoolVar('condition_contract_1485')\n# Exception (conditional): employees may become excess or be covered by the restricted \nexception_contract_1485 = model.NewBoolVar('exception_contract_1485')\nmodel.Add(condition_contract_1485 == 1).OnlyEnforceIf(exception_contract_1485.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_0726",
+    "raw_text": "For pension purposes, the payment shall not be included in the final year's earnings, except for AVA days accrued in his/her final year.",
+    "exceptions": [
+      {
+        "trigger": "except for AVA days accrued in his/her final year",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0726\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: For pension purposes, the payment shall not be included in the final year's earn...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_0726 = model.NewBoolVar('condition_contract_0726')\n# Exception (conditional): except for AVA days accrued in his/her final year\nexception_contract_0726 = model.NewBoolVar('exception_contract_0726')\nmodel.Add(condition_contract_0726 == 1).OnlyEnforceIf(exception_contract_0726.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1232",
+    "raw_text": "(2) consecutive days rest without pay, during the calendar or payroll week shall be allowed to each employee, except in an emergency or when service requirements prevent it. 4) There may be one, two, three or more shifts employed at any work location.",
+    "exceptions": [
+      {
+        "trigger": "in an emergency or when service requirements prevent it",
+        "type": "emergency"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1232\n# Type: HARD-CONDITIONAL\n# Text: (2) consecutive days rest without pay, during the calendar or payroll week shall...\n\n# Exception: in an emergency or when service requirements prevent it\nexception_contract_1232 = model.NewBoolVar('exception_contract_1232')\n\n# Config value\nDURATION_DAYS = 2  # 2.0 days \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= DURATION_DAYS)  # direction inferred max.OnlyEnforceIf(exception_contract_1232.Not())\n# Exception (emergency): in an emergency or when service requirements prevent it\nmodel.Add(generic_value[op] > DURATION_DAYS)  # direction inferred min.OnlyEnforceIf(exception_contract_1232)"
+  },
+  {
+    "constraint_id": "CONTRACT_1209",
+    "raw_text": "Cashed out days shall be paid at the employees straight time rate for eight",
+    "exceptions": [
+      {
+        "trigger": "empty string",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1209\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: Cashed out days shall be paid at the employees straight time rate for eight...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1209 = model.NewBoolVar('condition_contract_1209')\n# Exception (conditional): empty string\nexception_contract_1209 = model.NewBoolVar('exception_contract_1209')\nmodel.Add(condition_contract_1209 == 1).OnlyEnforceIf(exception_contract_1209.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1263",
+    "raw_text": "The shoe allowance payment due in May 2000 will be eliminated if the provision of shoes is fully implemented by July 2000.",
+    "exceptions": [
+      {
+        "trigger": "if the provision of shoes is fully implemented by July 2000",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1263\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: The shoe allowance payment due in May 2000 will be eliminated if the provision of...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1263 = model.NewBoolVar('condition_contract_1263')\n# Exception (conditional): if the provision of shoes is fully implemented by July 2000\nexception_contract_1263 = model.NewBoolVar('exception_contract_1263')\nmodel.Add(condition_contract_1263 == 1).OnlyEnforceIf(exception_contract_1263.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1150_p3",
+    "raw_text": "5) Any employee who has an assignment of work carrying with it a specific location for reporting to work and who thereafter is temporarily required to report for work at a different location, shall be allowed, during the duration of such temporary reassignment, in addition to his/her regular day's pay, his/her straight time rate of pay for the time required to travel from the one location to the other and return, provided however, that the total of such time allowance shall not exceed two",
+    "exceptions": [
+      {
+        "trigger": "provided however, that the total of such time allowance shall not exceed two",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1150_p3\n# Type: HARD-CONDITIONAL\n# Text: 5) Any employee who has an assignment of work carrying with it a specific locatio...\n\n# Exception: provided however, that the total of such time allowance shall not exceed\nexception_contract_1150_p3 = model.NewBoolVar('exception_contract_1150_p3')\n\n# Config value\nMAX_TRAVEL_TIME = 2  # 2.0  \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= MAX_TRAVEL_TIME).OnlyEnforceIf(exception_contract_1150_p3.Not())\n# Exception (conditional): provided however, that the total of such time allowance shall\n# not exceed two\nmodel.Add(generic_value[op] <= MAX_TRAVEL_TIME)  # direction inferred max.OnlyEnforceIf(exception_contract_1150_p3)"
+  },
+  {
+    "constraint_id": "CONTRACT_0733",
+    "raw_text": "An employee who has performed no work for the Transit Authority during a period of thirty days or more, except for absence during paid vacation immediately preceding a holiday shall not receive any pay for the holiday or be allowed another day off in lieu thereof.",
+    "exceptions": [
+      {
+        "trigger": "absence during paid vacation immediately preceding a holiday",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0733\n# Type: HARD-CONDITIONAL\n# Text: An employee who has performed no work for the Transit Authority during a period o...\n\n# Exception: absence during paid vacation immediately preceding a holiday\nexception_contract_0733 = model.NewBoolVar('exception_contract_0733')\n\n# Config value\nMAX_ABSENCE_DAYS = 30  # 30.0 days \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(absence_days[op] <= MAX_ABSENCE_DAYS)  # direction inferred max.OnlyEnforceIf(exception_contract_0733.Not())\n# Exception (conditional): absence during paid vacation immediately preceding a holiday\nmodel.Add(absence_days[op] > MAX_ABSENCE_DAYS).OnlyEnforceIf(exception_contract_0733)"
+  },
+  {
+    "constraint_id": "CONTRACT_2047",
+    "raw_text": "Employees who are referred to EAP pursuant to paragraph 6.2 may, where EAP recommends, be temporarily reassigned, placed on a leave or transferred in accordance with the restricted duty policy of the Authority.",
+    "exceptions": [
+      {
+        "trigger": "where EAP recommends",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_2047\n# Type: SOFT-CONDITIONAL (soft \u2014 penalized)\n# Text: Employees who are referred to EAP pursuant to paragraph 6.2 may, where EAP recom...\n\n# Soft boolean preference\npreference_contract_2047 = model.NewBoolVar('preference_contract_2047')\n# objective_terms.append(preference_contract_2047.Not())  # penalize violation in objective\n# Slack variable for soft constraint\nslack_contract_2047 = model.NewIntVar(0, 1,'slack_contract_2047')\nmodel.Add(preference_contract_2047 <= 1 + slack_contract_2047)  # soft constraint\n# Exception (conditional): where EAP recommends\nexception_contract_2047 = model.NewBoolVar('exception_contract_2047')\nmodel.Add(preference_contract_2047 <= 1 + slack_contract_2047).OnlyEnforceIf(exception_contract_2047.Not())  # zero constraint when exception applies\nprint('# Config value: PREFERENCE_CONTRACT_2047 = 1 -', slack_contract_2047.Get())"
+  },
+  {
+    "constraint_id": "CONTRACT_1456_p3",
+    "raw_text": "3) Premium payments for snow duty shall be limited to situations where the employee actually performs such duty outside where there is snow on the ground and where such work would not be required but for the snow or icing conditions, except that under no circumstances shall snow pay premium payments be made for work if such payments would not have been made prior to March 31, 1985 T.",
+    "exceptions": [
+      {
+        "trigger": "under no circumstances shall snow pay premium payments be made for work if such payments would not have been made prior to March 31, 1985",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1456_p3\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: 3) Premium payments for snow duty shall be limited to situations where the emplo...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1456_p3 = model.NewBoolVar('condition_contract_1456_p3')\n# Exception (conditional): under no circumstances shall snow pay premium payments be ma\nexception_contract_1456_p3 = model.NewBoolVar('exception_contract_1456_p3')\nmodel.Add(condition_contract_1456_p3 == 1).OnlyEnforceIf(exception_contract_1456_p3.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_2186",
+    "raw_text": "If there is no prior suspension on a worker's record the disciplinary procedure should be administered and implemented in the following way:",
+    "exceptions": [
+      {
+        "trigger": "no prior suspension on a worker's record",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_2186\n# Type: SOFT-CONDITIONAL (soft \u2014 penalized)\n# Text: If there is no prior suspension on a worker's record the disciplinary procedure s...\n\n# Soft boolean preference\npreference_contract_2186 = model.NewBoolVar('preference_contract_2186')\n# objective_terms.append(preference_contract_2186.Not())  # penalize violation in objective\n\n# Exception (conditional)\nexception_contract_2186 = model.NewBoolVar('exception_contract_2186')\nmodel.Add(preference_contract_2186 <= 1).OnlyEnforceIf(exception_contract_2186.Not())  # penalize violation if exception doesn't hold\n# if exception is true, constraint is not enforced and preference is not penalized\n# objective_terms.append(exception_contract_2186)  # add to objective if you want to minimize exceptions"
+  },
+  {
+    "constraint_id": "CONTRACT_1041",
+    "raw_text": "(4) hours of his/her next scheduled tour of duty shall remain, he/she shall be relieved with pay from the entire next scheduled tour of duty, and except that should his/her work on the special trick continue beyond the time fixed for the commencement of his/her said next day's work, he/she shall receive, in addition to his/her pay for the special trick, only the pay for such part of his/her said scheduled day's work as may remain after the completion of the special trick.",
+    "exceptions": [
+      {
+        "trigger": "if work on the special trick continues beyond the time fixed for the commencement of the next day's work",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1041\n# Type: HARD-CONDITIONAL\n# Text: (4) hours of his/her next scheduled tour of duty shall remain, he/she shall be r...\n\n# Exception: if work on the special trick continues beyond the time fixed for the c\nexception_contract_1041 = model.NewBoolVar('exception_contract_1041')\n\n# Config value\nMAX_HOURS = 4  # 4.0 hours \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= MAX_HOURS).OnlyEnforceIf(exception_contract_1041.Not())\n# Exception (conditional): if work on the special trick continues beyond the time fixe\nmodel.Add(generic_value[op] <= MAX_HOURS)  # relaxed constraint\n# Slack variable for relaxed constraint\nslack_contract_1041 = model.NewIntVar(0, MAX_HOURS,'slack_contract_1041')\nmodel.Add(generic_value[op] <= MAX_HOURS + slack_contract_1041)  # relaxed constraint\n# Exception (conditional): if work on the special trick continues beyond the time fixe\nmodel.Add(slack_contract_1041 >= 1)."
+  },
+  {
+    "constraint_id": "CONTRACT_2003",
+    "raw_text": "The provisions of Section 9.0 shall not apply to e\"l'loyees dismissed under this paragraph. 6.5 When the testing is positive for drugs or controned substances, excluding marijuana, for an e\"l'loyee with one or more years of service, the 81J1)1oyee shall be ~;sr.-Jssed. 6.6 Art e\"l'loyee, with more than one",
+    "exceptions": [
+      {
+        "trigger": "excluding marijuana",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_2003\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: The provisions of Section 9.0 shall not apply to e\"l'loyees dismissed under this p...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_2003 = model.NewBoolVar('condition_contract_2003')\n# Exception (conditional): excluding marijuana\nexception_contract_2003 = model.NewBoolVar('exception_contract_2003')\nmodel.Add(condition_contract_2003 == 1).OnlyEnforceIf(exception_contract_2003.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_0571",
+    "raw_text": "Warnings shall be dismissed if management fails to proceed at a scheduled hearing unless the management witness is absent due to a substantiated illness. 16.",
+    "exceptions": [
+      {
+        "trigger": "management witness is absent due to a substantiated illness",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0571\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: Warnings shall be dismissed if management fails to proceed at a scheduled hearin...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_0571 = model.NewBoolVar('condition_contract_0571')\n# Exception (conditional): management witness is absent due to a substantiated illness\nexception_contract_0571 = model.NewBoolVar('exception_contract_0571')\nmodel.Add(condition_contract_0571 == 1).OnlyEnforceIf(exception_contract_0571.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1981",
+    "raw_text": "Except as otherwise herein provided, this Agreement, and each of its provisions, provided they are not in violation of law as determined by a court of competent jurisdiction, shall be effective as of March 1, 2000 except as to provisions made effective at a later date by the Memorandum of Understanding, and shall continue in full force and effect until December 15, 2002.",
+    "exceptions": [
+      {
+        "trigger": "except as otherwise herein provided, except as to provisions made effective at a later date by the Memorandum of Understanding",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1981\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: Except as otherwise herein provided, this Agreement, and each of its provisions,...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1981 = model.NewBoolVar('condition_contract_1981')\n# Exception (conditional): except as otherwise herein provided, except as to provisions\nexception_contract_1981 = model.NewBoolVar('exception_contract_1981')\nmodel.Add(condition_contract_1981 == 1).OnlyEnforceIf(exception_contract_1981.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_0943",
+    "raw_text": "When there is no work available in either road or yard service in his/her selected tour of duty and line, he/she shall be assigned to the next nearest line or tour of duty where work is available, allowing sufficient time between tours of duty.",
+    "exceptions": [
+      {
+        "trigger": "allowing sufficient time between tours of duty",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0943\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: When there is no work available in either road or yard service in his/her select...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_0943 = model.NewBoolVar('condition_contract_0943')\n# Exception (conditional): allowing sufficient time between tours of duty\nexception_contract_0943 = model.NewBoolVar('exception_contract_0943')\nmodel.Add(condition_contract_0943 == 1).OnlyEnforceIf(exception_contract_0943.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_0891",
+    "raw_text": "(2) days rest, without pay, in a calendar or payroll week shall be allowed to each Train Operator except in emergencies or when service requirements prevent it. 4) In each Division there will be a fixed quota of Train Operators who shall report for road service five",
+    "exceptions": [
+      {
+        "trigger": "in emergencies or when service requirements prevent it",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0891\n# Type: HARD-CONDITIONAL\n# Text: (2) days rest, without pay, in a calendar or payroll week shall be allowed to eac...\n\n# Exception: in emergencies or when service requirements prevent it\nexception_contract_0891 = model.NewBoolVar('exception_contract_0891')\n\n# Config value\nDURATION_DAYS = 2  # 2.0 days \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= DURATION_DAYS)  # direction inferred max.OnlyEnforceIf(exception_contract_0891.Not())\n# Exception (conditional): in emergencies or when service requirements prevent it\nmodel.Add(generic_value[op] > DURATION_DAYS).OnlyEnforceIf(exception_contract_0891)"
+  },
+  {
+    "constraint_id": "CONTRACT_2165",
+    "raw_text": "However, in the event that such employee or Transport Workers Union of Greater New York, AFLCIO, Local 100 causes a delay in scheduling the practical examination or the return to work examination, the 8 working day period shall be extended to the number of days the practical examination action is delayed due to the employee or Transport Workers Union of Greater New York, AFL-CIO, Local 100.",
+    "exceptions": [
+      {
+        "trigger": "the number of days the practical examination action is delayed",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_2165\n# Type: HARD-CONDITIONAL\n# Text: However, in the event that such employee or Transport Workers Union of Greater...\n\n# Exception: the number of days the practical examination action is delayed\nexception_contract_2165 = model.NewBoolVar('exception_contract_2165')\n\n# Config value\nMAX_DAYS = 8  # 8.0 days \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= MAX_DAYS).OnlyEnforceIf(exception_contract_2165.Not())\n# Exception (conditional): the number of days the practical examination action is delay\nmodel.Add(generic_value[op] > MAX_DAYS).Add(exception_contract_2165)  # Exception"
+  },
+  {
+    "constraint_id": "CONTRACT_0960",
+    "raw_text": "Train Operators operating a train which is involved in a passenger fatality shall be granted three",
+    "exceptions": [
+      {
+        "trigger": "empty string",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0960\n# Type: UNCLEAR (boolean/procedural)\n# Text: Train Operators operating a train which is involved in a passenger fatality shal...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_0960 = model.NewBoolVar('condition_contract_0960')\n# Exception (conditional): empty string\nexception_contract_0960 = model.NewBoolVar('exception_contract_0960')\nmodel.Add(condition_contract_0960 == 1).OnlyEnforceIf(exception_contract_0960.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1010",
+    "raw_text": "Conductor shall be permitted a choice of work location, by line, and shall be assigned to such line unless required elsewhere.",
+    "exceptions": [
+      {
+        "trigger": "unless required elsewhere",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1010\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: Conductor shall be permitted a choice of work location, by line, and shall be as...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1010 = model.NewBoolVar('condition_contract_1010')\n# Exception (conditional): unless required elsewhere\nexception_contract_1010 = model.NewBoolVar('exception_contract_1010')\nmodel.Add(condition_contract_1010 == 1).OnlyEnforceIf(exception_contract_1010.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_0642",
+    "raw_text": "Picking shall commence not later than five",
+    "exceptions": [
+      {
+        "trigger": "empty string",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0642\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: Picking shall commence not later than five...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_0642 = model.NewBoolVar('condition_contract_0642')\n# Exception (conditional): empty string\nexception_contract_0642 = model.NewBoolVar('exception_contract_0642')\nmodel.Add(condition_contract_0642 == 1).OnlyEnforceIf(exception_contract_0642.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_0987",
+    "raw_text": "However, he/she will not be allowed deadheading pay unless his/her total working time during the day shall have been in excess of eight",
+    "exceptions": [
+      {
+        "trigger": "unless his/her total working time during the day shall have been in excess of eight",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0987\n# Type: HARD-CONDITIONAL\n# Text: However, he/she will not be allowed deadheading pay unless his/her total workin...\n\n# Exception: unless his/her total working time during the day shall have been in ex\nexception_contract_0987 = model.NewBoolVar('exception_contract_0987')\n\n# Config value\nMAX_WORK_HOURS = 480  # 8.0 hours \u00d7 60 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(work_min[op] <= MAX_WORK_HOURS)  # direction inferred max.OnlyEnforceIf(exception_contract_0987.Not())\n# Exception (conditional): unless his/her total working time during the day shall ha\nmodel.Add(generic_value[0] <= MAX_WORK_HOURS)  # direction inferred max.OnlyEnforceIf(exception_contract_0987)"
+  },
+  {
+    "constraint_id": "CONTRACT_1065",
+    "raw_text": "Cold Weather Work If an employee, after being released upon the completion of his/her regular tour of duty and before the commencement of his/her next regular tour of duty, but not on his/her regular day off, is required to report back for cold weather work, not including snow or sleet storm duty, he/she will be allowed time and one-half for all such work, provided, however, that if he/she is ordered to and does report for such work five",
+    "exceptions": [
+      {
+        "trigger": "not including snow or sleet storm duty",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1065\n# Type: HARD-CONDITIONAL\n# Text: Cold Weather Work If an employee, after being released upon the completion of hi...\n\n# Exception: not including snow or sleet storm duty\nexception_contract_1065 = model.NewBoolVar('exception_contract_1065')\n\n# Config value\nDURATION_UNKNOWN = 1  # 1.0  \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= DURATION_UNKNOWN)  # direction inferred max.OnlyEnforceIf(exception_contract_1065.Not())\n# Exception (conditional): not including snow or sleet storm duty\nmodel.Add(generic_value[op] > DURATION_UNKNOWN)  # direction inferred min.OnlyEnforceIf(exception_contract_1065)"
+  },
+  {
+    "constraint_id": "CONTRACT_0974",
+    "raw_text": "(8) hours pay for the day, provided they report on time and work their full runs or tricks or hold themselves available for and perform all such work as may be assigned to them.",
+    "exceptions": [
+      {
+        "trigger": "provided they report on time and work their full runs or tricks or hold themselves available for and perform all such work as may be assigned to them",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0974\n# Type: HARD-CONDITIONAL\n# Text: (8) hours pay for the day, provided they report on time and work their full runs...\n\n# Exception: provided they report on time and work their full runs or tricks or hol\nexception_contract_0974 = model.NewBoolVar('exception_contract_0974')\n\n# Config value\nMAX_HOURS = 8  # 8.0 hours \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= MAX_HOURS).OnlyEnforceIf(exception_contract_0974.Not())\n# Exception (conditional): provided they report on time and work their full runs or tr\nmodel.Add(generic_value[op] <= MAX_HOURS)  # direction inferred max.OnlyEnforceIf(exception_contract_0974)"
+  },
+  {
+    "constraint_id": "CONTRACT_1553",
+    "raw_text": "Between 2 ! and 3 years from the 1/ of last penalty* 8 date of the last violation *Where the penalty to be assessed is less than a one day suspension, a reprimand shall be substituted.",
+    "exceptions": [
+      {
+        "trigger": "Where the penalty to be assessed is less than a one day suspension",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1553\n# Type: HARD-CONDITIONAL\n# Text: Between 2! and 3 years from the 1/ of last penalty* 8 date of the last violatio...\n\n# Exception: Where the penalty to be assessed is less than a one day suspension\nexception_contract_1553 = model.NewBoolVar('exception_contract_1553')\n\n# Config value\nMAX_YEARS = 3  # 3.0 years \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= MAX_YEARS).OnlyEnforceIf(exception_contract_1553.Not())\n# Exception (conditional): Where the penalty to be assessed is less than a one day su\nmodel.Add(generic_value[op] <= MAX_YEARS)  # relaxed constraint"
+  },
+  {
+    "constraint_id": "CONTRACT_0359",
+    "raw_text": "Notwithstanding anything in this Section appearing to the contrary, the Trust benefits of pensioners below age 62 who have retired pursuant to the retirement program known as Chapter 529 of the Laws of 1994 shall be paid for as set forth in the award of Milton Rubin dated October 10, 1995 rendered pursuant to the agreement of the Parties executed July 26, 1994 (attached hereto as part of Appendix G-4).",
+    "exceptions": [
+      {
+        "trigger": "Notwithstanding anything in this Section appearing to the contrary",
+        "type": "reference"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0359\n# Type: HARD-CONDITIONAL\n# Text: Notwithstanding anything in this Section appearing to the contrary, the Trust ben...\n\n# Exception: Notwithstanding anything in this Section appearing to the contrary\nexception_contract_0359 = model.NewBoolVar('exception_contract_0359')\n\n# Config value\nDURATION_UNKNOWN = 62  # 62.0  \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= DURATION_UNKNOWN)  # direction inferred max.OnlyEnforceIf(exception_contract_0359.Not())\n# Exception (reference): Notwithstanding anything in this Section appearing to the contrar\nmodel.Add(generic_value[op] > DURATION_UNKNOWN)  # direction inferred min.OnlyEnforceIf(exception_contract_0359)"
+  },
+  {
+    "constraint_id": "CONTRACT_0796_p2",
+    "raw_text": "1) Unless the employee sustained an accidental injury while engaged in the performance of his/her assigned duty for the Transit Authority and such accidental injury was the direct cause of the employee's incapacity for work.",
+    "exceptions": [
+      {
+        "trigger": "Unless the employee sustained an accidental injury while engaged in the performance of his/her assigned duty",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0796_p2\n# Type: SOFT-CONDITIONAL (soft \u2014 penalized)\n# Text: 1) Unless the employee sustained an accidental injury while engaged in the perfor...\n\n# Soft boolean preference\npreference_contract_0796_p2 = model.NewBoolVar('preference_contract_0796_p2')\n# objective_terms.append(preference_contract_0796_p2.Not())  # penalize violation\nif exception_contract_0796_p2:\n    preference_contract_0796_p2 = model.NewBoolVar('preference_contract_0796_p2')\n    model.Add(preference_contract_0796_p2 == 1).OnlyEnforceIf(exception_contract_0796_p2)  # conditional\nexcept Exception as e:\n    print(f\"Exception: {e}\")"
+  },
+  {
+    "constraint_id": "CONTRACT_0850",
+    "raw_text": "The determination that any employee is disabled from performing the full duties of his/her position shall be within the exclusive determination of the Transit Authority, on the advice of its Medical Department, whose findings shall be final and binding and not subject to review or arbitration (except as explicitly provided for in Section 2.1 of this Agreement).",
+    "exceptions": [
+      {
+        "trigger": "except as explicitly provided for in Section 2.1 of this Agreement",
+        "type": "reference"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0850\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: The determination that any employee is disabled from performing the full duties...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_0850 = model.NewBoolVar('condition_contract_0850')\n# Exception (reference): except as explicitly provided for in Section 2.1 of this Agree\nexception_contract_0850 = model.NewBoolVar('exception_contract_0850')\nmodel.Add(condition_contract_0850 == 1).OnlyEnforceIf(exception_contract_0850.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_0774",
+    "raw_text": "(9) or more consecutive working days, in which event the employee shall receive pay to the extent provided in subsection",
+    "exceptions": [
+      {
+        "trigger": "provided in subsection",
+        "type": "reference"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0774\n# Type: HARD-CONDITIONAL\n# Text: (9) or more consecutive working days, in which event the employee shall receive...\n\n# Exception: provided in subsection\nexception_contract_0774 = model.NewBoolVar('exception_contract_0774')\n\n# Config value\nMIN_DAYS = 9  # 9.0 minutes \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] >= MIN_DAYS).OnlyEnforceIf(exception_contract_0774.Not())\n# Exception (reference): provided in subsection\n    model.Add(generic_value[op] < MIN_DAYS).Add(exception_contract_0774)"
+  },
+  {
+    "constraint_id": "CONTRACT_0421",
+    "raw_text": "agreement shall be deemed modified by the final decision of the court unless stayed, but shall otherwise continue in effect.",
+    "exceptions": [
+      {
+        "trigger": "unless stayed",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0421\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: agreement shall be deemed modified by the final decision of the court unless sta...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_0421 = model.NewBoolVar('condition_contract_0421')\n# Exception (conditional): unless stayed\nexception_contract_0421 = model.NewBoolVar('exception_contract_0421')\nmodel.Add(condition_contract_0421 == 1).OnlyEnforceIf(exception_contract_0421.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_0432",
+    "raw_text": "SECTION 1.21 UNION SECURITY/AGENCY SHOP FEES The Authorities shall deduct weekly an agency shop fee from the wages of each employee who has been an employee for more than thirty days and who is not a member of the Union, in the same manner and in the same amount as Union dues are deducted pursuant to the Union dues deduction authorization.",
+    "exceptions": [
+      {
+        "trigger": "more than thirty days",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0432\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: SECTION 1.21 UNION SECURITY/AGENCY SHOP FEES The Authorities shall deduct weekly...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_0432 = model.NewBoolVar('condition_contract_0432')\n# Exception (conditional): more than thirty days\nexception_contract_0432 = model.NewBoolVar('exception_contract_0432')\nmodel.Add(condition_contract_0432 == 1).OnlyEnforceIf(exception_contract_0432.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_0019",
+    "raw_text": "DEPARlMENTALS The parties \u2022 agreements concerning the departmental issues m;e attached hereto IT IS AGREED BY AND BETWEEN TIIE PARTIES TIIAT ANY PROVISION OF THIS AGREEMENT REQUIRING LEGISLATIVE ACTION TO PERMIT ITS IMPLEMENTATION BY AMENDMENT OF LAW OR BY PROVIDING ADDffiONAL FUNDS THEREFORE, SHALL NOT BECOME EFFECTIVE UNTIL THE APPROPRIATE LEGISLATNE BODY HAS GIVEN APPROVAL.",
+    "exceptions": [
+      {
+        "trigger": "any provision requiring legislative action",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0019\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: DEPARlMENTALS The parties \u2022 agreements concerning the departmental issues m;e at...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_0019 = model.NewBoolVar('condition_contract_0019')\n# Exception (conditional): any provision requiring legislative action\nexception_contract_0019 = model.NewBoolVar('exception_contract_0019')\nmodel.Add(condition_contract_0019 == 1).OnlyEnforceIf(exception_contract_0019.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1340",
+    "raw_text": "(3) days or less, the Revenue Equipment Maintainer (Rapid) shall be allowed on the last day of such temporary assignment to work both the changed tour and his/her regular tour. 3) This subsection does not apply to Revenue Equipment Maintainer's (Rapid) employees on rotating shifts or where the change is part of the employee's selected schedule.",
+    "exceptions": [
+      {
+        "trigger": "This subsection does not apply to Revenue Equipment Maintainer's (Rapid) employees on rotating shifts or where the change is part of the employee's selected schedule.",
+        "type": "reference"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1340\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: (3) days or less, the Revenue Equipment Maintainer (Rapid) shall be allowed on t...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1340 = model.NewBoolVar('condition_contract_1340')\n# Exception (reference): This subsection does not apply to Revenue Equipment Maintaine\nexception_contract_1340 = model.NewBoolVar('exception_contract_1340')\nmodel.Add(condition_contract_1340 == 1).OnlyEnforceIf(exception_contract_1340.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1728",
+    "raw_text": "(4) above, neither the filing of a complaint nor the pendency of a grievance at any level, shall prevent or delay putting the schedule into effect on the day fixed therefor, subject to any change which may at any time be directed by the Operating Authority upon the determination of the grievance. 6) The Operations Planning Department will host a quarterly meeting for Surface Transportation to review work in progress within the Operations Planning Department.",
+    "exceptions": [
+      {
+        "trigger": "subject to any change which may at any time be directed by the Operating Authority upon the determination of the grievance",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1728\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: (4) above, neither the filing of a complaint nor the pendency of a grievance at...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1728 = model.NewBoolVar('condition_contract_1728')\n# Exception (conditional): subject to any change which may at any time be directed by\nexception_contract_1728 = model.NewBoolVar('exception_contract_1728')\nmodel.Add(condition_contract_1728 == 1).OnlyEnforceIf(exception_contract_1728.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_0355",
+    "raw_text": "In addition to the foregoing contribution, the Authorities shall make a one time contribution to the Welfare Benefit Trust equaling one month\u2019s contribution for reserve purposes except as noted in the side letter agreement dated May 11, 1999 contained in appendix G of this Agreement. 1) Effective January 1, 2001 and January 2, 2002 respectively, the Authorities will increase each contribution rate by six",
+    "exceptions": [
+      {
+        "trigger": "as noted in the side letter agreement dated May 11, 1999",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0355\n# Type: HARD-CONDITIONAL\n# Text: In addition to the foregoing contribution, the Authorities shall make a one time...\n\n# Exception: as noted in the side letter agreement dated May 11, 1999\nexception_contract_0355 = model.NewBoolVar('exception_contract_0355')\n\n# Config value\nDURATION_MONTHS = 1  # 1.0 months \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= DURATION_MONTHS)  # direction inferred max.OnlyEnforceIf(exception_contract_0355.Not())\n# Exception (conditional): as noted in the side letter agreement dated May 11, 1999\nmodel.Add(generic_value[op] > DURATION_MONTHS)  # direction inferred min.OnlyEnforceIf(exception_contract_0355)"
+  },
+  {
+    "constraint_id": "CONTRACT_1279",
+    "raw_text": "(8) hours pay provided they report on time and work their full tour or hold themselves available for and perform all such work as may be assigned to them.",
+    "exceptions": [
+      {
+        "trigger": "provided they report on time and work their full tour or hold themselves available for and perform all such work as may be assigned to them",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1279\n# Type: HARD-CONDITIONAL\n# Text: (8) hours pay provided they report on time and work their full tour or hold themse...\n\n# Exception: provided they report on time and work their full tour or hold themselves\nexception_contract_1279 = model.NewBoolVar('exception_contract_1279')\n\n# Config value\nMAX_HOURS = 8  # 8.0 hours \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= MAX_HOURS).OnlyEnforceIf(exception_contract_1279.Not())\n# Exception (conditional): provided they report on time and work their full tour or hold\n# themselves available for and perform all such work as may be assigned to them\nmodel.Add(generic_value[op] <= MAX_HOURS)  # relaxed constraint\n# slack_contract_1279[op] = MAX_HOURS - generic_value[op]  # slack variable\n# objective_terms.append(slack_contract_1279[op])  # add to objective\n# Exception (conditional): provided they report on time and work their full tour or hold\n# themselves available for and perform all such work as may be"
+  },
+  {
+    "constraint_id": "CONTRACT_0497",
+    "raw_text": "Step II In the event that the matter is not satisfactorily adjusted with the Department Head, the employee or his/her Union representative may, within five",
+    "exceptions": [
+      {
+        "trigger": "empty string",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0497\n# Type: SOFT-CONDITIONAL (soft \u2014 penalized)\n# Text: Step II In the event that the matter is not satisfactorily adjusted with the De...\n\n# Soft boolean preference\npreference_contract_0497 = model.NewBoolVar('preference_contract_0497')\n# objective_terms.append(preference_contract_0497.Not())  # penalize violation\nonly_contract_0497 = model.NewBoolVar('only_contract_0497')\n# Exception (conditional): empty string\nexception_contract_0497 = model.NewBoolVar('exception_contract_0497')\nmodel.Add(preference_contract_0497 <= 1).OnlyEnforceIf(exception_contract_0497.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_0415",
+    "raw_text": "Where an employee is to be dismissed pursuant to either Policy/ Instruction as amended and such dismissal is not final, calendar action on the dismissal will not take place until the employee is no longer eligible for restoration pursuant to Section 9.0, except that such dismissal shall be counted as a dismissal for any other purpose under the policy.",
+    "exceptions": [
+      {
+        "trigger": "except that such dismissal shall be counted as a dismissal for any other purpose under the policy",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0415\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: Where an employee is to be dismissed pursuant to either Policy/ Instruction as a...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_0415 = model.NewBoolVar('condition_contract_0415')\n# Exception (conditional): except that such dismissal shall be counted as a dismissal fo\nexception_contract_0415 = model.NewBoolVar('exception_contract_0415')\nmodel.Add(condition_contract_0415 == 1).OnlyEnforceIf(exception_contract_0415.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1260",
+    "raw_text": "Instructions 1) When employees are required to report for schooling or for instruction in the performance of their regular duties, they shall be allowed their regular rate of pay for all time necessarily consumed, except that when an employee, because of errors or dereliction in the performance of his/her duties, is required by order of the Transit Authority, in disciplinary proceedings to report for schooling or instruction, he/she shall receive no allowance of pay therefor.",
+    "exceptions": [
+      {
+        "trigger": "when an employee, because of errors or dereliction in the performance of his/her duties, is required by order of the Transit Authority, in disciplinary proceedings",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1260\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: Instructions 1) When employees are required to report for schooling or for instr...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1260 = model.NewBoolVar('condition_contract_1260')\n# Exception (conditional): when an employee, because of errors or dereliction in the pe\nexception_contract_1260 = model.NewBoolVar('exception_contract_1260')\nmodel.Add(condition_contract_1260 == 1).OnlyEnforceIf(exception_contract_1260.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1182_p6",
+    "raw_text": "6) A Railroad Clerk who is required to remain on the premises of the New York City Transit System after his/her tour of duty to prepare reports of unusual occurrences or accidents shall be allowed thirty (",
+    "exceptions": [
+      {
+        "trigger": "empty string",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1182_p6\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: 6) A Railroad Clerk who is required to remain on the premises of the New York Cit...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1182_p6 = model.NewBoolVar('condition_contract_1182_p6')\n# Exception (conditional): empty string\nexception_contract_1182_p6 = model.NewBoolVar('exception_contract_1182_p6')\nmodel.Add(condition_contract_1182_p6 == 1).OnlyEnforceIf(exception_contract_1182_p6.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_1057",
+    "raw_text": "Overtime 1) Any employee required to work in excess of his/her regularly scheduled working hours on any day, whether the excess work be before the beginning or after the end of the employee's regularly scheduled tour of duty, will be allowed, for such excess service or overtime, time and one-half at his/her regular rate of pay. 2) Employees shall not be required to suspend work during regularly scheduled tours of duty to absorb overtime. 108",
+    "exceptions": [
+      {
+        "trigger": "empty string",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_1057\n# Type: HARD-CONDITIONAL (boolean/procedural)\n# Text: Overtime 1) Any employee required to work in excess of his/her regularly schedul...\n\n# Boolean constraint \u2014 mandatory condition\ncondition_contract_1057 = model.NewBoolVar('condition_contract_1057')\n# Exception (conditional): empty string\nexception_contract_1057 = model.NewBoolVar('exception_contract_1057')\nmodel.Add(condition_contract_1057 == 1).OnlyEnforceIf(exception_contract_1057.Not())"
+  },
+  {
+    "constraint_id": "CONTRACT_0209",
+    "raw_text": "Full-time Traffic Checkers shall receive all other leave provisions of full-time hourly MaBSTOA employees except that the number of hours per day, where applicable, shall be seven",
+    "exceptions": [
+      {
+        "trigger": "except other leave provisions",
+        "type": "conditional"
+      }
+    ],
+    "generated_code": "# Constraint: CONTRACT_0209\n# Type: HARD-CONDITIONAL\n# Text: Full-time Traffic Checkers shall receive all other leave provisions of full-time...\n\n# Exception: except other leave provisions\nexception_contract_0209 = model.NewBoolVar('exception_contract_0209')\n\n# Config value\nDURATION_HOURS = 7  # 7.0 hours \u00d7 1 scale factor\n\n# CP-SAT constraint\nfor op in range(N_OPERATORS):\n    model.Add(generic_value[op] <= DURATION_HOURS)  # direction inferred max.OnlyEnforceIf(exception_contract_0209.Not())\n# Exception (conditional): except other leave provisions\nmodel.Add(generic_value[op] > DURATION_HOURS).OnlyEnforceIf(exception_contract_0209)"
+  }
+]

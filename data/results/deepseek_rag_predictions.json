@@ -1,0 +1,4689 @@
+[
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "yard service"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "When no work is available in his/her tour of duty or line, in road service",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [],
+      "object": [
+        "right"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "start_date",
+        "value": "1994-06-30",
+        "unit": "date",
+        "direction": "min"
+      },
+      {
+        "variable": "end_date",
+        "value": "1995-08-01",
+        "unit": "date",
+        "direction": "max"
+      },
+      {
+        "variable": "accrual_period",
+        "value": "second",
+        "unit": "contract_year",
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Revenue Equipment Maintainer"
+      ],
+      "authority": [
+        "Head of the Department",
+        "Transit Authority"
+      ],
+      "object": [
+        "Division"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "preference_status_date",
+        "value": 1945.0,
+        "unit": "year",
+        "direction": "behind"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "if he/she so requests in writing and it is approved by the Head of the Department, or if by action of the Transit Authority and due to changes in the organization, be forced to another Division",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "management"
+      ],
+      "object": [
+        "norm"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "grievance procedure"
+      ],
+      "object": [
+        "complaint"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 2.0,
+        "unit": "steps",
+        "direction": "max"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "Where such complaint is filed before the posting of the schedule for pick",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "conductor"
+      ],
+      "authority": [],
+      "object": [
+        "run",
+        "trick"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "pay",
+        "value": 1.0,
+        "unit": "time",
+        "direction": "min"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "through no fault of his/her own",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "transit_authority"
+      ],
+      "object": [
+        "terminals"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "new Revenue Equipment Maintainers"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Conductor"
+      ],
+      "authority": [],
+      "object": [
+        "run",
+        "trick"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "who is provisionally appointed to another position and who is returned to his/her regular position",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Operating Authority"
+      ],
+      "object": [
+        "positions"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "conductors"
+      ],
+      "authority": [],
+      "object": [
+        "preferences",
+        "picks"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "max_quantity",
+        "value": 1.0,
+        "unit": null,
+        "direction": "max"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "employee gave due notice of the accident",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "daily tour of duty"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "hours",
+        "value": 8.0,
+        "unit": "hours",
+        "direction": "max"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "grievance procedure"
+      ],
+      "object": [
+        "decision"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "where it is claimed that the decision imperils the health or safety or unreasonably disregards the normal seniority rights of any employee",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "training"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "employee has been previously reclassified from a safety sensitive position",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Operating Authority"
+      ],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "years_of_service",
+        "value": 5.0,
+        "unit": "years",
+        "direction": "min"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "earlier retired from the employ of the Operating Authority by reason of disability",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "Operating Authority"
+      ],
+      "authority": [
+        "Operating Authority"
+      ],
+      "object": [
+        "vacations",
+        "personnel",
+        "departments"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Operating Authority"
+      ],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "employment_duration",
+        "value": 1.0,
+        "unit": "year",
+        "direction": "less_than"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "team member",
+        "team"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "union",
+        "employees",
+        "beneficiaries"
+      ],
+      "authority": [
+        "union"
+      ],
+      "object": [
+        "claims"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Union"
+      ],
+      "object": [
+        "disciplinary grievance procedure"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "employer"
+      ],
+      "object": [
+        "jobs"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "no employee may be so assigned involuntarily",
+        "type": "conditional"
+      },
+      {
+        "trigger": "no employee may be denied his/her pick rights",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Train Operator",
+        "Conductor",
+        "Bus Operator"
+      ],
+      "authority": [],
+      "object": [
+        "vacation pay"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "whenever the run time changes during vacation period due to a new pick of runs",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "New York City Transit"
+      ],
+      "authority": [
+        "Union"
+      ],
+      "object": [
+        "work program"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "during any interest arbitration procedures on the contract to be effective December 16, 2002",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "tests initiated as a result of the incident",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [
+        "Public Employment Relations Board",
+        "Fair Labor Standards Act"
+      ],
+      "object": [
+        "overtime pay",
+        "motor vehicle licensing provisions",
+        "union members"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [],
+      "object": [
+        "holidays"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "who is not assigned to duty on a holiday listed above",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "compensation_amount",
+        "value": 40.0,
+        "unit": "hours",
+        "direction": "greater_or_equal"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "If the Workers' Compensation payment is equal to or greater than the amount the employee was receiving prior to the period of incapacity",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "classification",
+        "department"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "In the event of a layoff within a classification in any department",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "consecutive_days_rest",
+        "value": 2.0,
+        "unit": "days",
+        "direction": "min"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "in an emergency or when service requirements prevent it",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Union"
+      ],
+      "object": [
+        "safety meeting"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "frequency",
+        "value": 1.0,
+        "unit": "month",
+        "direction": "max"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "designated by the Union",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "cleaners"
+      ],
+      "authority": [
+        "Transit Authority"
+      ],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "when the duties of the employee require such protection",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "If such absence is expected to continue beyond the end of the vacation year",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "sick_leave_days_used",
+        "value": 1.0,
+        "unit": "days",
+        "direction": "equal"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "employee has used only one sick leave day",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "pick"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [
+        "management"
+      ],
+      "object": [
+        "vacation_time"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "Railroad Stock Worker Level I"
+      ],
+      "authority": [],
+      "object": [
+        "heavy duty overhead crane"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "head of department"
+      ],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "subject to approval by the head of his/her department",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Medical Appeal grievance procedures"
+      ],
+      "object": [
+        "administrative procedure"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Transit Authority's Medical Department"
+      ],
+      "object": [
+        "job"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "arbitrator"
+      ],
+      "authority": [],
+      "object": [
+        "challenge",
+        "pre-disciplinary suspension",
+        "subsequent arbitration",
+        "underlying dispute"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "holiday"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "prevented by proven illness or death in the immediate family",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "full-time Traffic Checkers"
+      ],
+      "authority": [],
+      "object": [
+        "full-time hourly MaBSTOA employees"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "payment_basis",
+        "value": 7.0,
+        "unit": null,
+        "direction": null
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "When an employee is not assigned to work on an observed holiday, and is otherwise eligible for holiday pay",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "pay_rate",
+        "value": 1.0,
+        "unit": "full_pay",
+        "direction": "equal"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "injured while on duty and unable to continue work for the remainder of the day",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Union"
+      ],
+      "object": [
+        "safety meeting"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "frequency",
+        "value": 1.0,
+        "unit": "month",
+        "direction": "max"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "designated by the Union",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Attorney in Charge of the Compensation Bureau of the Transit Authority",
+        "his/her designee"
+      ],
+      "object": [
+        "differential pay"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "when the question arises as to the granting of differential pay under this Section to an employee who has been absent from work on account of injury in the course of his/her employment",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "duration",
+        "value": 7.0,
+        "unit": null,
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [
+        "agreement"
+      ],
+      "object": [
+        "mental_health_visits"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "visits",
+        "value": 60.0,
+        "unit": "visits",
+        "direction": "increase"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "operator"
+      ],
+      "authority": [],
+      "object": [
+        "run",
+        "trick"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "if he/she be a regular operator and his/her own run shall have been sent out before his/her arrival at the depot",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "operator"
+      ],
+      "authority": [],
+      "object": [
+        "run"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "until the next line, depot or system pick",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Union"
+      ],
+      "authority": [
+        "Authorities"
+      ],
+      "object": [
+        "employee"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "Union refuses to accept a Union dues deduction authorization from any employee or expels an employee from membership",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [],
+      "object": [
+        "vacation days"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "suspended pending dismissal",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Deputy Vice President, Labor Disputes Resolution or designee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 20.0,
+        "unit": "days",
+        "direction": "max"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "hours",
+        "value": 2.0,
+        "unit": "hours",
+        "direction": null
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "if he/she is not ordered to report in person as a result of such telephone report",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "probationary employees",
+        "provisional employees",
+        "part-time employees",
+        "temporary employees"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Transit Authority"
+      ],
+      "object": [
+        "identification"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [
+        "Parties"
+      ],
+      "object": [
+        "technology upgrades"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "effective_date",
+        "value": "2000-03-01",
+        "unit": "date",
+        "direction": "on"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "in recognition of the need to train and upgrade its employees in preparation for a new emerging workplace with new technology",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Train Operator"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "rest_days",
+        "value": 2.0,
+        "unit": "days",
+        "direction": "min"
+      },
+      {
+        "variable": "road_service_days",
+        "value": 5.0,
+        "unit": "days",
+        "direction": "min"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "in emergencies or when service requirements prevent it",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "division of AFC Equipment Maintenance"
+      ],
+      "authority": [],
+      "object": [
+        "apprentices"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "max_apprentices_per_year",
+        "value": 10.0,
+        "unit": "apprentices",
+        "direction": "max"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "parties"
+      ],
+      "authority": [
+        "Vice President of Rapid Transit"
+      ],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "In the event of disagreement",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "employee"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "pay_rate",
+        "value": 1.0,
+        "unit": "hour",
+        "direction": "higher"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "temporarily doing the work of another employee whose rate of pay is higher",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 1.0,
+        "unit": "years",
+        "direction": "max"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "employee may be allowed more than one",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "newly hired employees"
+      ],
+      "authority": [
+        "management"
+      ],
+      "object": [
+        "helpers"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "as far as practicable",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "union"
+      ],
+      "object": [
+        "seniority list"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_period",
+        "value": 2.0,
+        "unit": "weeks",
+        "direction": "during"
+      },
+      {
+        "variable": "effective_date",
+        "value": 1.0,
+        "unit": "week",
+        "direction": "during"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "extenuating circumstances",
+        "type": "conditional"
+      },
+      {
+        "trigger": "employee scheduled to retire within one year",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "single day vacation leave"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 30.0,
+        "unit": "days",
+        "direction": "max"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Maintenance Department employees"
+      ],
+      "authority": [
+        "Operating Authority"
+      ],
+      "object": [
+        "work in any classification"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "when it is deemed necessary by the Operating Authority for the proper operation of the business",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "minimum_pay_hours",
+        "value": 12.0,
+        "unit": "hours",
+        "direction": "min"
+      },
+      {
+        "variable": "overtime_multiplier",
+        "value": 1.5,
+        "unit": null,
+        "direction": null
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "provided that he/she has worked on every other day of his/her regular work week",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "hours_off_duty",
+        "value": 8.0,
+        "unit": "hours",
+        "direction": "min"
+      },
+      {
+        "variable": "time_before_report",
+        "value": 4.0,
+        "unit": "hours",
+        "direction": "max"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "if the time when he/she would thus report back for work should be within four hours",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Authority"
+      ],
+      "authority": [],
+      "object": [
+        "employees"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "quota_increase",
+        "value": 10.0,
+        "unit": "percent",
+        "direction": "above"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "during the weeks including May 1 to September 30; and the weeks of Christmas, New Years, Thanksgiving and Easter",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "employer"
+      ],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 20.0,
+        "unit": "days",
+        "direction": "max"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "employee with less clerical seniority"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "provided such employee has the necessary qualifications",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "Operating Authority"
+      ],
+      "authority": [
+        "Operating Authority"
+      ],
+      "object": [
+        "vacations",
+        "personnel",
+        "departments"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "advance_notice",
+        "value": 30.0,
+        "unit": "days",
+        "direction": "min"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "superior",
+        "Transit Authority",
+        "Workers' Compensation Board",
+        "Transit Authority attorney"
+      ],
+      "object": [
+        "Medical Department",
+        "physician"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "if such hearing is held during his/her tour of duty, and such hearing is held because of injury to himself, but not as a witness, provided, however, that such employee obtains an attendance slip from the Transit Authority attorney which sets forth the time of arrival and time of departure from such hearing",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Union"
+      ],
+      "authority": [],
+      "object": [
+        "Step III decision"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "If the Union appeals the Step III decision where the penalty has been imposed",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "pay_duration",
+        "value": 6.0,
+        "unit": "hours",
+        "direction": "max"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "after reporting in person pursuant to order and not put to work at all",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "which may fall within the period of such terminal vacation",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "Traffic Checkers"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "hourly_wage",
+        "value": 10.545,
+        "unit": "USD",
+        "direction": "equal"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "employer"
+      ],
+      "object": [
+        "night_shift_differential"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "start_time",
+        "value": 18.0,
+        "unit": "hours",
+        "direction": "min"
+      },
+      {
+        "variable": "end_time",
+        "value": 6.0,
+        "unit": "hours",
+        "direction": "max"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "blood alcohol test",
+        "breath analysis test"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "employee waives the blood alcohol test",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Authority"
+      ],
+      "authority": [],
+      "object": [
+        "employee"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "Where the positive results rendered by the first laboratory are not confirmed by the second laboratory",
+        "type": "conditional"
+      },
+      {
+        "trigger": "Where an employee chooses to send his/her sample to a laboratory that does not appear on the above list",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "minimum_hours",
+        "value": 8.0,
+        "unit": "hours",
+        "direction": "min"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "if the time between the end of the current duty and the start of the next regular tour is 5 hours or more",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Operating Authority"
+      ],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "probationary_period_completion",
+        "value": 1.0,
+        "unit": null,
+        "direction": null
+      },
+      {
+        "variable": "years_of_service",
+        "value": 3.0,
+        "unit": "years",
+        "direction": "less_than"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "payments"
+      ],
+      "authority": [],
+      "object": [
+        "discontinued gainsharing programs"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee",
+        "Union representative"
+      ],
+      "authority": [
+        "Deputy Superintendent"
+      ],
+      "object": [
+        "grievance",
+        "complaint"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 5.0,
+        "unit": null,
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [],
+      "object": [
+        "particular Division"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "date_limit",
+        "value": 1945.12,
+        "unit": "date",
+        "direction": "before"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "appointed subsequent to December 15, 1945",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "run",
+        "new line"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 48.0,
+        "unit": "hours",
+        "direction": "max"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "When a new line is opened",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "superior"
+      ],
+      "object": [
+        "New York City Transit System"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "provided such interruption as the cause of his/her lateness is established to the satisfaction of his/her superior",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Department"
+      ],
+      "object": [
+        "tour"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "Electronic Shop"
+      ],
+      "authority": [
+        "Authorities"
+      ],
+      "object": [
+        "Bus and Subway electronic repair facility"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "retired employee"
+      ],
+      "authority": [
+        "Transit Authority"
+      ],
+      "object": [
+        "Union"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "payment_amount",
+        "value": 500.0,
+        "unit": "dollars",
+        "direction": null
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "beyond the date of the employee's death",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Union"
+      ],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 4.0,
+        "unit": "hours",
+        "direction": "max"
+      },
+      {
+        "variable": "notice_time",
+        "value": 12.0,
+        "unit": "hours",
+        "direction": "min"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "if suspension is on Saturday, Sunday or holiday",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "head of responsibility center"
+      ],
+      "authority": [
+        "parties"
+      ],
+      "object": [
+        "qualified employees"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "If joint voluntary efforts fail to yield sufficient qualified volunteers for overtime work",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "UAP"
+      ],
+      "authority": [
+        "Authority"
+      ],
+      "object": [
+        "accounting, administrative and other records"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "upon reasonable notice to the UAP",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "neutral physicians"
+      ],
+      "authority": [
+        "NYC Transit",
+        "Union"
+      ],
+      "object": [
+        "employee"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "percentage",
+        "value": 70.0,
+        "unit": "percent",
+        "direction": "max"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "annual adjustment of threshold",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "service_years",
+        "value": 3.0,
+        "unit": "years",
+        "direction": "min"
+      },
+      {
+        "variable": "vacation_days",
+        "value": 2.0,
+        "unit": "days",
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "Impartial Arbitrator"
+      ],
+      "authority": [],
+      "object": [
+        "Deputy Vice President, Labor Disputes Resolution",
+        "Union",
+        "individual"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 2.0,
+        "unit": null,
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "must be in active service immediately preceding the vacation period",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "TWU employee"
+      ],
+      "authority": [
+        "management"
+      ],
+      "object": [
+        "another employee"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "investigation_timeliness",
+        "value": 1.0,
+        "unit": null,
+        "direction": "prompt"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "Should a TWU employee claim to be the victim of work related sexual harassment or workplace violence",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "work location"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Operating Authority"
+      ],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "accidental injury arising out of or in the course of employment by the Operating Authority",
+        "type": "exclusion"
+      },
+      {
+        "trigger": "sickness, disability or injury brought about by the use of intoxicating liquors or narcotic drugs or resulting from social disease or preventable disabilities",
+        "type": "exclusion"
+      },
+      {
+        "trigger": "absences connected with correction of non-disabling conditions",
+        "type": "exclusion"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "cleaners"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "labor management committee"
+      ],
+      "authority": [],
+      "object": [
+        "issues",
+        "working conditions"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Bus Operators"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "upon retirement",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "committee"
+      ],
+      "authority": [
+        "management",
+        "union",
+        "National Academy of Arbitrators"
+      ],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "pay_rate_multiplier",
+        "value": 1.5,
+        "unit": null,
+        "direction": null
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "emergency work performed outside of regular working time",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-APPROVAL",
+    "entities": {
+      "subject": [
+        "Operating Authority"
+      ],
+      "authority": [
+        "Operating Authority"
+      ],
+      "object": [
+        "personal leave day"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "parties"
+      ],
+      "authority": [
+        "Impartial Arbitrator"
+      ],
+      "object": [
+        "dispute"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "In the event of a continuing dispute",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "Impartial Arbitrator"
+      ],
+      "authority": [],
+      "object": [
+        "Authority",
+        "employee",
+        "representative"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "notice_period",
+        "value": 14.0,
+        "unit": "days",
+        "direction": "min"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "provisional employee"
+      ],
+      "authority": [
+        "Department of Buses"
+      ],
+      "object": [
+        "disciplinary actions"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "service_duration",
+        "value": 1.0,
+        "unit": "years",
+        "direction": "min"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "with more than one year of continuous satisfactory service in a title covered by the Collective Bargaining Agreement",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "RPCs"
+      ],
+      "authority": [
+        "Chief Officer of Revenue Control",
+        "Union Vice President"
+      ],
+      "object": [
+        "tours of duty",
+        "regular days off",
+        "reporting location"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "frequency",
+        "value": 1.0,
+        "unit": "annual",
+        "direction": null
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "unless the Chief Officer of Revenue Control and the Union Vice President agree otherwise",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "parties"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "as agreed in the December 15, 1999 Memorandum of Understanding",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Board of Transportation",
+        "Transit Authority"
+      ],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "leave of absence for ordered military duty",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "reports for duty late",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "permanent employee"
+      ],
+      "authority": [
+        "Transit Authority's Medical Department"
+      ],
+      "object": [
+        "duties"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "if and when the Transit Authority's Medical Department certifies that a permanent employee previously disqualified by physical disability is able to return to duties",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Conductor"
+      ],
+      "authority": [],
+      "object": [
+        "flagging job"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "provided that said Conductor actually works as a Flagman on the regularly scheduled tour before and the next regularly scheduled tour after said leave",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Tripartite Arbitration Board"
+      ],
+      "authority": [],
+      "object": [
+        "employee"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 5.0,
+        "unit": "days",
+        "direction": "max"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "Where an employee is suspended",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "bidders"
+      ],
+      "authority": [],
+      "object": [
+        "picks"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Operator"
+      ],
+      "authority": [
+        "General Superintendent",
+        "Superintendents"
+      ],
+      "object": [
+        "garage"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "Superintendents may not award any penalty in excess of final warning",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "Work Procedure Review Team"
+      ],
+      "authority": [],
+      "object": [
+        "CMF programs",
+        "jobs",
+        "procedures"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Authority"
+      ],
+      "authority": [
+        "Authority"
+      ],
+      "object": [
+        "special tool allowance"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "at the time such tools are required",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee",
+        "Union"
+      ],
+      "authority": [
+        "Union"
+      ],
+      "object": [
+        "hearing",
+        "investigation"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "max_delay",
+        "value": 2.0,
+        "unit": null,
+        "direction": "max"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "If a hearing or investigation is called without prior notice to the employee or the Union",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "Should the employee not be given a practical examination within the Examination Period",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "chairpersons"
+      ],
+      "authority": [
+        "Union",
+        "Authority"
+      ],
+      "object": [
+        "parties"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "mutual agreement of the parties",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Transit Authority"
+      ],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "pay_rate",
+        "value": 1.5,
+        "unit": "multiplier",
+        "direction": "exact"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "when an employee is required to report for schooling or instructions due to errors or dereliction in the performance of duties",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Authority"
+      ],
+      "authority": [],
+      "object": [
+        "disciplinary procedures"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "hours_before_overtime",
+        "value": 8.0,
+        "unit": "hours",
+        "direction": "max"
+      },
+      {
+        "variable": "overtime_rate",
+        "value": 1.5,
+        "unit": "multiplier",
+        "direction": "min"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "provided, however, he/she shall not receive less than the amount called for by his/her regular weekday run",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "veterans"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "regardless of the length of their service",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Authority"
+      ],
+      "object": [
+        "absences",
+        "holidays"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "working_days",
+        "value": 30.0,
+        "unit": "days",
+        "direction": "exclude"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "Employee absences and Authority observed holidays",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [
+        "Management",
+        "Union"
+      ],
+      "object": [
+        "pick_time"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "pick_time_limit",
+        "value": 3.0,
+        "unit": "minutes",
+        "direction": null
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "if pick time falls within regular tour of duty",
+        "type": "conditional"
+      },
+      {
+        "trigger": "picking off tour, on vacation, or on day off",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "operator"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "payment_amount",
+        "value": 9.0,
+        "unit": null,
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "parties"
+      ],
+      "authority": [],
+      "object": [
+        "representatives"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "designating non TA/OA employees or non Union officials",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Transit Authority"
+      ],
+      "authority": [],
+      "object": [
+        "part-time Railroad Clerks"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "opening token booths closed due to the financial crisis or where a new booth is opened to accommodate a four",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Train Operator"
+      ],
+      "authority": [],
+      "object": [
+        "line",
+        "section",
+        "division"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "when transferred from one line to another as a result of his/her own pick of a trick on such other line",
+        "type": "conditional"
+      },
+      {
+        "trigger": "unless he/she has not previously been qualified on that line, section or division or unless a major change has occurred on that line, section or division since he/she was previously qualified thereon",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "operator"
+      ],
+      "authority": [],
+      "object": [
+        "run",
+        "drill",
+        "yard work"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "if the opportunity to do drill or yard work is presented after picking a run",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "pay_rate_multiplier",
+        "value": 1.5,
+        "unit": null,
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Train Operators"
+      ],
+      "authority": [],
+      "object": [
+        "Division"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "unless those with higher preference status desire the transfer",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "hours_per_day",
+        "value": 8.0,
+        "unit": "hours",
+        "direction": "max"
+      },
+      {
+        "variable": "hours_per_week",
+        "value": 40.0,
+        "unit": "hours",
+        "direction": "max"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "parties"
+      ],
+      "authority": [],
+      "object": [
+        "other cases"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "mutual agreement",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "parties"
+      ],
+      "authority": [
+        "appropriate legislative body"
+      ],
+      "object": [
+        "provision"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "any provision requiring legislative action to permit its implementation by amendment of law or by providing additional funds",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "Transit Property Protection Agents"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "minimum_hours",
+        "value": 8.0,
+        "unit": "hours",
+        "direction": "min"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "agreement"
+      ],
+      "authority": [],
+      "object": [
+        "religious accommodation"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "sick_leave_allowances"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "minimum_hours_on_duty",
+        "value": 5.0,
+        "unit": "hours",
+        "direction": "min"
+      },
+      {
+        "variable": "sick_leave_charge",
+        "value": 0.25,
+        "unit": "days",
+        "direction": null
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "In the event that a paid absence of less than one full day is to be charged against unused sick leave allowances",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "requestor"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "new employees"
+      ],
+      "authority": [],
+      "object": [
+        "personal leave day"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "service_time",
+        "value": 1.0,
+        "unit": "years",
+        "direction": "min"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "until the January 1st following the completion of one year of service",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "conductor"
+      ],
+      "authority": [
+        "superior"
+      ],
+      "object": [
+        "New York City Transit System"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "reporting late because of an unusual interruption in service on the New York City Transit System",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "dispatchers"
+      ],
+      "authority": [],
+      "object": [
+        "operators"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "physician"
+      ],
+      "object": [
+        "medical evidence"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Railroad Clerk"
+      ],
+      "authority": [
+        "New York City Transit System"
+      ],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 30.0,
+        "unit": "minutes",
+        "direction": "min"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "absence_duration",
+        "value": 30.0,
+        "unit": "days",
+        "direction": "more than"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "military leave, vacation or jury duty",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Vice President"
+      ],
+      "authority": [],
+      "object": [
+        "schedule"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "time reasonably required to complete the picking",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [
+        "NYC Transit",
+        "Workers' Compensation Board"
+      ],
+      "object": [
+        "sick leave",
+        "vacation leave"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "first_day",
+        "value": 1.0,
+        "unit": "day",
+        "direction": "min"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "NYC Transit does not contest the employee's Workers' Compensation claim or the claim is upheld by the Workers' Compensation Board",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "parties"
+      ],
+      "authority": [
+        "union"
+      ],
+      "object": [
+        "individuals"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Location Chief",
+        "appropriate superintendent",
+        "Union representative"
+      ],
+      "object": [
+        "case"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 8.0,
+        "unit": "days",
+        "direction": "after"
+      },
+      {
+        "variable": "additional_time_limit",
+        "value": 3.0,
+        "unit": "days",
+        "direction": "within"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "operator"
+      ],
+      "authority": [],
+      "object": [
+        "regular run"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "reporting_pre_trip_inspections_allowance",
+        "value": 15.0,
+        "unit": "minutes",
+        "direction": null
+      },
+      {
+        "variable": "reporting_pre_trip_inspections_time",
+        "value": 10.0,
+        "unit": "minutes",
+        "direction": null
+      },
+      {
+        "variable": "clearing_allowance",
+        "value": 5.0,
+        "unit": "minutes",
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Train Operator"
+      ],
+      "authority": [],
+      "object": [
+        "Division"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "date",
+        "value": 1951,
+        "unit": "year",
+        "direction": "on_or_after"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "permanently appointed to the title of Train Operator on or after November 1, 1951, and transferred from any Division",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "employer"
+      ],
+      "object": [
+        "job"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Train Operator"
+      ],
+      "authority": [],
+      "object": [
+        "train"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "in an emergency",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "conductor"
+      ],
+      "authority": [],
+      "object": [
+        "foul weather gear",
+        "equipment"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "In the event that a conductor fails to return the equipment entrusted to him/her",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "shift"
+      ],
+      "authority": [
+        "service requirements"
+      ],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "pay_duration",
+        "value": 1.0,
+        "unit": "full_scheduled_tour",
+        "direction": "full"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "through no fault of his/her own",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "committee"
+      ],
+      "authority": [
+        "parties"
+      ],
+      "object": [
+        "duties",
+        "responsibilities",
+        "qualifications",
+        "wage issues",
+        "seniority"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "To the extent that the parties agree on the duties, responsibilities and qualifications of existing or newly structured titles, including wage issues in the 1999 collective bargaining agreement",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "Transit Authority"
+      ],
+      "object": [
+        "unit",
+        "Division"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "whenever there may be an employee in any unit of any Division with divisional seniority for whom there is no work in such unit",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "bidder"
+      ],
+      "authority": [],
+      "object": [
+        "run",
+        "trick"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "employer"
+      ],
+      "object": [
+        "holiday pay"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "holiday falls within terminal vacation period",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [],
+      "object": [
+        "Station Division"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "working_hours",
+        "value": 8.0,
+        "unit": "hours",
+        "direction": "basic"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Central Road Service and Support Fleet maintainers"
+      ],
+      "authority": [
+        "parties"
+      ],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "bonus_amount",
+        "value": 300.0,
+        "unit": "dollars",
+        "direction": null
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "with the understanding that the parties will work expeditiously toward reaching a productivity agreement for these groups",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "bargaining unit personnel"
+      ],
+      "authority": [
+        "Authorities"
+      ],
+      "object": [
+        "existing contracted subscription services"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "overtime_rate",
+        "value": 1.5,
+        "unit": "multiplier",
+        "direction": "exact"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "NYC Transit",
+        "Transport Workers Union, Local 100"
+      ],
+      "authority": [],
+      "object": [
+        "impartial physician"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "fee_percentage",
+        "value": 50.0,
+        "unit": "percent",
+        "direction": "equal"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Director of Workers' Compensation",
+        "designee"
+      ],
+      "authority": [
+        "Compensation Bureau"
+      ],
+      "object": [
+        "differential pay"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "Following certification of the above",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-APPROVAL",
+    "entities": {
+      "subject": [
+        "hourly paid employees"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "hours_pay",
+        "value": 4.0,
+        "unit": "hours",
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [
+        "EAP"
+      ],
+      "object": [
+        "EAP programs"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "Employees referred to EAP programs under the provision of this policy",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Operator"
+      ],
+      "authority": [
+        "supervisor"
+      ],
+      "object": [
+        "gap in service"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "When directed by a supervisor to fill a gap in service arising out of an emergency and occurring during scheduled work hours",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "bus operator",
+        "union"
+      ],
+      "authority": [
+        "General Superintendent"
+      ],
+      "object": [
+        "preventable accident"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "If the General Superintendent upholds the preventable accident",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "either party"
+      ],
+      "authority": [
+        "Impartial Arbitrator"
+      ],
+      "object": [
+        "service requirements",
+        "Authorities"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "If the actions taken under paragraph D above do not result in equitable coverage of the service requirements of the Authorities without abuse",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "impartial chairpersons"
+      ],
+      "authority": [
+        "parties"
+      ],
+      "object": [
+        "replacement"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "Should any of the impartial chairpersons be unable to serve during the term of this contract",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "assigned employee"
+      ],
+      "authority": [],
+      "object": [
+        "new employee"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "extra_time_allowance",
+        "value": 2.0,
+        "unit": null,
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "management"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "at a reasonable time after ratification",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "work procedure review team"
+      ],
+      "authority": [],
+      "object": [
+        "norm",
+        "standard"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "parties"
+      ],
+      "authority": [
+        "neutral arbitrator"
+      ],
+      "object": [
+        "committee"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "In the event that the Parties cannot agree upon a given question or set of questions",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee",
+        "Union representative"
+      ],
+      "authority": [
+        "Department Head",
+        "designee"
+      ],
+      "object": [
+        "grievance"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 30.0,
+        "unit": "calendar days",
+        "direction": "max"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "from the time a grievance arose",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "Maintainers"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "bonus_amount",
+        "value": 300.0,
+        "unit": "dollars",
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "NYC Transit's Medical Department"
+      ],
+      "object": [
+        "impartial physician"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "Where the employee\u2019s medical evidence satisfactorily sets forth a difference of medical opinion thereby establishing a medical dispute",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "operator"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "pay_rate",
+        "value": 1.5,
+        "unit": "multiplier",
+        "direction": "exact"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "operator"
+      ],
+      "authority": [
+        "union"
+      ],
+      "object": [
+        "parties"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 6.0,
+        "unit": null,
+        "direction": null
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "if the requested arbitration arises from a grievance processed pursuant to Paragraph 1 above",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "work"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 2.0,
+        "unit": "hours",
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "City and State Courts"
+      ],
+      "object": [
+        "jury service fees"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [],
+      "object": [
+        "infractions"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [
+        "Authority"
+      ],
+      "object": [
+        "pre-trip inspections"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "permanent employee",
+        "employee"
+      ],
+      "authority": [
+        "Transit Authority"
+      ],
+      "object": [
+        "pay",
+        "Civil Service title"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [
+        "management"
+      ],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "notice_period",
+        "value": 2.0,
+        "unit": "days",
+        "direction": "min"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "subject to a quota set by management",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "operator"
+      ],
+      "authority": [
+        "transit_authority"
+      ],
+      "object": [
+        "regular_runs"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "spread_hours",
+        "value": 11.0,
+        "unit": "hours",
+        "direction": "max"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "overtime_hours",
+        "value": 2.0,
+        "unit": "hours",
+        "direction": "min"
+      },
+      {
+        "variable": "meal_allowance",
+        "value": 3.0,
+        "unit": "dollars",
+        "direction": null
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "Union"
+      ],
+      "authority": [
+        "Director, Traffic Checking and Analysis"
+      ],
+      "object": [
+        "matter"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 3.0,
+        "unit": null,
+        "direction": null
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "In the event that the matter is not satisfactorily adjusted with the Director, Traffic Checking and Analysis",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": [
+        "Station Division"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "days_rest",
+        "value": 2.0,
+        "unit": "days",
+        "direction": "exact"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "in emergencies or when service requirements prevent it",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "parties"
+      ],
+      "authority": [
+        "arbitration"
+      ],
+      "object": [
+        "provisions"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "ratification of the Agreement fails",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "individual maintainer"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "performance_threshold",
+        "value": 90.0,
+        "unit": "percent",
+        "direction": "min"
+      },
+      {
+        "variable": "bonus_amount",
+        "value": 600.0,
+        "unit": "dollars",
+        "direction": null
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "meets the above-stated standards on ninety percent (90%) of the assigned jobs or procedures",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "years_of_service",
+        "value": 20.0,
+        "unit": "years",
+        "direction": "min"
+      },
+      {
+        "variable": "years_of_service",
+        "value": 25.0,
+        "unit": "years",
+        "direction": "max"
+      },
+      {
+        "variable": "annual_amount",
+        "value": 300.0,
+        "unit": "dollars",
+        "direction": "exact"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "If the employee tests positive for alcohol, drugs or controlled substances which testing was initiated by the incident which caused the harm or the injury to the employee",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [
+        "field office"
+      ],
+      "object": [
+        "RDO overtime"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "notification_time",
+        "value": 2.0,
+        "unit": "hours",
+        "direction": "prior"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "to determine if it is cancelled",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "operator"
+      ],
+      "authority": [
+        "superior"
+      ],
+      "object": [
+        "runs",
+        "tricks"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "When an operator expects to be absent at a time when he/she is assigned to make his/her selection of runs or tricks",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [],
+      "object": []
+    },
+    "thresholds": [
+      {
+        "variable": "pay_duration",
+        "value": 1.0,
+        "unit": "full scheduled tour",
+        "direction": "full"
+      }
+    ],
+    "exceptions": [
+      {
+        "trigger": "through no fault of his/her own",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employee"
+      ],
+      "authority": [
+        "City Civil Service Commission",
+        "City Personnel Director"
+      ],
+      "object": [
+        "higher position",
+        "Division"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": [
+      {
+        "trigger": "provided the latter was not himself/herself employed at the time of unification in the Division where the examination was held",
+        "type": "conditional"
+      }
+    ]
+  },
+  {
+    "constraint_type": "HARD",
+    "hardness_subtype": "HARD",
+    "entities": {
+      "subject": [
+        "respondent"
+      ],
+      "authority": [],
+      "object": [
+        "employees"
+      ]
+    },
+    "thresholds": [
+      {
+        "variable": "time_limit",
+        "value": 30.0,
+        "unit": "days",
+        "direction": "max"
+      }
+    ],
+    "exceptions": []
+  },
+  {
+    "constraint_type": "SOFT",
+    "hardness_subtype": "SOFT-CONDITIONAL",
+    "entities": {
+      "subject": [
+        "employees"
+      ],
+      "authority": [
+        "parties"
+      ],
+      "object": [
+        "workforce"
+      ]
+    },
+    "thresholds": [],
+    "exceptions": []
+  }
+]
