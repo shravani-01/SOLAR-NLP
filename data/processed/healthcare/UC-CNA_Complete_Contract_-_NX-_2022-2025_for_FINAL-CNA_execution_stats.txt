@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — UC-CNA_Complete_Contract_-_NX-_2022-2025_for_FINAL-CNA_execution
+Generated: 2026-04-01 20:57
+==================================================
+
+Pages processed       : 197
+Total sentences       : 2235
+Candidate constraints : 1111
+  → Predicted HARD    : 792
+  → Predicted SOFT    : 250
+High confidence (≥3)  : 101
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [SOFT] score=4
+   Eligible nurses may take more than one period of 26 workweeks of leave if the leave is to care for a different covered s...
+
+2. [HARD] score=4
+   At UCLA, newly licensed NP shall be placed in an NP I position for 6 months under Article 2, after which s/he would adva...
+
+3. [HARD] score=3
+   Occupational Health Nurse I (600.1) – Under supervision, the incumbent performs nursing duties in the Medical Department...
+
+4. [HARD] score=3
+   A Nurse who accepts a position at the same classification level in another unit shall maintain their classification for ...
+
+5. [HARD] score=3
+   If a limited appointment Nurse attains 1,000 hours of qualifying service within twelve (12)consecutive months without a ...
+
+6. [HARD] score=3
+   Such career conversion shall be effective on the first day of the month following attainment of 1000 hours of qualifying...
+
+7. [HARD] score=3
+   Any break in service of 120 days or longer shall result in a new 12-month period for purposes of calculating the 1000-ho...
+
+8. [SOFT] score=3
+   Additionally, a Per Diem Nurse's eligibility for scheduling may be discontinued at any time at the sole discretion of th...
+
+9. [HARD] score=3
+   (i) has worked 1000 hours (750 hours for Student Health Center Per Diem Nurses), exclusive of overtime hours, in the pre...
+
+10. [HARD] score=3
+   Such Per Diem Nurse shall have access to Articles 26, 27, and 28 and shall not be subject to discipline or removal from ...

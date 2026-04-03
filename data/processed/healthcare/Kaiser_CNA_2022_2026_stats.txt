@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — Kaiser_CNA_2022_2026
+Generated: 2026-04-01 20:57
+==================================================
+
+Pages processed       : 263
+Total sentences       : 2326
+Candidate constraints : 1087
+  → Predicted HARD    : 813
+  → Predicted SOFT    : 189
+High confidence (≥3)  : 119
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [SOFT] score=4
+   Local management will work with the Association to provide an area that is appropriate for the Association to meet with ...
+
+2. [HARD] score=4
+   Section C – Overtime No Mandatory Overtime 707 There shall be no mandatory overtime except during a state of emergency d...
+
+3. [HARD] score=4
+   When educational leave requests are made with less than 30 days’ notice, operational needs of the unit shall be consider...
+
+4. [SOFT] score=4
+   Short-Hour, Temporary and Per diem Nurses may be discharged without recourse to the grievance procedure until such Nurse...
+
+5. [SOFT] score=4
+   Licensed vocational nurses may constitute up to 50 percent of the licensed nurses assigned to patient care on any unit, ...
+
+6. [HARD] score=3
+   The Association representative shall advise the Administrator as to which department or areas s/he wishes to visit, and ...
+
+7. [HARD] score=3
+   For prescheduled vacation and education leave shifts, Per Diems shall not be cancelled or displaced and shall not be abl...
+
+8. [SOFT] score=3
+   Reduced assignments may be extended by mutual agreement. 519 The preceptor will not be called back into the staffing mix...
+
+9. [HARD] score=3
+   No more than 4 RNs will be assigned to one Staff Nurse Orienteer for orientation. 540 Orientation shall not be provided ...
+
+10. [HARD] score=3
+   Required Competencies 542 To be in accordance with, but not limited to, California Statutes and the Employer’s Orientati...

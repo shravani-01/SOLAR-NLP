@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — Miami_Dade_CIR_2023_2026
+Generated: 2026-04-01 20:57
+==================================================
+
+Pages processed       : 72
+Total sentences       : 902
+Candidate constraints : 418
+  → Predicted HARD    : 319
+  → Predicted SOFT    : 78
+High confidence (≥3)  : 20
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   HSOs shall receive a minimum of 24 consecutive hours off per work week (i.e., duty free), when averaged over four weeks,...
+
+2. [HARD] score=3
+   Section 6: Paycheck Error In the event of an error in the paycheck, a voucher in the corrected amount shall be made avai...
+
+3. [HARD] score=3
+   Assignments to these 24 hour shifts must be approved by a Program Director.
+
+4. [HARD] score=3
+   Duty hours must be limited to 80 hours per week, averaged over a four-week period, inclusive of all in-house call activi...
+
+5. [HARD] score=3
+   The HSO shall be granted bereavement leave in the event of a death in the immediate family.
+
+6. [HARD] score=3
+   Emergency Funeral Leave: The HSO shall be granted emergency funeral leave in the event of a death of a HSO’s mother-in-l...
+
+7. [HARD] score=3
+   Article 5 Prevailing Benefits Section 1: Unless specifically provided for or abridged herein, all wage and economic bene...
+
+8. [HARD] score=3
+   Nothing in this Article shall prevent the PHT from making changes in work rules or methods, provided that such changes d...
+
+9. [HARD] score=3
+   Section 3: Salary Continuation and Disability Coverage The PHT shall continue to provide disability insurance on the sam...
+
+10. [SOFT] score=3
+   Should also provide flyers, classes, and education. o “Healthier Hospital Initiative” - multiple hospitals participate o...

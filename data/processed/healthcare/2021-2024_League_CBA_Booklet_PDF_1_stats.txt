@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — 2021-2024_League_CBA_Booklet_PDF_1
+Generated: 2026-04-01 20:56
+==================================================
+
+Pages processed       : 210
+Total sentences       : 1960
+Candidate constraints : 943
+  → Predicted HARD    : 786
+  → Predicted SOFT    : 94
+High confidence (≥3)  : 118
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   2021-2024 1199-LEAGUE AGREEMENT 35 (vi) Discharge During 30 Day Probationary Period During or at the end of the thirty (...
+
+2. [HARD] score=4
+   Notwithstanding any other provision of this Agreement, it is understood and agreed that any Employee who, as of June 30,...
+
+3. [HARD] score=3
+   At the time a new Employee subject to this Agreement is hired, the Employer shall deliver to said Employee a written not...
+
+4. [HARD] score=3
+   All Employees on the active payroll as of October 1, 2021, who are not members of the Union shall become members of the ...
+
+5. [HARD] score=3
+   Subject to Article XXXI, an Employee who has failed to maintain membership in good standing as required by this Article ...
+
+6. [HARD] score=3
+   Such list shall include, for each Employee, the following information: Institution, Employee’s name, social security num...
+
+7. [HARD] score=3
+   (b) - (d), the Employer will immediately resume the obligation of making said deductions, except that deductions for ter...
+
+8. [HARD] score=3
+   No Employee shall engage in any Union activity, including the distribution of literature, which could interfere with the...
+
+9. [HARD] score=3
+   In both cases, the Employees shall be released unless such release will unreasonably interfere with the operation of the...
+
+10. [HARD] score=3
+   In referring applicants, after persons on layoff from the Employer have been recalled, the Service shall give preference...

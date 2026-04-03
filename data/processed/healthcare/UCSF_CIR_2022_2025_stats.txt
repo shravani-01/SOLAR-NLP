@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — UCSF_CIR_2022_2025
+Generated: 2026-04-01 20:57
+==================================================
+
+Pages processed       : 58
+Total sentences       : 910
+Candidate constraints : 426
+  → Predicted HARD    : 302
+  → Predicted SOFT    : 91
+High confidence (≥3)  : 40
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   This agreement shall be automatically renewed and extended year to year and thereafter without additions, changes or ame...
+
+2. [HARD] score=3
+   Room reservations shall not be canceled by the University except where unforeseen circumstances require the room to be u...
+
+3. [HARD] score=3
+   During the GME New Resident and Fellow Orientations the Union shall be granted no less than 30 minutes to give a present...
+
+4. [HARD] score=3
+   At the written request of the Union to UCSF Labor Relations, the University shall meet and discuss the proposed change w...
+
+5. [HARD] score=3
+   Alleged violations of this sub-article may be grieved up to the Step 2 level but shall not be subject to the arbitration...
+
+6. [HARD] score=3
+   Article 10: PROGRAM CLOSURE In the event of a program closure, the University shall follow all Accreditation Council for...
+
+7. [HARD] score=3
+   Decisions or judgments by the University, including Disciplinary Actions, related to all academic or clinical matters, a...
+
+8. [HARD] score=3
+   Academic and/or Clinical decisions and academic and/or administrative actions shall only be subject to review as provide...
+
+9. [SOFT] score=3
+   Time limits may be extended by mutual agreement of the Parties in writing in advance of the expiration of the time limit...
+
+10. [HARD] score=3
+   The issue(s) of arbitrability shall be resolved in a hearing prior to and separate from the hearing (if any) about the s...

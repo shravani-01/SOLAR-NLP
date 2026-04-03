@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — 2025-seiu-interns-and-residents
+Generated: 2026-04-01 20:56
+==================================================
+
+Pages processed       : 34
+Total sentences       : 497
+Candidate constraints : 269
+  → Predicted HARD    : 178
+  → Predicted SOFT    : 72
+High confidence (≥3)  : 30
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   All Residents designated as UMass Chan Medical School House Staff, irrespective of the source of funding for their posit...
+
+2. [HARD] score=3
+   The University shall provide the Union, at the same time, the current and next block schedule of clinical assignments, w...
+
+3. [HARD] score=3
+   (3) days, the Resident shall switch with a colleague, subject to approval of the program.
+
+4. [HARD] score=3
+   The foregoing management rights are expressly reserved to be decided by the Employer and shall not be subject to the pro...
+
+5. [HARD] score=3
+   The Employer and the Union recognize that no employee shall be subject to sexual harassment, and both parties agree to r...
+
+6. [HARD] score=3
+   This section shall not be subject to the parties’ arbitration procedures.
+
+7. [HARD] score=3
+   This article shall not be subject to the parties’ arbitration procedures.
+
+8. [SOFT] score=3
+   Residents/Fellows may use personal leave or vacation days for religious beliefs, subject to approval of the program dire...
+
+9. [HARD] score=3
+   Eligibility: To be eligible for FMLA leave, a Resident/Fellow must be employed at least twelve (12) months and have work...
+
+10. [SOFT] score=3
+   Sick time may be used: a. when the absence is due to the illness of the Resident/Fellow; b. by the parent for the first ...

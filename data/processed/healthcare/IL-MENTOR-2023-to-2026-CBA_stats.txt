@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — IL-MENTOR-2023-to-2026-CBA
+Generated: 2026-04-01 20:56
+==================================================
+
+Pages processed       : 24
+Total sentences       : 333
+Candidate constraints : 204
+  → Predicted HARD    : 146
+  → Predicted SOFT    : 41
+High confidence (≥3)  : 31
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   Relief/PRN employees shall be covered by the appropriate sections of the agreement, provided that they work a shift at l...
+
+2. [HARD] score=4
+   (3) months after hire by the Employer, provided that employees are required to complete at least 480 hours worked before...
+
+3. [HARD] score=4
+   In the event that this Agreement is reopened, the remaining provisions of this agreement, including Article 7: NO STRIKE...
+
+4. [HARD] score=3
+   Section 5 Except as provided herein, an employee who fails to join the Union, maintain Union membership or pay a represe...
+
+5. [HARD] score=3
+   The Employer shall not be required by any provision of this Agreement to continue any such rules, customs, past practice...
+
+6. [HARD] score=3
+   Relief/PRN employees shall receive benefits under this Agreement and be subject to the provisions of this Agreement only...
+
+7. [SOFT] score=3
+   In the event of an alleged violation of Section 1 or Section 3 of this Article, the Employer or the Union, respectively,...
+
+8. [SOFT] score=3
+   During the probationary period, the Employer may discipline, discharge, transfer, or take other action toward the employ...
+
+9. [SOFT] score=3
+   (c) The Employer may extend the probationary period for any employee an additional 30 days with the agreement of the Uni...
+
+10. [HARD] score=3
+   The Employer’s decision to extend the probationary period for any employee shall not be subject to the grievance and arb...
