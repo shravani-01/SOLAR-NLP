@@ -19,7 +19,7 @@ Output:
 
 Usage:
   python scripts/06_prepare_training_data.py
-  python scripts/06_prepare_training_data.py --ir data/processed/constraint_ir.json
+  python scripts/06_prepare_training_data.py --ir data/processed/healthcare/constraint_ir.json
 """
 
 import json
@@ -29,8 +29,8 @@ from pathlib import Path
 from collections import defaultdict, Counter
 
 PROJECT_ROOT  = Path(__file__).parent.parent
-PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
-TRAINING_DIR  = PROJECT_ROOT / "data" / "training"
+PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"/"healthcare"
+TRAINING_DIR  = PROJECT_ROOT / "data" / "training"/"healthcare"
 TRAINING_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Prompt template ───────────────────────────────────────────────────────────

@@ -19,7 +19,7 @@ import pandas as pd
 from pathlib import Path
 
 PROJECT_ROOT  = Path(__file__).parent.parent
-PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
+PROCESSED_DIR = PROJECT_ROOT / "data" / "processed" /"healthcare"
 
 WORD_LIMIT = 80  # sentences over this get split
 

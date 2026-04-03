@@ -27,8 +27,8 @@ from pathlib import Path
 from datetime import datetime
 
 PROJECT_ROOT  = Path(__file__).parent.parent
-ANNOTATED_DIR = PROJECT_ROOT / "data" / "annotated"
-PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
+ANNOTATED_DIR = PROJECT_ROOT / "data" / "annotated"/"healthcare"
+PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"/"healthcare"
 PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Threshold parsing ─────────────────────────────────────────────────────────

@@ -43,7 +43,7 @@ except ImportError:
 # ── Project paths ─────────────────────────────────────────────────────────────
 PROJECT_ROOT = Path(__file__).parent.parent
 RAW_DIR      = PROJECT_ROOT / "data" / "raw"
-PROCESSED_DIR= PROJECT_ROOT / "data" / "processed"
+PROCESSED_DIR= PROJECT_ROOT / "data" / "processed" /"healthcare"
 PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Constraint detection patterns ─────────────────────────────────────────────
