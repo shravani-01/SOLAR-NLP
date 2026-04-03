@@ -16,9 +16,11 @@ build/
 .ipynb_checkpoints/
 
 # Raw PDFs (too large for git)
-data/raw/contracts/*.pdf
-data/raw/fta_regulations/*.pdf
-data/raw/gtfs/*.pdf
+data/transit/raw/contracts/*.pdf
+data/healthcare/raw/contracts/*.pdf
+
+data/raw/transit/fta_regulations/*.pdf
+data/raw/transit/gtfs/*.pdf
 
 # Models (large checkpoints)
 models/
