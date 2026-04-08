@@ -42,8 +42,8 @@ except ImportError:
 
 # ── Project paths ─────────────────────────────────────────────────────────────
 PROJECT_ROOT = Path(__file__).parent.parent
-RAW_DIR      = PROJECT_ROOT / "data" / "raw"
-PROCESSED_DIR= PROJECT_ROOT / "data" / "processed" /"healthcare"
+RAW_DIR      = PROJECT_ROOT / "data" / "raw" 
+PROCESSED_DIR= PROJECT_ROOT / "data" / "processed" 
 PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Constraint detection patterns ─────────────────────────────────────────────
@@ -292,12 +292,17 @@ def main():
     parser = argparse.ArgumentParser(description="SOLAR Step 1: Extract constraint candidates from PDFs")
     parser.add_argument("--source", help="Subfolder to process: contracts / fta_regulations / gtfs")
     parser.add_argument("--file",   help="Process a single file by name, e.g. 'TWU_2023.pdf'")
+    parser.add_argument("--domain", default="transit", help="Domain: transit/healthcare/education/building_services/hospitality/municipal")
     args = parser.parse_args()
 
     print("\n" + "="*60)
     print("SOLAR — Step 1: Constraint Candidate Extraction")
     print("="*60)
 
+    global RAW_DIR, PROCESSED_DIR
+    RAW_DIR = PROJECT_ROOT / "data" / "raw" / args.domain
+    PROCESSED_DIR = PROJECT_ROOT / "data" / "processed" / args.domain
+    PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
     pdf_files = get_pdf_files(args.source, args.file)
 
     if not pdf_files:

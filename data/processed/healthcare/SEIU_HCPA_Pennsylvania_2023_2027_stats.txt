@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — SEIU_HCPA_Pennsylvania_2023_2027
+Generated: 2026-04-06 22:56
+==================================================
+
+Pages processed       : 194
+Total sentences       : 1981
+Candidate constraints : 1074
+  → Predicted HARD    : 737
+  → Predicted SOFT    : 208
+High confidence (≥3)  : 148
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   If the requested leave is in excess of one month, the request shall be answered within 10 days, unless otherwise specifi...
+
+2. [HARD] score=4
+   Unused annual leave shall be carried over from one calendar year to the next provided that in no case shall the amount t...
+
+3. [HARD] score=4
+   If a written request is received prior to or within 45 days after the date on which the overtime is worked, the compensa...
+
+4. [HARD] score=4
+   (3) Other retirement with at least 25 years of eligibility points, except that an employee who leaves State employment, ...
+
+5. [HARD] score=4
+   Consequences to employees who test 0.02% or greater but less than 0.04% for alcohol (CDL only) 1) Employees will not be ...
+
+6. [HARD] score=4
+   The employee shall be subject to a minimum of six unannounced follow-up controlled substance and/or alcohol tests as dir...
+
+7. [SOFT] score=4
+   If an employee/supervisor is unable to participate in the scheduled training, the Institution/Boot Camp Coordinator shou...
+
+8. [HARD] score=4
+   Management will determine the number of employees scheduled to work each day, and the number of employees off on a given...
+
+9. [SOFT] score=3
+   The Union may select a reasonable number of employee representatives from within its bargaining units to attend the orie...
+
+10. [HARD] score=3
+   The scheduling of this presentation and release of employees for their voluntary attendance shall be subject to manageme...

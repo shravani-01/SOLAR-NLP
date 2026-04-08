@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — Boston_AFSCME_Citywide_2020_2023
+Generated: 2026-04-06 22:56
+==================================================
+
+Pages processed       : 102
+Total sentences       : 1124
+Candidate constraints : 643
+  → Predicted HARD    : 541
+  → Predicted SOFT    : 80
+High confidence (≥3)  : 75
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   The City and the Union further agree that the question of standards for determining whether any present or any future po...
+
+2. [HARD] score=3
+   During the pendency of any such dispute, no person covered by this Agreement on its effective date shall be excluded fro...
+
+3. [HARD] score=3
+   ARTICLE 1A – RESIDENCY Members of the bargaining unit must be residents of the City of Boston in accordance with the Cit...
+
+4. [HARD] score=3
+   Subject to the express provisions of this Agreement, the Municipal Employer shall not be deemed to be limited in any way...
+
+5. [HARD] score=3
+   The City shall give the Union thirty (30) days notice of its intent to contract out or subcontract out work presently pe...
+
+6. [HARD] score=3
+   (6) months of actual work shall be disciplined, suspended, or discharged except for just cause.
+
+7. [HARD] score=3
+   In the event of group discipline arising out of the same incident, the dispute shall be processed under the contract gri...
+
+8. [HARD] score=3
+   An employee in such position or in any position which is neither classified nor deemed to be classified under Civil Serv...
+
+9. [HARD] score=3
+   (6) or more months of service shall, except in the most extreme circumstances, be entitled to a hearing before the Appoi...
+
+10. [SOFT] score=3
+   Written and oral warnings may be grieved through Step 3 of the grievance procedure, but such grievances are not subject ...

@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — UNITE_HERE_Local17_Ramada_Plaza
+Generated: 2026-04-06 22:58
+==================================================
+
+Pages processed       : 38
+Total sentences       : 552
+Candidate constraints : 349
+  → Predicted HARD    : 295
+  → Predicted SOFT    : 40
+High confidence (≥3)  : 28
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   Employees shall acquire no vested interest in the rights or benefits granted herein which are not subject to being chang...
+
+2. [HARD] score=3
+   All rights or benefits which employees acquire under the terms of this Agreement shall extend only for the duration of t...
+
+3. [HARD] score=3
+   Participation by any employee in any such practices prohibited by this Section shall be considered just and reasonable c...
+
+4. [HARD] score=3
+   In the event any violation of the previous paragraph occurs which is unauthorized by the Union, the Employer agrees that...
+
+5. [HARD] score=3
+   (b) The Union shall promptly order its members to return to work, notwithstanding the existence of a picket line upon no...
+
+6. [SOFT] score=3
+   However, an issue of fact as to whether or not any particular employee has engaged in, participated in, or encouraged an...
+
+7. [HARD] score=3
+   (2) or more classifications within the scope of this Agreement, the Union shall be notified and the rate of pay for the ...
+
+8. [HARD] score=3
+   Employees shall not be required to work overtime or premium time unless, in the Employer’s opinion it is a business nece...
+
+9. [SOFT] score=3
+   Such schedules may be changed in cases of emergencies or business needs.
+
+10. [HARD] score=3
+   (e) Bumping shall not be permitted except in cases of layoff as described in section 9.4. 9.2 Probationary Period - New ...

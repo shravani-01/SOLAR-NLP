@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — BTU_Boston_2021_2024
+Generated: 2026-04-05 22:45
+==================================================
+
+Pages processed       : 286
+Total sentences       : 4774
+Candidate constraints : 2044
+  → Predicted HARD    : 1523
+  → Predicted SOFT    : 405
+High confidence (≥3)  : 215
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   Any dispute arising out of the provisions of this paragraph shall be referred to the Steering Committee for resolution a...
+
+2. [HARD] score=4
+   Any current Schedule “A” school that becomes designated a Turnaround School hereafter shall remain subject to the additi...
+
+3. [SOFT] score=4
+   Effective September 1, 2019, up to forty (40) days of accumulated sick leave in each school year may be used for adoptin...
+
+4. [HARD] score=3
+   This agreement and each of its provisions shall be in effect as of September 1, 2021, unless otherwise so stated, and sh...
+
+5. [HARD] score=3
+   Such rights of the Committee and the Superintendent include but are not limited to the right: – to establish educational...
+
+6. [SOFT] score=3
+   Handling of New Issues Matters of collective bargaining import not covered by this Agreement may, during the life of the...
+
+7. [HARD] score=3
+   By the Union: In any matter not covered in this Agreement which is a mandatory subject for collective bargaining, the Un...
+
+8. [HARD] score=3
+   Savings Clause If any provision of this Agreement is or shall at any time be contrary to law, then such provision shall ...
+
+9. [HARD] score=3
+   The provisions of this agreement that apply to teachers and/or persons shall apply to nurses except: –Article V(A)(1), C...
+
+10. [HARD] score=3
+   The number of members of the bargaining unit to be elected to a School Site Council shall be determined as follows, usin...

@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — 32BJ_DC_WSCA_2023_2027
+Generated: 2026-04-06 18:33
+==================================================
+
+Pages processed       : 69
+Total sentences       : 778
+Candidate constraints : 391
+  → Predicted HARD    : 314
+  → Predicted SOFT    : 50
+High confidence (≥3)  : 60
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   (4) hours per shift, except that in buildings of at least 100,000 square feet in Washington, DC, the minimum shift shall...
+
+2. [SOFT] score=4
+   The Employer agrees that any newly constructed or fully renovated buildings or a contiguous group of buildings under com...
+
+3. [HARD] score=3
+   In those cases, for the Agreement to be lawfully applied, the Union must demonstrate that a majority of employees at any...
+
+4. [HARD] score=3
+   The Employer shall be bound by and subject to the applicable area­ wide agreements for all work performed within and sub...
+
+5. [HARD] score=3
+   No overtime shall be worked except by direction of supervisory personnel of the Employer.
+
+6. [HARD] score=3
+   Except as otherwise set forth in this Article, an employee who is regularly scheduled for thirty-five (35) hours or more...
+
+7. [HARD] score=3
+   Except as otherwise set forth in this Article, the minimum shift for all employees shall be four
+
+8. [HARD] score=3
+   The Employer agrees that buildings in Appendix E shall be cleaned by employees with a minimum workweek of thirty (30) ho...
+
+9. [HARD] score=3
+   Arlington County Conversion: In the event the process of converting Arlington buildings to fulltime results in a buildin...
+
+10. [SOFT] score=3
+   If, during the term of this Agreement, a building, that is scheduled to or has already converted to full-time cleaning i...

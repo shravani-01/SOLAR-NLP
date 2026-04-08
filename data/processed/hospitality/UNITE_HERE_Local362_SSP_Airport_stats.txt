@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — UNITE_HERE_Local362_SSP_Airport
+Generated: 2026-04-06 22:58
+==================================================
+
+Pages processed       : 49
+Total sentences       : 607
+Candidate constraints : 330
+  → Predicted HARD    : 228
+  → Predicted SOFT    : 74
+High confidence (≥3)  : 44
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   Any questions arising out of the application or interpretation of this Article shall be subject to the arbitration provi...
+
+2. [HARD] score=3
+   In locations where orientation sessions are not regularly scheduled, the Union shall be provided with the above referenc...
+
+3. [HARD] score=3
+   The Employer shall not be required to recognize any employee as a Union Steward until and unless it has received the afo...
+
+4. [HARD] score=3
+   The Employer will not discriminate against the Shop Steward in the proper performance of his/her Union duties provided t...
+
+5. [HARD] score=3
+   classification, department, or operation; to determine the amount of supervision necessary; to control and regulate or d...
+
+6. [HARD] score=3
+   The committee shall consist of not more than two representatives of the Company, who shall be the General Manager and th...
+
+7. [HARD] score=3
+   Should a dispute arise with respect to such ADA issues and should the parties fail to reach agreement, such ADA dispute ...
+
+8. [HARD] score=3
+   ARTICLE 6 IMMIGRATION RIGHTS AND ETHNIC DIVERSITY To the extent consistent with applicable law, no employee covered by t...
+
+9. [HARD] score=3
+   The Employer shall not take action against any employee solely because the employee is subject to an immigration proceed...
+
+10. [HARD] score=3
+   Workplace Immigration Enforcement: The Employer shall, unless objected to by the affected employee, notify a representat...

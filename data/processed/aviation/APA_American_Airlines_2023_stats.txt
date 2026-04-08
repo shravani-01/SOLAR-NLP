@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — APA_American_Airlines_2023
+Generated: 2026-04-04 16:33
+==================================================
+
+Pages processed       : 453
+Total sentences       : 7999
+Candidate constraints : 3111
+  → Predicted HARD    : 1850
+  → Predicted SOFT    : 882
+High confidence (≥3)  : 369
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   The number of Transferring Pilots shall be no fewer than the average monthly pilot staffing over the prior 12 months for...
+
+2. [HARD] score=4
+   Each January 1, a pilot’s sick leave hours accrued in the preceding year shall be placed into the pilot’s sick leave ban...
+
+3. [SOFT] score=4
+   A pilot on long term sick who submits a Long-Term Sick (“LTS”) designation form in accordance with paragraph c. below, m...
+
+4. [SOFT] score=4
+   (3) Using an LTS Designation Form a pilot on LTS with a sick balance greater than 195 hours on the date of disability, a...
+
+5. [SOFT] score=4
+   An approved leave may be cancelled by American with at least a 30day notice, unless the pilot concurs to a shorter time ...
+
+6. [HARD] score=4
+   Parental leave must be completed within 12 months of the birth, adoption, surrogacy, guardianship, or fostering of the c...
+
+7. [HARD] score=4
+   (1) hour of simulator time and, except for the purpose of maintaining or re- establishing 90-day Takeoff/Landing Currenc...
+
+8. [HARD] score=4
+   (c) Normally, the scheduled duty period for a Check Airman performing flight standards work shall not exceed a maximum o...
+
+9. [HARD] score=4
+   X-Type Check Airmen Check Pilots shall fly a minimum of 73 credited hours of proficiency flying each year, except for th...
+
+10. [HARD] score=4
+   Normally, the scheduled duty period for a Flight Test pilot performing work shall not exceed a maximum of 14 hours for a...

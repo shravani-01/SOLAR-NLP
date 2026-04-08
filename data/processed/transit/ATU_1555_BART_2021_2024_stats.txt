@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — ATU_1555_BART_2021_2024
+Generated: 2026-04-02 22:47
+==================================================
+
+Pages processed       : 470
+Total sentences       : 5212
+Candidate constraints : 2440
+  → Predicted HARD    : 1875
+  → Predicted SOFT    : 426
+High confidence (≥3)  : 221
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   Station Agents on duty at 0001 hours of such Monday shall complete their shifts unless other mutually agreed upon arrang...
+
+2. [HARD] score=4
+   Transportation Administration Specialists on duty at 0001 hours of such Monday shall complete their shifts unless other ...
+
+3. [HARD] score=4
+   Foreworkers on duty at 0001 hours of such Monday shall complete their shifts unless other mutually agreed upon arrangeme...
+
+4. [HARD] score=4
+   Central employees on duty at 0001 hours of the effective day of the bid shall complete their work assignment/shifts unle...
+
+5. [HARD] score=4
+   If requested by the Union, the District shall administer the distribution of checks, subject to: 60 days notice with ins...
+
+6. [HARD] score=4
+   ATU 2021 – 2024 317 months following its achievement of a successful "go-live date," shall retain their positions as Tra...
+
+7. [HARD] score=3
+   Notwithstanding Section 1.5(A), and provided that there is no conflict with the Labor Agreement, if the District propose...
+
+8. [HARD] score=3
+   Unresolved disputes regarding the impacts of the change shall be subject to binding arbitration in which the arbitrator ...
+
+9. [HARD] score=3
+   It shall not be a violation of this Section and shall not be cause for discipline of any employee by any party or other ...
+
+10. [SOFT] score=3
+   In the event of any alleged violation of Paragraph A of this Section, either the District or the Unions may seek immedia...

@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — IBEW_Juneau_2024_2027
+Generated: 2026-04-05 22:44
+==================================================
+
+Pages processed       : 66
+Total sentences       : 971
+Candidate constraints : 505
+  → Predicted HARD    : 381
+  → Predicted SOFT    : 96
+High confidence (≥3)  : 33
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   Section 2.6 Plurality Unless the context of this Agreement clearly requires a different interpretation or construction, ...
+
+2. [HARD] score=3
+   No employee shall be disciplined for refusing to cross a recognized and sanctioned picket as provided herein, unless it ...
+
+3. [HARD] score=3
+   The Chief Shop Steward shall be subject to all terms and conditions of the Agreement, except the provisions that pertain...
+
+4. [HARD] score=3
+   The parties agree this means the Municipality shall not subcontract work traditionally performed within the job classifi...
+
+5. [HARD] score=3
+   Position vacancy announcements shall be advertised as follows (except as specified in Section 3.4): 1.
+
+6. [HARD] score=3
+   Job vacancies in regular positions shall be filled by the job posting, job bidding and job award procedures unless other...
+
+7. [HARD] score=3
+   Employees who are hired or rehired into regular positions shall be subject to a probationary period.
+
+8. [HARD] score=3
+   Unless action is taken by the agency head to separate or demote the employee or to request extension of the probationary...
+
+9. [HARD] score=3
+   The Union shall be notified in the event of termination of the probationary employee’s employment.
+
+10. [HARD] score=3
+   Employees who are promoted shall be subject to an evaluation period.

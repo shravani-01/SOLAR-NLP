@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — CTU_CPS_2019_2024
+Generated: 2026-04-05 22:46
+==================================================
+
+Pages processed       : 268
+Total sentences       : 2832
+Candidate constraints : 1492
+  → Predicted HARD    : 1290
+  → Predicted SOFT    : 140
+High confidence (≥3)  : 132
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   ISLs continuously employed in a twelve-school-month, 52week schedule (or its previous equivalent) shall maintain their 5...
+
+2. [HARD] score=4
+   Article 36 shall be amended as follows: CPS will offer an early retirement incentive to teachers who are eligible to ret...
+
+3. [HARD] score=4
+   Article 36 shall be amended as follows: CPS will offer a voluntary separation incentive to PSRPs who have 10 years of CP...
+
+4. [HARD] score=3
+   No other group or organization or representative thereof shall be recognized or permitted to engage on behalf of any emp...
+
+5. [HARD] score=3
+   Any such information shall be made available only with the consent of the bargaining unit employee involved and shall be...
+
+6. [HARD] score=3
+   Upon notification to the school principal, or in the principal’s absence to the acting administrator, the principal or a...
+
+7. [SOFT] score=3
+   Bargaining unit employees who are on leaves for Union business or elected public office may continue their health care a...
+
+8. [SOFT] score=3
+   Teachers who are on a UNION leave may teach classes for which they are properly certified, subject to the voluntary agre...
+
+9. [HARD] score=3
+   Any bargaining unit employee who is not a member of the UNION or who has not expressed a desire to be represented by it ...
+
+10. [HARD] score=3
+   If the grievant fails to appear at a scheduled grievance conference, and fails to appear at another grievance conference...

@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — IBEW_569_Inside_2024_2028
+Generated: 2026-04-05 22:44
+==================================================
+
+Pages processed       : 36
+Total sentences       : 589
+Candidate constraints : 366
+  → Predicted HARD    : 318
+  → Predicted SOFT    : 38
+High confidence (≥3)  : 45
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   This Agreement shall take effect June 1, 2024, and shall remain in effect until May 31, 2028, unless otherwise specifica...
+
+2. [HARD] score=3
+   It shall continue in effect from year to year thereafter, from June 1 through May 31 of each year, unless changed or ter...
+
+3. [HARD] score=3
+   (b) Whenever notice is given for changes, the nature of the changes desired must be specified in the notice, or no later...
+
+4. [HARD] score=3
+   This Agreement shall be subject to change or supplement at any time by mutual consent of the parties hereto.
+
+5. [HARD] score=3
+   Members of the Union, except those meeting the requirement of "Employer" as defined herein, shall not contract for any e...
+
+6. [HARD] score=3
+   Any member of the IBEW possessing a C-10 license while subject to employment under terms of this Agreement, shall mainta...
+
+7. [HARD] score=3
+   The Employer shall, therefore, have no restrictions except those specifically provided for in the collective bargaining ...
+
+8. [HARD] score=3
+   Any employer shall be released from the requirement of this section upon establishing a 60 month consecutive record of o...
+
+9. [HARD] score=3
+   All charges of violations of this section shall be considered as a dispute and shall be processed in accordance with the...
+
+10. [HARD] score=3
+   No applicant or employee while he remains subject to employment by Employers operating under this Agreement shall be rec...

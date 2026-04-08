@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — UNITE_HERE_Compass_Google
+Generated: 2026-04-06 22:57
+==================================================
+
+Pages processed       : 83
+Total sentences       : 1032
+Candidate constraints : 522
+  → Predicted HARD    : 403
+  → Predicted SOFT    : 94
+High confidence (≥3)  : 53
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   The Employer hereby recognizes the Union as the exclusive representative for collective bargaining negotiations concerni...
+
+2. [HARD] score=3
+   The Employer shall not abridge, add to, or change any section of this Agreement, except for any changes reached by mutua...
+
+3. [HARD] score=3
+   The Employer shall not take action against any employee solely because the employee is subject to an immigration proceed...
+
+4. [HARD] score=3
+   The Employer shall, unless objected to by the affected employee, notify a representative of the Union as soon as practic...
+
+5. [HARD] score=3
+   The Employer shall not require or demand proof of immigration status, except as may be required by 8 USC§ 1324a (1)(B) a...
+
+6. [HARD] score=3
+   The Employer shall not verify non-probationary employees' identities, immigration status, and authorization to work in t...
+
+7. [HARD] score=3
+   If reverification is required by law when a document used to prove authorization to work expires, the Employer shall, wh...
+
+8. [HARD] score=3
+   In the event of a sale of the business or its assets, the Employer shall offer to transfer the I-9 forms of any of its e...
+
+9. [HARD] score=3
+   In no event shall the Employer be required to act contrary to its Affirmative Action Plan, nor shall its Affirmative Act...
+
+10. [HARD] score=3
+   No employee shall be subject to sexual harassment in the workplace.

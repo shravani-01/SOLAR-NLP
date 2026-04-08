@@ -1,5 +1,5 @@
 SOLAR Extraction Stats — UCSF_CIR_2022_2025
-Generated: 2026-04-01 20:57
+Generated: 2026-04-06 22:56
 ==================================================
 
 Pages processed       : 58

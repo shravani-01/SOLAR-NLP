@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — ATU_758_Pierce_2024_2026
+Generated: 2026-04-02 22:47
+==================================================
+
+Pages processed       : 83
+Total sentences       : 1461
+Candidate constraints : 499
+  → Predicted HARD    : 357
+  → Predicted SOFT    : 104
+High confidence (≥3)  : 37
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   New employees, with the exception of Transit Operator Trainees shall be subject to a probationary period of one thousand...
+
+2. [SOFT] score=3
+   Employees covered by this Agreement who engage in any of the foregoing actions may be subject to disciplinary action. 3
+
+3. [HARD] score=3
+   In case of non-disciplinary arbitration, the power and authority of the Arbitrator shall be to hear and decide each non-...
+
+4. [HARD] score=3
+   No issue whatsoever shall be arbitrated or subject to arbitration unless such issue results from an action or occurrence...
+
+5. [HARD] score=3
+   In case of a grievance involving any continuing or other monetary claim against the Employer, no award shall 6
+
+6. [HARD] score=3
+   D In the event of differing medical opinions, the employee shall undergo an examination by a third-party physician for r...
+
+7. [HARD] score=3
+   If the Employer demotes or discharges the employee because of such results, the action shall be subject to the grievance...
+
+8. [HARD] score=3
+   Disciplinary actions involving suspensions without pay, demotions, or dismissal shall be subject to the grievance proced...
+
+9. [HARD] score=3
+   An employee shall lose all seniority credit in the event of a voluntary or involuntary termination.
+
+10. [HARD] score=3
+   In the event of a layoff, the Employer shall determine the classifications in which positions are to be reduced.

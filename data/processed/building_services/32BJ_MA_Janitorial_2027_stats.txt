@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — 32BJ_MA_Janitorial_2027
+Generated: 2026-04-06 18:33
+==================================================
+
+Pages processed       : 72
+Total sentences       : 554
+Candidate constraints : 278
+  → Predicted HARD    : 233
+  → Predicted SOFT    : 33
+High confidence (≥3)  : 44
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   (2) that are not currently represented by the Union. 3.2 Wherever the word “employee” is used in this Agreement, it shal...
+
+2. [HARD] score=3
+   shall apply to the excluded employees. “Masculine Pronouns” will apply to both the masculine and feminine gender, unless...
+
+3. [HARD] score=3
+   Consistent with applicable law, an employee need not be a formal member of the Union and can satisfy this membership obl...
+
+4. [HARD] score=3
+   All payments made after that date will be subject to a penalty of six percent (6%) per month, computed daily. 6.3 The Em...
+
+5. [HARD] score=3
+   The Employer must also report all holiday hours, whether worked or not worked, to the Funds. 9.3 It shall be a requireme...
+
+6. [HARD] score=3
+   (4) Weeks 10.3 Employer contributions to the Funds described in Article 15 – Group Insurance Benefits and Article 16 – P...
+
+7. [HARD] score=3
+   10.7 Employees are entitled to take all of their paid vacation at one time or during separate weeks or days throughout t...
+
+8. [HARD] score=3
+   Article 12 Bereavement Pay 12.1 In the event of a death in the employee’s immediate family (i.e., father, mother, sister...
+
+9. [HARD] score=3
+   In the event of the death of a grandparent, step-parent, step-child, in-law, aunt or uncle the employee shall be entitle...
+
+10. [HARD] score=3
+   Leave without pay shall be granted only at the Employer’s sole discretion, subject to the Employer’s business and operat...

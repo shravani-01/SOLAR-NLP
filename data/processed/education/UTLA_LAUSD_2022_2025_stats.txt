@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — UTLA_LAUSD_2022_2025
+Generated: 2026-04-05 22:47
+==================================================
+
+Pages processed       : 469
+Total sentences       : 4765
+Candidate constraints : 2102
+  → Predicted HARD    : 1647
+  → Predicted SOFT    : 307
+High confidence (≥3)  : 329
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   If the other party at any time desires a copy of the transcript, it must share equally the cost of the reporter and tran...
+
+2. [HARD] score=4
+   Such meetings are not to exceed 3 hours each day total unless a majority of the involved faculty consents. 4.5 Required ...
+
+3. [HARD] score=4
+   Article IX – Hours, Duties, and Work Year be conducted by QED-C trained personnel or other personnel using QED-C develop...
+
+4. [HARD] score=4
+   If, however, in a combined elementary-secondary program the teacher remains in a situation which is equivalent to the re...
+
+5. [SOFT] score=4
+   As an exception, and to be known as "Flexible B Basis", the 221 days of assignment for employees in year-round schools m...
+
+6. [SOFT] score=4
+   As an exception, and to be known as "Flexible C Basis,” the 204 days of assignment for employees in year-round schools m...
+
+7. [SOFT] score=4
+   Section 7801, and have been employed by the District for at least 10 years, the period between evaluations may, in the j...
+
+8. [HARD] score=4
+   Except in compelling circumstances, the employee shall be furnished a copy within 30 days of the District's receipt of t...
+
+9. [HARD] score=4
+   If the District does not agree to mediation, the unit member or the Union may proceed pursuant to Article V (Grievance P...
+
+10. [HARD] score=4
+   If mediation occurs but does not result in resolution of the issue(s), the unit member or the Union may proceed pursuant...

@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — Carpenters_Interior_Exterior_2022
+Generated: 2026-04-05 22:43
+==================================================
+
+Pages processed       : 78
+Total sentences       : 826
+Candidate constraints : 485
+  → Predicted HARD    : 412
+  → Predicted SOFT    : 59
+High confidence (≥3)  : 75
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [SOFT] score=4
+   (a) When so elected by the Contractor, multiple shifts may be worked for five or more consecutive days, provided that th...
+
+2. [HARD] score=3
+   The Contractor may subcontract work on metal stud panels or framed walls in accordance with the terms of this Agreement;...
+
+3. [SOFT] score=3
+   No contractor may subcontract any work, including solely the furnishing of labor, covered by this Agreement to any perso...
+
+4. [SOFT] score=3
+   Notwithstanding any provision of this Article II, the contractor may subcontract stocking and scrapping to any contracto...
+
+5. [HARD] score=3
+   Notwithstanding any provisions of this Agreement or any Memorandum Agreement to the contrary, provisions of this Section...
+
+6. [HARD] score=3
+   No contractor, whether he is a sole proprietor, a partner, a shareholder, a member of the board of directors of a corpor...
+
+7. [HARD] score=3
+   (a) In the employment of persons for all work covered by this Agreement, the following provisions subject to the conditi...
+
+8. [SOFT] score=3
+   (g) When ordering workers Contractors will give notice to the Regional Council not later than 2:30 p.m. of the day prior...
+
+9. [HARD] score=3
+   For purposes of this sub-section, the 48 hour provision shall commence with the beginning of dispatch hours of the Regio...
+
+10. [HARD] score=3
+   (h) Subject to the foregoing, Contractors shall have complete freedom of selectivity in hiring and Contractors retain th...

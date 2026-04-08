@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — IBEW_48_Oregon_2024_2026
+Generated: 2026-04-05 22:44
+==================================================
+
+Pages processed       : 46
+Total sentences       : 565
+Candidate constraints : 390
+  → Predicted HARD    : 331
+  → Predicted SOFT    : 42
+High confidence (≥3)  : 52
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   No individual employee shall be paid overtime compensation unless they have worked their 8 or 10 hours (depending on the...
+
+2. [HARD] score=3
+   Article I Effective Date/Changes/Grievances/Disputes Effective Date Section 1.01 This Agreement shall take effect Januar...
+
+3. [HARD] score=3
+   It shall continue in effect from year to year thereafter, from January 1 through December 31 of each year, unless change...
+
+4. [HARD] score=3
+   Section 1.02(b) Whenever notice is given for changes, the nature of the changes desired must be specified in the notice,...
+
+5. [HARD] score=3
+   Section 1.03 During the term of this Agreement, there shall be subject to change or supplement at any time by mutual con...
+
+6. [HARD] score=3
+   However, it shall also meet within 48 hours when notice is given by either party.
+
+7. [HARD] score=3
+   In the event that these two are unable to adjust any matter within 48 hours, they shall refer the same to the Labor-Mana...
+
+8. [HARD] score=3
+   The Employer shall, therefore, have no restrictions except those specifically provided for in the collective bargaining ...
+
+9. [HARD] score=3
+   Journeyman Recall by Name Section 2.03(b) The employer shall have the right to recall Journeymen by name, subject to the...
+
+10. [SOFT] score=3
+   Journeymen may be recalled at any time up until 90 days from the date the employee is terminated due to layoff by an Emp...

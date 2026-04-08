@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — ALPA_United_Pilots_2023
+Generated: 2026-04-04 16:32
+==================================================
+
+Pages processed       : 598
+Total sentences       : 6073
+Candidate constraints : 3605
+  → Predicted HARD    : 2850
+  → Predicted SOFT    : 578
+High confidence (≥3)  : 672
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   DocuSign Envelope ID: 5F52E528-186A-48D6-9D3A-4821301948A4 3-J-1-d-(2) The arbitrator’s award shall be issued no later t...
+
+2. [HARD] score=4
+   (3) meals scheduled 16:00 hours or more in duration 4-A-2-b Notwithstanding Section 4-A-2-a, the ALPA Hotel Committee an...
+
+3. [HARD] score=4
+   In this case, there shall be fifteen (15) unfilled vacancies in the SFO B737 FO Category. 8-C-4-a-(3) The Categories tha...
+
+4. [HARD] score=4
+   In the event that the Company chooses not to lift existing freezes to fill unfilled narrowbody fleet Captain vacancies, ...
+
+5. [HARD] score=4
+   No line Pilot shall be assigned as a Captain fill-in unless that Pilot holds a type rating for that aircraft and has acc...
+
+6. [HARD] score=4
+   Notwithstanding Section 9-H, this paragraph is not waivable by a new-hire Pilot. 9-G-3-b-(1) When staffing permits, the ...
+
+7. [HARD] score=4
+   An I/E who calls in sick for training that was scheduled on a day off shall not be paid and shall not be charged sick le...
+
+8. [HARD] score=4
+   DocuSign Envelope ID: 5F52E528-186A-48D6-9D3A-4821301948A4 Section 17 - Grievances 17-A Non-Disciplinary Grievances A Pi...
+
+9. [HARD] score=4
+   However, the Company must then allow an equivalent number of hours to be unassigned in the award run. 20-C-5-e If the Co...
+
+10. [HARD] score=4
+   Day 1: MCO EWR 0710 1000 EWR FLL 1205 1610 [Cancelled] Day 2: FLL ORD 0800 1020 ORD CUN 1140 1525 Day 3: CUN IAD 0845 13...

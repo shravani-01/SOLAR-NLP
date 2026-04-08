@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — 1199SEIU_Columbia_Cafeteria_2022_2025
+Generated: 2026-04-06 22:54
+==================================================
+
+Pages processed       : 60
+Total sentences       : 699
+Candidate constraints : 378
+  → Predicted HARD    : 293
+  → Predicted SOFT    : 52
+High confidence (≥3)  : 37
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   This authorization may be revoked by a 30 day written notice sent to 1199SEIU Federal Credit Union, unless this authoriz...
+
+2. [HARD] score=3
+   At the time a new Employee subject to this Agreement is hired, the University shall deliver to said Employee a written n...
+
+3. [HARD] score=3
+   All Employees on the active payroll as of June 1, 2022, who are not members of the Union shall become members of the Uni...
+
+4. [HARD] score=3
+   Subject to Article 32, an Employee who has failed to maintain membership in good standing as required by this Article, s...
+
+5. [HARD] score=3
+   Notwithstanding the foregoing, upon the return of an Employee to work from any of the foregoing enumerated absences, the...
+
+6. [HARD] score=3
+   Neither the Employer nor the Union shall discriminate against any Employee because of physical and/or mental disabilitie...
+
+7. [HARD] score=3
+   No Employee shall engage in any Union activity, including the distribution of literature, which could interfere with the...
+
+8. [HARD] score=3
+   During or at the end of the probationary period, the University may discharge any such Employee at will and such dischar...
+
+9. [HARD] score=3
+   (a) In the event of a permanent layoff within a job classification in one department, probationary employees within that...
+
+10. [HARD] score=3
+   (8) week probationary period, during which he/she may be removed from the position and shall be laid off if his/her perf...

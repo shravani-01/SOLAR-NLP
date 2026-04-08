@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — Carpenters_SanDiego_MLA_2022_2026
+Generated: 2026-04-05 22:43
+==================================================
+
+Pages processed       : 97
+Total sentences       : 1320
+Candidate constraints : 677
+  → Predicted HARD    : 571
+  → Predicted SOFT    : 73
+High confidence (≥3)  : 55
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   This Agreement shall become effective on July 1, 2022 and shall remain in full force and effect through July 1, 2026, an...
+
+2. [HARD] score=3
+   The Contractor may subcontract such work on concrete forms or framed walls in accordance with the terms of this Agreemen...
+
+3. [HARD] score=3
+   The Contractor may subcontract work on metal stud panels or framed walls in accordance with the terms of this Agreement;...
+
+4. [HARD] score=3
+   All work performed in the Contractors warehouses, shops or yards which have been particularly provided or set up to hand...
+
+5. [HARD] score=3
+   SECTION 10 GENERAL SAVINGS CLAUSE It is not the intent of either party hereto to violate any laws, rulings, or regulatio...
+
+6. [HARD] score=3
+   DocuSign Envelope ID: 29ED1888-416D-4779-8834-4851C932123B participation in, be denied the benefits of, or be otherwise ...
+
+7. [HARD] score=3
+   DocuSign Envelope ID: 29ED1888-416D-4779-8834-4851C932123B that the Steward shall remain on the job as long as there is ...
+
+8. [HARD] score=3
+   The foregoing promises by the Union and the Employer shall be specifically enforceable by the Union and the Employer reg...
+
+9. [SOFT] score=3
+   Any discharge may be subject to the grievance procedure.
+
+10. [HARD] score=3
+   (8) hours of work performed on a Saturday shall be payable at the rate of one and one-half (1 ½) times the employee's st...

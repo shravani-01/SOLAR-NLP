@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — IBEW_1245_PGE_2022_2025
+Generated: 2026-04-05 22:43
+==================================================
+
+Pages processed       : 254
+Total sentences       : 2645
+Candidate constraints : 1299
+  → Predicted HARD    : 943
+  → Predicted SOFT    : 267
+High confidence (≥3)  : 227
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   If an Ad Hoc Negotiating Committee is unable to reach a disposition of the "suspended" case within 180 days of the date ...
+
+2. [HARD] score=4
+   Except in emergencies, employees shall make a good faith effort to notify their supervisor at least 24 hours in advance ...
+
+3. [HARD] score=4
+   Except in emergencies, at least 14 days before a new or revised accident prevention rule is put into effect and dissemin...
+
+4. [HARD] score=4
+   (a) In the event of a serious injury or fatal accident involving any employee covered by this Agreement, Company shall n...
+
+5. [HARD] score=4
+   Part-time employees shall be entitled to Service and prorated benefits, vacations and sick leave based on the ratio of t...
+
+6. [HARD] score=4
+   employee having ten workdays at the straight rate of pay in the payroll period involved in the change. 202.4 HOURS - GEN...
+
+7. [HARD] score=4
+   (Amended 1-1-91) 202.14 HOURS - BOARDING HOUSE EMPLOYEES Notwithstanding the provisions of Section 202.4, the eight regu...
+
+8. [HARD] score=4
+   (a) There shall be included as part of the eight hours worked at the overtime rate in such 16 hour period any travel tim...
+
+9. [HARD] score=4
+   (a) When by reason of an emergency in the operation of a plant or other property an employee, other than a shift employe...
+
+10. [HARD] score=4
+   (Amended 1-1-91) 212.7 TEMPORARY UPGRADES Employees temporarily upgraded, whether on a time-card basis or not, shall hav...

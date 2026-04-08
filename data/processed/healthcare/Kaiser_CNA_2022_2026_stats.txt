@@ -1,5 +1,5 @@
 SOLAR Extraction Stats — Kaiser_CNA_2022_2026
-Generated: 2026-04-01 20:57
+Generated: 2026-04-06 22:55
 ==================================================
 
 Pages processed       : 263

@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — NYC_UFT_Teachers_MOA_2023
+Generated: 2026-04-06 22:57
+==================================================
+
+Pages processed       : 38
+Total sentences       : 616
+Candidate constraints : 305
+  → Predicted HARD    : 208
+  → Predicted SOFT    : 71
+High confidence (≥3)  : 49
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [SOFT] score=4
+   CSE)  Supervisors of Nurses and Therapists  Administrative Education Officers & Administrative Education Analysts  Ed...
+
+2. [HARD] score=3
+   INTRODUCTION The collective bargaining agreements between the Board and the Union which expired on September 13, 2022, c...
+
+3. [HARD] score=3
+   Employees who worked less than full time and/or who were on payroll less than the full Look-Back Year shall receive a pr...
+
+4. [HARD] score=3
+   May 1, 2027 $1,035.00 The annual payment shall be recurring and, effective on May 1, 2026, is subject to collective barg...
+
+5. [HARD] score=3
+   LONGEVITY INCREMENTS All longevities, step increments, differentials and other rates of pay not otherwise covered in APP...
+
+6. [HARD] score=3
+   Default Workday Configuration for Teachers: Unless modified through a School-Based Option (“SBO”) pursuant to Article 8B...
+
+7. [HARD] score=3
+   (1) The school day shall be 6 hours and 20 minutes Monday through Friday and the day shall start no earlier than 8:00 a....
+
+8. [HARD] score=3
+   (c) Each week there shall be 55 minutes for Parent Engagement activities as set forth below in section c of this section...
+
+9. [HARD] score=3
+   The workday shall be 6 hours and 50 minutes. ii.
+
+10. [HARD] score=3
+   Amend Article 6 as follows: Multi-Session and other Schools using 6:50 minute School Day: One professional activity peri...

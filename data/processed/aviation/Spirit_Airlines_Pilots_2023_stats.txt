@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — Spirit_Airlines_Pilots_2023
+Generated: 2026-04-04 16:33
+==================================================
+
+Pages processed       : 292
+Total sentences       : 3035
+Candidate constraints : 1296
+  → Predicted HARD    : 766
+  → Predicted SOFT    : 318
+High confidence (≥3)  : 214
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   When an aircraft not covered by this Agreement (defined as having a seating capacity of either more than 180 passengers ...
+
+2. [HARD] score=4
+   Conferences shall begin within 15 days after request has been made for such conferences unless otherwise mutually agreed...
+
+3. [HARD] score=4
+   The dispute shall be heard expeditiously no later than 20 days following the submission to the System Board and decided ...
+
+4. [HARD] score=4
+   A pilot who is furloughed, retires, dies, goes on a leave of absence anticipated to be more than six months, resigns wit...
+
+5. [HARD] score=4
+   Conferences shall begin within 15 days after the request has been made for such conferences unless otherwise mutually ag...
+
+6. [HARD] score=4
+   A pilot shall not remain on duty for more than 12 hours from the time he reports for work (including reasonable travel f...
+
+7. [HARD] score=4
+   A pilot on nonpay status shall retain but not accrue sick leave credit after the first 30 days of such period of absence...
+
+8. [HARD] score=4
+   Upon medical retirement, a pilot shall be paid for his accumulated sick leave at 100 percent of his hourly rate of pay, ...
+
+9. [HARD] score=4
+   A pilot who retires at the mandatory retirement age with 25 years of service shall be paid for his accumulated sick leav...
+
+10. [HARD] score=4
+   A pilot who retires at the mandatory retirement age shall be paid for his accumulated sick leave at 75 percent of his ho...

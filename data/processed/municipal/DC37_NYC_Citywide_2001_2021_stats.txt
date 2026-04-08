@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — DC37_NYC_Citywide_2001_2021
+Generated: 2026-04-06 22:56
+==================================================
+
+Pages processed       : 128
+Total sentences       : 97
+Candidate constraints : 83
+  → Predicted HARD    : 75
+  → Predicted SOFT    : 7
+High confidence (≥3)  : 19
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   October 151, or January 151 thereafter, any per diem employee who has worked the appropriate number of hours in the norm...
+
+2. [HARD] score=4
+   Notwithstanding the provisions of this Section 5, an employee, who at the time of appointment to a title is assigned to ...
+
+3. [HARD] score=4
+   For employees covered by the provisions of FLSA, voluntary overtime actually worked in excess of forty hours in a calend...
+
+4. [HARD] score=3
+   For the purposes of this Agreement, the term "employee" shall mean a full-time per annum worker, unless otherwise specif...
+
+5. [HARD] score=3
+   Seniority for eligibility for benefits pursuant to this Section 5 shall be computed from the date 18 months prior to the...
+
+6. [HARD] score=3
+   Upon the written approval of an employee's request by the agency head or designee, an employee who works ordered involun...
+
+7. [HARD] score=3
+   If an employee has reached the 240 hour maximum accrual for FLSA compensatory time, all subsequent overtime earned under...
+
+8. [HARD] score=3
+   Credit for all authorized overtime beyond the normal work week shall accrue in units of one-quarter(¼) hour to the neare...
+
+9. [HARD] score=3
+   For employees in the titles of Houseparent or Senior Houseparent, the hourly basic rate shall be calculated by multiplyi...
+
+10. [HARD] score=3
+   (I) full hour is compensable in a calendar week (unless such employee is covered by the provisions of the FLSA and has a...

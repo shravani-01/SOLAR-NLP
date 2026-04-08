@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — 32BJ_CMU_2024
+Generated: 2026-04-06 18:33
+==================================================
+
+Pages processed       : 40
+Total sentences       : 598
+Candidate constraints : 347
+  → Predicted HARD    : 286
+  → Predicted SOFT    : 43
+High confidence (≥3)  : 48
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   However, the second request to use an emergency day in cases of personal or family emergencies the employee shall provid...
+
+2. [HARD] score=4
+   REDUCTIONS IN FORCE 1) There shall be no reduction in the work force except where there is: a) A documented change in wo...
+
+3. [HARD] score=3
+   If the Employer fails to deduct and remit to the Union the dues or other monies required to be deducted by the tenth (10...
+
+4. [HARD] score=3
+   The Employer shall make reasonable efforts to transmit dues, initiation fees, American Dream Fund Contributions and all ...
+
+5. [HARD] score=3
+   The regular straight time hourly rates of pay for various job classifications covered by this Agreement shall be paid an...
+
+6. [HARD] score=3
+   Effective January 1, 2022, new employees may be paid based on the following schedule until, when combined with the annua...
+
+7. [HARD] score=3
+   The Employer shall have the right in each instance to fix schedules subject to change on forty-eight (48) hours’ notice,...
+
+8. [HARD] score=3
+   employer, for all matters except for vacation purposes, the seniority for which shall be determined by the date of comme...
+
+9. [SOFT] score=3
+   During this Probation Period, the employee is a probationary employee, and during said period, discharge may be made by ...
+
+10. [HARD] score=3
+   (d) absence because of sickness and accident after twenty-four (24) months unless such absence is due to a compensable d...

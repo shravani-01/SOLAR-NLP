@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — IBEW_Local6_SF_2022_2024
+Generated: 2026-04-06 22:56
+==================================================
+
+Pages processed       : 108
+Total sentences       : 1691
+Candidate constraints : 759
+  → Predicted HARD    : 583
+  → Predicted SOFT    : 131
+High confidence (≥3)  : 114
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   The work covered by and subject to the terms and conditions of this Agreement shall be that work that upon execution of ...
+
+2. [HARD] score=3
+   Upon notification of an appropriate management person, stewards, subject to management approval, which shall not be unre...
+
+3. [SOFT] score=3
+   Additional members may be invited to a meeting on a case by case basis subject to mutual agreement of the parties. 16.
+
+4. [HARD] score=3
+   ARTICLE I - REPRESENTATION shall take place in January, April, July, and October, subject to change by mutual agreement....
+
+5. [HARD] score=3
+   The Committee shall meet quarterly in January, April, July, and October, subject to change with mutual agreement. 18.
+
+6. [HARD] score=3
+   Except as otherwise provided in this subsection 1, each pay period, the City shall remit Contributions to the Union, aft...
+
+7. [HARD] score=3
+   Except as otherwise provided in this subsection 1, the City shall continue to deduct and remit Contributions until it re...
+
+8. [HARD] score=3
+   The Union shall respond to such employee inquiries within no less than 21 business days after receipt. 2.
+
+9. [HARD] score=3
+   The Union shall be responsible for the defense of any claim within this indemnification provision, subject to the follow...
+
+10. [HARD] score=3
+   Letters of reprimand and adverse employee evaluations shall not be subject to the grievance procedure unless referenced ...

@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — SEIU_503_PACS_2024_2025
+Generated: 2026-04-06 22:56
+==================================================
+
+Pages processed       : 75
+Total sentences       : 959
+Candidate constraints : 445
+  → Predicted HARD    : 304
+  → Predicted SOFT    : 102
+High confidence (≥3)  : 47
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   Notwithstanding any other provision of this Agreement, the Union and the Employer shall designate a top-level representa...
+
+2. [HARD] score=3
+   (c) Temporary employees shall be covered by all terms of this Agreement, except that they shall not be entitled to senio...
+
+3. [SOFT] score=3
+   Except when it is necessary to ensure safe, efficient, and resident-centered care, employees may speak the language of t...
+
+4. [HARD] score=3
+   To the extent permitted by law, no employee covered by this Agreement shall suffer any loss of seniority, compensation, ...
+
+5. [HARD] score=3
+   To the extent permitted by law, the Employer shall not act against an employee solely because the employee is subject to...
+
+6. [HARD] score=3
+   To the extent permitted by law, the Employer shall not require or demand proof of immigration status, except as required...
+
+7. [HARD] score=3
+   To the extent permitted by law, the Employer shall not discipline, discharge, or discriminate against any employee becau...
+
+8. [HARD] score=3
+   To the extent permitted by law, an employee subject to immigration or deportation proceedings shall not be discharged so...
+
+9. [HARD] score=3
+   Not later than the thirty-first (31st) day following the beginning of employment, or the effective date of this Agreemen...
+
+10. [SOFT] score=3
+   Notwithstanding anything else in this Agreement to the contrary, the Union may use the Article 23 Grievance and Arbitrat...

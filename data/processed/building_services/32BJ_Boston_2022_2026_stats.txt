@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — 32BJ_Boston_2022_2026
+Generated: 2026-04-06 18:33
+==================================================
+
+Pages processed       : 35
+Total sentences       : 431
+Candidate constraints : 278
+  → Predicted HARD    : 209
+  → Predicted SOFT    : 52
+High confidence (≥3)  : 50
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   facility and space limitations; except this paragraph shall not include work contracted by freight carriers; i.
+
+2. [HARD] score=3
+   Provided that: Notwithstanding anything to the contrary, if the Employer acquires a new account in a facility or buildin...
+
+3. [SOFT] score=3
+   The Employer may hire or engage security personnel to perform specialized functions (such as, but not limited to, canine...
+
+4. [SOFT] score=3
+   During the probationary period the employees will be represented by the Union and will be covered by all of the terms an...
+
+5. [HARD] score=3
+   ARTICLE 5: MANAGEMENT RIGHTS Subject to the terms of this Agreement, the Employer shall have the exclusive right to mana...
+
+6. [SOFT] score=3
+   Any of the rights, power or authority the Employer had when there was no Agreement are retained by the Employer and may ...
+
+7. [HARD] score=3
+   The Union recognizes that the Employer provides a service of critical importance to the customer and that this Agreement...
+
+8. [HARD] score=3
+   Except as provided in Article 5, seniority shall be broken by any of the following events: • Resignation, retirement or ...
+
+9. [HARD] score=3
+   Summer Layoff Procedure for Higher Education Sites Employees working in Higher Education Institutions, who have no sched...
+
+10. [HARD] score=3
+   Upon notice from the employer of Employer’s intention to assign the employee to restored hours, the employee must immedi...

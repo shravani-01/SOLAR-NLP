@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — IBEW_1245_CA_Outside_2022_2027
+Generated: 2026-04-05 22:43
+==================================================
+
+Pages processed       : 43
+Total sentences       : 563
+Candidate constraints : 336
+  → Predicted HARD    : 279
+  → Predicted SOFT    : 44
+High confidence (≥3)  : 36
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [SOFT] score=3
+   Steel or metal structurnes used for the purpose of carrying electrical wires, conductors or u equipment (this includes t...
+
+2. [HARD] score=3
+   All twill benefit by continuo 2 us peace and by c adjusting any differences by rational, coammon-sense methods. 0 u i 2 ...
+
+3. [HARD] score=3
+   It shall continue in effect from year to year thereafter, from June 1 through May 31 of each year, unless changed or ter...
+
+4. [HARD] score=3
+   (a) Either party or an Employer withdrawing representation from the Chapter or not represented by the Chapter, desiring ...
+
+5. [HARD] score=3
+   (b) Whenever notice is given for changes, the nature of the changes desired must be specified in the notice, or no later...
+
+6. [HARD] score=3
+   However, it shall also meeet within 48 hours when notice is given by either party.
+
+7. [HARD] score=3
+   In the event that these two are unable to adjust any matter within 48 hours, they shall refer the same to the LaborManag...
+
+8. [HARD] score=3
+   ARTICLE II EMPLOYEES SHALL NOT CONTRACT 2.1 Employees covered by this Agreement, except those meeting the requirements o...
+
+9. [HARD] score=3
+   An applicant who qualifies for Group I in a local union shall be so registered electronically and remain on Group I in t...
+
+10. [HARD] score=3
+   (3) years in the geographical area covered by the collective bargaining agreement. 2.8 If the registration list is exhau...

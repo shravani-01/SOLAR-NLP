@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — SEIU1199NW_MultiCare_GoodSamaritan_2022_2025
+Generated: 2026-04-06 22:55
+==================================================
+
+Pages processed       : 64
+Total sentences       : 864
+Candidate constraints : 449
+  → Predicted HARD    : 323
+  → Predicted SOFT    : 90
+High confidence (≥3)  : 47
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   For purposes of this Agreement and the method of computing EIT, PTO, and other conditions of employment, except as other...
+
+2. [HARD] score=3
+   New bargaining unit job classifications established during the term of this Agreement shall be covered by this Agreement...
+
+3. [HARD] score=3
+   Employees who fail to comply with this requirement shall be discharged by the Employer within thirty (30) days after rec...
+
+4. [HARD] score=3
+   Union staff shall not have access to employees' lounges, nursing units or other patient care areas unless advance approv...
+
+5. [HARD] score=3
+   Access to the Employer's premises shall be subject to the same general rules applicable to other non-employees and shall...
+
+6. [HARD] score=3
+   Unless otherwise agreed to by the Employer, the investigation of grievances and other Union business shall be conducted ...
+
+7. [SOFT] score=3
+   Subject to appropriate advance notice and scheduling requirements, Union officers, delegates and contract committee memb...
+
+8. [SOFT] score=3
+   (1) employee per unit/department unless there is more than thirty-five (35) employees in which case there may be two
+
+9. [HARD] score=3
+   After ninety (90) calendar days of continuous employment, the employee shall attain regular status unless specifically a...
+
+10. [HARD] score=3
+   Time worked which is paid on an overtime basis shall count as time worked for purposes of computing benefits not to exce...

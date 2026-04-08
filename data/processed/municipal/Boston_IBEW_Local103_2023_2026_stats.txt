@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — Boston_IBEW_Local103_2023_2026
+Generated: 2026-04-06 22:56
+==================================================
+
+Pages processed       : 34
+Total sentences       : 523
+Candidate constraints : 320
+  → Predicted HARD    : 270
+  → Predicted SOFT    : 37
+High confidence (≥3)  : 46
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   (4) day workweek shall not be eligible for overtime until and unless all prerequisites regarding overtime eligibility ap...
+
+2. [HARD] score=4
+   (4) day workweek shall not be entitled to overtime unless they exceed 8.75 hours in a day or 35 hours in a week.
+
+3. [HARD] score=3
+   The Municipal Employer shall not be deemed to be limited in any way by this Agreement in the performance of the regular ...
+
+4. [HARD] score=3
+   No employee who has completed six months of actual service shall be disciplined, suspended, demoted or discharged except...
+
+5. [HARD] score=3
+   In the event of group discipline arising out of the same incident, the dispute shall not be processed under the contract...
+
+6. [HARD] score=3
+   The arbitrator shall submit in writing their decision within thirty (30) days after the conclusion of testimony and argu...
+
+7. [HARD] score=3
+   Any matter, which is subject to the jurisdiction of the Civil Service Commission or any Retirement Board established by ...
+
+8. [HARD] score=3
+   No agreement, understanding, alteration or variation of the agreements, terms or provisions herein contained shall bind ...
+
+9. [HARD] score=3
+   All authorized overtime service in excess of the regular work day or the regular workweek, or on the sixth and seventh c...
+
+10. [HARD] score=3
+   However, in the event of unauthorized absence in the week in which overtime service is performed, or in the event of abs...

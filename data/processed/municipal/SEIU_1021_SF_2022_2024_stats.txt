@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — SEIU_1021_SF_2022_2024
+Generated: 2026-04-06 22:57
+==================================================
+
+Pages processed       : 248
+Total sentences       : 3426
+Candidate constraints : 1553
+  → Predicted HARD    : 1191
+  → Predicted SOFT    : 267
+High confidence (≥3)  : 208
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   Sick leave with pay credits shall be earned at the rate of .05 hours for each hour of regularly scheduled paid service e...
+
+2. [SOFT] score=4
+   The Airport will annually require at least 25% of the covered employees to undergo drug testing, except that the Airport...
+
+3. [HARD] score=3
+   Issues related to classification descriptions shall be subject to the meet and confer process with final review by the C...
+
+4. [HARD] score=3
+   Issues related to the effects of classification decisions on hours, wages, terms and conditions of employment shall be s...
+
+5. [HARD] score=3
+   Except to the extent there is contained in this Agreement express and specific provision to the contrary, nothing herein...
+
+6. [HARD] score=3
+   Except as provided otherwise herein, and in accordance with applicable federal, state and local law, the provisions of t...
+
+7. [HARD] score=3
+   The Union shall be entitled to collect, through the payroll deduction method, membership dues, COPE deductions, and any ...
+
+8. [HARD] score=3
+   The selection of such employee members, or substitutions or replacements therefore, and their attendance at meetings dur...
+
+9. [HARD] score=3
+   Official representatives shall not be provided compensatory release time for participating in meeting and conferring on ...
+
+10. [HARD] score=3
+   Upon notification of an appropriate management person, stewards and designated officers of the Union, subject to managem...

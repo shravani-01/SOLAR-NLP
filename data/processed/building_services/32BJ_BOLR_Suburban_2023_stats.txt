@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — 32BJ_BOLR_Suburban_2023
+Generated: 2026-04-06 18:33
+==================================================
+
+Pages processed       : 40
+Total sentences       : 599
+Candidate constraints : 363
+  → Predicted HARD    : 306
+  → Predicted SOFT    : 45
+High confidence (≥3)  : 45
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   This Agreement shall apply to all service employees employed in any facility, in Delaware, Chester, Bucks, and Montgomer...
+
+2. [HARD] score=3
+   This agreement shall apply to all service employees employed in any facility in New Castle County and Wilmington, Delawa...
+
+3. [HARD] score=3
+   The Employer shall be bound by the applicable 32BJ area-wide agreements for all work performed within and subject to the...
+
+4. [HARD] score=3
+   Transit terminals and complexes of contiguous commonly owned commercial buildings of 100,000 square feet or more, shall ...
+
+5. [HARD] score=3
+   If the Employer takes over jobs subject to rider Agreements, the Employer and the Union shall assume and be bound by the...
+
+6. [HARD] score=3
+   Upon the Union’s written request, except where prohibited by law, the Employer shall within seven
+
+7. [HARD] score=3
+   Immediately upon the Employer being notified that it will become a service provider at a location subject to this Agreem...
+
+8. [HARD] score=3
+   The Union will not disrupt the employees’ work and shall provide reasonable written notice of its visit to the work-site...
+
+9. [SOFT] score=3
+   Should any employee report more than thirty (30) minutes after his/her scheduled start time because of a Union meeting, ...
+
+10. [HARD] score=3
+   Upon receipt by the Employer of a letter from the Union’s Secretary-Treasurer requesting an employee’s discharge because...

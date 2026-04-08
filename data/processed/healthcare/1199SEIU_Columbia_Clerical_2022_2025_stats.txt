@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — 1199SEIU_Columbia_Clerical_2022_2025
+Generated: 2026-04-06 22:54
+==================================================
+
+Pages processed       : 59
+Total sentences       : 704
+Candidate constraints : 365
+  → Predicted HARD    : 280
+  → Predicted SOFT    : 50
+High confidence (≥3)  : 37
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   (c) To be eligible for benefits under this Article, an Employee in the Central Mail Room who is absent due to illness or...
+
+2. [HARD] score=4
+   This authorization may be revoked by a 30 day written notice sent to 1199 SEIU Federal Credit Union, unless this authori...
+
+3. [HARD] score=3
+   At the time a new Employee subject to this agreement is hired, the Employer shall deliver to said employee a written not...
+
+4. [HARD] score=3
+   Part-time Employees covered by this Agreement shall receive fringe benefits, wage rates and wage increases hereunder on ...
+
+5. [HARD] score=3
+   Subject to Article 31, an Employee who has failed to maintain membership in good standing as required by this Article, s...
+
+6. [HARD] score=3
+   Notwithstanding the foregoing, upon the return of an Employee to work from any of the foregoing enumerated absences, the...
+
+7. [HARD] score=3
+   Neither the Employer nor the Union shall discriminate against any Employee because of physical and/or mental disabilitie...
+
+8. [HARD] score=3
+   No Employee shall engage in any Union activity, including the distribution of literature, which could interfere with the...
+
+9. [HARD] score=3
+   During or at the end of the probationary period, the Employer may discharge any such Employee at will and such discharge...
+
+10. [HARD] score=3
+   (e) Temporary Employees, as defined in Article 1, paragraph 1(b), shall have no seniority during the time they occupy th...

@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — SEIU_1199_Ohio_2022
+Generated: 2026-04-06 22:55
+==================================================
+
+Pages processed       : 277
+Total sentences       : 2647
+Candidate constraints : 1432
+  → Predicted HARD    : 1032
+  → Predicted SOFT    : 329
+High confidence (≥3)  : 123
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   ARTICLE 10 - VACATION ALLOWANCE 10.01 Rate of Accrual Permanent full-time employees shall be granted vacation leave with...
+
+2. [SOFT] score=4
+   An individual who fails to notify OOD of the loss of licensure within 14 days after it is lost may be responsible for re...
+
+3. [HARD] score=3
+   Unless otherwise mutually agreed by the parties, those Memoranda of Understanding, amendments, Letters of Intent, or any...
+
+4. [SOFT] score=3
+   In the event of a dispute between the parties as to future inclusions or exclusions from the units resulting from the es...
+
+5. [HARD] score=3
+   Employer as well as for the time spent en route to and from such negotiations, provided that no Union negotiating team m...
+
+6. [HARD] score=3
+   Such deduction shall remain in effect until the Employer is properly notified in writing by the employee of any change. ...
+
+7. [HARD] score=3
+   ARTICLE 6 - NON-DISCRIMINATION 6.01 Non-Discrimination Neither the Employer nor the Union shall unlawfully discriminate ...
+
+8. [SOFT] score=3
+   Once the grievance has been submitted at Step 2 of the grievance procedure, the grievance form may not be altered except...
+
+9. [HARD] score=3
+   Any grievances resolved at Step 2 shall not be precedent setting at other institutions or agencies unless otherwise spec...
+
+10. [HARD] score=3
+   No mediator/arbitrator shall hear a case at both mediation and arbitration unless mutually agreed otherwise.

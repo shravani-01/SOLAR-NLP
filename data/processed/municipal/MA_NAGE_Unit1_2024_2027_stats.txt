@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — MA_NAGE_Unit1_2024_2027
+Generated: 2026-04-06 22:57
+==================================================
+
+Pages processed       : 135
+Total sentences       : 1394
+Candidate constraints : 804
+  → Predicted HARD    : 626
+  → Predicted SOFT    : 142
+High confidence (≥3)  : 106
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   An employee reassigned involuntarily under this section shall have the right to request to return to their previous posi...
+
+2. [HARD] score=4
+   APPENDIX D MEMORANDUM of UNDERSTANDING between the COMMONWEALTH OF MASSACHUSETTS and the NATIONAL ASSOCIATION OF GOVERNM...
+
+3. [HARD] score=3
+   ARTICLE 2 MANAGERIAL RIGHTS/PRODUCTIVITY Section 2.1 Except as otherwise limited by an express provision of this Agreeme...
+
+4. [HARD] score=3
+   Section 3.4 The Employer shall deduct dues or an agency fee from the pay of employees who request such deduction in acco...
+
+5. [HARD] score=3
+   ARTICLE 5 UNION BUSINESS Section 5.1 Union Representations Union staff representatives shall be permitted to have access...
+
+6. [HARD] score=3
+   Grievants shall be permitted to have time off without loss of pay for processing their grievances through the contractua...
+
+7. [HARD] score=3
+   Section 5.5 Union Uses of Premises The Union shall be permitted to use facilities of the Employer for the transaction of...
+
+8. [HARD] score=3
+   Employees who believe they are subject to such behavior shall raise their concerns with an appropriate manager or superv...
+
+9. [HARD] score=3
+   Grievances filed under this section shall not be subject to the arbitration provisions set forth in Article 23.
+
+10. [HARD] score=3
+   No employee shall be subject to retaliation for filing a complaint, giving a statement, or otherwise participating in th...

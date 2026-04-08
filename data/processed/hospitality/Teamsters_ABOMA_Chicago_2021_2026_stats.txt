@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — Teamsters_ABOMA_Chicago_2021_2026
+Generated: 2026-04-06 22:57
+==================================================
+
+Pages processed       : 29
+Total sentences       : 258
+Candidate constraints : 143
+  → Predicted HARD    : 124
+  → Predicted SOFT    : 14
+High confidence (≥3)  : 22
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   ARTICLE 9 Holidays 9.1 on page 9 Juneteenth added to Holiday list for a total of 9 paid Holidays EMPLOYER VACCINE MANDAT...
+
+2. [HARD] score=3
+   (i) 1,75% of Ihe amount of the monthly dues for each monlh which the dues are not submitted, or Oi) live hundred dollar:...
+
+3. [HARD] score=3
+   In the event of a layoff, it ~enior who docs not possess u qualification, certification, or license, required by u clien...
+
+4. [HARD] score=3
+   The Union shall have Ihe right to investigate the rea<;ons for any or discipline of 11 non· probationary employee and to...
+
+5. [SOFT] score=3
+   If the parties cannot agree, the may Union to arbitration t1~ provided for in this Section. ror arbilration shull be IT1...
+
+6. [HARD] score=3
+   Notwithstanding any Arbitrator shall have nO authority to alter, delete. amend. or the terms For Grievances filed after ...
+
+7. [HARD] score=3
+   An employee who is scheduled \0 work on a holiday but fuils 10 report to work shall forfeit his or her righl to holiday ...
+
+8. [HARD] score=3
+   The compensation for each holiday (holiday pay) for employees shall be based upon the average weekly hours scheduled as ...
+
+9. [HARD] score=3
+   (6) months or longer shall be entitled to tcn (10) comhined sick and/or personal days per year based upon the average we...
+
+10. [HARD] score=3
+   The Employer shall continue to contribute to the and Welfare Fund during FMLA leaves, to by law. 1S A In all ca~es of me...

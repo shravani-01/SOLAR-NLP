@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — UNITE_HERE_Westin_Bonaventure_LA
+Generated: 2026-04-06 22:58
+==================================================
+
+Pages processed       : 96
+Total sentences       : 1206
+Candidate constraints : 669
+  → Predicted HARD    : 559
+  → Predicted SOFT    : 69
+High confidence (≥3)  : 99
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   Any break in service, i.e., break in employment not in excess of 90 days, shall not constitute a break in continuous ser...
+
+2. [HARD] score=4
+   Claims of alleged violation of the terms and provisions of this Agreement should not be considered unless one of the par...
+
+3. [HARD] score=4
+   The grievance mediation hearing shall be held within 30 days of said written request, unless the time limit is extended ...
+
+4. [HARD] score=4
+   total number of work hours scheduled for each employee in the housekeeping, laundry, bell, front desk and room service u...
+
+5. [HARD] score=4
+   The permanent arbitrator shall hear and decide all disputes submitted to arbitration unless the permanent arbitrator is ...
+
+6. [SOFT] score=3
+   Notwithstanding any past practice, memoranda of understanding, or other agreements, the Employer may create and maintain...
+
+7. [HARD] score=3
+   In the event of a conflict between the English and Spanish versions of this Agreement, the English version shall prevail...
+
+8. [HARD] score=3
+   The parties understand this section shall not be used to assign work to non-laundry employees for more than one day unle...
+
+9. [HARD] score=3
+   The application of these four exceptions shall not result in layoff or reduction of hours of bargaining unit employees e...
+
+10. [HARD] score=3
+   In the event that the Employer voluntarily sells, transfers, or assigns all its right, title, or interest in the operati...

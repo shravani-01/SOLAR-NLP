@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — ATU_689_WMATA_2020_2024
+Generated: 2026-04-02 22:47
+==================================================
+
+Pages processed       : 163
+Total sentences       : 2586
+Candidate constraints : 1388
+  → Predicted HARD    : 1116
+  → Predicted SOFT    : 184
+High confidence (≥3)  : 192
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [SOFT] score=4
+   The Authority may hire up to 25 individual graduates from local high schools or vocational schools into entry level posi...
+
+2. [HARD] score=3
+   Such notice shall be sent not later than twenty (20) office working days from the date the employee's superintendent/man...
+
+3. [HARD] score=3
+   No employee may be disciplined for an accident in which mechanical fault is alleged to have contributed to the accident ...
+
+4. [HARD] score=3
+   Except as provided in the next sentence, any such discharge shall not be subject to the grievance procedure contained in...
+
+5. [HARD] score=3
+   (c) Employees who were or will hereafter be promoted or transferred to any position not included in the bargaining unit,...
+
+6. [HARD] score=3
+   If said employee should no longer qualify for such position or if such position is abolished, the employee shall be tran...
+
+7. [SOFT] score=3
+   An employee subject to the first sentence of this paragraph, who has lost time in excess of one regular workday , due so...
+
+8. [HARD] score=3
+   (d) The Authority shall establish a protocol to provide employees with 60 days’ notice of pending expiration of DOT Medi...
+
+9. [HARD] score=3
+   All employees in operating classifications shall have their vacation pay calculated on the basis of their regularly sche...
+
+10. [HARD] score=3
+   personal reasons at the request of the employee subject to approval by the employee's supervisor, provided that such app...

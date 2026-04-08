@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — UAW_GM_2023_Highlights
+Generated: 2026-04-05 22:08
+==================================================
+
+Pages processed       : 28
+Total sentences       : 302
+Candidate constraints : 47
+  → Predicted HARD    : 2
+  → Predicted SOFT    : 8
+High confidence (≥3)  : 5
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [SOFT] score=3
+   Paid Parental Leave | 275 Effective January 1, 2024, eligible members may be provided up to 2 weeks of paid time off for...
+
+2. [SOFT] score=3
+   C 208 Opinion (IMO)/Independent Medical Examiner The amount was increased to $350 and now (IME) for any member that has ...
+
+3. [SOFT] score=3
+   Day Dec. 30, 2024 Period Mar 29, 2024 Good Friday Dec. 31, 2024 April 1, 2024 Day after Easter Jan. 1, 2025 May 27, 2024...
+
+4. [SOFT] score=3
+   Day June 19, 2024 Juneteenth Day April 18, 2025 Good Friday July 4, 2024 Independence Day April 21, 2025 Day after Easte...
+
+5. [SOFT] score=3
+   Day April 3, 2026 Good Friday Mar. 26, 2027 Good Friday April 6, 2026 Day after Easter Mar. 29, 2027 Day after Easter Ma...
+
+6. [SOFT] score=2
+   While we Brownstown into the Master Agreement. may not have won everything we wanted, we won We also achieved something ...
+
+7. [HARD] score=2
+   Must meet eligibility requirements. 8
+
+8. [SOFT] score=2
+   Additionally, the Global Vehicle Development Process (GVDP) will continue as the process whereby future facility allocat...
+
+9. [SOFT] score=2
+   Due to recent updates of government, The new agreement, if ratified, will manufacturer and consensus guidelines, run for...
+
+10. [HARD] score=2
+   Both members must make SUB In-Progression and Traditional | EX.

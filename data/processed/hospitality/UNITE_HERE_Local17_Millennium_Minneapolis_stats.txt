@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — UNITE_HERE_Local17_Millennium_Minneapolis
+Generated: 2026-04-06 22:58
+==================================================
+
+Pages processed       : 47
+Total sentences       : 617
+Candidate constraints : 368
+  → Predicted HARD    : 300
+  → Predicted SOFT    : 51
+High confidence (≥3)  : 35
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   For the purpose of this Agreement, the term “employees” shall cover all employees in the food, steward, beverage, servic...
+
+2. [HARD] score=3
+   Employees shall acquire no vested interest in the rights or benefits granted herein which are not subject to being chang...
+
+3. [HARD] score=3
+   All rights or benefits which employees acquire under the terms of this Agreement shall extend only for the duration of t...
+
+4. [HARD] score=3
+   The Employer and the Union specifically agree that management shall have the right to direct the work force and to deter...
+
+5. [HARD] score=3
+   Such management rights and responsibilities shall include, but not be limited to, the following: the right to select the...
+
+6. [HARD] score=3
+   Participation by any employee in any such practices is prohibited by this Section shall be considered just and reasonabl...
+
+7. [HARD] score=3
+   In the event any violation of the previous paragraph occurs which is unauthorized by the Union, the Employer agrees that...
+
+8. [HARD] score=3
+   (b) The Union shall promptly order its members to return to work, notwithstanding the existence of a picket line, if req...
+
+9. [SOFT] score=3
+   However, an issue of fact as to whether or not any particular employee has engaged in, participated in, or encouraged an...
+
+10. [HARD] score=3
+   Only the fact as to whether or not an employee is engaged in a violation of this Article may be subject to the grievance...

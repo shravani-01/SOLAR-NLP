@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — SEIU_775_Millennia_2023
+Generated: 2026-04-06 22:56
+==================================================
+
+Pages processed       : 51
+Total sentences       : 660
+Candidate constraints : 400
+  → Predicted HARD    : 304
+  → Predicted SOFT    : 81
+High confidence (≥3)  : 33
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   The authorization shall remain in effect until or unless revoked in writing by the employee or the Union.
+
+2. [HARD] score=3
+   The roster shall include each employee’s first name, middle name and last name, social security number, date of birth, g...
+
+3. [SOFT] score=3
+   If the employee is not present, the employee should provide written authorization to enable the worker representative to...
+
+4. [SOFT] score=3
+   The Union may, during normal business hours, examine time sheets, work production or other records that pertain to an em...
+
+5. [HARD] score=3
+   SECTION 3.7: EMPLOYEE COMMUNICATIONS In order to facilitate communication relating to this agreement, the ongoing work o...
+
+6. [SOFT] score=3
+   The Employer further agrees that they should not discriminate in terms or conditions of employment on the basis of the a...
+
+7. [HARD] score=3
+   In cases of voluntary resignation and the employee returns within one year, the Employer shall have the sole discretion ...
+
+8. [HARD] score=3
+   ARTICLE 8: DISCIPLINE AND JUST CAUSE SECTION 8.1: JUST CAUSE AND RIGHT TO REPRESENTATION a) Just Cause and Progressive D...
+
+9. [HARD] score=3
+   (1) year, all identified negative materials shall be removed from his/her personnel files at the request of the employee...
+
+10. [SOFT] score=3
+   In cases of alleged client abuse or neglect, the employee may be reassigned only with his/her consent; otherwise, Admini...

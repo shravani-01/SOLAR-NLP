@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — CTU_ChiArts_2022_2024
+Generated: 2026-04-05 22:46
+==================================================
+
+Pages processed       : 129
+Total sentences       : 1629
+Candidate constraints : 950
+  → Predicted HARD    : 732
+  → Predicted SOFT    : 170
+High confidence (≥3)  : 98
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   Administration of the Agreement: The Employer shall make available for inspection to the Union any information that is a...
+
+2. [HARD] score=4
+   Bargaining unit members will receive an additional 30 days of continuous insurance benefits after their last pay period....
+
+3. [HARD] score=4
+   Emergency Unpaid Leave: A Bargaining Unit Member who has exhausted all benefit days and has no available benefit days ma...
+
+4. [HARD] score=4
+   If office staff members are required to work irregular hours, which include Board meetings scheduled outside of their no...
+
+5. [HARD] score=3
+   Attempts to informally resolve a grievance shall not toll the limits set forth in the Steps below, unless the parties mu...
+
+6. [HARD] score=3
+   Grievances concerning discharge shall be initiated at Step 2 unless otherwise agreed by the parties.
+
+7. [HARD] score=3
+   Except for cases of serious misconduct, discipline shall be progressive in nature, shall apply to same or similar acts o...
+
+8. [SOFT] score=3
+   Disciplinary Warnings more than twelve (12) months old may not be used for disciplinary purposes unless an employee has ...
+
+9. [SOFT] score=3
+   Steps of the disciplinary process may be skipped in cases of severe misconduct after thorough analysis of the total situ...
+
+10. [HARD] score=3
+   Stale Discipline: Notwithstanding the provisions herein, the Employer shall not rely on active employees’ records of dis...

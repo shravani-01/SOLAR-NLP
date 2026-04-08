@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — Carpenters_PNW_AGC_2021_2024
+Generated: 2026-04-05 22:43
+==================================================
+
+Pages processed       : 44
+Total sentences       : 711
+Candidate constraints : 353
+  → Predicted HARD    : 299
+  → Predicted SOFT    : 37
+High confidence (≥3)  : 29
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   Upon its expiration, this agreement shall continue from year to year, June 1 through May 31 of each year, by automatic r...
+
+2. [HARD] score=3
+   Except by mutual written agreement, termination of this Agreement or any annual contract effectuated through automatic r...
+
+3. [HARD] score=3
+   (3) Qualified applicants, reporting to the jobsite within twenty-four (24) hours after being ordered, must be put to wor...
+
+4. [HARD] score=3
+   A holiday shall be a twenty-four (24) hour period, beginning with the regular starting time of the first shift on the da...
+
+5. [HARD] score=3
+   No work shall be performed on Labor Day except to protect life and property or by mutual agreement of the Union and the ...
+
+6. [HARD] score=3
+   Rest Periods Employees shall be allowed a rest period of not less than 10 minutes, on the Employer’s time, for each four
+
+7. [HARD] score=3
+   Adjustments: No adjustment of disputed pay will be made unless the worker or the Union shall make a claim in writing to ...
+
+8. [HARD] score=3
+   Layoff: When employees are laid off during normal office hours, they shall be paid in full immediately or if paid by dir...
+
+9. [HARD] score=3
+   In cases of violation, misunderstandings or differences in interpretation of this Agreement, there shall be no cessation...
+
+10. [HARD] score=3
+   (8) hours of continuous employment (except for meal period) shall constitute a day's work Monday through Friday of each ...

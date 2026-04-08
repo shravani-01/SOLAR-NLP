@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — UAW_Ford_Salaried_2023
+Generated: 2026-04-05 22:08
+==================================================
+
+Pages processed       : 196
+Total sentences       : 1534
+Candidate constraints : 395
+  → Predicted HARD    : 219
+  → Predicted SOFT    : 134
+High confidence (≥3)  : 38
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   In order to minimize the impact of these changes to the workforce, the Company agrees that in the event it determines ch...
+
+2. [HARD] score=3
+   No employee shall be terminated under this Article, however, unless:
+
+3. [HARD] score=3
+   Responsibilities The Company shall have no responsibility for the collection of membership dues and initiation fees exce...
+
+4. [SOFT] score=3
+   Represented employees may apply for non-represented positions subject to the job posting procedures and guidelines of th...
+
+5. [SOFT] score=3
+   Any employee found guilty of violating this section may be subject to discharge.
+
+6. [HARD] score=3
+   Such statements of fact and position shall fix the nature of the grievance and of the issues for all subsequent consider...
+
+7. [HARD] score=3
+   Grievances shall be heard, unless previously withdrawn or satisfactorily adjusted, at the Review Board, scheduled not le...
+
+8. [HARD] score=3
+   (d) Stage at Which Grievance Initiated Where such disciplinary action is taken following a hearing at which the employee...
+
+9. [HARD] score=3
+   (a) It shall be the function of the Umpire/Arbitrator, and the Umpire/Arbitrator shall be empowered, except as the Arbit...
+
+10. [HARD] score=3
+   The Umpire/Arbitrator shall have no power to substitute the Umpire/Arbitrator's discretion for the Company's discretion ...

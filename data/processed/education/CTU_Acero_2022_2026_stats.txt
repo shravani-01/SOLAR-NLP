@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — CTU_Acero_2022_2026
+Generated: 2026-04-05 22:46
+==================================================
+
+Pages processed       : 107
+Total sentences       : 1336
+Candidate constraints : 806
+  → Predicted HARD    : 622
+  → Predicted SOFT    : 149
+High confidence (≥3)  : 104
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   Notwithstanding the foregoing, the provisions of this Article shall not apply to independent contractors or employees of...
+
+2. [HARD] score=3
+   The Union shall be allowed to post notices on designated posting area(s) including, but not limited to, existing bulleti...
+
+3. [SOFT] score=3
+   The Union and bargaining unit members may use the School's e-mail system for union communications, subject to the follow...
+
+4. [HARD] score=3
+   In the event of a claim under this Article, the Union shall designate counsel to defend the Employer and no settlement s...
+
+5. [HARD] score=3
+   This time shall be reserved for the conduct of Union business except when waived by express written mutual agreement of ...
+
+6. [HARD] score=3
+   (5) days of unused union release may roll over into a subsequent year of the Agreement (i.e., no more than fifty-five (5...
+
+7. [SOFT] score=3
+   For example, and without limitation, the Employer expressly reserves the following rights and authority: • To determine ...
+
+8. [HARD] score=3
+   ARTICLE 6 - COMMITTEES The terms of this Article shall not apply to disputes related to the application of the terms of ...
+
+9. [HARD] score=3
+   All committee meetings shall take place during non-instructional times unless mutually agreed otherwise.
+
+10. [HARD] score=3
+   Provided that any school calendar proposed by the Committee must comply with the Chicago Public Schools testing windows ...

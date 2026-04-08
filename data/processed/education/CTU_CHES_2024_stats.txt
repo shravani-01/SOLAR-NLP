@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — CTU_CHES_2024
+Generated: 2026-04-05 22:46
+==================================================
+
+Pages processed       : 110
+Total sentences       : 1254
+Candidate constraints : 690
+  → Predicted HARD    : 551
+  → Predicted SOFT    : 116
+High confidence (≥3)  : 67
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   Written notice of non-renewal shall be provided to provisional employees and Union 5 days prior to release of employment...
+
+2. [HARD] score=3
+   Enforcement of this Article shall not be subject to the grievance procedure.
+
+3. [SOFT] score=3
+   Authorized agents of the Union may not be denied access to the School outside of the workday, as long as it is within th...
+
+4. [HARD] score=3
+   All reasonable requests shall be granted within 24 hours of the request.
+
+5. [HARD] score=3
+   New Employee Union Orientation: The Union shall be allowed 60 minutes to meet with new employees before or at the start ...
+
+6. [HARD] score=3
+   Reserved Union Meeting Time at School: The Union shall be allowed to meet for a total of 60 minutes each semester during...
+
+7. [HARD] score=3
+   In the event of any such claim, no settlement shall be made without the Union’s prior written permission. 4.8.5.
+
+8. [SOFT] score=3
+   The Employer, in exercising its powers and authority may consider input from bargaining unit members, and any committees...
+
+9. [SOFT] score=3
+   To hire bargaining unit employees, assign and direct their work, discharge or otherwise discipline employees for cause (...
+
+10. [HARD] score=3
+   All committee meetings shall take place during non-work or lunch times unless mutually agreed otherwise.

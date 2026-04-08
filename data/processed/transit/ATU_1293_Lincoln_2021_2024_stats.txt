@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — ATU_1293_Lincoln_2021_2024
+Generated: 2026-04-02 22:46
+==================================================
+
+Pages processed       : 68
+Total sentences       : 922
+Candidate constraints : 477
+  → Predicted HARD    : 384
+  → Predicted SOFT    : 79
+High confidence (≥3)  : 37
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=3
+   WITNESSETH: That the parties hereto contract and agree as follows: GENERAL PROVISIONS ARTICLE 1 - DEFINITIONS For the pu...
+
+2. [HARD] score=3
+   The right to establish, allocate, schedule, assign, modify, change, and discontinue City operations and work shifts, so ...
+
+3. [HARD] score=3
+   Management personnel including supervisors shall not perform bus operator work that would deal with public contact excep...
+
+4. [HARD] score=3
+   There shall be a meeting that shall take place on the first Monday of each month, following the Union meeting, unless an...
+
+5. [HARD] score=3
+   Except as otherwise provided in Section 3 below, any employee who has been so suspended or discharged shall have the rig...
+
+6. [HARD] score=3
+   If an employee is charged with an offense involving the mishandling of fares or the misappropriation of City funds or pr...
+
+7. [HARD] score=3
+   It is also understood and agreed that it is the intent of the parties to this Agreement that a written grievance taken t...
+
+8. [HARD] score=3
+   The arbitrator chosen shall promptly schedule a hearing on the merits of the grievance at issue, unless the parties agre...
+
+9. [HARD] score=3
+   The decision of the arbitrator shall be final and binding upon the parties to this Agreement, provided that the arbitrat...
+
+10. [HARD] score=3
+   Employees who are promoted to vacant supervisory positions or who accept vacant positions outside the bargaining unit wi...

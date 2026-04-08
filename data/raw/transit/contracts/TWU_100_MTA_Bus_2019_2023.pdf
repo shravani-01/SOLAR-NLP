@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Page not found | TWU Local 100</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link type="text/css" rel="stylesheet" media="all" href="https://www.twulocal100.org/sites/twulocal100.org/files/css/css_8d3b84bc7d1e7f882c92f99df79a0fc3.css" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/fusion/fusion_core/css/grid16-960.css" />
+<link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,400,600,700,800' rel='stylesheet' type='text/css'>
+<!--[if IE 8]>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/fusion/fusion_core/css/ie8-fixes.css" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/www.twulocal100.org/themes/twu100/css/ie8-fixes.css" />
+<![endif]-->
+<!--[if IE 7]>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/fusion/fusion_core/css/ie7-fixes.css" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/www.twulocal100.org/themes/twu100/css/ie7-fixes.css" />
+<![endif]-->
+<!--[if lte IE 6]>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/fusion/fusion_core/css/ie6-fixes.css" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/unity/css/ie6-fixes.css" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/www.twulocal100.org/themes/twu100/css/ie6-fixes.css" />
+<![endif]-->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QWHWGMBFE0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QWHWGMBFE0');
+</script>
+<script type="text/javascript" src="/misc/jquery.js?0"></script>
+<script type="text/javascript" src="/misc/drupal.js?0"></script>
+<script type="text/javascript" src="/sites/all/modules/jquery_ui/jquery.ui/ui/minified/ui.core.min.js?0"></script>
+<script type="text/javascript" src="/sites/all/modules/jquery_ui/jquery.ui/ui/minified/ui.dialog.min.js?0"></script>
+<script type="text/javascript" src="/sites/all/modules/imagebrowser/plugins/ib_wysiwyg/ib_wysiwyg_init.js?0"></script>
+<script type="text/javascript" src="/sites/all/modules/jquerymenu/jquerymenu.js?0"></script>
+<script type="text/javascript" src="/sites/all/modules/lightbox2/js/auto_image_handling.js?0"></script>
+<script type="text/javascript" src="/sites/all/modules/lightbox2/js/lightbox.js?0"></script>
+<script type="text/javascript" src="/sites/all/libraries/shadowbox/shadowbox.js?0"></script>
+<script type="text/javascript" src="/sites/all/modules/shadowbox/shadowbox_auto.js?0"></script>
+<script type="text/javascript" src="/sites/all/modules/thickbox/thickbox.js?0"></script>
+<script type="text/javascript" src="/sites/www.twulocal100.org/modules/ajax_load/ajax_load.js?0"></script>
+<script type="text/javascript" src="/sites/all/modules/extlink/extlink.js?0"></script>
+<script type="text/javascript" defer="defer" src="/sites/all/modules/suggestedterms/suggestedterms.js?0"></script>
+<script type="text/javascript" defer="defer" src="/sites/all/modules/ib_any/ib_any_init.js?0"></script>
+<script type="text/javascript" src="/sites/all/themes/fusion/fusion_core/js/jquery.overlabel.js?0"></script>
+<script type="text/javascript" src="/sites/all/themes/fusion/fusion_core/js/jquery.equalheights.js?0"></script>
+<script type="text/javascript" src="/sites/all/themes/fusion/fusion_core/js/jquery.bgiframe.min.js?0"></script>
+<script type="text/javascript" src="/sites/all/themes/fusion/fusion_core/js/hoverIntent.js?0"></script>
+<script type="text/javascript" src="/sites/all/themes/fusion/fusion_core/js/supposition.js?0"></script>
+<script type="text/javascript" src="/sites/all/themes/fusion/fusion_core/js/supersubs.js?0"></script>
+<script type="text/javascript" src="/sites/all/themes/fusion/fusion_core/js/superfish.js?0"></script>
+<script type="text/javascript" src="/sites/all/themes/fusion/fusion_core/js/script.js?0"></script>
+<script type="text/javascript" src="/sites/www.twulocal100.org/themes/twu100/js/DD_roundies_0.0.2a-min.js?0"></script>
+<script type="text/javascript" src="/sites/all/themes/unity/js/jquery.bigtarget.js?0"></script>
+<script type="text/javascript" src="/sites/www.twulocal100.org/themes/twu100/js/global.js?0"></script>
+<script type="text/javascript" src="/sites/all/themes/unity/js/equal.widths.js?0"></script>
+<script type="text/javascript" src="/sites/www.twulocal100.org/themes/twu100/js/unity_starter_v2.js?0"></script>
+<script type="text/javascript" src="/sites/all/themes/unity/js/pngfix/jquery.pngFix.js?0"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","googleanalytics":{"trackOutgoing":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|avi|csv|doc|exe|flv|gif|gz|jpe?g|js|mp(3|4|e?g)|mov|pdf|phps|png|ppt|rar|sit|tar|torrent|txt|wma|wmv|xls|xml|zip"},"imagebrowser":{"basepath":"\/","filepath":"sites\/twulocal100.org\/files","modulepath":"sites\/all\/modules\/imagebrowser"},"lightbox2":{"rtl":0,"file_path":"\/(\\w\\w\/)sites\/twulocal100.org\/files","default_image":"\/sites\/all\/modules\/lightbox2\/images\/brokenimage.jpg","border_size":0,"font_color":"000","box_color":"000","top_position":"0","overlay_opacity":"0.8","overlay_color":"000","disable_close_click":0,"resize_sequence":0,"resize_speed":1000,"fade_in_speed":1000,"slide_down_speed":1000,"use_alt_layout":0,"disable_resize":0,"disable_zoom":0,"force_show_nav":0,"show_caption":true,"loop_items":0,"node_link_text":"","node_link_target":0,"image_count":"","video_count":"","page_count":"","lite_press_x_close":"press \u003ca href=\"#\" onclick=\"hideLightbox(); return FALSE;\"\u003e\u003ckbd\u003ex\u003c\/kbd\u003e\u003c\/a\u003e to close","download_link_text":"","enable_login":false,"enable_contact":false,"keys_close":"c x 27","keys_previous":"p 37","keys_next":"n 39","keys_zoom":"z","keys_play_pause":"32","display_image_size":"","image_node_sizes":"(\\.story photo for body|\\.thumbnail|\\.shadowbox|\\.preview|\\.teaser|\\.body)","trigger_lightbox_classes":"img.inline,img.story photo for body, img.image-story photo for body,img.thumbnail, img.image-thumbnail,img.shadowbox, img.image-shadowbox,img.preview, img.image-preview,img.teaser, img.image-teaser,img.body, img.image-body,img._original, img.image-_original","trigger_lightbox_group_classes":"","trigger_slideshow_classes":"","trigger_lightframe_classes":"","trigger_lightframe_group_classes":"","custom_class_handler":"lightbox_ungrouped","custom_trigger_classes":"","disable_for_gallery_lists":1,"disable_for_acidfree_gallery_lists":true,"enable_acidfree_videos":true,"slideshow_interval":5000,"slideshow_automatic_start":0,"slideshow_automatic_exit":0,"show_play_pause":0,"pause_on_next_click":0,"pause_on_previous_click":1,"loop_slides":0,"iframe_width":600,"iframe_height":400,"iframe_border":1,"enable_video":0},"shadowbox":{"animate":1,"animateFade":1,"animSequence":"wh","auto_enable_all_images":0,"auto_gallery":0,"autoplayMovies":true,"continuous":0,"counterLimit":"10","counterType":"default","displayCounter":1,"displayNav":1,"enableKeys":1,"fadeDuration":"0.35","handleOversize":"resize","handleUnsupported":"link","initialHeight":320,"initialWidth":320,"language":"en","modal":false,"overlayColor":"#000","overlayOpacity":"0.85","players":null,"resizeDuration":"0.35","showMovieControls":1,"slideshowDelay":"0","viewportPadding":20,"useSizzle":0},"thickbox":{"close":"Close","next":"Next \u003e","prev":"\u003c Prev","esc_key":"or Esc Key","next_close":"Next \/ Close on last","image_count":"Image !current of !total"},"extlink":{"extTarget":"_blank","extClass":"ext","extSubdomains":1,"extExclude":"","extInclude":"","extAlert":0,"extAlertText":"This link will take you to an external web site. We are not responsible for their content.","mailtoClass":"mailto"}});
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var ib_any_fields = "#edit-field-story-image-0-embed";
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+$(document).ready(function(){$("#logo-overlay").css("display", "block");});
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+$(document).ready(function(){$("#logo-overlay").pngFix();});
+//--><!]]>
+</script>
+</head>
+
+<body id="pid-node-4072" class="not-front not-logged-in page-node no-sidebars layout-main sidebars-split font-size-12 grid-type-960 grid-width-16 anonymous-user ">
+  <div id="page" class="page">
+    <div id="page-inner" class="page-inner">
+      <div id="skip">
+        <a href="#main-content-area">Skip to Main Content Area</a>
+      </div>
+
+      <!-- header-top row: width = grid_width -->
+            <!-- header-group row: width = grid_width -->
+      <div id="header-group-wrapper" class="header-group-wrapper full-width">
+        <div id="header-group" class="header-group row grid16-16">
+          <div id="header-group-inner" class="header-group-inner inner">
+          <div id="header-group-inner-logo" class="header-group-inner-logo inner">
+                      <div id = "logo-overlay">
+            <a href="/" title="Home"> <img src ="/sites/twulocal100.org/files/overlay_35.png" /></a>
+           </div>
+                      <div id="logo-slide" class="logo-slide row logo-slide nested">
+<div id="logo-slide-inner" class="logo-slide-inner inner">
+
+<div id="block-views-logo_slideshow-block_1" class="block block-views odd first  grid16-0">
+  <div class="inner">
+        
+    <div class="content">
+            <div class="view view-logo-slideshow view-id-logo_slideshow view-display-id-block_1 view-dom-id-1">
+    
+  
+  
+      <div class="view-content">
+      <div class="views-cycle item-list">
+    <ul class="views-cycle-container js-hide" id="views-cycle-logo_slideshow-block_1">
+          <li class="views-row views-row-1 views-row-odd views-row-first">  
+  <div class="views-field-field-image-fid">
+                <span class="field-content"><a href="/content/slideshow-item-31"><a href="/content/slideshow-item-31" class="imagecache imagecache-logo_slide imagecache-linked imagecache-logo_slide_linked"><img src="https://www.twulocal100.org/sites/twulocal100.org/files/imagecache/logo_slide/quill-king_slide.jpg" alt="" title=""  class="imagecache imagecache-logo_slide" width="475" height="171" /></a></a></span>
+  </div>
+</li>
+          <li class="views-row views-row-2 views-row-even">  
+  <div class="views-field-field-image-fid">
+                <span class="field-content"><a href="/content/slideshow-item-755"><a href="/content/slideshow-item-755" class="imagecache imagecache-logo_slide imagecache-linked imagecache-logo_slide_linked"><img src="https://www.twulocal100.org/sites/twulocal100.org/files/imagecache/logo_slide/49618411821_dd193dc91d_k.jpg" alt="" title=""  class="imagecache imagecache-logo_slide" width="475" height="171" /></a></a></span>
+  </div>
+</li>
+          <li class="views-row views-row-3 views-row-odd">  
+  <div class="views-field-field-image-fid">
+                <span class="field-content"><a href="/content/slideshow-item-756"><a href="/content/slideshow-item-756" class="imagecache imagecache-logo_slide imagecache-linked imagecache-logo_slide_linked"><img src="https://www.twulocal100.org/sites/twulocal100.org/files/imagecache/logo_slide/img_6431.jpeg" alt="" title=""  class="imagecache imagecache-logo_slide" width="475" height="171" /></a></a></span>
+  </div>
+</li>
+          <li class="views-row views-row-4 views-row-even">  
+  <div class="views-field-field-image-fid">
+                <span class="field-content"><a href="/content/slideshow-item-757"><a href="/content/slideshow-item-757" class="imagecache imagecache-logo_slide imagecache-linked imagecache-logo_slide_linked"><img src="https://www.twulocal100.org/sites/twulocal100.org/files/imagecache/logo_slide/img_6462.jpeg" alt="" title=""  class="imagecache imagecache-logo_slide" width="475" height="171" /></a></a></span>
+  </div>
+</li>
+          <li class="views-row views-row-5 views-row-odd">  
+  <div class="views-field-field-image-fid">
+                <span class="field-content"><a href="/content/slideshow-item-758"><a href="/content/slideshow-item-758" class="imagecache imagecache-logo_slide imagecache-linked imagecache-logo_slide_linked"><img src="https://www.twulocal100.org/sites/twulocal100.org/files/imagecache/logo_slide/img_7696_2.jpeg" alt="" title=""  class="imagecache imagecache-logo_slide" width="475" height="171" /></a></a></span>
+  </div>
+</li>
+          <li class="views-row views-row-6 views-row-even">  
+  <div class="views-field-field-image-fid">
+                <span class="field-content"><a href="/content/slideshow-item-759"><a href="/content/slideshow-item-759" class="imagecache imagecache-logo_slide imagecache-linked imagecache-logo_slide_linked"><img src="https://www.twulocal100.org/sites/twulocal100.org/files/imagecache/logo_slide/img_8182.jpeg" alt="" title=""  class="imagecache imagecache-logo_slide" width="475" height="171" /></a></a></span>
+  </div>
+</li>
+          <li class="views-row views-row-7 views-row-odd">  
+  <div class="views-field-field-image-fid">
+                <span class="field-content"><a href="/content/slideshow-item-760"><a href="/content/slideshow-item-760" class="imagecache imagecache-logo_slide imagecache-linked imagecache-logo_slide_linked"><img src="https://www.twulocal100.org/sites/twulocal100.org/files/imagecache/logo_slide/dsc04802.jpg" alt="" title=""  class="imagecache imagecache-logo_slide" width="475" height="171" /></a></a></span>
+  </div>
+</li>
+          <li class="views-row views-row-8 views-row-even">  
+  <div class="views-field-field-image-fid">
+                <span class="field-content"><a href="/content/slideshow-item-761"><a href="/content/slideshow-item-761" class="imagecache imagecache-logo_slide imagecache-linked imagecache-logo_slide_linked"><img src="https://www.twulocal100.org/sites/twulocal100.org/files/imagecache/logo_slide/dsc04856.jpg" alt="" title=""  class="imagecache imagecache-logo_slide" width="475" height="171" /></a></a></span>
+  </div>
+</li>
+          <li class="views-row views-row-9 views-row-odd">  
+  <div class="views-field-field-image-fid">
+                <span class="field-content"><a href="/content/slideshow-item-762"><a href="/content/slideshow-item-762" class="imagecache imagecache-logo_slide imagecache-linked imagecache-logo_slide_linked"><img src="https://www.twulocal100.org/sites/twulocal100.org/files/imagecache/logo_slide/img_8574.jpeg" alt="" title=""  class="imagecache imagecache-logo_slide" width="475" height="171" /></a></a></span>
+  </div>
+</li>
+          <li class="views-row views-row-10 views-row-even">  
+  <div class="views-field-field-image-fid">
+                <span class="field-content"><a href="/content/slideshow-item-763"><a href="/content/slideshow-item-763" class="imagecache imagecache-logo_slide imagecache-linked imagecache-logo_slide_linked"><img src="https://www.twulocal100.org/sites/twulocal100.org/files/imagecache/logo_slide/img_1252.jpeg" alt="" title=""  class="imagecache imagecache-logo_slide" width="475" height="171" /></a></a></span>
+  </div>
+</li>
+          <li class="views-row views-row-11 views-row-odd">  
+  <div class="views-field-field-image-fid">
+                <span class="field-content"><a href="/content/slideshow-item-764"><a href="/content/slideshow-item-764" class="imagecache imagecache-logo_slide imagecache-linked imagecache-logo_slide_linked"><img src="https://www.twulocal100.org/sites/twulocal100.org/files/imagecache/logo_slide/img_6645.jpeg" alt="" title=""  class="imagecache imagecache-logo_slide" width="475" height="171" /></a></a></span>
+  </div>
+</li>
+          <li class="views-row views-row-12 views-row-even views-row-last">  
+  <div class="views-field-field-image-fid">
+                <span class="field-content"><a href="/content/slideshow-item-765"><a href="/content/slideshow-item-765" class="imagecache imagecache-logo_slide imagecache-linked imagecache-logo_slide_linked"><img src="https://www.twulocal100.org/sites/twulocal100.org/files/imagecache/logo_slide/img_7603.jpeg" alt="" title=""  class="imagecache imagecache-logo_slide" width="475" height="171" /></a></a></span>
+  </div>
+</li>
+      </ul>
+</div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>         </div>
+  </div><!-- /block-inner -->
+</div><!-- /block -->
+</div><!-- /logo-slide-inner -->
+</div><!-- /logo-slide -->
+            <span id="home-link"><a href="/" title="Home"></a></span>
+                        <div id="search-box" class="search-box block">
+<div id="search-box-inner" class="search-box-inner inner">
+<form action="/sites/twulocal100/files/docs/2019-2023_mta_bus_company_twu_local_100_agreement.pdf"  accept-charset="UTF-8" method="post" id="search-theme-form">
+<div><div id="search" class="container-inline">
+  <input class="search-input form-text" type="text" maxlength="128" name="search_theme_form" id="edit-search_theme_form"  size="15" value="" title="Enter search terms" />
+  <input class="form-submit search-submit" type="submit" name="op" value="Search"  />
+  <input type="hidden" name="form_build_id" id="form-pYMo2biQtR2pPCtKE_V9a4qrH2UB77F0mmern2scii8" value="form-pYMo2biQtR2pPCtKE_V9a4qrH2UB77F0mmern2scii8"  />
+<input type="hidden" name="form_id" id="edit-search-theme-form" value="search_theme_form"  />
+</div>
+
+</div></form>
+</div><!-- /search-box-inner -->
+</div><!-- /search-box -->
+            <div id = "login-box"><a href="/user">Sign in</a></div>                        </div><!-- /header-group-inner-logo -->
+                      </div><!-- /header-group-inner -->
+        </div><!-- /header-group -->
+      </div><!-- /header-group-wrapper -->
+           <!-- preface-top row: width = grid_width -->
+      
+      <!-- main row: width = grid_width -->
+      <div id="main-wrapper" class="main-wrapper full-width">
+        <div id="main" class="main row grid16-16">
+          <div id="main-inner" class="main-inner inner">
+            
+            <!-- main group: width = grid_width - sidebar_first_width -->
+            <div id="main-group" class="main-group row nested grid16-16">
+              <div id="main-group-inner" class="main-group-inner inner">
+                                <div id="main-content" class="main-content row nested">
+                  <div id="main-content-inner" class="main-content-inner inner">
+                    <!-- content group: width = grid_width - (sidebar_first_width + sidebar_last_width) -->
+                    <div id="content-group" class="content-group row nested grid16-16">
+                      <div id="content-group-inner" class="content-group-inner inner">
+                        
+                        
+                        <div id="content-region" class="content-region row nested">
+                          <div id="content-region-inner" class="content-region-inner inner">
+                            <a name="main-content-area" id="main-content-area"></a>
+                                                        <div id="content-inner" class="content-inner block">
+                              <div id="content-inner-inner" class="content-inner-inner inner">
+                                                                <h1 class="title">Page not found</h1>
+                                                                                                <div id="content-content" class="content-content">
+                                  The requested page could not be found.                                                                  </div><!-- /content-content -->
+                                                              </div><!-- /content-inner-inner -->
+                            </div><!-- /content-inner -->
+                          </div><!-- /content-region-inner -->
+                        </div><!-- /content-region -->
+                                             </div><!-- /content-group-inner -->
+                    </div><!-- /content-group -->
+
+                                      </div><!-- /main-content-inner -->
+                </div><!-- /main-content -->
+
+                               </div><!-- /main-group-inner -->
+            </div><!-- /main-group -->
+          </div><!-- /main-inner -->
+        </div><!-- /main -->
+      </div><!-- /main-wrapper -->
+
+      <!-- postscript-bottom row: width = grid_width -->
+      
+      <!-- footer row: width = grid_width -->
+      <div id="footer-wrapper" class="footer-wrapper full-width">
+<div id="footer" class="footer row grid16-16">
+<div id="footer-inner" class="footer-inner inner">
+
+<div id="block-block-56" class="block block-block odd first last  grid16-16">
+  <div class="inner">
+        
+    <div class="content">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 600px;">
+	<tbody>
+		<tr>
+			<td>
+				<p><b>About</b><br />
+					<a href="/get-there-twu">TWU Local 100</a><br />
+					<a href="/union-wide-officers-and-executive-board">Leadership</a><br />
+					<a href="http://www.twulocal100.org/content/constitution">Constitution</a><br />
+					<a href="http://www.twulocal100.org/contracts-taoamta-bus">Contracts</a><br />
+					<a href="https://www.twulocal100.net/kiosk_r.html">Dues</a><br />
+					<a href="http://www.twulocal100.org/elections-committee">Elections Committee</a><br />
+					<a href="/contact-us">Contact Us</a><br />
+					<a href="https://webmail.twulocal100.org/owa">Staff email login</a></p>
+			</td>
+			<td><b>Departments</b><br />
+				<a href="/car-equipment">CED</a><br />
+				<a href="/mabstoa">MaBSTOA</a><br />
+				<a href="/maintenance-way">MOW</a><br />
+				<a href="/private-bus-lines-mta-bus">PBL/MTA Bus</a><br />
+				<a href="/rapid-transit-operations">RTO</a><br />
+				<a href="/stations">Stations</a><br />
+				<a href="/transit-authority-surface">TA Surface</a></td>
+			<td>
+				<p><b>Union Services</b><br />
+					<a href="/grievance-discipline">Grievance &amp; Discipline</a><br />
+					<a href="/safety-health">Safety &amp; Health</a><br />
+					<a href="/training-upgrade">Training &amp; Upgrade</a></p>
+				<p><b>Member Services</b><br />
+					<a href="/childcare-fund">Childcare Fund</a><br />
+					<a href="/member-services-department">Member Services Dept.</a><br />
+					<a href="/retirees-association">Retirees Association</a><br />
+					<a href="/union-assistance-program">Union Assistance Program</a><br />
+					<a href="/widows-orphans-fund">Widows &amp; Orphans</a><br />
+					<a href="/womens-committee">Women's Committee</a></p>
+			</td>
+			<td>
+				<p><b>Take Action</b><br />
+					<a href="/get-involved">Political Action</a></p>
+				<p><b>Media</b><br />
+					<a href="/publications">Publications</a><br />
+					<a href="/news-0">News</a><br />
+					<a href="/images">Images</a><br />
+					<a href="/press-inquiries">Press Inquiries</a></p>
+				<p><br />
+					<b>Calendar</b><br />
+					<a href="/Calendar">Union Calendar</a><br />
+					&nbsp;</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>&nbsp;</p>
+        </div>
+  </div><!-- /block-inner -->
+</div><!-- /block -->
+</div><!-- /footer-inner -->
+</div><!-- /footer -->
+</div><!-- /footer-wrapper -->
+
+      <!-- footer-message row: width = grid_width -->
+      <div id="footer-message-wrapper" class="footer-message-wrapper full-width">
+        <div id="footer-message" class="footer-message row grid16-16">
+          <div id="footer-message-inner" class="footer-message-inner inner">
+                      </div><!-- /footer-message-inner -->
+        </div><!-- /footer-message -->
+      </div><!-- /footer-message-wrapper -->
+      <!-- credit  row: width = grid_width -->
+     <div id="credit-wrapper" class="credit-wrapper full-width">
+<div id="credit" class="credit row grid16-16">
+<div id="credit-inner" class="credit-inner inner">
+
+<div id="block-block-48" class="block block-block odd first  grid16-0">
+  <div class="inner">
+        
+    <div class="content">
+            <p>Site union-made by:<a href="http://prometheuslabor.com" title="prometheus labor communications"><br />
+Prometheus Labor Union Websites</a></p>        </div>
+  </div><!-- /block-inner -->
+</div><!-- /block -->
+
+<div id="block-block-52" class="block block-block even  grid16-5">
+  <div class="inner">
+        
+    <div class="content">
+            <p style="text-align: center; ">New York's Public Transit Union • Transport Workers Union Local 100 • 195 Montague St 3rd floor, Brooklyn, NY 11201</p>
+        </div>
+  </div><!-- /block-inner -->
+</div><!-- /block -->
+</div><!-- /credit-inner -->
+</div><!-- /credit -->
+</div><!-- /credit-wrapper -->
+    </div><!-- /page-inner -->
+  </div><!-- /page -->
+   <script type="text/javascript" src="/sites/all/modules/google_analytics/googleanalytics.js?0"></script>
+<script type="text/javascript" src="/sites/all/modules/swftools/onepixelout/onepixelout.js?0"></script>
+<script type="text/javascript" src="/sites/all/libraries/jquery.cycle/jquery.cycle.all.min.js?0"></script>
+<script type="text/javascript" src="/sites/all/modules/views_cycle/views_cycle.js?0"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"views_cycle":{"views-cycle-logo_slideshow-block_1":{"params":{"fx":"fade","timeout":5000,"height":0},"verticalPadding":0}}});
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+
+      Shadowbox.path = "/sites/all/libraries/shadowbox/";
+      Shadowbox.init(Drupal.settings.shadowbox);
+    
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+try{var pageTracker = _gat._getTracker("UA-30252423-2");pageTracker._trackPageview();} catch(err) {}
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+
+$(document).ready(function() {
+	
+});
+	
+//--><!]]>
+</script>
+   <script src="http://api.twitter.com/1/statuses/user_timeline/twulocal100.json?callback=twitterCallback2&count=5&include_rts=1" type="text/javascript"></script>
+
+</body>
+</html>

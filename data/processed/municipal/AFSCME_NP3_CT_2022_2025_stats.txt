@@ -1,0 +1,43 @@
+SOLAR Extraction Stats — AFSCME_NP3_CT_2022_2025
+Generated: 2026-04-06 22:56
+==================================================
+
+Pages processed       : 160
+Total sentences       : 1599
+Candidate constraints : 971
+  → Predicted HARD    : 768
+  → Predicted SOFT    : 151
+High confidence (≥3)  : 130
+
+Top 10 highest confidence candidates:
+--------------------------------------------------
+
+1. [HARD] score=4
+   Failure to excuse lateness of up to 2 1/2 hours shall be subject to the grievance and arbitration provisions of this Agr...
+
+2. [HARD] score=4
+   A staff member working a swap shall be eligible for overtime (unless they have worked 18.5 or more hours in the past 24 ...
+
+3. [SOFT] score=3
+   SE-8129, Decision No. 2248, issued November 2, 1983, subject to such modifications or clarifications of the unit as the ...
+
+4. [HARD] score=3
+   A temporary employee shall become durational after 6 months or one year if extended.
+
+5. [HARD] score=3
+   This Agreement shall not apply to nonpermanent employees except as provided in Article 22.
+
+6. [HARD] score=3
+   The provisions of this Article are subject to the Miscellaneous Article, and no such provision shall be deemed to have b...
+
+7. [HARD] score=3
+   made by the accused to an investigator or police officer, shall not be admissible in a later administrative action unles...
+
+8. [HARD] score=3
+   Anonymous complaints may be communicated and discussed with the employee in an effort to resolve potential problems, but...
+
+9. [HARD] score=3
+   The parties agree that neither shall discriminate against any employee except on the basis of bona fide occupational qua...
+
+10. [HARD] score=3
+   This voluntary authorization and assignment shall remain in effect, regardless of whether I am or remain a member of the...
