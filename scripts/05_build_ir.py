@@ -1,585 +1,591 @@
 """
 SOLAR — Script 05: Build Constraint IR
 ========================================
-Converts annotated CSV into a structured, validated
-Constraint IR (Intermediate Representation) in JSON format.
+Converts annotated CSV rows into structured Constraint IR JSON.
 
-Standardizes:
-  - threshold format  → {variable, value, unit, direction}
-  - entity format     → {subject, authority, object}
-  - exception format  → {trigger, type}
-  - flags quality issues for review
+Approach: GPT-4o-mini for structured extraction (no hardcoding).
+  - Reads raw_text + annotation fields as hints
+  - GPT extracts entities, thresholds, exceptions
+  - GPT generates semantic exception variable name from trigger
+  - Annotations gate quality: threshold value + type must match
+  - Falls back gracefully if GPT call fails
+
+Works across all 8 domains without domain-specific rules.
 
 Output:
-  data/processed/constraint_ir.json        — full IR dataset
-  data/processed/constraint_ir_issues.csv  — quality flags
+  data/processed/{domain}/constraint_ir.json
+  data/processed/{domain}/constraint_ir_issues.csv
+  data/processed/all_domains_ir.json  (if --domain all)
 
 Usage:
-  python scripts/05_build_ir.py
-  python scripts/05_build_ir.py --source data/annotated/contract_v5_annotated.csv
+  python scripts/05_build_ir.py --domain transit
+  python scripts/05_build_ir.py --domain healthcare
+  python scripts/05_build_ir.py --domain all
+  python scripts/05_build_ir.py --domain all --limit 100
+  python scripts/05_build_ir.py --domain all --dry-run
 """
 
 import re
+import os
 import json
+import time
 import argparse
 import pandas as pd
 from pathlib import Path
 from datetime import datetime
+from openai import OpenAI
 
 PROJECT_ROOT  = Path(__file__).parent.parent
-ANNOTATED_DIR = PROJECT_ROOT / "data" / "annotated"/"healthcare"
-PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"/"healthcare"
-PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+ANNOTATED_DIR = PROJECT_ROOT / "data" / "annotated"
+PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 
-# ── Threshold parsing ─────────────────────────────────────────────────────────
-UNIT_MAP = {
-    "hour"  : "hours",   "hours"  : "hours",  "hr"     : "hours",
-    "minute": "minutes", "minutes": "minutes", "min"    : "minutes",
-    "day"   : "days",    "days"   : "days",
-    "week"  : "weeks",   "weeks"  : "weeks",
-    "month" : "months",  "months" : "months",
-    "year"  : "years",   "years"  : "years",
-}
+DOMAINS = [
+    "transit", "healthcare", "education", "municipal",
+    "construction", "aviation", "building_services", "hospitality",
+]
 
-DIR_MAP = {
-    "max"          : "max", "maximum"       : "max",
-    "not more than": "max", "not to exceed" : "max",
-    "up to"        : "max", "at most"       : "max",
-    "no more than" : "max", "not exceed"    : "max",
-    "min"          : "min", "minimum"       : "min",
-    "not less than": "min", "at least"      : "min",
-    "no less than" : "min", "at minimum"    : "min",
-}
+VALID_TYPES  = {"HARD", "SOFT", "HARD-CONDITIONAL",
+                "SOFT-CONDITIONAL", "NON-CONSTRAINT"}
+EMPTY_VALUES = {"", "nan", "none", "null", "n/a", "na",
+                "empty", "empty string"}
 
-VAR_TEMPLATES = {
-    ("consecutive", "hour")  : "max_consecutive_hours",
-    ("break", "minute")      : "min_break_minutes",
-    ("break", "hour")        : "min_break_hours",
-    ("layover", "minute")    : "min_layover_minutes",
-    ("deadhead", "minute")   : "max_deadhead_minutes",
-    ("holdover", "hour")     : "max_holdover_hours",
-    ("suspension", "day")    : "max_suspension_days",
-    ("reschedule", "day")    : "max_reschedule_days",
-    ("absence", "day")       : "max_absence_days",
-    ("absence", "month")     : "max_absence_months",
-    ("absence", "year")      : "max_absence_years",
-    ("leave", "month")       : "min_leave_months",
-    ("vacation", "day")      : "max_vacation_days",
-    ("hearing", "day")       : "max_hearing_days",
-    ("notice", "day")        : "min_notice_days",
-    ("sick", "day")          : "max_sick_days",
-    ("overtime", "hour")     : "max_overtime_hours",
-    ("shift", "hour")        : "max_shift_hours",
-    ("work", "hour")         : "max_work_hours",
-    ("rest", "hour")         : "min_rest_hours",
-    ("rest", "minute")       : "min_rest_minutes",
-    ("penalty", "day")       : "max_penalty_days",
-    ("probation", "day")     : "max_probation_days",
-    ("probation", "month")   : "max_probation_months",
-    ("month", "month")       : "duration_months",
-    ("day", "day")           : "duration_days",
-    ("week", "week")         : "frequency_per_week",
-    ("year", "year")         : "duration_years",
-}
-
-RATE_TIME_UNITS = {
-    "hour" : "usd_per_hour",
-    "hours": "usd_per_hour",
-    "hr"   : "usd_per_hour",
-    "day"  : "usd_per_day",
-    "days" : "usd_per_day",
-    "week" : "usd_per_week",
-    "weeks": "usd_per_week",
-    "month": "usd_per_month",
-    "year" : "usd_per_year",
-    "shift": "usd_per_shift",
-    "trip" : "usd_per_trip",
-    "mile" : "usd_per_mile",
-}
-
-RATE_VAR_TEMPLATES = {
-    ("rate", "hour")      : "pay_rate_usd_per_hour",
-    ("wage", "hour")      : "wage_rate_usd_per_hour",
-    ("pay", "hour")       : "pay_rate_usd_per_hour",
-    ("overtime", "hour")  : "overtime_rate_usd_per_hour",
-    ("penalty", "day")    : "penalty_rate_usd_per_day",
-    ("reimburs", "mile")  : "reimbursement_usd_per_mile",
-    ("reimburs", "day")   : "reimbursement_usd_per_day",
-    ("reimburs", "trip")  : "reimbursement_usd_per_trip",
-    ("allowance", "day")  : "allowance_usd_per_day",
-    ("allowance", "week") : "allowance_usd_per_week",
-    ("allowance", "shift"): "allowance_usd_per_shift",
-    ("bonus", "week")     : "bonus_usd_per_week",
-    ("bonus", "month")    : "bonus_usd_per_month",
-    ("fee", "hour")       : "fee_usd_per_hour",
-}
-
-EMPTY_THRESHOLD_VALUES = {"", "nan", "none", "null", "n/a", "na", "empty"}
+_api_key = os.environ.get("OPENAI_API_KEY", "")
+client   = OpenAI(api_key=_api_key) if _api_key else None
+GPT_AVAILABLE = bool(_api_key)
 
 
-def is_empty_threshold(raw: str) -> bool:
-    """Return True if the threshold field is effectively empty."""
-    return str(raw).strip().lower() in EMPTY_THRESHOLD_VALUES
+def is_empty(val) -> bool:
+    return str(val).strip().lower() in EMPTY_VALUES or pd.isna(val)
 
 
-def _infer_direction(raw_combined: str) -> str | None:
-    """Infer max/min direction from combined raw threshold + sentence text."""
-    for d_key, d_val in DIR_MAP.items():
-        if d_key in raw_combined:
-            return d_val
+# ── GPT-4o-mini structured extraction ────────────────────────────────────────
+
+GPT_SYSTEM = """You are a constraint extraction assistant for labor contract analysis.
+Given a contract sentence and its annotation hints, extract structured information.
+Return only valid JSON. No explanation, no markdown, no backticks."""
+
+GPT_PROMPT = """Extract structured constraint information from this labor contract sentence.
+
+Sentence: "{raw_text}"
+
+Annotation hints (may be incomplete or imprecise — use as guidance only):
+  constraint_type: {constraint_type}
+  raw_threshold:   {threshold}
+  raw_entities:    {entities}
+  raw_exception:   {exception}
+
+Return JSON with exactly these fields:
+{{
+  "entities": {{
+    "subject":   ["who must follow this rule — workers, nurses, pilots etc"],
+    "authority": ["who enforces or grants exceptions — employer, management etc"],
+    "object":    ["what is being regulated — trips, shifts, hours etc"]
+  }},
+  "thresholds": [
+    {{
+      "variable":  "descriptive_snake_case_name reflecting the constraint",
+      "value":     <number or null>,
+      "unit":      "hours/minutes/days/months/percent/usd or null",
+      "direction": "max or min or null"
+    }}
+  ],
+  "exceptions": [
+    {{
+      "trigger":       "exact text of the exception condition from the sentence",
+      "type":          "conditional or approval_based or emergency or reference",
+      "variable_name": "short semantic snake_case boolean name for this exception"
+    }}
+  ]
+}}
+
+Rules for variable_name (most important):
+- Must reflect the MEANING of the exception, not the contract ID
+- Must be a boolean condition that is True when exception applies
+- 2-4 words max in snake_case
+- Examples:
+    "except in case of emergency"              → emergency_declared
+    "if the employee has no other discipline"  → no_prior_discipline
+    "upon the approval of management"          → management_approved
+    "unless parties mutually agree"            → mutual_agreement_active
+    "where it imperils health or safety"       → health_safety_risk
+    "subject to operational requirements"      → operational_requirements_apply
+    "beyond the termination of this agreement" → agreement_terminated
+- NEVER use: exception_contract_XXXX or any contract ID based name
+
+If no threshold exists return [].
+If no exception exists return [].
+Return only valid JSON."""
+
+
+def gpt_extract(raw_text: str, constraint_type: str,
+                threshold: str, entities: str,
+                exception: str) -> dict | None:
+    """Call GPT-4o-mini for structured extraction. Returns dict or None."""
+    if not GPT_AVAILABLE or client is None:
+        return None
+    try:
+        prompt = GPT_PROMPT.format(
+            raw_text        = raw_text[:500],
+            constraint_type = constraint_type,
+            threshold       = threshold,
+            entities        = entities,
+            exception       = exception,
+        )
+        response = client.chat.completions.create(
+            model       = "gpt-4o-mini",
+            messages    = [
+                {"role": "system", "content": GPT_SYSTEM},
+                {"role": "user",   "content": prompt},
+            ],
+            temperature = 0,
+            max_tokens  = 600,
+        )
+        raw = response.choices[0].message.content.strip()
+        raw = re.sub(r"^```json\s*", "", raw)
+        raw = re.sub(r"\s*```$",     "", raw)
+        return json.loads(raw)
+    except Exception as e:
+        return None
+
+
+# ── Annotation quality gate ───────────────────────────────────────────────────
+
+def _parse_annotated_value(raw: str) -> float | None:
+    """Extract numeric value from raw annotation threshold string."""
+    if is_empty(raw):
+        return None
+    s = str(raw).lower()
+    m = re.search(r'\((\d+)\)', s)
+    if m:
+        return float(m.group(1))
+    m = re.search(r'=\s*(\d+\.?\d*)', s)
+    if m:
+        return float(m.group(1))
+    m = re.search(r'\b(\d+\.?\d*)\b', s)
+    if m:
+        return float(m.group(1))
     return None
 
 
-def _parse_numeric_value(raw_lower: str) -> float | None:
+def validate_against_annotation(gpt_result: dict,
+                                 ann_threshold: str,
+                                 ann_type: str) -> tuple[bool, list[str]]:
     """
-    Extract a numeric value from a string.
-    Tries: parenthesised number → direct number → written word number.
+    Check GPT extraction against annotation ground truth.
+    Returns (is_valid, list_of_issues).
+    Annotations are the quality gate — if GPT gets the threshold
+    value or constraint type wrong, flag it.
     """
-    # Parenthesised number e.g. "twenty (20) days"
-    paren_match = re.search(r'\((\d+)\)', raw_lower)
-    if paren_match:
-        return float(paren_match.group(1))
-
-    # Direct number e.g. "30", "4.5"
-    num_match = re.search(r'\b(\d+\.?\d*)\b', raw_lower)
-    if num_match:
-        return float(num_match.group(1))
-
-    # Written numbers
-    word_nums = {
-        "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
-        "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
-        "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14,
-        "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18,
-        "nineteen": 19, "twenty": 20, "thirty": 30, "forty": 40,
-        "fifty": 50, "sixty": 60, "seventy": 70, "eighty": 80,
-        "ninety": 90, "hundred": 100, "twenty-four": 24, "forty-eight": 48,
-    }
-    for word, num in word_nums.items():
-        if word in raw_lower:
-            return float(num)
-
-    return None
-
-
-def parse_threshold(raw_threshold: str, raw_text: str) -> list[dict]:
-    """
-    Convert a raw threshold string into a list of structured threshold dicts.
-
-    Handles:
-      Pattern 0 — dollar amounts    : "$30 per hour", "maximum $5 per day"
-      Pattern 0b— percentages       : "not less than 50%", "maximum 80%"
-      Pattern 1 — key=value format  : "max_hours=4", "min_break=30"
-      Pattern 2 — value + time unit : "30 minutes", "twenty (20) days"
-
-    Returns empty list if threshold field is empty or nan.
-    """
-    if not raw_threshold or pd.isna(raw_threshold):
-        return []
-
-    raw = str(raw_threshold).strip()
-    if is_empty_threshold(raw):
-        return []
-
-    raw_lower     = raw.lower()
-    raw_text_lower = raw_text.lower() if raw_text else ""
-    raw_combined  = raw_lower + " " + raw_text_lower
-
-    # ── Pattern 0: Dollar amounts ─────────────────────────────────────────────
-    # Matches: "$30 per hour", "maximum $5.50/day", "$100 per week"
-    dollar_match = re.search(
-        r'\$\s*(\d+\.?\d*)\s*(?:per\s+|/\s*)?([a-z]+)?', raw_lower
-    )
-    if dollar_match:
-        value    = float(dollar_match.group(1))
-        time_raw = (dollar_match.group(2) or "").strip()
-        unit     = RATE_TIME_UNITS.get(time_raw, "usd")
-        direction = _infer_direction(raw_combined)
-
-        # Infer variable name from context
-        variable = "pay_amount_usd"
-        if time_raw:
-            for (ctx, time_key), var_name in RATE_VAR_TEMPLATES.items():
-                if ctx in raw_text_lower and time_key in time_raw:
-                    variable = var_name
-                    break
-            else:
-                # Fallback: direction + generic rate name
-                prefix   = direction + "_" if direction else ""
-                variable = f"{prefix}rate_{unit}"
-
-        return [{
-            "variable"  : variable,
-            "value"     : value,
-            "unit"      : unit,
-            "direction" : direction,
-            "raw"       : raw,
-        }]
-
-    # ── Pattern 0b: Percentages ───────────────────────────────────────────────
-    # Matches: "50%", "not less than 80%", "maximum 25 percent"
-    pct_match = re.search(
-        r'(\d+\.?\d*)\s*(?:%|percent)', raw_lower
-    )
-    if pct_match:
-        value     = float(pct_match.group(1))
-        direction = _infer_direction(raw_combined)
-
-        # Infer variable from context
-        variable  = "percentage"
-        pct_contexts = {
-            "pay"      : "pay_percentage",
-            "wage"     : "wage_percentage",
-            "salary"   : "salary_percentage",
-            "overtime" : "overtime_percentage",
-            "premium"  : "premium_percentage",
-            "benefit"  : "benefit_percentage",
-            "pension"  : "pension_percentage",
-            "cost"     : "cost_percentage",
-            "capacit"  : "capacity_percentage",
-        }
-        for ctx, var_name in pct_contexts.items():
-            if ctx in raw_text_lower:
-                variable = var_name
-                break
-
-        if direction:
-            variable = f"{direction}_{variable}"
-
-        return [{
-            "variable"  : variable,
-            "value"     : value,
-            "unit"      : "percent",
-            "direction" : direction,
-            "raw"       : raw,
-        }]
-
-    # ── Pattern 1: key=value format ───────────────────────────────────────────
-    # Matches: "max_hours=4", "min_break=30", "max_hours=4hours"
-    kv_match = re.match(
-        r'([a-z_]+)\s*=\s*(\d+\.?\d*)\s*([a-z]*)', raw_lower
-    )
-    if kv_match:
-        key, val, unit_raw = kv_match.groups()
-
-        # Try to get unit from the value suffix first, then from the key name
-        unit = UNIT_MAP.get(unit_raw.rstrip('s'), None) if unit_raw else None
-        if unit is None:
-            for u_key, u_val in UNIT_MAP.items():
-                if u_key in key:
-                    unit = u_val
-                    break
-
-        direction = None
-        if key.startswith("max"):
-            direction = "max"
-        elif key.startswith("min"):
-            direction = "min"
-
-        return [{
-            "variable"  : key,
-            "value"     : float(val),
-            "unit"      : unit,
-            "direction" : direction,
-            "raw"       : raw,
-        }]
-
-    # ── Pattern 2: numeric/written value + time unit ──────────────────────────
-    # Matches: "30 minutes", "twenty (20) days", "4 hours", "one month"
-    value = _parse_numeric_value(raw_lower)
-
-    if value is None:
-        return [{
-            "variable"  : "unknown",
-            "value"     : None,
-            "unit"      : None,
-            "direction" : None,
-            "raw"       : raw,
-        }]
-
-    # Extract time unit
-    unit = None
-    for u_key, u_val in UNIT_MAP.items():
-        if u_key in raw_lower:
-            unit = u_val
-            break
-
-    direction = _infer_direction(raw_combined)
-
-    # Infer variable name from sentence context + unit
-    variable = "duration_" + (unit or "unknown")
-    for (ctx1, ctx2), var_name in VAR_TEMPLATES.items():
-        if ctx1 in raw_text_lower and unit and unit.startswith(ctx2[:3]):
-            variable = var_name
-            break
-
-    return [{
-        "variable"  : variable,
-        "value"     : value,
-        "unit"      : unit,
-        "direction" : direction,
-        "raw"       : raw,
-    }]
-
-
-def parse_entities(raw_entities: str) -> dict:
-    """Convert comma-separated entity string into typed entity dict."""
-    if not raw_entities or pd.isna(raw_entities):
-        return {"subject": [], "authority": [], "object": []}
-
-    AUTHORITY_KEYWORDS = {
-        "authority", "board", "manager", "director", "gm",
-        "union", "arbitrator", "department", "operating authority",
-        "transit authority", "employer", "management"
-    }
-    SUBJECT_KEYWORDS = {
-        "employee", "operator", "driver", "worker", "cleaner",
-        "member", "personnel", "staff", "employees", "operators"
-    }
-
-    entities_raw = [e.strip() for e in str(raw_entities).split(",") if e.strip()]
-    result = {"subject": [], "authority": [], "object": []}
-
-    for ent in entities_raw:
-        ent_lower = ent.lower()
-        if any(kw in ent_lower for kw in SUBJECT_KEYWORDS):
-            result["subject"].append(ent)
-        elif any(kw in ent_lower for kw in AUTHORITY_KEYWORDS):
-            result["authority"].append(ent)
-        else:
-            result["object"].append(ent)
-
-    return result
-
-
-def parse_exception(raw_exception: str) -> list[dict]:
-    """Convert raw exception string into structured exception dict."""
-    if not raw_exception or pd.isna(raw_exception):
-        return []
-
-    raw = str(raw_exception).strip()
-    if is_empty_threshold(raw):
-        return []
-
-    raw_lower = raw.lower()
-
-    exc_type = "conditional"
-    if any(kw in raw_lower for kw in
-           ["subject to approval", "upon approval", "with approval"]):
-        exc_type = "approval_based"
-    elif any(kw in raw_lower for kw in ["emergency", "extraordinary"]):
-        exc_type = "emergency"
-    elif any(kw in raw_lower for kw in
-             ["section", "subsection", "article", "paragraph"]):
-        exc_type = "reference"
-
-    return [{"trigger": raw, "type": exc_type}]
-
-
-def build_ir_record(row: pd.Series) -> tuple[dict, list[str]]:
-    """Convert one annotated CSV row into a Constraint IR dict."""
     issues = []
 
-    raw_text   = str(row.get("raw_text", "") or "")
-    thresholds = parse_threshold(
-        str(row.get("threshold", "") or ""), raw_text
-    )
-    entities   = parse_entities(str(row.get("entities", "") or ""))
-    exceptions = parse_exception(str(row.get("exception", "") or ""))
+    ann_value = _parse_annotated_value(ann_threshold)
+    if ann_value is not None and gpt_result.get("thresholds"):
+        gpt_values = [t.get("value") for t in gpt_result["thresholds"]
+                      if t.get("value") is not None]
+        if gpt_values:
+            closest = min(gpt_values,
+                          key=lambda v: abs(v - ann_value))
+            if abs(closest - ann_value) > ann_value * 0.1 + 1:
+                issues.append(
+                    f"Threshold mismatch: annotation={ann_value}, "
+                    f"GPT={closest}"
+                )
 
-    constraint_type = str(row.get("constraint_type", "")).upper().strip()
+    if not is_empty(ann_threshold) and ann_value is not None:
+        if not gpt_result.get("thresholds"):
+            issues.append(
+                f"Annotation has threshold '{ann_threshold}' "
+                f"but GPT returned none"
+            )
 
-    # ── Quality checks — only flag genuinely fixable issues ──────────────────
+    ann_type_clean = str(ann_type).upper().strip()
+    if ann_type_clean in ("HARD", "HARD-CONDITIONAL"):
+        gpt_thresholds = gpt_result.get("thresholds", [])
+        if gpt_thresholds:
+            for t in gpt_thresholds:
+                if "slack" in str(t.get("variable", "")).lower():
+                    issues.append(
+                        "HARD constraint but GPT generated soft/slack variable"
+                    )
 
-    # # Flag HARD constraints with no exception AND no threshold
-    # # (may be procedural boilerplate)
-    # if constraint_type == "HARD" and not thresholds and not exceptions:
-    #     issues.append("HARD with no threshold or exception — review if procedural")
+    is_valid = len(issues) == 0
+    return is_valid, issues
 
-    # Flag missing entities
-    if constraint_type in ("HARD", "SOFT"):
-        if not entities["subject"] and not entities["authority"]:
-            issues.append("No recognizable entities — check annotation")
 
-    # Flag thresholds that had a real value but couldn't be parsed
-    for t in thresholds:
-        raw_val = str(t.get("raw", "")).strip()
-        # Skip nan/empty — not an error
-        if is_empty_threshold(raw_val):
-            continue
-        if t["value"] is None:
-            issues.append(f"Could not parse numeric value: {raw_val}")
-        if t["unit"] is None and t["variable"] == "unknown":
-            issues.append(f"Could not determine unit: {raw_val}")
+# ── Fallback parser (used when GPT unavailable) ───────────────────────────────
 
-    # Determine hardness subtype
-    hardness_subtype = constraint_type
-    if constraint_type == "HARD" and exceptions:
+def fallback_extract(raw_text: str, constraint_type: str,
+                     threshold: str, entities: str,
+                     exception: str) -> dict:
+    """
+    Minimal fallback when GPT is unavailable.
+    Produces basic structure — better than nothing,
+    but not used for training data.
+    """
+    exc_list = []
+    if not is_empty(exception):
+        exc_str = str(exception).strip()
+        exc_list = [{
+            "trigger":       exc_str,
+            "type":          "conditional",
+            "variable_name": "exception_unknown",
+        }]
+
+    thresh_list = []
+    if not is_empty(threshold):
+        ann_val = _parse_annotated_value(str(threshold))
+        if ann_val is not None:
+            thresh_list = [{
+                "variable":  "duration_unknown",
+                "value":     ann_val,
+                "unit":      None,
+                "direction": None,
+            }]
+
+    return {
+        "entities":   {"subject": [], "authority": [], "object": []},
+        "thresholds": thresh_list,
+        "exceptions": exc_list,
+    }
+
+
+# ── IR record builder ─────────────────────────────────────────────────────────
+
+def build_ir_record(row: pd.Series,
+                    use_gpt: bool = True,
+                    dry_run: bool = False) -> tuple[dict, list[str]]:
+    """Convert one annotated CSV row into a Constraint IR dict."""
+    issues      = []
+    raw_text    = str(row.get("raw_text", "") or "")
+    ctype       = str(row.get("constraint_type", "")).upper().strip()
+    threshold   = str(row.get("threshold", "") or "")
+    entities    = str(row.get("entities", "") or "")
+    exception   = str(row.get("exception", "") or "")
+
+    hardness_subtype = ctype
+    if ctype == "HARD" and not is_empty(exception):
         hardness_subtype = "HARD-CONDITIONAL"
-    elif constraint_type == "SOFT":
-        if exceptions and exceptions[0]["type"] == "approval_based":
+    elif ctype == "SOFT":
+        exc_lower = exception.lower()
+        if any(kw in exc_lower for kw in
+               ["approval", "approved", "authorize"]):
             hardness_subtype = "SOFT-APPROVAL"
-        elif exceptions:
+        elif not is_empty(exception):
             hardness_subtype = "SOFT-CONDITIONAL"
 
+    if dry_run:
+        extracted = fallback_extract(
+            raw_text, ctype, threshold, entities, exception
+        )
+        gpt_used = False
+    elif use_gpt and GPT_AVAILABLE:
+        extracted = gpt_extract(
+            raw_text, ctype, threshold, entities, exception
+        )
+        gpt_used  = extracted is not None
+        if extracted is None:
+            extracted = fallback_extract(
+                raw_text, ctype, threshold, entities, exception
+            )
+            issues.append("GPT extraction failed — used fallback")
+    else:
+        extracted = fallback_extract(
+            raw_text, ctype, threshold, entities, exception
+        )
+        gpt_used = False
+
+    if gpt_used:
+        is_valid, gate_issues = validate_against_annotation(
+            extracted, threshold, ctype
+        )
+        if not is_valid:
+            issues.extend(gate_issues)
+
     ir = {
-        "constraint_id"    : str(row.get("sentence_id", "")),
-        "source_doc"       : str(row.get("source_doc", "")),
-        "page_num"         : int(row["page_num"])
-                             if pd.notna(row.get("page_num")) else None,
-        "raw_text"         : raw_text,
-        "constraint_type"  : constraint_type,
-        "hardness_subtype" : hardness_subtype,
-        "entities"         : entities,
-        "thresholds"       : thresholds,
-        "exceptions"       : exceptions,
-        "quality_issues"   : issues,
-        "solver_status"    : None,
-        "cpsat_code"       : None,
-        "verified"         : False,
-        "source_signals"   : str(row.get("signals", "")),
-        "confidence_score" : int(row.get("confidence_score", 0)),
-        "annotation_source": "human"
-                             if "human" in str(row.get("notes", "")).lower()
-                             else "auto-gpt4o",
-        "created_at"       : datetime.now().strftime("%Y-%m-%d"),
+        "constraint_id"     : str(row.get("sentence_id", "")),
+        "source_doc"        : str(row.get("source_doc", "")),
+        "domain"            : str(row.get("domain", "")),
+        "page_num"          : (int(row["page_num"])
+                               if pd.notna(row.get("page_num")) else None),
+        "raw_text"          : raw_text,
+        "constraint_type"   : ctype,
+        "hardness_subtype"  : hardness_subtype,
+        "entities"          : extracted.get("entities",
+                                            {"subject": [],
+                                             "authority": [],
+                                             "object": []}),
+        "thresholds"        : extracted.get("thresholds", []),
+        "exceptions"        : extracted.get("exceptions", []),
+        "quality_issues"    : issues,
+        "annotation_valid"  : bool(row.get("annotation_valid", True)),
+        "gpt_extracted"     : gpt_used,
+        "solver_status"     : None,
+        "cpsat_code"        : None,
+        "verified"          : False,
+        "source_signals"    : str(row.get("signals", "")),
+        "confidence_score"  : int(row.get("confidence_score", 0)
+                                  if pd.notna(
+                                      row.get("confidence_score")) else 0),
+        "split"             : str(row.get("split", "train")),
+        "created_at"        : datetime.now().strftime("%Y-%m-%d"),
     }
 
     return ir, issues
 
 
-def build_ir(csv_path: Path) -> tuple[list[dict], pd.DataFrame]:
-    """Load annotated CSV and convert all rows to IR format."""
-    df = pd.read_csv(csv_path, dtype={
-        "is_constraint"  : "object",
-        "constraint_type": "object",
-        "entities"       : "object",
-        "threshold"      : "object",
-        "exception"      : "object",
-        "notes"          : "object",
-    })
+# ── Domain processing ─────────────────────────────────────────────────────────
 
-    # Only process annotated constraints
+def process_domain(domain: str,
+                   limit: int | None = None,
+                   use_gpt: bool = True,
+                   dry_run: bool = False,
+                   valid_only: bool = True) -> list[dict]:
+    """Load annotated CSV for a domain and build IR records."""
+
+    ann_dir = ANNOTATED_DIR / domain
+    if not ann_dir.exists():
+        print(f"  SKIP {domain} — no annotated directory")
+        return []
+
+    ann_files = sorted(ann_dir.glob("*_annotated.csv"))
+    if not ann_files:
+        print(f"  SKIP {domain} — no annotated files")
+        return []
+
+    frames = []
+    for f in ann_files:
+        try:
+            df = pd.read_csv(f, dtype={
+                "is_constraint":   "object",
+                "constraint_type": "object",
+                "entities":        "object",
+                "threshold":       "object",
+                "exception":       "object",
+                "notes":           "object",
+            })
+            df["domain"] = domain
+            frames.append(df)
+        except Exception as e:
+            print(f"  ERROR {f.name}: {e}")
+
+    if not frames:
+        return []
+
+    df = pd.concat(frames, ignore_index=True)
+
     df = df[
         df["is_constraint"].notna() &
         (df["is_constraint"] == "Yes") &
         df["constraint_type"].notna() &
-        (df["constraint_type"] != "")
+        (df["constraint_type"].str.upper().isin(
+            {"HARD", "SOFT", "HARD-CONDITIONAL",
+             "SOFT-CONDITIONAL", "NON-CONSTRAINT"}))
     ].copy()
 
-    print(f"\n  Processing {len(df)} annotated constraints...")
+    if valid_only and "annotation_valid" in df.columns:
+        before = len(df)
+        df = df[df["annotation_valid"] != False].copy()
+        removed = before - len(df)
+        if removed > 0:
+            print(f"  {domain}: removed {removed} "
+                  f"invalid annotations")
+
+    if limit:
+        df = df.head(limit)
+
+    print(f"  {domain:<20} processing {len(df)} constraints...")
 
     ir_records = []
     issue_rows = []
+    gpt_fails  = 0
 
-    for _, row in df.iterrows():
-        ir, issues = build_ir_record(row)
+    for i, (_, row) in enumerate(df.iterrows()):
+        if i % 100 == 0 and i > 0:
+            print(f"    {i}/{len(df)}...")
+
+        ir, issues = build_ir_record(row, use_gpt=use_gpt,
+                                      dry_run=dry_run)
+
+        if not ir["gpt_extracted"] and use_gpt and not dry_run:
+            gpt_fails += 1
+
         ir_records.append(ir)
-        if issues:
-            for issue in issues:
-                issue_rows.append({
-                    "constraint_id"  : ir["constraint_id"],
-                    "constraint_type": ir["constraint_type"],
-                    "issue"          : issue,
-                    "raw_text"       : ir["raw_text"][:120],
-                })
 
-    issues_df = pd.DataFrame(issue_rows)
-    return ir_records, issues_df
+        for issue in issues:
+            issue_rows.append({
+                "constraint_id"  : ir["constraint_id"],
+                "domain"         : domain,
+                "constraint_type": ir["constraint_type"],
+                "issue"          : issue,
+                "raw_text"       : ir["raw_text"][:120],
+            })
 
+        if use_gpt and not dry_run and i % 50 == 49:
+            time.sleep(0.5)
 
-def print_stats(ir_records: list[dict], issues_df: pd.DataFrame):
-    """Print summary statistics."""
-    total     = len(ir_records)
-    hard      = sum(1 for r in ir_records if r["constraint_type"] == "HARD")
-    soft      = sum(1 for r in ir_records if r["constraint_type"] == "SOFT")
-    hard_cond = sum(1 for r in ir_records
-                    if r["hardness_subtype"] == "HARD-CONDITIONAL")
-    soft_appr = sum(1 for r in ir_records
-                    if r["hardness_subtype"] == "SOFT-APPROVAL")
-    soft_cond = sum(1 for r in ir_records
-                    if r["hardness_subtype"] == "SOFT-CONDITIONAL")
+    out_dir = PROCESSED_DIR / domain
+    out_dir.mkdir(parents=True, exist_ok=True)
 
-    # Only count records with real parsed numeric thresholds
-    with_thresh = sum(
+    ir_path = out_dir / "constraint_ir.json"
+    with open(ir_path, "w") as f:
+        json.dump(ir_records, f, indent=2)
+
+    if issue_rows:
+        issues_df  = pd.DataFrame(issue_rows)
+        issues_path = out_dir / "constraint_ir_issues.csv"
+        issues_df.to_csv(issues_path, index=False)
+
+    gpt_count = sum(1 for r in ir_records if r["gpt_extracted"])
+    exc_count = sum(1 for r in ir_records if r["exceptions"])
+    thr_count = sum(1 for r in ir_records if r["thresholds"])
+    sem_count = sum(
         1 for r in ir_records
-        if r["thresholds"] and
-        any(t["value"] is not None for t in r["thresholds"])
+        if r["exceptions"] and
+        r["exceptions"][0].get("variable_name", "")
+        not in ("exception_unknown", "", None) and
+        "exception_contract" not in
+        r["exceptions"][0].get("variable_name", "")
     )
-    with_exc    = sum(1 for r in ir_records if r["exceptions"])
-    with_issues = sum(1 for r in ir_records if r["quality_issues"])
 
-    print(f"\n{'='*55}")
+    print(f"  {domain:<20} done  "
+          f"{len(ir_records)} IR records  "
+          f"GPT:{gpt_count}  "
+          f"thresh:{thr_count}  "
+          f"exc:{exc_count}  "
+          f"semantic_vars:{sem_count}")
+
+    return ir_records
+
+
+# ── Stats ─────────────────────────────────────────────────────────────────────
+
+def print_stats(all_records: list[dict]):
+    total     = len(all_records)
+    gpt       = sum(1 for r in all_records if r["gpt_extracted"])
+    with_thr  = sum(1 for r in all_records if r["thresholds"])
+    with_exc  = sum(1 for r in all_records if r["exceptions"])
+    with_sem  = sum(
+        1 for r in all_records
+        if r["exceptions"] and
+        r["exceptions"][0].get("variable_name", "")
+        not in ("exception_unknown", "", None) and
+        "exception_contract" not in
+        r["exceptions"][0].get("variable_name", "")
+    )
+    with_issues = sum(1 for r in all_records if r["quality_issues"])
+
+    print(f"\n{'='*60}")
     print(f"  CONSTRAINT IR SUMMARY")
-    print(f"{'='*55}")
-    print(f"  Total IR records       : {total}")
-    print(f"  HARD                   : {hard}  ({100*hard//total}%)")
-    print(f"    HARD-CONDITIONAL     : {hard_cond}")
-    print(f"  SOFT                   : {soft}  ({100*soft//total}%)")
-    print(f"    SOFT-APPROVAL        : {soft_appr}")
-    print(f"    SOFT-CONDITIONAL     : {soft_cond}")
-    print(f"  With thresholds        : {with_thresh}  ({100*with_thresh//total}%)")
-    print(f"  With exceptions        : {with_exc}  ({100*with_exc//total}%)")
-    print(f"  Quality issues flagged : {with_issues}  ({100*with_issues//total}%)")
-    print(f"{'='*55}")
+    print(f"{'='*60}")
+    print(f"  Total IR records      : {total:,}")
+    print(f"  GPT extracted         : {gpt:,}  ({100*gpt//total}%)")
+    print(f"  With thresholds       : {with_thr:,}  ({100*with_thr//total}%)")
+    print(f"  With exceptions       : {with_exc:,}  ({100*with_exc//total}%)")
+    print(f"  Semantic var names    : {with_sem:,}  ({100*with_sem//with_exc if with_exc else 0}% of exc)")
+    print(f"  Quality issues        : {with_issues:,}")
+    print(f"\n  By domain:")
 
-    if not issues_df.empty:
-        print(f"\n  Top issue types:")
-        for issue, count in issues_df["issue"].value_counts().head(8).items():
-            print(f"    {count:>4}  {issue[:70]}")
+    domain_counts: dict = {}
+    for r in all_records:
+        d = r["domain"]
+        if d not in domain_counts:
+            domain_counts[d] = {"total": 0, "exc": 0, "sem": 0}
+        domain_counts[d]["total"] += 1
+        if r["exceptions"]:
+            domain_counts[d]["exc"] += 1
+            vn = r["exceptions"][0].get("variable_name", "")
+            if vn and "exception_contract" not in vn \
+                    and vn != "exception_unknown":
+                domain_counts[d]["sem"] += 1
 
+    for domain, counts in domain_counts.items():
+        sem_pct = (100 * counts["sem"] // counts["exc"]
+                   if counts["exc"] else 0)
+        print(f"    {domain:<20} {counts['total']:>5}  "
+              f"exc:{counts['exc']:>4}  "
+              f"semantic:{counts['sem']:>4} ({sem_pct}%)")
+
+    print(f"{'='*60}")
+
+    print(f"\n  Sample semantic variable names:")
+    shown = 0
+    for r in all_records:
+        if not r["exceptions"]:
+            continue
+        vn = r["exceptions"][0].get("variable_name", "")
+        if vn and "exception_contract" not in vn \
+                and vn != "exception_unknown":
+            trigger = r["exceptions"][0].get("trigger", "")[:60]
+            print(f"    '{trigger}'")
+            print(f"    → {vn}\n")
+            shown += 1
+            if shown >= 5:
+                break
+
+
+# ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(
-        description="SOLAR Step 5: Build Constraint IR")
+        description="SOLAR Step 05: Build Constraint IR")
     parser.add_argument(
-        "--source",
-        help="Path to annotated CSV (default: contract_v5_annotated.csv)")
+        "--domain", default="transit",
+        help="Domain to process, or 'all' for all domains")
+    parser.add_argument(
+        "--limit", type=int, default=None,
+        help="Process only first N records per domain (for testing)")
+    parser.add_argument(
+        "--dry-run", action="store_true",
+        help="Skip GPT calls, use fallback parser (fast, for testing)")
+    parser.add_argument(
+        "--no-gpt", action="store_true",
+        help="Disable GPT, use fallback parser only")
     args = parser.parse_args()
 
-    print("\n" + "="*55)
-    print("SOLAR — Step 5: Build Constraint IR")
-    print("="*55)
+    use_gpt = not args.no_gpt and not args.dry_run
 
-    csv_path = (Path(args.source) if args.source
-                else ANNOTATED_DIR / "contract_v5_annotated.csv")
+    print("\n" + "="*60)
+    print("SOLAR — Step 05: Build Constraint IR")
+    print("="*60)
+    print(f"\n  Domain  : {args.domain}")
+    print(f"  GPT     : {'enabled (gpt-4o-mini)' if use_gpt else 'disabled (fallback)'}")
+    print(f"  Dry run : {args.dry_run}")
+    if args.limit:
+        print(f"  Limit   : {args.limit} per domain")
 
-    if not csv_path.exists():
-        print(f"ERROR: {csv_path} not found")
-        return
+    if use_gpt and not GPT_AVAILABLE:
+        print("\n  WARNING: OPENAI_API_KEY not set.")
+        print("  Set it with: export OPENAI_API_KEY=your_key")
+        print("  Falling back to rule-based parser.\n")
+        use_gpt = False
 
-    print(f"\n  Source: {csv_path.name}")
+    if args.domain == "all":
+        domains = DOMAINS
+    else:
+        domains = [args.domain]
 
-    ir_records, issues_df = build_ir(csv_path)
+    all_records = []
+    for domain in domains:
+        print(f"\n  [{domain}]")
+        records = process_domain(
+            domain,
+            limit   = args.limit,
+            use_gpt = use_gpt,
+            dry_run = args.dry_run,
+        )
+        all_records.extend(records)
 
-    # Save IR JSON
-    ir_path = PROCESSED_DIR / "constraint_ir.json"
-    with open(ir_path, "w") as f:
-        json.dump(ir_records, f, indent=2)
-    print(f"\n  IR saved   → {ir_path.relative_to(PROJECT_ROOT)}")
+    if args.domain == "all" and all_records:
+        out_path = PROCESSED_DIR / "all_domains_ir.json"
+        with open(out_path, "w") as f:
+            json.dump(all_records, f, indent=2)
+        print(f"\n  Combined IR → data/processed/all_domains_ir.json")
 
-    # Save issues CSV
-    if not issues_df.empty:
-        issues_path = PROCESSED_DIR / "constraint_ir_issues.csv"
-        issues_df.to_csv(issues_path, index=False)
-        print(f"  Issues     → {issues_path.relative_to(PROJECT_ROOT)}")
+    if all_records:
+        print_stats(all_records)
 
-    print_stats(ir_records, issues_df)
-
-    # Show 3 sample IR records
-    print(f"\n  Sample IR records:")
-    for ir in ir_records[:3]:
-        print(f"\n  [{ir['constraint_type']}] {ir['constraint_id']}")
-        print(f"  Text      : {ir['raw_text'][:80]}...")
-        print(f"  Subtype   : {ir['hardness_subtype']}")
-        print(f"  Entities  : {ir['entities']}")
-        print(f"  Thresholds: {ir['thresholds']}")
-        print(f"  Exceptions: {ir['exceptions']}")
-        if ir["quality_issues"]:
-            print(f"  Issues    : {ir['quality_issues']}")
-
-    print(f"\n  Next: python scripts/06_generate_cpsat.py")
-    print(f"  Converts IR → CP-SAT code for solver verification\n")
+    print(f"\n  Next: python scripts/06_gpt_enrich_ir.py --domain all")
+    print(f"        (enriches exception variable names)\n")
 
 
 if __name__ == "__main__":
