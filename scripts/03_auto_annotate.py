@@ -27,8 +27,8 @@ except ImportError:
     exit(1)
 
 PROJECT_ROOT  = Path(__file__).parent.parent
-PROCESSED_DIR = PROJECT_ROOT / "data" / "processed" / "healthcare"
-ANNOTATED_DIR = PROJECT_ROOT / "data" / "annotated" / "healthcare"
+PROCESSED_DIR = PROJECT_ROOT / "data" / "processed" / "manufacturing"
+ANNOTATED_DIR = PROJECT_ROOT / "data" / "annotated" / "manufacturing"
 ANNOTATED_DIR.mkdir(parents=True, exist_ok=True)
 
 SYSTEM_PROMPT = """You are an expert in transit labor law and operational constraints.

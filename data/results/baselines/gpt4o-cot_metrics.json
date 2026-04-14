@@ -1,0 +1,25 @@
+{
+  "macro_f1": 0.3342,
+  "per_class_f1": {
+    "HARD": 0.771,
+    "SOFT": 0.087,
+    "HARD-CONDITIONAL": 0.381,
+    "SOFT-CONDITIONAL": 0.056,
+    "NON-CONSTRAINT": 0.375
+  },
+  "threshold_acc": 0.8416,
+  "semantic_var_rate": 0.7677,
+  "json_valid_rate": 0.9991,
+  "per_domain_f1": {
+    "transit": 0.3521,
+    "healthcare": 0.3284,
+    "education": 0.3509,
+    "municipal": 0.3223,
+    "construction": 0.3072,
+    "aviation": 0.3545,
+    "building_services": 0.3239,
+    "hospitality": 0.2149
+  },
+  "n_total": 46566,
+  "note": "recomputed with corrected annotations Apr 2026"
+}

@@ -21,6 +21,14 @@ data/healthcare/raw/contracts/*.pdf
 
 data/raw/transit/fta_regulations/*.pdf
 data/raw/transit/gtfs/*.pdf
+data/raw/aviation/gtfs/*.pdf
+data/raw/construction/gtfs/*.pdf
+data/raw/municipal/gtfs/*.pdf
+data/raw/hospitality/gtfs/*.pdf
+data/raw/building_services/gtfs/*.pdf
+data/raw/education/gtfs/*.pdf
+data/raw/manufacturing/gtfs/*.pdf
+
 
 # Models (large checkpoints)
 models/

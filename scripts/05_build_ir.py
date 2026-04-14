@@ -180,8 +180,15 @@ def validate_against_annotation(gpt_result: dict,
 
     ann_value = _parse_annotated_value(ann_threshold)
     if ann_value is not None and gpt_result.get("thresholds"):
-        gpt_values = [t.get("value") for t in gpt_result["thresholds"]
-                      if t.get("value") is not None]
+        gpt_values = []
+        for t in gpt_result["thresholds"]:
+            v = t.get("value")
+            if v is None:
+                continue
+            try:
+                gpt_values.append(float(v))
+            except (TypeError, ValueError):
+                continue
         if gpt_values:
             closest = min(gpt_values,
                           key=lambda v: abs(v - ann_value))

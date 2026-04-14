@@ -1,0 +1,54 @@
+constraint_id,domain,constraint_type,issue,raw_text
+CARPENTE_0132,construction,HARD,"Threshold mismatch: annotation=1.0, GPT=100000.0","In addition to the bond established under Section 7 above effective July 1, 2022 all new contractors that become signato"
+CARPENTE_0390,construction,HARD,Annotation has threshold 'max_compensation=base_rate+$3.00' but GPT returned none,In case the auditors for the Board of Trustees conduct an audit and determine that a Contractor has violated the provisi
+IBEW_124_1288,construction,HARD,"Threshold mismatch: annotation=50.0, GPT=62.68",SAP JOB PAY SCALE CLASSIFICATION PROGRESSION 1/1/2022 1/1/2023 1/1/2024 1/1/2025 CODE CODE 51654545 0339 Lead Corrosion 
+IBEW_124_0988,construction,HARD,Annotation has threshold 'max_prebids=80' but GPT returned none,(Added 1-1-91) 305.6 HARDSHIPS Company shall have the right to make transfers in the case of employees whose health or p
+IBEW_124_0274,construction,SOFT,"Threshold mismatch: annotation=2.0, GPT=14.0","The Committee members, the Company or the Union may submit items for discussion to the Secretary at least two weeks prio"
+IBEW_124_0009,construction,SOFT,GPT extraction failed — used fallback,"In an effort to create opportunities to Stay at Work or Return to Work, the joint oversight committee may recommend curr"
+IBEW_124_0028,construction,HARD,GPT extraction failed — used fallback,(d) The Pacific Gas and Electric Company shall include the obligations set forth in sections
+IBEW_124_0161,construction,HARD,GPT extraction failed — used fallback,"If either party requests ""Certification to Fact Finding,"" copies of the report and the request shall be forwarded to the"
+IBEW_124_0115,construction,HARD,GPT extraction failed — used fallback,(c) Employees shall advise their supervisor on the workday following receipt of notice that they are required to report 
+IBEW_124_0098,construction,HARD,GPT extraction failed — used fallback,"An employee who has returned to work for Company following an absence on ""leave"" for Union business in excess of six mon"
+IBEW_124_0131,construction,SOFT,GPT extraction failed — used fallback,(b) Steps One Through Five Extension of Time Limits Either the Company or Union members of any of the Committees provide
+IBEW_124_0135,construction,SOFT,GPT extraction failed — used fallback,The Company and Union Fact Finders may direct the Labor Relations Specialist and Business Representative to settle the g
+IBEW_124_0566,construction,HARD,GPT extraction failed — used fallback,"The sign-up sheet shall include the location of the reporting site, the classifications required and an estimate of the "
+IBEW_124_0556,construction,HARD,GPT extraction failed — used fallback,"(Amended 1-1-91) 202.20 PRE-JULY 1962 EXCEPTIONS Section 202.19 shall not apply in any area in which on June 30, 1962, i"
+IBEW_124_0508,construction,SOFT,GPT extraction failed — used fallback,"(Amended 1-1-91) 201.13 ENABLING CLAUSE By written agreement between Company and Union, special provisions may be substi"
+IBEW_124_0531,construction,SOFT,GPT extraction failed — used fallback,(Amended 1-1-80) 202.11 WORKWEEK AND HOURS - RESIDENT The workweek of resident employees shall be regularly scheduled an
+IBEW_48__0108,construction,HARD,"Threshold mismatch: annotation=4.0, GPT=40.0","Pay day for a Monday through Thursday, 4-10 work week shall be Thursday. 4-10 work schedules are allowed on swing and gr"
+IBEW_48__0147,construction,HARD,"Threshold mismatch: annotation=31.0, GPT=9.0",The following zone pay shall apply: Zone 1 31-50 miles $1.50 per hour Zone 2 51-70 miles $3.50 per hour Zone 3 71-90 mil
+IBEW_569_0341,construction,HARD,GPT extraction failed — used fallback,"The Fund shall function in accordance with, and as provided in, its Agreement and Declaration of Trust, and any amendmen"
+IBEW_569_0357,construction,HARD,GPT extraction failed — used fallback,Therefore each IBEW local union and NECA chapter shall implement a Code of Excellence Program.
+IBEW_569_0273,construction,HARD,GPT extraction failed — used fallback,Time worked and accumulated in apprenticeship shall not be considered for local union referral purposes until the appren
+IBEW_569_0063,construction,HARD,GPT extraction failed — used fallback,"The Union agrees that if, during the life of this Agreement, it grants to any other Employer in the Electrical Contracti"
+IBEW_569_0091,construction,HARD,GPT extraction failed — used fallback,"Any special terms, conditions, modifications, or amendments so provided by the Union, shall be implemented with regard t"
+IBEW_569_0051,construction,HARD,GPT extraction failed — used fallback,The bond shall provide that it may not be terminated without fifteen (15) days prior written notice to the Employer and 
+IBEW_569_0013,construction,HARD,GPT extraction failed — used fallback,The Council's decisions shall be final and binding. 4
+IBEW_569_0041,construction,HARD,GPT extraction failed — used fallback,"Such working member of the firm (Employer) shall have certain qualifications, knowledge, experience, and shall perform w"
+IBEW_569_0156,construction,HARD,GPT extraction failed — used fallback,"When electricians are terminated, they shall be given a termination slip stating the reason for such termination."
+IBEW_569_0125,construction,HARD,"Threshold mismatch: annotation=4.0, GPT=270.0","Each Contractor shall post in his place of business a notice specifying a day and hour, not later than four thirty (4:30"
+IBEW_JUN_0268,construction,HARD,GPT extraction failed — used fallback,"When the recognized holiday falls on the employee’s third day off in a work week, the succeeding scheduled workday shall"
+IBEW_JUN_0257,construction,HARD,GPT extraction failed — used fallback,"If advance leave request submittal is not possible, the employee shall notify the management supervisor before start of "
+IBEW_JUN_0315,construction,HARD,GPT extraction failed — used fallback,"As a goal, the overtime differential between all regular personnel shall not exceed twenty (20) hours per year within th"
+IBEW_JUN_0449,construction,HARD,GPT extraction failed — used fallback,The Committee shall select co-chairmen from its members.
+IBEW_JUN_0375,construction,SOFT,GPT extraction failed — used fallback,The Union agrees to cooperate with the Municipality in the exercise of this right and fulfillment of this obligation so 
+IBEW_JUN_0498,construction,HARD,GPT extraction failed — used fallback,The MOA shall pay any expense and/or judgments rendered against the employee in the case of revocation of employee’s lic
+IBEW_JUN_0481,construction,HARD,GPT extraction failed — used fallback,Employees working the Paint & Sign Shop swing-shift shall receive a fifteen percent (15%) shift differential for all hou
+IBEW_JUN_0403,construction,HARD,GPT extraction failed — used fallback,"If notification is given, then the Union and the Human Resources Director or designee shall meet within ten (10) working"
+IBEW_JUN_0433,construction,SOFT,GPT extraction failed — used fallback,Any rolling stock may be red-tagged if at least one
+IBEW_JUN_0097,construction,HARD,GPT extraction failed — used fallback,The Union shall maintain a hiring hall and refer qualified applicants to the MOA when requested.
+IBEW_JUN_0120,construction,HARD,GPT extraction failed — used fallback,The bid committee shall be composed of two
+IBEW_JUN_0109,construction,HARD,GPT extraction failed — used fallback,"To be eligible for consideration, applicants must apply during the advertised recruitment period, meet the minimum quali"
+IBEW_JUN_0006,construction,HARD,GPT extraction failed — used fallback,The Union agrees that there shall be no work stoppages due to jurisdictional disputes.
+IBEW_JUN_0213,construction,HARD,GPT extraction failed — used fallback,"Once such an initial decision is made, the provisions of this Section shall apply."
+IBEW_JUN_0210,construction,HARD,GPT extraction failed — used fallback,"Section 3.13 Loan of Employees The Municipality shall not loan, or cause to be loaned, to any other employer the members"
+IBEW_JUN_0193,construction,HARD,GPT extraction failed — used fallback,An employee who is on a recall from layoff list shall be eligible for recall for two
+IBEW_JUN_0224,construction,HARD,GPT extraction failed — used fallback,(2) weeks advance notice must be given.
+IBEW_JUN_0235,construction,SOFT,GPT extraction failed — used fallback,"Employees on approved leave without pay may be replaced by temporary employees, depending on the needs of the agency and"
+IBEW_JUN_0233,construction,SOFT,GPT extraction failed — used fallback,"Regular employees may be granted a leave of absence without pay, upon written request and recommendation of the supervis"
+IBEW_JUN_0149,construction,HARD,GPT extraction failed — used fallback,"When it becomes clear that an employee serving a promotional evaluation is not performing adequately, the employee shall"
+IBEW_JUN_0150,construction,HARD,GPT extraction failed — used fallback,"If the employee’s previous position has been filled, the employee in that position shall either bump back to their previ"
+IBEW_JUN_0164,construction,HARD,GPT extraction failed — used fallback,Temporary acting assignments shall not exceed six
+IBEW_JUN_0162,construction,HARD,GPT extraction failed — used fallback,Employees who are assigned work in a higher classification for training purposes shall not be entitled to additional com
+IBEW_JUN_0158,construction,HARD,GPT extraction failed — used fallback,"The Union shall be responsible for providing the MOA with the seniority list by work group, on a monthly basis. 4."
+IBEW_JUN_0174,construction,HARD,GPT extraction failed — used fallback,"Employees must meet the minimum qualifications, have an acceptable driving record, and successfully complete any examina"
