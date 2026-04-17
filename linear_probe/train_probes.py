@@ -29,8 +29,8 @@ Probes trained:
 
 Training protocol:
   - Stratified 5-fold cross-validation (robust for imbalanced labels)
-  - L2-regularized logistic regression (sklearn)
-  - Hyperparameter sweep: C ∈ {0.001, 0.01, 0.1, 1.0, 10.0}
+  - L2-regularized logistic regression (sklearn, saga solver)
+  - Hyperparameter sweep: C ∈ {0.01, 1.0} (reduced for speed)
   - Evaluation: Macro F1 (consistent with baseline comparison script)
   - Per-class F1 for constraint_type (to see which classes the probe
     recovers vs. which the model's own output misses)
@@ -66,6 +66,7 @@ import json
 import argparse
 import logging
 import pickle
+import time
 from pathlib import Path
 from datetime import datetime
 
@@ -137,14 +138,14 @@ PROBE_TASKS = {
     },
 }
 
-# Regularization strengths to sweep
-C_VALUES = [0.001, 0.01, 0.1, 1.0, 10.0]
+# Regularization strengths to sweep (reduced from 5 to 2 for speed)
+C_VALUES = [0.01, 1.0]
 
 # Cross-validation folds
 N_FOLDS = 5
 
 # Maximum iterations for logistic regression
-MAX_ITER = 2000
+MAX_ITER = 500
 
 
 # ── Data loading ─────────────────────────────────────────────────────────────
@@ -217,8 +218,12 @@ def generate_control_labels(labels, seed=42):
 
 
 # ── Probe training ───────────────────────────────────────────────────────────
-def train_probe_cv(X, y, n_classes, n_folds=N_FOLDS, seed=42):
+def train_probe_cv(X, y, n_classes, task_name="", layer_idx=0,
+                   n_folds=N_FOLDS, seed=42):
     """Train a linear probe with stratified cross-validation and C sweep.
+
+    Uses saga solver for speed on large datasets. Prints per-fold
+    progress with timing so you can estimate completion.
 
     Returns:
         dict with:
@@ -246,11 +251,17 @@ def train_probe_cv(X, y, n_classes, n_folds=N_FOLDS, seed=42):
 
     # C sweep: find best C via mean macro_f1 across folds
     c_results = {}
+    total_fits = len(C_VALUES) * n_folds
+    fit_count = 0
+
     for c_val in C_VALUES:
         fold_f1s = []
         fold_accs = []
 
-        for train_idx, test_idx in skf.split(X, y):
+        for fold_i, (train_idx, test_idx) in enumerate(skf.split(X, y)):
+            fit_count += 1
+            t0 = time.time()
+
             X_train, X_test = X[train_idx], X[test_idx]
             y_train, y_test = y[train_idx], y[test_idx]
 
@@ -262,17 +273,28 @@ def train_probe_cv(X, y, n_classes, n_folds=N_FOLDS, seed=42):
             clf = LogisticRegression(
                 C=c_val,
                 max_iter=MAX_ITER,
-                solver="lbfgs",
+                solver="saga",  # faster than lbfgs for large datasets
                 multi_class="multinomial" if n_classes > 2 else "auto",
                 random_state=seed,
                 n_jobs=-1,
+                tol=1e-3,  # slightly relaxed tolerance for speed
             )
             clf.fit(X_train_s, y_train)
             y_pred = clf.predict(X_test_s)
 
-            fold_f1s.append(f1_score(y_test, y_pred, average="macro",
-                                      zero_division=0))
-            fold_accs.append(accuracy_score(y_test, y_pred))
+            f1 = f1_score(y_test, y_pred, average="macro", zero_division=0)
+            acc = accuracy_score(y_test, y_pred)
+            fold_f1s.append(f1)
+            fold_accs.append(acc)
+
+            elapsed = time.time() - t0
+            log.info(f"    [{task_name}] Layer {layer_idx} | "
+                     f"C={c_val} fold {fold_i+1}/{n_folds}: "
+                     f"F1={f1:.4f} acc={acc:.4f} ({elapsed:.0f}s) "
+                     f"[{fit_count}/{total_fits}]")
+
+        mean_f1 = np.mean(fold_f1s)
+        log.info(f"    [{task_name}] C={c_val} mean F1: {mean_f1:.4f}")
 
         c_results[c_val] = {
             "macro_f1_mean": np.mean(fold_f1s),
@@ -288,18 +310,22 @@ def train_probe_cv(X, y, n_classes, n_folds=N_FOLDS, seed=42):
     best = c_results[best_c]
 
     # Retrain on full data with best C for per-class report and saving
+    log.info(f"    [{task_name}] Retraining on full data with best C={best_c}...")
+    t0 = time.time()
     scaler_full = StandardScaler()
     X_full = scaler_full.fit_transform(X)
     clf_full = LogisticRegression(
         C=best_c,
         max_iter=MAX_ITER,
-        solver="lbfgs",
+        solver="saga",
         multi_class="multinomial" if n_classes > 2 else "auto",
         random_state=seed,
         n_jobs=-1,
+        tol=1e-3,
     )
     clf_full.fit(X_full, y)
     y_pred_full = clf_full.predict(X_full)
+    log.info(f"    [{task_name}] Full retrain done ({time.time()-t0:.0f}s)")
 
     # Per-class breakdown (on full data — informational, not for main claims)
     labels_present = sorted(set(y))
@@ -409,12 +435,20 @@ def main():
             "y": labels[label_key].numpy(),
         }
 
+    n_total_probes = len(tasks) * len(available_layers)
     log.info(f"Tasks to probe: {list(tasks.keys())}")
     log.info(f"Layers to probe: {available_layers}")
     log.info(f"Pooling: {args.pooling}")
+    log.info(f"Total probes to train: {n_total_probes}")
+    log.info(f"Fits per probe: {len(C_VALUES)} C values x {N_FOLDS} folds "
+             f"= {len(C_VALUES) * N_FOLDS}")
+    log.info(f"C values: {C_VALUES}")
+    log.info(f"Solver: saga (fast for large datasets)")
 
     # ── Train probes ─────────────────────────────────────────────────────
     all_results = {}
+    probe_count = 0
+    overall_start = time.time()
 
     for layer_idx in available_layers:
         log.info(f"\n{'='*60}")
@@ -425,14 +459,18 @@ def main():
         layer_results = {}
 
         for task_name, task_info in tasks.items():
+            probe_count += 1
             y = task_info["y"]
             n_classes = task_info["n_classes"]
 
             log.info(f"\n  [{task_name}] n_classes={n_classes}, "
-                     f"n_samples={len(y)}")
+                     f"n_samples={len(y)} "
+                     f"[probe {probe_count}/{n_total_probes}]")
 
             result = train_probe_cv(
                 X, y, n_classes,
+                task_name=task_name,
+                layer_idx=layer_idx,
                 n_folds=N_FOLDS,
                 seed=args.seed,
             )
@@ -458,12 +496,19 @@ def main():
             result_clean["description"] = task_info["description"]
             layer_results[task_name] = result_clean
 
-            log.info(f"    Macro F1: {result['macro_f1_mean']:.4f} "
-                     f"(±{result['macro_f1_std']:.4f})  "
-                     f"[best C={result['best_c']}]")
+            log.info(f"  >>> {task_name}: Macro F1 = {result['macro_f1_mean']:.4f} "
+                     f"(±{result['macro_f1_std']:.4f})  [best C={result['best_c']}]")
 
             if task_name == "constraint_type":
                 log.info(f"    Per-class F1: {result['per_class_f1']}")
+
+            # ETA estimate
+            elapsed = time.time() - overall_start
+            avg_per_probe = elapsed / probe_count
+            remaining = (n_total_probes - probe_count) * avg_per_probe
+            log.info(f"    ETA: ~{remaining/60:.0f} min remaining "
+                     f"({probe_count}/{n_total_probes} probes done, "
+                     f"{elapsed/60:.1f} min elapsed)")
 
         all_results[str(layer_idx)] = layer_results
 
@@ -572,6 +617,9 @@ def main():
         log.info(f"    gap exists but may be partly representational too.")
         interpretation = "MIXED"
 
+    total_time = time.time() - overall_start
+    log.info(f"\n  Total training time: {total_time/60:.1f} minutes")
+
     # ── Save results ─────────────────────────────────────────────────────
     output = {
         "meta": {
@@ -581,6 +629,9 @@ def main():
             "n_folds": N_FOLDS,
             "c_values": C_VALUES,
             "seed": args.seed,
+            "solver": "saga",
+            "max_iter": MAX_ITER,
+            "total_time_minutes": round(total_time / 60, 1),
             "timestamp": datetime.now().isoformat(),
         },
         "probe_results": all_results,
