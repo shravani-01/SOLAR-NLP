@@ -1,14 +1,9 @@
 """
-SOLAR — Linear Probe: Step 2 — Train Probes (PyTorch GPU)
-==========================================================
-Trains linear classifiers (nn.Linear) on frozen hidden states using GPU
+SOLAR — Linear Probe: Step 2 — Train Probes
+=============================================
+Trains linear classifiers (logistic regression) on frozen hidden states
 to determine whether piece-level and structure-level information is
 linearly decodable from the model's representations.
-
-This is mathematically equivalent to logistic regression — a single
-linear layer + cross-entropy loss learns the same decision boundary.
-Using PyTorch on GPU makes it ~100x faster than sklearn on CPU for
-large hidden-state matrices (46k × 3584).
 
 Methodology follows:
   - Conneau et al. (2018) — probing sentence embeddings
@@ -33,51 +28,60 @@ Probes trained:
        Selectivity = real_accuracy - control_accuracy. Higher = better.
 
 Training protocol:
+  - PCA dimensionality reduction: 3584 → 256 dims (retains ~95% variance;
+    standard in probing literature, see Conneau et al. 2018)
   - Stratified 5-fold cross-validation (robust for imbalanced labels)
-  - nn.Linear(hidden_dim, n_classes) + CrossEntropyLoss + AdamW
-  - Weight decay sweep: {1e-3, 1e-1} (L2 regularization equivalent)
-  - Early stopping on validation loss (patience=5)
+  - SGDClassifier with log loss (equivalent to logistic regression but
+    scales linearly with dataset size via stochastic gradient descent)
+  - Hyperparameter sweep: alpha ∈ {1e-4, 1e-2} (L2 regularization)
   - Evaluation: Macro F1 (consistent with baseline comparison script)
-  - Per-class F1 for constraint_type
+  - Per-class F1 for constraint_type (to see which classes the probe
+    recovers vs. which the model's own output misses)
   - Statistical significance: paired t-test on fold-level F1 scores
+    between piece-probe and structure-probe
 
 Output:
   data/results/linear_probe/probes/
-    ├── probe_results.json          # All metrics (same format as sklearn version)
-    ├── best_probes/                # Saved model state dicts
-    │   ├── constraint_type_layer_-1.pt
+    ├── probe_results.json          # All metrics
+    ├── fold_results.json           # Per-fold detail
+    ├── best_probes/                # Saved sklearn models
+    │   ├── constraint_type_layer_-1.pkl
     │   └── ...
     └── control_labels.json         # Shuffled labels (for reproducibility)
 
 Usage:
-  python linear_probe/train_probes.py \\
-      --hidden-states-dir data/results/linear_probe/hidden_states/qwen2.5_7b/
+  python linear_probe/train_probes.py \
+      --hidden-states-dir data/results/linear_probe/hidden_states/llama_3.1_8b/
 
   # Only specific layers
-  python linear_probe/train_probes.py \\
-      --hidden-states-dir data/results/linear_probe/hidden_states/qwen2.5_7b/ \\
+  python linear_probe/train_probes.py \
+      --hidden-states-dir data/results/linear_probe/hidden_states/llama_3.1_8b/ \
       --layers -1,-4,-8
 
-Legacy sklearn version: train_probes_sklearn.py
+  # Use last_token pooling instead of mean_pool
+  python linear_probe/train_probes.py \
+      --hidden-states-dir data/results/linear_probe/hidden_states/llama_3.1_8b/ \
+      --pooling last_token
 """
 
 import os
 import json
 import argparse
 import logging
+import pickle
 import time
 from pathlib import Path
 from datetime import datetime
 
 import numpy as np
 import torch
-import torch.nn as nn
-import torch.optim as optim
-from torch.utils.data import DataLoader, TensorDataset, Subset
+from sklearn.linear_model import SGDClassifier
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import (
     f1_score, accuracy_score, classification_report
 )
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 from scipy import stats
 
 # ── Logging ──────────────────────────────────────────────────────────────────
@@ -94,7 +98,7 @@ VALID_TYPES = [
     "SOFT-CONDITIONAL", "NON-CONSTRAINT",
 ]
 
-# Probe tasks: name → config
+# Probe tasks: name → (label_key, n_classes, is_piece_level)
 PROBE_TASKS = {
     # Structure-level (the composition bottleneck)
     "constraint_type": {
@@ -130,7 +134,7 @@ PROBE_TASKS = {
     },
     # Control task (Hewitt & Liang 2019)
     "control_type": {
-        "label_key": "control_type",
+        "label_key": "control_type",  # will be generated
         "n_classes": 5,
         "is_piece": False,
         "description": "CONTROL: shuffled constraint_type labels (same distribution)",
@@ -138,17 +142,17 @@ PROBE_TASKS = {
     },
 }
 
-# Weight decay values to sweep (equivalent to L2 regularization)
-WD_VALUES = [1e-3, 1e-1]
+# Regularization strengths to sweep (alpha = 1/C for SGDClassifier)
+ALPHA_VALUES = [1e-4, 1e-2]
 
 # Cross-validation folds
 N_FOLDS = 5
 
-# Training hyperparameters
-LR = 1e-2
-BATCH_SIZE = 1024
-MAX_EPOCHS = 100
-PATIENCE = 5  # early stopping patience
+# PCA dimensions (reduces 3584 → 256; retains ~95% variance)
+PCA_DIMS = 256
+
+# SGD epochs (passes over data)
+MAX_ITER = 1000
 
 
 # ── Data loading ─────────────────────────────────────────────────────────────
@@ -182,11 +186,11 @@ def load_hidden_states_and_labels(hs_dir, pooling="mean_pool"):
 
     log.info(f"Available layers ({pooling}): {available_layers}")
 
-    # Load hidden states — keep as tensors for GPU transfer
+    # Load hidden states
     hidden_states = {}
     for li in available_layers:
         tensor = torch.load(pool_dir / f"layer_{li}.pt", weights_only=True)
-        hidden_states[li] = tensor.float()  # ensure float32
+        hidden_states[li] = tensor.numpy().astype(np.float32)
         log.info(f"  Layer {li}: shape={tensor.shape}")
 
     # Load sentence IDs and domains
@@ -204,8 +208,12 @@ def generate_control_labels(labels, seed=42):
     """Generate control task labels (Hewitt & Liang 2019).
 
     Shuffles the constraint_type labels while preserving the marginal
-    distribution. Creates a task of equal difficulty in terms of class
-    balance, but labels are meaningless.
+    distribution. This creates a task of equal difficulty in terms of
+    class balance, but the labels are meaningless — they don't correspond
+    to any property of the hidden states.
+
+    If a probe achieves high accuracy on the control task, it means the
+    probe is memorizing rather than reading genuine information.
 
     Selectivity = real_accuracy - control_accuracy.
     """
@@ -216,202 +224,134 @@ def generate_control_labels(labels, seed=42):
     return torch.tensor(shuffled, dtype=torch.long)
 
 
-# ── Linear Probe Model ──────────────────────────────────────────────────────
-class LinearProbe(nn.Module):
-    """Single linear layer — equivalent to logistic regression."""
-
-    def __init__(self, input_dim, n_classes):
-        super().__init__()
-        self.linear = nn.Linear(input_dim, n_classes)
-
-    def forward(self, x):
-        return self.linear(x)
-
-
-# ── Training one probe ──────────────────────────────────────────────────────
-def train_one_fold(X_train, y_train, X_val, y_val, input_dim, n_classes,
-                   weight_decay, device, seed=42):
-    """Train a linear probe on one fold, return val metrics and model."""
-    torch.manual_seed(seed)
-
-    # Compute class weights for balanced loss
-    class_counts = torch.bincount(y_train, minlength=n_classes).float()
-    class_weights = (1.0 / (class_counts + 1e-8))
-    class_weights = class_weights / class_weights.sum() * n_classes
-    class_weights = class_weights.to(device)
-
-    # Move data to GPU
-    X_tr = X_train.to(device)
-    y_tr = y_train.to(device)
-    X_v = X_val.to(device)
-    y_v = y_val.to(device)
-
-    # Standardize (compute on train, apply to val)
-    mean = X_tr.mean(dim=0)
-    std = X_tr.std(dim=0) + 1e-8
-    X_tr = (X_tr - mean) / std
-    X_v = (X_v - mean) / std
-
-    # Model
-    model = LinearProbe(input_dim, n_classes).to(device)
-    criterion = nn.CrossEntropyLoss(weight=class_weights)
-    optimizer = optim.AdamW(model.parameters(), lr=LR, weight_decay=weight_decay)
-    scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer, mode='min', factor=0.5, patience=2
-    )
-
-    # DataLoader for mini-batch training
-    train_dataset = TensorDataset(X_tr, y_tr)
-    train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
-
-    # Training loop with early stopping
-    best_val_loss = float('inf')
-    best_state = None
-    patience_counter = 0
-
-    for epoch in range(MAX_EPOCHS):
-        # Train
-        model.train()
-        for batch_X, batch_y in train_loader:
-            optimizer.zero_grad()
-            logits = model(batch_X)
-            loss = criterion(logits, batch_y)
-            loss.backward()
-            optimizer.step()
-
-        # Validate
-        model.eval()
-        with torch.no_grad():
-            val_logits = model(X_v)
-            val_loss = criterion(val_logits, y_v).item()
-
-        scheduler.step(val_loss)
-
-        if val_loss < best_val_loss - 1e-4:
-            best_val_loss = val_loss
-            best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}
-            patience_counter = 0
-        else:
-            patience_counter += 1
-            if patience_counter >= PATIENCE:
-                break
-
-    # Load best model and compute metrics
-    model.load_state_dict(best_state)
-    model.eval()
-    with torch.no_grad():
-        val_preds = model(X_v).argmax(dim=1).cpu().numpy()
-
-    y_val_np = y_val.numpy()
-    f1 = f1_score(y_val_np, val_preds, average="macro", zero_division=0)
-    acc = accuracy_score(y_val_np, val_preds)
-
-    return f1, acc, best_state, mean.cpu(), std.cpu(), epoch + 1
-
-
-# ── Probe training with CV ──────────────────────────────────────────────────
+# ── Probe training ───────────────────────────────────────────────────────────
 def train_probe_cv(X, y, n_classes, task_name="", layer_idx=0,
-                   n_folds=N_FOLDS, device="cuda", seed=42):
-    """Train a linear probe with stratified CV and weight_decay sweep.
+                   n_folds=N_FOLDS, seed=42):
+    """Train a linear probe with PCA + SGD + stratified cross-validation.
 
-    Returns dict compatible with analyze_results.py format.
+    Pipeline: StandardScaler → PCA(256) → SGDClassifier(log_loss).
+    SGDClassifier is mathematically equivalent to logistic regression
+    but scales linearly via stochastic gradient descent.
+
+    Returns:
+        dict with:
+          - mean/std of macro_f1, accuracy across folds
+          - best alpha value
+          - per-fold results
+          - per-class F1 from the best alpha
+          - the best trained model (from full data with best alpha)
     """
-    y_np = y.numpy() if isinstance(y, torch.Tensor) else y
-    y_t = torch.tensor(y_np, dtype=torch.long) if not isinstance(y, torch.Tensor) else y
-
-    # Filter rare classes
-    class_counts = np.bincount(y_np, minlength=n_classes)
-    valid_mask = np.array([class_counts[yi] >= n_folds for yi in y_np])
+    # Filter out any classes with < n_folds examples (can't stratify)
+    class_counts = np.bincount(y, minlength=n_classes)
+    valid_mask = np.array([class_counts[yi] >= n_folds for yi in y])
     if not valid_mask.all():
         n_dropped = (~valid_mask).sum()
         log.warning(f"Dropping {n_dropped} samples from rare classes "
                     f"(< {n_folds} examples)")
         X = X[valid_mask]
-        y_t = y_t[valid_mask]
-        y_np = y_np[valid_mask]
+        y = y[valid_mask]
 
-    if len(y_np) < n_folds * 2:
-        log.warning(f"Too few samples ({len(y_np)}). Skipping this probe.")
+    if len(y) < n_folds * 2:
+        log.warning(f"Too few samples ({len(y)}). Skipping this probe.")
         return None
 
-    input_dim = X.shape[1]
     skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)
 
-    # Weight decay sweep
-    wd_results = {}
-    total_fits = len(WD_VALUES) * n_folds
+    # Alpha sweep: find best alpha via mean macro_f1 across folds
+    alpha_results = {}
+    total_fits = len(ALPHA_VALUES) * n_folds
     fit_count = 0
 
-    for wd in WD_VALUES:
+    for alpha_val in ALPHA_VALUES:
         fold_f1s = []
         fold_accs = []
 
-        for fold_i, (train_idx, test_idx) in enumerate(skf.split(y_np, y_np)):
+        for fold_i, (train_idx, test_idx) in enumerate(skf.split(X, y)):
             fit_count += 1
             t0 = time.time()
 
-            X_train, X_val = X[train_idx], X[test_idx]
-            y_train, y_val = y_t[train_idx], y_t[test_idx]
+            X_train, X_test = X[train_idx], X[test_idx]
+            y_train, y_test = y[train_idx], y[test_idx]
 
-            f1, acc, _, _, _, n_epochs = train_one_fold(
-                X_train, y_train, X_val, y_val,
-                input_dim, n_classes, wd, device, seed=seed + fold_i
+            # Standardize → PCA (per-fold to avoid data leakage)
+            scaler = StandardScaler()
+            X_train_s = scaler.fit_transform(X_train)
+            X_test_s = scaler.transform(X_test)
+
+            pca = PCA(n_components=PCA_DIMS, random_state=seed)
+            X_train_p = pca.fit_transform(X_train_s)
+            X_test_p = pca.transform(X_test_s)
+
+            if fold_i == 0 and fit_count <= len(ALPHA_VALUES):
+                var_explained = sum(pca.explained_variance_ratio_) * 100
+                log.info(f"    PCA: {X_train_s.shape[1]} → {PCA_DIMS} dims "
+                         f"({var_explained:.1f}% variance retained)")
+
+            clf = SGDClassifier(
+                loss="log_loss",  # logistic regression
+                penalty="l2",
+                alpha=alpha_val,
+                max_iter=MAX_ITER,
+                random_state=seed,
+                n_jobs=-1,
+                tol=1e-3,
+                class_weight="balanced",
             )
+            clf.fit(X_train_p, y_train)
+            y_pred = clf.predict(X_test_p)
+
+            f1 = f1_score(y_test, y_pred, average="macro", zero_division=0)
+            acc = accuracy_score(y_test, y_pred)
             fold_f1s.append(f1)
             fold_accs.append(acc)
 
             elapsed = time.time() - t0
             log.info(f"    [{task_name}] Layer {layer_idx} | "
-                     f"wd={wd} fold {fold_i+1}/{n_folds}: "
-                     f"F1={f1:.4f} acc={acc:.4f} ({elapsed:.1f}s, {n_epochs}ep) "
+                     f"alpha={alpha_val} fold {fold_i+1}/{n_folds}: "
+                     f"F1={f1:.4f} acc={acc:.4f} ({elapsed:.1f}s) "
                      f"[{fit_count}/{total_fits}]")
 
         mean_f1 = np.mean(fold_f1s)
-        log.info(f"    [{task_name}] wd={wd} mean F1: {mean_f1:.4f}")
+        log.info(f"    [{task_name}] alpha={alpha_val} mean F1: {mean_f1:.4f}")
 
-        wd_results[wd] = {
-            "macro_f1_mean": float(np.mean(fold_f1s)),
-            "macro_f1_std": float(np.std(fold_f1s)),
-            "accuracy_mean": float(np.mean(fold_accs)),
-            "accuracy_std": float(np.std(fold_accs)),
-            "fold_f1s": [float(f) for f in fold_f1s],
-            "fold_accs": [float(a) for a in fold_accs],
+        alpha_results[alpha_val] = {
+            "macro_f1_mean": np.mean(fold_f1s),
+            "macro_f1_std": np.std(fold_f1s),
+            "accuracy_mean": np.mean(fold_accs),
+            "accuracy_std": np.std(fold_accs),
+            "fold_f1s": fold_f1s,
+            "fold_accs": fold_accs,
         }
 
-    # Select best weight decay
-    best_wd = max(wd_results, key=lambda w: wd_results[w]["macro_f1_mean"])
-    best = wd_results[best_wd]
+    # Select best alpha
+    best_alpha = max(alpha_results, key=lambda a: alpha_results[a]["macro_f1_mean"])
+    best = alpha_results[best_alpha]
 
-    # Retrain on full data with best wd for per-class report
-    log.info(f"    [{task_name}] Retraining on full data with best wd={best_wd}...")
+    # Retrain on full data with best alpha for per-class report and saving
+    log.info(f"    [{task_name}] Retraining on full data with best alpha={best_alpha}...")
     t0 = time.time()
-
-    # Use 90/10 split for early stopping on full retrain
-    n_train = int(0.9 * len(y_np))
-    perm = np.random.RandomState(seed).permutation(len(y_np))
-    train_idx_full = perm[:n_train]
-    val_idx_full = perm[n_train:]
-
-    _, _, best_state, mean_full, std_full, _ = train_one_fold(
-        X[train_idx_full], y_t[train_idx_full],
-        X[val_idx_full], y_t[val_idx_full],
-        input_dim, n_classes, best_wd, device, seed=seed
+    scaler_full = StandardScaler()
+    X_full_s = scaler_full.fit_transform(X)
+    pca_full = PCA(n_components=PCA_DIMS, random_state=seed)
+    X_full_p = pca_full.fit_transform(X_full_s)
+    clf_full = SGDClassifier(
+        loss="log_loss",
+        penalty="l2",
+        alpha=best_alpha,
+        max_iter=MAX_ITER,
+        random_state=seed,
+        n_jobs=-1,
+        tol=1e-3,
+        class_weight="balanced",
     )
-
-    # Predict on all data for per-class report
-    model_full = LinearProbe(input_dim, n_classes).to(device)
-    model_full.load_state_dict(best_state)
-    model_full.eval()
-    X_all = ((X.to(device) - mean_full.to(device)) /
-             (std_full.to(device) + 1e-8))
-    with torch.no_grad():
-        y_pred_full = model_full(X_all).argmax(dim=1).cpu().numpy()
+    clf_full.fit(X_full_p, y)
+    y_pred_full = clf_full.predict(X_full_p)
     log.info(f"    [{task_name}] Full retrain done ({time.time()-t0:.1f}s)")
 
-    # Per-class breakdown
-    labels_present = sorted(set(y_np))
+    # Per-class breakdown (on full data — informational, not for main claims)
+    labels_present = sorted(set(y))
     report = classification_report(
-        y_np, y_pred_full,
+        y, y_pred_full,
         labels=labels_present,
         output_dict=True,
         zero_division=0,
@@ -422,7 +362,7 @@ def train_probe_cv(X, y, n_classes, task_name="", layer_idx=0,
     }
 
     return {
-        "best_wd": best_wd,
+        "best_alpha": best_alpha,
         "macro_f1_mean": round(best["macro_f1_mean"], 4),
         "macro_f1_std": round(best["macro_f1_std"], 4),
         "accuracy_mean": round(best["accuracy_mean"], 4),
@@ -430,25 +370,26 @@ def train_probe_cv(X, y, n_classes, task_name="", layer_idx=0,
         "fold_f1s": [round(f, 4) for f in best["fold_f1s"]],
         "fold_accs": [round(a, 4) for a in best["fold_accs"]],
         "per_class_f1": per_class,
-        "n_samples": len(y_np),
+        "n_samples": len(y),
         "n_classes_actual": len(labels_present),
-        "wd_sweep": {
-            str(w): {
+        "pca_dims": PCA_DIMS,
+        "alpha_sweep": {
+            str(a): {
                 "macro_f1_mean": round(v["macro_f1_mean"], 4),
                 "macro_f1_std": round(v["macro_f1_std"], 4),
             }
-            for w, v in wd_results.items()
+            for a, v in alpha_results.items()
         },
-        "model_state": best_state,
-        "mean": mean_full,
-        "std": std_full,
+        "model": clf_full,
+        "scaler": scaler_full,
+        "pca": pca_full,
     }
 
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 def main():
     parser = argparse.ArgumentParser(
-        description="SOLAR Linear Probe: Train probes on hidden states (PyTorch GPU)"
+        description="SOLAR Linear Probe: Train probes on hidden states"
     )
     parser.add_argument(
         "--hidden-states-dir", required=True,
@@ -475,21 +416,7 @@ def main():
         "--skip-control", action="store_true",
         help="Skip control task (faster but no selectivity measure)"
     )
-    parser.add_argument(
-        "--device", default=None,
-        help="Device: cuda, cpu, or auto (default: auto)"
-    )
     args = parser.parse_args()
-
-    # Device selection
-    if args.device:
-        device = torch.device(args.device)
-    else:
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    log.info(f"Device: {device}")
-    if device.type == "cuda":
-        log.info(f"GPU: {torch.cuda.get_device_name(0)}")
-        log.info(f"GPU Memory: {torch.cuda.get_device_properties(0).total_mem / 1e9:.1f} GB")
 
     # Load data
     hidden_states, labels, meta, sentence_ids, domains, available_layers = \
@@ -512,6 +439,7 @@ def main():
     if not args.skip_control:
         control_labels = generate_control_labels(labels, seed=args.seed)
         labels["control_type"] = control_labels
+        # Save for reproducibility
         with open(out_dir / "control_labels.json", "w") as f:
             json.dump(control_labels.tolist(), f)
         log.info(f"Control labels generated (seed={args.seed})")
@@ -527,7 +455,7 @@ def main():
             continue
         tasks[name] = {
             **info,
-            "y": labels[label_key],
+            "y": labels[label_key].numpy(),
         }
 
     n_total_probes = len(tasks) * len(available_layers)
@@ -535,12 +463,11 @@ def main():
     log.info(f"Layers to probe: {available_layers}")
     log.info(f"Pooling: {args.pooling}")
     log.info(f"Total probes to train: {n_total_probes}")
-    log.info(f"Fits per probe: {len(WD_VALUES)} wd values x {N_FOLDS} folds "
-             f"= {len(WD_VALUES) * N_FOLDS}")
-    log.info(f"Weight decay values: {WD_VALUES}")
-    log.info(f"Classifier: nn.Linear + CrossEntropyLoss + AdamW (GPU)")
-    log.info(f"Training: batch_size={BATCH_SIZE}, lr={LR}, "
-             f"max_epochs={MAX_EPOCHS}, patience={PATIENCE}")
+    log.info(f"Fits per probe: {len(ALPHA_VALUES)} alpha values x {N_FOLDS} folds "
+             f"= {len(ALPHA_VALUES) * N_FOLDS}")
+    log.info(f"Alpha values: {ALPHA_VALUES}")
+    log.info(f"PCA dims: {PCA_DIMS}")
+    log.info(f"Classifier: SGDClassifier(log_loss) — equivalent to logistic regression")
 
     # ── Train probes ─────────────────────────────────────────────────────
     all_results = {}
@@ -569,7 +496,6 @@ def main():
                 task_name=task_name,
                 layer_idx=layer_idx,
                 n_folds=N_FOLDS,
-                device=device,
                 seed=args.seed,
             )
 
@@ -579,25 +505,24 @@ def main():
 
             # Save the trained model
             probe_path = out_dir / "best_probes" / \
-                f"{task_name}_layer_{layer_idx}.pt"
-            torch.save({
-                "model_state": result["model_state"],
-                "mean": result["mean"],
-                "std": result["std"],
-                "best_wd": result["best_wd"],
-                "input_dim": X.shape[1],
-                "n_classes": n_classes,
-            }, probe_path)
+                f"{task_name}_layer_{layer_idx}.pkl"
+            with open(probe_path, "wb") as f:
+                pickle.dump({
+                    "model": result["model"],
+                    "scaler": result["scaler"],
+                    "pca": result["pca"],
+                    "best_alpha": result["best_alpha"],
+                }, f)
 
             # Remove non-serializable objects for JSON output
             result_clean = {k: v for k, v in result.items()
-                           if k not in ("model_state", "mean", "std")}
+                           if k not in ("model", "scaler", "pca")}
             result_clean["is_piece"] = task_info["is_piece"]
             result_clean["description"] = task_info["description"]
             layer_results[task_name] = result_clean
 
             log.info(f"  >>> {task_name}: Macro F1 = {result['macro_f1_mean']:.4f} "
-                     f"(±{result['macro_f1_std']:.4f})  [best wd={result['best_wd']}]")
+                     f"(±{result['macro_f1_std']:.4f})  [best alpha={result['best_alpha']}]")
 
             if task_name == "constraint_type":
                 log.info(f"    Per-class F1: {result['per_class_f1']}")
@@ -646,8 +571,8 @@ def main():
                 t_stat, p_val = stats.ttest_rel(
                     real["fold_f1s"], ctrl["fold_f1s"]
                 )
-                selectivity[li_str]["t_stat"] = round(float(t_stat), 4)
-                selectivity[li_str]["p_value"] = round(float(p_val), 6)
+                selectivity[li_str]["t_stat"] = round(t_stat, 4)
+                selectivity[li_str]["p_value"] = round(p_val, 6)
                 log.info(f"           t={t_stat:.4f}, p={p_val:.6f}")
 
     # ── Composition Gap from Probes ──────────────────────────────────────
@@ -670,7 +595,7 @@ def main():
                 piece_f1s.append(task_result.get("macro_f1_mean", 0))
 
         struct_f1 = lr.get("constraint_type", {}).get("macro_f1_mean", 0)
-        piece_avg = float(np.mean(piece_f1s)) if piece_f1s else 0
+        piece_avg = np.mean(piece_f1s) if piece_f1s else 0
         gap = round(piece_avg - struct_f1, 4)
         sel = selectivity.get(li_str, {}).get("selectivity", None)
 
@@ -690,6 +615,7 @@ def main():
     log.info(f"  INTERPRETATION")
     log.info(f"{'='*60}")
 
+    # Check best structure probe vs best model output
     best_probe_struct = max(
         (all_results[str(li)].get("constraint_type", {}).get("macro_f1_mean", 0)
          for li in available_layers),
@@ -726,14 +652,11 @@ def main():
             "pooling": args.pooling,
             "layers_probed": available_layers,
             "n_folds": N_FOLDS,
-            "weight_decay_values": WD_VALUES,
+            "alpha_values": ALPHA_VALUES,
+            "pca_dims": PCA_DIMS,
             "seed": args.seed,
-            "classifier": "nn.Linear + CrossEntropyLoss + AdamW (PyTorch GPU)",
-            "lr": LR,
-            "batch_size": BATCH_SIZE,
-            "max_epochs": MAX_EPOCHS,
-            "patience": PATIENCE,
-            "device": str(device),
+            "classifier": "SGDClassifier(log_loss)",
+            "max_iter": MAX_ITER,
             "total_time_minutes": round(total_time / 60, 1),
             "timestamp": datetime.now().isoformat(),
         },
