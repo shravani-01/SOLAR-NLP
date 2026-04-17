@@ -1,0 +1,35 @@
+{
+  "model": "Qwen/Qwen2.5-7B",
+  "strategy": "probe_guided",
+  "adapter": "composition_gap_probe_guided",
+  "macro_f1": 0.7264,
+  "per_class_f1": {
+    "HARD": 0.8776,
+    "SOFT": 0.7711,
+    "HARD-CONDITIONAL": 0.6727,
+    "SOFT-CONDITIONAL": 0.6541,
+    "NON-CONSTRAINT": 0.6567
+  },
+  "per_domain_f1": {
+    "transit": 0.7248,
+    "healthcare": 0.7821,
+    "aviation": 0.7289,
+    "building_services": 0.6831
+  },
+  "json_validity": 1.0,
+  "n_test": 4230,
+  "n_errors": 0,
+  "inference_time_min": 100.5,
+  "baseline_comparison": {
+    "deepseek-cot": 0.4268,
+    "gpt4o-rag": 0.3986,
+    "gpt4o-mini": 0.3935,
+    "gpt4o": 0.3696,
+    "gpt4o-cot": 0.3434,
+    "llama3.3-70b": 0.3145,
+    "deepseek": 0.307
+  },
+  "probe_ceiling": 0.6832,
+  "improvement_over_best_baseline": 0.2996,
+  "timestamp": "2026-04-17T21:38:44.553571"
+}
