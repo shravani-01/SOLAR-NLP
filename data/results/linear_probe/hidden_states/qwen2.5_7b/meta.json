@@ -1,0 +1,47 @@
+{
+  "model": "Qwen/Qwen2.5-7B",
+  "model_short": "qwen2.5_7b",
+  "layers_extracted": [
+    -1,
+    -4,
+    -8,
+    -16,
+    -24,
+    -28
+  ],
+  "n_layers_total": 28,
+  "hidden_dim": 3584,
+  "n_examples": 46566,
+  "split": null,
+  "domain": null,
+  "quantization": "4bit",
+  "batch_size": 8,
+  "max_seq_length": 1024,
+  "pooling_strategies": [
+    "mean_pool",
+    "last_token"
+  ],
+  "label_names": [
+    "constraint_type",
+    "is_constraint",
+    "has_threshold",
+    "has_exception",
+    "entity_count"
+  ],
+  "type_to_id": {
+    "HARD": 0,
+    "SOFT": 1,
+    "HARD-CONDITIONAL": 2,
+    "SOFT-CONDITIONAL": 3,
+    "NON-CONSTRAINT": 4
+  },
+  "type_distribution": {
+    "HARD": 26760,
+    "SOFT": 8526,
+    "HARD-CONDITIONAL": 5597,
+    "SOFT-CONDITIONAL": 3446,
+    "NON-CONSTRAINT": 2237
+  },
+  "timestamp": "2026-04-17T08:31:45.286846",
+  "prompt_template": "BASE_PROMPT (same as run_baselines.py)"
+}

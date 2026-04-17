@@ -265,7 +265,7 @@ def load_model_and_tokenizer(model_name, quantize=None, device_map="auto"):
         device_map=device_map,
         trust_remote_code=True,
         output_hidden_states=True,  # CRITICAL: we need all layer activations
-        attn_implementation="flash_attention_2" if torch.cuda.is_available() else None,
+        attn_implementation=None,
     )
     model.eval()
 
