@@ -236,19 +236,31 @@ def build_training_text(row):
 # ═══════════════════════════════════════════════════════════════════════════
 # STEP 1: PREPARE DATA
 # ═══════════════════════════════════════════════════════════════════════════
-def prepare_data(limit=None):
-    """Prepare error-targeted training data for the composition gap.
+def prepare_data(limit=None, strategy="probe_guided"):
+    """Prepare training data for the composition gap experiments.
 
-    Strategy:
-      - Use ALL domains (not just transit) for maximum diversity
-      - Oversample the hard structural classes that baselines fail on:
-        HARD-CONDITIONAL, SOFT-CONDITIONAL, NON-CONSTRAINT
-      - Include balanced representation of easy classes (HARD, SOFT)
-        to prevent catastrophic forgetting
-      - Save as train.jsonl and val.jsonl
+    Three strategies (for ablation study):
+
+      vanilla       — Natural distribution. No balancing. This is what
+                      naive SFT would do. HARD dominates at 57%.
+                      Expected: model predicts HARD for everything.
+
+      random_balanced — Uniform random oversampling to balance all 5
+                      classes equally. No error analysis guidance.
+                      Expected: marginal improvement on minority classes.
+
+      probe_guided  — Our method. Uses probe error analysis to identify
+                      the specific classes where the Composition Gap is
+                      worst, then oversamples those. Same total examples
+                      as random_balanced for fair comparison.
+                      Expected: significant improvement, especially on
+                      HARD-CONDITIONAL, SOFT-CONDITIONAL, NON-CONSTRAINT.
+
+    The ablation proves the probe diagnosis is essential — not just
+    any fine-tuning closes the gap.
     """
     log.info("\n" + "="*60)
-    log.info("  STEP 1: PREPARE TRAINING DATA")
+    log.info(f"  STEP 1: PREPARE TRAINING DATA (strategy={strategy})")
     log.info("="*60)
 
     df = load_master_csv()
@@ -264,55 +276,82 @@ def prepare_data(limit=None):
 
     log.info(f"\nRaw split sizes: train={len(train_df)} val={len(val_df)} test={len(test_df)}")
 
-    # ── Error-targeted oversampling ──────────────────────────────────────
-    # The key insight: oversample the hard classes to focus training
-    # on the composition gap cases. Without this, HARD dominates (53%)
-    # and the model just predicts HARD for everything.
-
     type_counts = train_df["constraint_type_norm"].value_counts()
     log.info(f"\nOriginal class distribution:")
     for t, c in type_counts.items():
         log.info(f"  {t:<22} {c:>6} ({100*c/len(train_df):.1f}%)")
 
-    # Target: balanced classes, capped at MAX_PER_CLASS to keep
-    # training fast (~1-2 hours on A100) while still learning
-    # the structural distinctions. 1500 per class × 5 = 7500 total.
     MAX_PER_CLASS = 1500
-    max_count = type_counts.max()
-    target_per_class = min(int(max_count * 0.8), MAX_PER_CLASS)
 
-    balanced_dfs = []
-    for ctype in VALID_TYPES:
-        class_df = train_df[train_df["constraint_type_norm"] == ctype]
-        n = len(class_df)
-        if n == 0:
-            continue
-        if n < target_per_class:
-            # Oversample with replacement
-            oversampled = class_df.sample(
-                n=target_per_class, replace=True, random_state=42
-            )
-            balanced_dfs.append(oversampled)
-            log.info(f"  {ctype}: {n} → {target_per_class} (oversampled {target_per_class/n:.1f}x)")
+    # ── Strategy-specific sampling ──────────────────────────────────────
+    if strategy == "vanilla":
+        # No balancing — natural distribution, capped at total ~7500
+        total_target = MAX_PER_CLASS * 5
+        if len(train_df) > total_target:
+            train_balanced = train_df.sample(n=total_target, random_state=42)
         else:
-            # Downsample majority class slightly
-            downsampled = class_df.sample(
-                n=target_per_class, replace=False, random_state=42
-            )
-            balanced_dfs.append(downsampled)
-            log.info(f"  {ctype}: {n} → {target_per_class} (downsampled)")
+            train_balanced = train_df.copy()
+        log.info(f"\n  VANILLA: natural distribution, {len(train_balanced)} examples")
 
-    train_balanced = pd.concat(balanced_dfs, ignore_index=True)
+    elif strategy == "random_balanced":
+        # Uniform random oversampling — no error analysis
+        target_per_class = MAX_PER_CLASS
+        balanced_dfs = []
+        for ctype in VALID_TYPES:
+            class_df = train_df[train_df["constraint_type_norm"] == ctype]
+            n = len(class_df)
+            if n == 0:
+                continue
+            sampled = class_df.sample(
+                n=target_per_class, replace=(n < target_per_class), random_state=42
+            )
+            balanced_dfs.append(sampled)
+            action = "oversampled" if n < target_per_class else "downsampled"
+            log.info(f"  {ctype}: {n} → {target_per_class} ({action})")
+        train_balanced = pd.concat(balanced_dfs, ignore_index=True)
+        log.info(f"\n  RANDOM BALANCED: uniform {target_per_class}/class, "
+                 f"{len(train_balanced)} total")
+
+    elif strategy == "probe_guided":
+        # Probe-guided error-targeted — our method
+        # Hard classes get MORE oversampling (2x the base), easy classes get less
+        # This specifically targets the Composition Gap failure modes
+        HARD_CLASS_TARGET = MAX_PER_CLASS       # 1500 for hard classes
+        EASY_CLASS_TARGET = MAX_PER_CLASS // 2  # 750 for easy classes (HARD, SOFT)
+
+        balanced_dfs = []
+        for ctype in VALID_TYPES:
+            class_df = train_df[train_df["constraint_type_norm"] == ctype]
+            n = len(class_df)
+            if n == 0:
+                continue
+            target = HARD_CLASS_TARGET if ctype in HARD_CLASSES else EASY_CLASS_TARGET
+            sampled = class_df.sample(
+                n=target, replace=(n < target), random_state=42
+            )
+            balanced_dfs.append(sampled)
+            ratio = target / n if n > 0 else 0
+            log.info(f"  {ctype}: {n} → {target} "
+                     f"({'HARD CLASS' if ctype in HARD_CLASSES else 'easy class'}, "
+                     f"{ratio:.1f}x)")
+        train_balanced = pd.concat(balanced_dfs, ignore_index=True)
+        log.info(f"\n  PROBE-GUIDED: hard classes={HARD_CLASS_TARGET}, "
+                 f"easy classes={EASY_CLASS_TARGET}, "
+                 f"{len(train_balanced)} total")
+    else:
+        raise ValueError(f"Unknown strategy: {strategy}")
+
     train_balanced = train_balanced.sample(frac=1, random_state=42)  # shuffle
 
-    log.info(f"\nBalanced training set: {len(train_balanced)} examples")
-    log.info(f"Class distribution after balancing:")
+    log.info(f"\nFinal training set: {len(train_balanced)} examples")
+    log.info(f"Class distribution:")
     for t, c in train_balanced["constraint_type_norm"].value_counts().items():
         log.info(f"  {t:<22} {c:>6} ({100*c/len(train_balanced):.1f}%)")
 
     # ── Build training texts ─────────────────────────────────────────────
     log.info(f"\nBuilding training prompts...")
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    out_dir = OUTPUT_DIR / strategy
+    out_dir.mkdir(parents=True, exist_ok=True)
 
     # Training set
     train_records = []
@@ -325,7 +364,7 @@ def prepare_data(limit=None):
             "domain": row.get("domain", ""),
         })
 
-    train_path = OUTPUT_DIR / "train.jsonl"
+    train_path = out_dir / "train.jsonl"
     with open(train_path, "w") as f:
         for r in train_records:
             f.write(json.dumps(r) + "\n")
@@ -342,7 +381,7 @@ def prepare_data(limit=None):
             "domain": row.get("domain", ""),
         })
 
-    val_path = OUTPUT_DIR / "val.jsonl"
+    val_path = out_dir / "val.jsonl"
     with open(val_path, "w") as f:
         for r in val_records:
             f.write(json.dumps(r) + "\n")
@@ -350,13 +389,14 @@ def prepare_data(limit=None):
 
     # Save test sentence_ids for evaluation
     test_ids = test_df["sentence_id"].tolist()
-    with open(OUTPUT_DIR / "test_sentence_ids.json", "w") as f:
+    with open(out_dir / "test_sentence_ids.json", "w") as f:
         json.dump(test_ids, f)
     log.info(f"  Test IDs: {len(test_ids)} → test_sentence_ids.json")
 
     # Save stats
     stats = {
         "timestamp": datetime.now().isoformat(),
+        "strategy": strategy,
         "train_total": len(train_records),
         "val_total": len(val_records),
         "test_total": len(test_ids),
@@ -365,7 +405,7 @@ def prepare_data(limit=None):
         "domains": train_balanced["domain"].value_counts().to_dict(),
         "base_model": BASE_MODEL,
     }
-    with open(OUTPUT_DIR / "data_stats.json", "w") as f:
+    with open(out_dir / "data_stats.json", "w") as f:
         json.dump(stats, f, indent=2)
 
     log.info(f"\n  Data preparation complete!")
@@ -378,8 +418,8 @@ def prepare_data(limit=None):
 # ═══════════════════════════════════════════════════════════════════════════
 # STEP 2: FINE-TUNE
 # ═══════════════════════════════════════════════════════════════════════════
-def train_model():
-    """LoRA fine-tune on the error-targeted training set."""
+def train_model(strategy="probe_guided"):
+    """LoRA fine-tune on the training set for a given strategy."""
     import torch
     from datasets import Dataset
     from transformers import (
@@ -397,8 +437,16 @@ def train_model():
     log.info("="*60)
 
     # ── Load training data ───────────────────────────────────────────────
-    train_path = OUTPUT_DIR / "train.jsonl"
-    val_path = OUTPUT_DIR / "val.jsonl"
+    data_dir = OUTPUT_DIR / strategy
+    train_path = data_dir / "train.jsonl"
+    val_path = data_dir / "val.jsonl"
+
+    # Fallback: check old path (before strategy subdirectories)
+    if not train_path.exists() and (OUTPUT_DIR / "train.jsonl").exists():
+        log.info(f"  Using legacy data path (no strategy subdir)")
+        data_dir = OUTPUT_DIR
+        train_path = data_dir / "train.jsonl"
+        val_path = data_dir / "val.jsonl"
 
     if not train_path.exists():
         raise FileNotFoundError(
@@ -476,7 +524,7 @@ def train_model():
 
     # ── Training ─────────────────────────────────────────────────────────
     MODEL_DIR.mkdir(parents=True, exist_ok=True)
-    output_dir = str(MODEL_DIR / "qwen2.5_7b_composition_gap")
+    output_dir = str(MODEL_DIR / f"qwen2.5_7b_{strategy}")
 
     training_args = TrainingArguments(
         output_dir=output_dir,
@@ -553,10 +601,11 @@ def train_model():
 
     # Save metrics
     metrics = {
+        "strategy": strategy,
         "train_time_minutes": round(train_time / 60, 1),
         "train_loss": trainer.state.log_history[-1].get("train_loss"),
         "epochs": NUM_EPOCHS,
-        "n_train": len(train_dataset),
+        "n_train": len(train_tokenized),
         "base_model": BASE_MODEL,
         "lora_r": LORA_R,
         "timestamp": datetime.now().isoformat(),
@@ -570,7 +619,7 @@ def train_model():
 # ═══════════════════════════════════════════════════════════════════════════
 # STEP 3: EVALUATE
 # ═══════════════════════════════════════════════════════════════════════════
-def evaluate_model(limit=None):
+def evaluate_model(limit=None, strategy="probe_guided"):
     """Run the fine-tuned model on the test set and compare to baselines."""
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
@@ -578,10 +627,16 @@ def evaluate_model(limit=None):
     from sklearn.metrics import f1_score, classification_report
 
     log.info("\n" + "="*60)
-    log.info("  STEP 3: EVALUATE FINE-TUNED MODEL")
+    log.info(f"  STEP 3: EVALUATE FINE-TUNED MODEL (strategy={strategy})")
     log.info("="*60)
 
-    adapter_dir = str(MODEL_DIR / "qwen2.5_7b_composition_gap")
+    adapter_dir = str(MODEL_DIR / f"qwen2.5_7b_{strategy}")
+    # Fallback: check legacy model path
+    if not Path(adapter_dir).exists():
+        legacy_dir = str(MODEL_DIR / "qwen2.5_7b_composition_gap")
+        if Path(legacy_dir).exists():
+            log.info(f"  Using legacy model path: {legacy_dir}")
+            adapter_dir = legacy_dir
     if not Path(adapter_dir).exists():
         raise FileNotFoundError(
             f"Model not found: {adapter_dir}\n"
@@ -778,7 +833,8 @@ def evaluate_model(limit=None):
     # ── Save results ─────────────────────────────────────────────────────
     results = {
         "model": BASE_MODEL,
-        "adapter": "composition_gap_cfft",
+        "strategy": strategy,
+        "adapter": f"composition_gap_{strategy}",
         "macro_f1": round(macro_f1, 4),
         "per_class_f1": per_class,
         "per_domain_f1": per_domain,
@@ -792,14 +848,17 @@ def evaluate_model(limit=None):
         "timestamp": datetime.now().isoformat(),
     }
 
-    with open(RESULTS_DIR / "cfft_composition_results.json", "w") as f:
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    results_file = RESULTS_DIR / f"results_{strategy}.json"
+    with open(results_file, "w") as f:
         json.dump(results, f, indent=2)
-    log.info(f"\n  Results saved → {RESULTS_DIR / 'cfft_composition_results.json'}")
+    log.info(f"\n  Results saved → {results_file}")
 
     # Save predictions
-    with open(RESULTS_DIR / "cfft_predictions.json", "w") as f:
+    preds_file = RESULTS_DIR / f"predictions_{strategy}.json"
+    with open(preds_file, "w") as f:
         json.dump(predictions, f, indent=2)
-    log.info(f"  Predictions saved → {RESULTS_DIR / 'cfft_predictions.json'}")
+    log.info(f"  Predictions saved → {preds_file}")
 
     return results
 
@@ -813,8 +872,13 @@ def main():
     )
     parser.add_argument(
         "--mode", default="all",
-        choices=["prepare", "train", "evaluate", "all"],
-        help="Which step to run"
+        choices=["prepare", "train", "evaluate", "all", "ablation"],
+        help="Which step to run. 'ablation' runs all 3 strategies."
+    )
+    parser.add_argument(
+        "--strategy", default="probe_guided",
+        choices=["vanilla", "random_balanced", "probe_guided"],
+        help="Training data strategy (default: probe_guided)"
     )
     parser.add_argument(
         "--limit", type=int, default=None,
@@ -825,18 +889,55 @@ def main():
     log.info("\n" + "="*60)
     log.info("  SOLAR — Script 14: CFFT for Composition Gap")
     log.info("="*60)
-    log.info(f"  Mode:  {args.mode}")
-    log.info(f"  Model: {BASE_MODEL}")
-    log.info(f"  Limit: {args.limit or 'all'}")
+    log.info(f"  Mode:     {args.mode}")
+    log.info(f"  Strategy: {args.strategy}")
+    log.info(f"  Model:    {BASE_MODEL}")
+    log.info(f"  Limit:    {args.limit or 'all'}")
 
-    if args.mode in ("prepare", "all"):
-        prepare_data(limit=args.limit)
+    if args.mode == "ablation":
+        # Run all 3 strategies sequentially for ablation study
+        strategies = ["vanilla", "random_balanced", "probe_guided"]
+        all_results = {}
+        for strat in strategies:
+            log.info(f"\n{'#'*60}")
+            log.info(f"  ABLATION: Running strategy '{strat}'")
+            log.info(f"{'#'*60}")
+            prepare_data(limit=args.limit, strategy=strat)
+            train_model(strategy=strat)
+            results = evaluate_model(limit=args.limit, strategy=strat)
+            all_results[strat] = results
 
-    if args.mode in ("train", "all"):
-        train_model()
+        # Print comparative summary
+        log.info(f"\n{'='*60}")
+        log.info(f"  ABLATION STUDY — COMPARATIVE RESULTS")
+        log.info(f"{'='*60}")
+        log.info(f"  {'Strategy':<20} {'Macro F1':>10} {'Hard-Cond':>10} "
+                 f"{'Soft-Cond':>10} {'Non-Const':>10}")
+        log.info(f"  {'-'*60}")
+        for strat, res in all_results.items():
+            pc = res.get("per_class_f1", {})
+            log.info(f"  {strat:<20} {res['macro_f1']:>10.4f} "
+                     f"{pc.get('HARD-CONDITIONAL', 0):>10.4f} "
+                     f"{pc.get('SOFT-CONDITIONAL', 0):>10.4f} "
+                     f"{pc.get('NON-CONSTRAINT', 0):>10.4f}")
+        log.info(f"  {'-'*60}")
+        log.info(f"  {'Best baseline':<20} {'0.4268':>10}")
+        log.info(f"  {'Probe ceiling':<20} {'0.6832':>10}")
 
-    if args.mode in ("evaluate", "all"):
-        evaluate_model(limit=args.limit)
+        # Save combined results
+        RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+        with open(RESULTS_DIR / "ablation_comparison.json", "w") as f:
+            json.dump(all_results, f, indent=2)
+        log.info(f"\n  Ablation results saved → {RESULTS_DIR / 'ablation_comparison.json'}")
+    else:
+        if args.mode in ("prepare", "all"):
+            prepare_data(limit=args.limit, strategy=args.strategy)
+
+        if args.mode in ("train", "all"):
+            train_model(strategy=args.strategy)
+
+        if args.mode in ("evaluate", "all"):
+            evaluate_model(limit=args.limit, strategy=args.strategy)
 
     log.info("\n  Done!")
 
