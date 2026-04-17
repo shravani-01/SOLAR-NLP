@@ -109,7 +109,7 @@ LORA_TARGETS = [
 LEARNING_RATE  = 2e-4
 BATCH_SIZE     = 4
 GRAD_ACCUM     = 4   # effective batch = 16
-NUM_EPOCHS     = 3
+NUM_EPOCHS     = 5    # more epochs for smaller balanced dataset
 MAX_SEQ_LENGTH = 768
 WARMUP_RATIO   = 0.05
 
@@ -274,10 +274,12 @@ def prepare_data(limit=None):
     for t, c in type_counts.items():
         log.info(f"  {t:<22} {c:>6} ({100*c/len(train_df):.1f}%)")
 
-    # Target: roughly balanced classes for training
-    # Oversample minority classes to match ~80% of majority
+    # Target: balanced classes, capped at MAX_PER_CLASS to keep
+    # training fast (~1-2 hours on A100) while still learning
+    # the structural distinctions. 1500 per class × 5 = 7500 total.
+    MAX_PER_CLASS = 1500
     max_count = type_counts.max()
-    target_per_class = int(max_count * 0.8)
+    target_per_class = min(int(max_count * 0.8), MAX_PER_CLASS)
 
     balanced_dfs = []
     for ctype in VALID_TYPES:
