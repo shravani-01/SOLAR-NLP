@@ -94,7 +94,7 @@ HARD_CLASSES = {"HARD-CONDITIONAL", "SOFT-CONDITIONAL", "NON-CONSTRAINT"}
 
 # Model config
 BASE_MODEL = "Qwen/Qwen2.5-7B"  # ungated, no license needed
-HF_TOKEN   = os.environ.get("HF_TOKEN", "")
+HF_TOKEN   = os.environ.get("HF_TOKEN", None) or None  # Qwen2.5 is ungated, no token needed
 
 # LoRA config
 LORA_R       = 16
