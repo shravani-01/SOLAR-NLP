@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Linear probe accuracy (Macro F1) on frozen hidden states. \textit{Piece-level} tasks measure extraction of individual constraint components; \textit{Structure} measures the 5-class constraint-type label. The gap between piece and structure probes indicates the model encodes the ingredients but fails to compose them.}
+\label{tab:linear_probe}
+\begin{tabular}{l|cccc|c|c}
+\toprule
+Layer & Is-Con & Thresh & Exc & Ent & \textbf{Piece avg} & \textbf{Structure} \\
+\midrule
+  -28 & 0.680 & 0.897 & 0.769 & 0.417 & \textbf{0.691} & \textbf{0.613} \\
+  -24 & 0.698 & 0.910 & 0.776 & 0.454 & \textbf{0.710} & \textbf{0.639} \\
+  -16 & 0.735 & 0.907 & 0.797 & 0.472 & \textbf{0.728} & \textbf{0.671} \\
+  -8 & 0.718 & 0.915 & 0.800 & 0.486 & \textbf{0.730} & \textbf{0.683} \\
+  -4 & 0.728 & 0.912 & 0.793 & 0.479 & \textbf{0.728} & \textbf{0.673} \\
+  -1 & 0.736 & 0.911 & 0.784 & 0.471 & \textbf{0.726} & \textbf{0.656} \\
+\midrule
+\multicolumn{5}{l|}{\textit{Model output (best baseline)}}
+& 0.892 & 0.427 \\
+\bottomrule
+\end{tabular}
+\end{table}
