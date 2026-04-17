@@ -9,28 +9,21 @@ are used ONLY as ground truth for evaluation — NEVER passed to model.
 This simulates real-world usage where only raw text is available.
 
 Baselines:
-  gpt4o        — GPT-4o zero-shot (strong closed-source ceiling)
-  gpt4o-mini   — GPT-4o-mini zero-shot
-  gpt4o-cot    — GPT-4o with chain-of-thought
-  gpt4o-rag    — GPT-4o with retrieved examples
-  deepseek     — DeepSeek-V3 zero-shot
-  deepseek-cot — DeepSeek-V3 with chain-of-thought
-  qwen         — Qwen2.5-7B zero-shot via Ollama (free, local)
-  llama        — Llama-3.1-8B zero-shot via Ollama (free, local)
-
-Input:
-  data/annotated/all_domains_master.csv  (full 50k dataset)
-
-Output:
-  data/results/baselines/{model}_predictions.json
-  data/results/baselines/{model}_metrics.json
-  data/results/baselines/comparison_table.csv
+  gpt4o          — GPT-4o zero-shot
+  gpt4o-mini     — GPT-4o-mini zero-shot
+  gpt4o-cot      — GPT-4o with chain-of-thought
+  gpt4o-rag      — GPT-4o with retrieved examples
+  deepseek       — DeepSeek-V3 zero-shot
+  deepseek-cot   — DeepSeek-V3 with chain-of-thought
+  qwen2.5-72b    — Qwen2.5-72B zero-shot via Together.ai  ← NEW
+  llama3.3-70b   — Llama-3.3-70B zero-shot via Together.ai ← NEW
+  qwen           — Qwen2.5-7B zero-shot via Ollama (free, local)
+  llama          — Llama-3.1-8B zero-shot via Ollama (free, local)
 
 Usage:
-  python scripts/run_baselines.py --model gpt4o-mini
-  python scripts/run_baselines.py --model deepseek
-  python scripts/run_baselines.py --model all
-  python scripts/run_baselines.py --model deepseek --limit 5
+  python scripts/run_baselines.py --model qwen2.5-72b --limit 5
+  python scripts/run_baselines.py --model qwen2.5-72b --split test
+  python scripts/run_baselines.py --model llama3.3-70b --split test
 """
 
 import os
@@ -68,21 +61,33 @@ DOMAINS = [
 # ── API clients ───────────────────────────────────────────────────────────────
 try:
     from openai import OpenAI
-    _oai_key   = os.environ.get("OPENAI_API_KEY", "")
+
+    _oai_key = os.environ.get("OPENAI_API_KEY", "")
     oai_client = OpenAI(api_key=_oai_key) if _oai_key else None
     GPT_AVAILABLE = bool(_oai_key)
 
-    _ds_key   = os.environ.get("DEEPSEEK_API_KEY", "")
+    _ds_key = os.environ.get("DEEPSEEK_API_KEY", "")
     ds_client = OpenAI(
         api_key  = _ds_key,
         base_url = "https://api.deepseek.com"
     ) if _ds_key else None
     DS_AVAILABLE = bool(_ds_key)
+
+    # Together.ai — OpenAI-compatible, hosts Qwen + Llama 70B
+    _together_key = os.environ.get("TOGETHER_API_KEY", "")
+    together_client = OpenAI(
+        api_key  = _together_key,
+        base_url = "https://api.together.xyz/v1"
+    ) if _together_key else None
+    TOGETHER_AVAILABLE = bool(_together_key)
+
 except ImportError:
-    oai_client    = None
-    ds_client     = None
-    GPT_AVAILABLE = False
-    DS_AVAILABLE  = False
+    oai_client      = None
+    ds_client       = None
+    together_client = None
+    GPT_AVAILABLE      = False
+    DS_AVAILABLE       = False
+    TOGETHER_AVAILABLE = False
 
 
 # ── Retry helper ──────────────────────────────────────────────────────────────
@@ -165,12 +170,6 @@ COT_PROMPT = (
     '"thresholds":[],"exceptions":[]}}'
 )
 
-# ── FIXED RAG PROMPT ─────────────────────────────────────────────────────────
-# Key fixes:
-# 1. Explicitly says examples show FORMAT only, not topic categories
-# 2. Forbids copying types from examples
-# 3. Enforces the 5 valid types strictly
-# 4. Same type enforcement as COT_PROMPT
 RAG_PROMPT = (
     'Extract constraint information from this labor contract sentence.\n\n'
     'The examples below show the REQUIRED OUTPUT FORMAT only.\n'
@@ -247,9 +246,6 @@ def format_rag_examples(examples):
 
 # ── JSON parser ───────────────────────────────────────────────────────────────
 def parse_json_response(raw: str):
-    """Extract JSON from model response.
-    Handles: CoT reasoning prefix, markdown fences, true/false values.
-    """
     if not raw:
         return None
     raw = raw.strip()
@@ -322,6 +318,30 @@ def call_deepseek(sentence: str, mode: str = "base"):
             temperature=0, max_tokens=800,
         )
         return parse_json_response(r.choices[0].message.content.strip())
+    return _call_with_retry(_call)
+
+
+def call_together(sentence: str, model: str, mode: str = "base"):
+    """Call Together.ai API — hosts Qwen2.5-72B and Llama-3.3-70B."""
+    if not TOGETHER_AVAILABLE or together_client is None:
+        print("  [together] SKIPPED — TOGETHER_API_KEY not set or client not init")
+        return None
+    content = (COT_PROMPT if mode == "cot" else BASE_PROMPT).format(
+        sentence=sentence[:500]
+    )
+    def _call():
+        r = together_client.chat.completions.create(
+            model=model,
+            messages=[{"role": "system", "content": SYSTEM_PROMPT},
+                      {"role": "user",   "content": content}],
+            temperature=0, max_tokens=1200,  # increased to avoid truncation
+        )
+        raw = r.choices[0].message.content.strip()
+        parsed = parse_json_response(raw)
+        if parsed is None:
+            # Only log first 100 chars to avoid console spam
+            print(f"  [together] PARSE FAILED. Raw: {raw[:100]}")
+        return parsed
     return _call_with_retry(_call)
 
 
@@ -424,7 +444,7 @@ def compute_metrics(predictions, ground_truth):
         y_true.append(gt_type)
         y_pred.append(pred_type)
 
-        if pred is not None:
+        if pred is not None and isinstance(pred, dict) and len(pred) > 0:
             json_valid += 1
 
         gt_val = _parse_value(str(gt.get("threshold", "")))
@@ -500,19 +520,30 @@ def _parse_value(raw):
     return None
 
 
-# ── Runner ────────────────────────────────────────────────────────────────────
+# ── Model configs ─────────────────────────────────────────────────────────────
 MODEL_CONFIGS = {
+    # OpenAI
     "gpt4o":        {"fn": call_openai,   "kwargs": {"model": "gpt-4o",      "mode": "base"}},
     "gpt4o-mini":   {"fn": call_openai,   "kwargs": {"model": "gpt-4o-mini", "mode": "base"}},
     "gpt4o-cot":    {"fn": call_openai,   "kwargs": {"model": "gpt-4o",      "mode": "cot"}},
     "gpt4o-rag":    {"fn": call_openai,   "kwargs": {"model": "gpt-4o",      "mode": "rag"}},
+    # DeepSeek
     "deepseek":     {"fn": call_deepseek, "kwargs": {"mode": "base"}},
     "deepseek-cot": {"fn": call_deepseek, "kwargs": {"mode": "cot"}},
+    # Together.ai — large OSS models (zero-shot, Aman's recommendation)
+    # Only llama3.3-70b is serverless on this account — Qwen requires dedicated endpoint
+    "llama3.3-70b": {"fn": call_together, "kwargs": {
+        "model": "meta-llama/Llama-3.3-70B-Instruct-Turbo", "mode": "base"}},
+    # qwen2.5-72b kept here but requires dedicated endpoint — enable if account upgraded
+    # "qwen2.5-72b": {"fn": call_together, "kwargs": {
+    #     "model": "Qwen/Qwen2.5-72B-Instruct", "mode": "base"}},
+    # Ollama — small local models
     "qwen":         {"fn": call_ollama,   "kwargs": {"model": "qwen2.5:7b"}},
     "llama":        {"fn": call_ollama,   "kwargs": {"model": "llama3.1:8b"}},
 }
 
 
+# ── Runner ────────────────────────────────────────────────────────────────────
 def run_baseline(model_name, df, limit=None):
     if limit:
         df = df.head(limit)
@@ -552,9 +583,13 @@ def run_baseline(model_name, df, limit=None):
         ground_truth_rows.append(row.to_dict())
         domains_list.append(str(row.get("domain", "")))
 
-        if ("gpt" in model_name or "deepseek" in model_name) and i % 50 == 49:
+        # Rate limiting
+        is_api_model = any(x in model_name for x in
+                           ["gpt", "deepseek", "qwen2.5-72b", "llama3.3-70b"])
+        if is_api_model and i % 50 == 49:
             time.sleep(0.3)
 
+        # Checkpoint every 500 rows
         if i % 500 == 499:
             json.dump({"predictions": predictions,
                        "ground_truth_rows": ground_truth_rows,
@@ -562,7 +597,7 @@ def run_baseline(model_name, df, limit=None):
                        "next_idx": i + 1},
                       open(ckpt_path, "w"))
 
-    # Save predictions FIRST
+    # Save predictions FIRST before metrics
     out_path = RESULTS_DIR / f"{model_name}_predictions.json"
     with open(out_path, "w") as f:
         json.dump([
@@ -649,8 +684,9 @@ def main():
     print("="*60)
 
     print(f"\n  API keys loaded:")
-    print(f"    OPENAI_API_KEY:   {'set' if GPT_AVAILABLE else 'NOT SET'}")
-    print(f"    DEEPSEEK_API_KEY: {'set' if DS_AVAILABLE  else 'NOT SET'}")
+    print(f"    OPENAI_API_KEY:    {'set' if GPT_AVAILABLE      else 'NOT SET'}")
+    print(f"    DEEPSEEK_API_KEY:  {'set' if DS_AVAILABLE       else 'NOT SET'}")
+    print(f"    TOGETHER_API_KEY:  {'set' if TOGETHER_AVAILABLE else 'NOT SET'}")
 
     master_path = ANNOTATED_DIR / "all_domains_master.csv"
     if not master_path.exists():
@@ -685,12 +721,19 @@ def main():
 
     models_to_run = list(MODEL_CONFIGS.keys()) if args.model == "all" else [args.model]
 
+    # Availability checks
     if not GPT_AVAILABLE and any("gpt" in m for m in models_to_run):
         print("\n  WARNING: OPENAI_API_KEY not set — GPT models skipped.")
         models_to_run = [m for m in models_to_run if "gpt" not in m]
     if not DS_AVAILABLE and any("deepseek" in m for m in models_to_run):
         print("\n  WARNING: DEEPSEEK_API_KEY not set — DeepSeek models skipped.")
         models_to_run = [m for m in models_to_run if "deepseek" not in m]
+    if not TOGETHER_AVAILABLE and any(
+            m in ("qwen2.5-72b", "llama3.3-70b") for m in models_to_run):
+        print("\n  WARNING: TOGETHER_API_KEY not set — Together.ai models skipped.")
+        print("  Get a free key at together.ai (includes $25 free credits)")
+        models_to_run = [m for m in models_to_run
+                         if m not in ("qwen2.5-72b", "llama3.3-70b")]
 
     all_metrics = {}
     for f in RESULTS_DIR.glob("*_metrics.json"):
