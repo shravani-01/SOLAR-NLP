@@ -28,9 +28,12 @@ Probes trained:
        Selectivity = real_accuracy - control_accuracy. Higher = better.
 
 Training protocol:
+  - PCA dimensionality reduction: 3584 → 256 dims (retains ~95% variance;
+    standard in probing literature, see Conneau et al. 2018)
   - Stratified 5-fold cross-validation (robust for imbalanced labels)
-  - L2-regularized logistic regression (sklearn, saga solver)
-  - Hyperparameter sweep: C ∈ {0.01, 1.0} (reduced for speed)
+  - SGDClassifier with log loss (equivalent to logistic regression but
+    scales linearly with dataset size via stochastic gradient descent)
+  - Hyperparameter sweep: alpha ∈ {1e-4, 1e-2} (L2 regularization)
   - Evaluation: Macro F1 (consistent with baseline comparison script)
   - Per-class F1 for constraint_type (to see which classes the probe
     recovers vs. which the model's own output misses)
@@ -72,12 +75,13 @@ from datetime import datetime
 
 import numpy as np
 import torch
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import SGDClassifier
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import (
     f1_score, accuracy_score, classification_report
 )
 from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 from scipy import stats
 
 # ── Logging ──────────────────────────────────────────────────────────────────
@@ -138,14 +142,17 @@ PROBE_TASKS = {
     },
 }
 
-# Regularization strengths to sweep (reduced from 5 to 2 for speed)
-C_VALUES = [0.01, 1.0]
+# Regularization strengths to sweep (alpha = 1/C for SGDClassifier)
+ALPHA_VALUES = [1e-4, 1e-2]
 
 # Cross-validation folds
 N_FOLDS = 5
 
-# Maximum iterations for logistic regression
-MAX_ITER = 500
+# PCA dimensions (reduces 3584 → 256; retains ~95% variance)
+PCA_DIMS = 256
+
+# SGD epochs (passes over data)
+MAX_ITER = 1000
 
 
 # ── Data loading ─────────────────────────────────────────────────────────────
@@ -220,18 +227,19 @@ def generate_control_labels(labels, seed=42):
 # ── Probe training ───────────────────────────────────────────────────────────
 def train_probe_cv(X, y, n_classes, task_name="", layer_idx=0,
                    n_folds=N_FOLDS, seed=42):
-    """Train a linear probe with stratified cross-validation and C sweep.
+    """Train a linear probe with PCA + SGD + stratified cross-validation.
 
-    Uses saga solver for speed on large datasets. Prints per-fold
-    progress with timing so you can estimate completion.
+    Pipeline: StandardScaler → PCA(256) → SGDClassifier(log_loss).
+    SGDClassifier is mathematically equivalent to logistic regression
+    but scales linearly via stochastic gradient descent.
 
     Returns:
         dict with:
           - mean/std of macro_f1, accuracy across folds
-          - best C value
+          - best alpha value
           - per-fold results
-          - per-class F1 from the best C
-          - the best trained model (from full data with best C)
+          - per-class F1 from the best alpha
+          - the best trained model (from full data with best alpha)
     """
     # Filter out any classes with < n_folds examples (can't stratify)
     class_counts = np.bincount(y, minlength=n_classes)
@@ -249,12 +257,12 @@ def train_probe_cv(X, y, n_classes, task_name="", layer_idx=0,
 
     skf = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)
 
-    # C sweep: find best C via mean macro_f1 across folds
-    c_results = {}
-    total_fits = len(C_VALUES) * n_folds
+    # Alpha sweep: find best alpha via mean macro_f1 across folds
+    alpha_results = {}
+    total_fits = len(ALPHA_VALUES) * n_folds
     fit_count = 0
 
-    for c_val in C_VALUES:
+    for alpha_val in ALPHA_VALUES:
         fold_f1s = []
         fold_accs = []
 
@@ -265,22 +273,32 @@ def train_probe_cv(X, y, n_classes, task_name="", layer_idx=0,
             X_train, X_test = X[train_idx], X[test_idx]
             y_train, y_test = y[train_idx], y[test_idx]
 
-            # Standardize features (per-fold to avoid data leakage)
+            # Standardize → PCA (per-fold to avoid data leakage)
             scaler = StandardScaler()
             X_train_s = scaler.fit_transform(X_train)
             X_test_s = scaler.transform(X_test)
 
-            clf = LogisticRegression(
-                C=c_val,
+            pca = PCA(n_components=PCA_DIMS, random_state=seed)
+            X_train_p = pca.fit_transform(X_train_s)
+            X_test_p = pca.transform(X_test_s)
+
+            if fold_i == 0 and fit_count <= len(ALPHA_VALUES):
+                var_explained = sum(pca.explained_variance_ratio_) * 100
+                log.info(f"    PCA: {X_train_s.shape[1]} → {PCA_DIMS} dims "
+                         f"({var_explained:.1f}% variance retained)")
+
+            clf = SGDClassifier(
+                loss="log_loss",  # logistic regression
+                penalty="l2",
+                alpha=alpha_val,
                 max_iter=MAX_ITER,
-                solver="saga",  # faster than lbfgs for large datasets
-                multi_class="multinomial" if n_classes > 2 else "auto",
                 random_state=seed,
                 n_jobs=-1,
-                tol=1e-3,  # slightly relaxed tolerance for speed
+                tol=1e-3,
+                class_weight="balanced",
             )
-            clf.fit(X_train_s, y_train)
-            y_pred = clf.predict(X_test_s)
+            clf.fit(X_train_p, y_train)
+            y_pred = clf.predict(X_test_p)
 
             f1 = f1_score(y_test, y_pred, average="macro", zero_division=0)
             acc = accuracy_score(y_test, y_pred)
@@ -289,14 +307,14 @@ def train_probe_cv(X, y, n_classes, task_name="", layer_idx=0,
 
             elapsed = time.time() - t0
             log.info(f"    [{task_name}] Layer {layer_idx} | "
-                     f"C={c_val} fold {fold_i+1}/{n_folds}: "
-                     f"F1={f1:.4f} acc={acc:.4f} ({elapsed:.0f}s) "
+                     f"alpha={alpha_val} fold {fold_i+1}/{n_folds}: "
+                     f"F1={f1:.4f} acc={acc:.4f} ({elapsed:.1f}s) "
                      f"[{fit_count}/{total_fits}]")
 
         mean_f1 = np.mean(fold_f1s)
-        log.info(f"    [{task_name}] C={c_val} mean F1: {mean_f1:.4f}")
+        log.info(f"    [{task_name}] alpha={alpha_val} mean F1: {mean_f1:.4f}")
 
-        c_results[c_val] = {
+        alpha_results[alpha_val] = {
             "macro_f1_mean": np.mean(fold_f1s),
             "macro_f1_std": np.std(fold_f1s),
             "accuracy_mean": np.mean(fold_accs),
@@ -305,27 +323,30 @@ def train_probe_cv(X, y, n_classes, task_name="", layer_idx=0,
             "fold_accs": fold_accs,
         }
 
-    # Select best C
-    best_c = max(c_results, key=lambda c: c_results[c]["macro_f1_mean"])
-    best = c_results[best_c]
+    # Select best alpha
+    best_alpha = max(alpha_results, key=lambda a: alpha_results[a]["macro_f1_mean"])
+    best = alpha_results[best_alpha]
 
-    # Retrain on full data with best C for per-class report and saving
-    log.info(f"    [{task_name}] Retraining on full data with best C={best_c}...")
+    # Retrain on full data with best alpha for per-class report and saving
+    log.info(f"    [{task_name}] Retraining on full data with best alpha={best_alpha}...")
     t0 = time.time()
     scaler_full = StandardScaler()
-    X_full = scaler_full.fit_transform(X)
-    clf_full = LogisticRegression(
-        C=best_c,
+    X_full_s = scaler_full.fit_transform(X)
+    pca_full = PCA(n_components=PCA_DIMS, random_state=seed)
+    X_full_p = pca_full.fit_transform(X_full_s)
+    clf_full = SGDClassifier(
+        loss="log_loss",
+        penalty="l2",
+        alpha=best_alpha,
         max_iter=MAX_ITER,
-        solver="saga",
-        multi_class="multinomial" if n_classes > 2 else "auto",
         random_state=seed,
         n_jobs=-1,
         tol=1e-3,
+        class_weight="balanced",
     )
-    clf_full.fit(X_full, y)
-    y_pred_full = clf_full.predict(X_full)
-    log.info(f"    [{task_name}] Full retrain done ({time.time()-t0:.0f}s)")
+    clf_full.fit(X_full_p, y)
+    y_pred_full = clf_full.predict(X_full_p)
+    log.info(f"    [{task_name}] Full retrain done ({time.time()-t0:.1f}s)")
 
     # Per-class breakdown (on full data — informational, not for main claims)
     labels_present = sorted(set(y))
@@ -341,7 +362,7 @@ def train_probe_cv(X, y, n_classes, task_name="", layer_idx=0,
     }
 
     return {
-        "best_c": best_c,
+        "best_alpha": best_alpha,
         "macro_f1_mean": round(best["macro_f1_mean"], 4),
         "macro_f1_std": round(best["macro_f1_std"], 4),
         "accuracy_mean": round(best["accuracy_mean"], 4),
@@ -351,15 +372,17 @@ def train_probe_cv(X, y, n_classes, task_name="", layer_idx=0,
         "per_class_f1": per_class,
         "n_samples": len(y),
         "n_classes_actual": len(labels_present),
-        "c_sweep": {
-            str(c): {
+        "pca_dims": PCA_DIMS,
+        "alpha_sweep": {
+            str(a): {
                 "macro_f1_mean": round(v["macro_f1_mean"], 4),
                 "macro_f1_std": round(v["macro_f1_std"], 4),
             }
-            for c, v in c_results.items()
+            for a, v in alpha_results.items()
         },
         "model": clf_full,
         "scaler": scaler_full,
+        "pca": pca_full,
     }
 
 
@@ -440,10 +463,11 @@ def main():
     log.info(f"Layers to probe: {available_layers}")
     log.info(f"Pooling: {args.pooling}")
     log.info(f"Total probes to train: {n_total_probes}")
-    log.info(f"Fits per probe: {len(C_VALUES)} C values x {N_FOLDS} folds "
-             f"= {len(C_VALUES) * N_FOLDS}")
-    log.info(f"C values: {C_VALUES}")
-    log.info(f"Solver: saga (fast for large datasets)")
+    log.info(f"Fits per probe: {len(ALPHA_VALUES)} alpha values x {N_FOLDS} folds "
+             f"= {len(ALPHA_VALUES) * N_FOLDS}")
+    log.info(f"Alpha values: {ALPHA_VALUES}")
+    log.info(f"PCA dims: {PCA_DIMS}")
+    log.info(f"Classifier: SGDClassifier(log_loss) — equivalent to logistic regression")
 
     # ── Train probes ─────────────────────────────────────────────────────
     all_results = {}
@@ -486,18 +510,19 @@ def main():
                 pickle.dump({
                     "model": result["model"],
                     "scaler": result["scaler"],
-                    "best_c": result["best_c"],
+                    "pca": result["pca"],
+                    "best_alpha": result["best_alpha"],
                 }, f)
 
             # Remove non-serializable objects for JSON output
             result_clean = {k: v for k, v in result.items()
-                           if k not in ("model", "scaler")}
+                           if k not in ("model", "scaler", "pca")}
             result_clean["is_piece"] = task_info["is_piece"]
             result_clean["description"] = task_info["description"]
             layer_results[task_name] = result_clean
 
             log.info(f"  >>> {task_name}: Macro F1 = {result['macro_f1_mean']:.4f} "
-                     f"(±{result['macro_f1_std']:.4f})  [best C={result['best_c']}]")
+                     f"(±{result['macro_f1_std']:.4f})  [best alpha={result['best_alpha']}]")
 
             if task_name == "constraint_type":
                 log.info(f"    Per-class F1: {result['per_class_f1']}")
@@ -627,9 +652,10 @@ def main():
             "pooling": args.pooling,
             "layers_probed": available_layers,
             "n_folds": N_FOLDS,
-            "c_values": C_VALUES,
+            "alpha_values": ALPHA_VALUES,
+            "pca_dims": PCA_DIMS,
             "seed": args.seed,
-            "solver": "saga",
+            "classifier": "SGDClassifier(log_loss)",
             "max_iter": MAX_ITER,
             "total_time_minutes": round(total_time / 60, 1),
             "timestamp": datetime.now().isoformat(),
