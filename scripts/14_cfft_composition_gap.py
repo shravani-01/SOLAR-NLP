@@ -497,7 +497,6 @@ def train_model():
         load_best_model_at_end=True if val_dataset else False,
         report_to="none",
         optim="paged_adamw_8bit",
-        group_by_length=True,
         seed=42,
         dataloader_pin_memory=False,
     )
