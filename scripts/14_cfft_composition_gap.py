@@ -386,10 +386,17 @@ def train_model():
         AutoModelForCausalLM,
         AutoTokenizer,
         BitsAndBytesConfig,
-        TrainingArguments,
     )
     from peft import LoraConfig, get_peft_model, TaskType, prepare_model_for_kbit_training
-    from trl import SFTTrainer
+
+    # Handle both old and new trl API
+    try:
+        from trl import SFTTrainer, SFTConfig
+        USE_SFT_CONFIG = True
+    except ImportError:
+        from trl import SFTTrainer
+        from transformers import TrainingArguments
+        USE_SFT_CONFIG = False
 
     log.info("\n" + "="*60)
     log.info("  STEP 2: LoRA FINE-TUNING")
@@ -477,40 +484,75 @@ def train_model():
     MODEL_DIR.mkdir(parents=True, exist_ok=True)
     output_dir = str(MODEL_DIR / "qwen2.5_7b_composition_gap")
 
-    training_args = TrainingArguments(
-        output_dir=output_dir,
-        num_train_epochs=NUM_EPOCHS,
-        per_device_train_batch_size=BATCH_SIZE,
-        per_device_eval_batch_size=BATCH_SIZE,
-        gradient_accumulation_steps=GRAD_ACCUM,
-        learning_rate=LEARNING_RATE,
-        lr_scheduler_type="cosine",
-        warmup_ratio=WARMUP_RATIO,
-        fp16=False,
-        bf16=True,
-        logging_steps=10,
-        save_strategy="steps",
-        save_steps=200,
-        save_total_limit=2,
-        eval_strategy="steps" if val_dataset else "no",
-        eval_steps=200 if val_dataset else None,
-        load_best_model_at_end=True if val_dataset else False,
-        report_to="none",
-        optim="paged_adamw_8bit",
-        seed=42,
-        dataloader_pin_memory=False,
-    )
-
-    trainer = SFTTrainer(
-        model=model,
-        tokenizer=tokenizer,
-        train_dataset=train_dataset,
-        eval_dataset=val_dataset,
-        dataset_text_field="text",
-        max_seq_length=MAX_SEQ_LENGTH,
-        args=training_args,
-        packing=False,
-    )
+    if USE_SFT_CONFIG:
+        # New trl API (>= 0.12): use SFTConfig instead of TrainingArguments
+        training_args = SFTConfig(
+            output_dir=output_dir,
+            num_train_epochs=NUM_EPOCHS,
+            per_device_train_batch_size=BATCH_SIZE,
+            per_device_eval_batch_size=BATCH_SIZE,
+            gradient_accumulation_steps=GRAD_ACCUM,
+            learning_rate=LEARNING_RATE,
+            lr_scheduler_type="cosine",
+            warmup_steps=int(WARMUP_RATIO * 2340),  # ~5% of estimated steps
+            fp16=False,
+            bf16=True,
+            logging_steps=10,
+            save_strategy="steps",
+            save_steps=200,
+            save_total_limit=2,
+            eval_strategy="steps" if val_dataset else "no",
+            eval_steps=200 if val_dataset else None,
+            load_best_model_at_end=True if val_dataset else False,
+            report_to="none",
+            optim="paged_adamw_8bit",
+            seed=42,
+            dataloader_pin_memory=False,
+            dataset_text_field="text",
+            max_seq_length=MAX_SEQ_LENGTH,
+            packing=False,
+        )
+        trainer = SFTTrainer(
+            model=model,
+            train_dataset=train_dataset,
+            eval_dataset=val_dataset,
+            args=training_args,
+        )
+    else:
+        # Old trl API: use TrainingArguments + SFTTrainer kwargs
+        training_args = TrainingArguments(
+            output_dir=output_dir,
+            num_train_epochs=NUM_EPOCHS,
+            per_device_train_batch_size=BATCH_SIZE,
+            per_device_eval_batch_size=BATCH_SIZE,
+            gradient_accumulation_steps=GRAD_ACCUM,
+            learning_rate=LEARNING_RATE,
+            lr_scheduler_type="cosine",
+            warmup_ratio=WARMUP_RATIO,
+            fp16=False,
+            bf16=True,
+            logging_steps=10,
+            save_strategy="steps",
+            save_steps=200,
+            save_total_limit=2,
+            eval_strategy="steps" if val_dataset else "no",
+            eval_steps=200 if val_dataset else None,
+            load_best_model_at_end=True if val_dataset else False,
+            report_to="none",
+            optim="paged_adamw_8bit",
+            seed=42,
+            dataloader_pin_memory=False,
+        )
+        trainer = SFTTrainer(
+            model=model,
+            tokenizer=tokenizer,
+            train_dataset=train_dataset,
+            eval_dataset=val_dataset,
+            dataset_text_field="text",
+            max_seq_length=MAX_SEQ_LENGTH,
+            args=training_args,
+            packing=False,
+        )
 
     log.info(f"\n  Starting training...")
     log.info(f"  Epochs:         {NUM_EPOCHS}")
