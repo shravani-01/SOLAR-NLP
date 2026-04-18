@@ -1,0 +1,642 @@
+[
+  {
+    "db_id": "concert_singer",
+    "schema_text": "-- Database: concert_singer\nCREATE TABLE CONCERT (...);\nCREATE TABLE SINGER (...);\nCREATE TABLE SINGER_IN_CONCERT (...);\nCREATE TABLE STADIUM (...);"
+  },
+  {
+    "db_id": "pets_1",
+    "schema_text": "-- Database: pets_1\nCREATE TABLE HAS_PET (...);\nCREATE TABLE PETS (...);\nCREATE TABLE STUDENT (...);"
+  },
+  {
+    "db_id": "car_1",
+    "schema_text": "-- Database: car_1\nCREATE TABLE CARS_DATA (...);\nCREATE TABLE CAR_MAKERS (...);\nCREATE TABLE CAR_NAMES (...);\nCREATE TABLE CONTINENTS (...);\nCREATE TABLE COUNTRIES (...);\nCREATE TABLE MODEL_LIST (...);"
+  },
+  {
+    "db_id": "flight_2",
+    "schema_text": "-- Database: flight_2\nCREATE TABLE AIRLINES (...);\nCREATE TABLE AIRPORTS (...);\nCREATE TABLE FLIGHTS (...);"
+  },
+  {
+    "db_id": "employee_hire_evaluation",
+    "schema_text": "-- Database: employee_hire_evaluation\nCREATE TABLE EMPLOYEE (...);\nCREATE TABLE EVALUATION (...);\nCREATE TABLE HIRING (...);\nCREATE TABLE SHOP (...);"
+  },
+  {
+    "db_id": "cre_Doc_Template_Mgt",
+    "schema_text": "-- Database: cre_Doc_Template_Mgt\nCREATE TABLE DOCUMENTS (...);\nCREATE TABLE PARAGRAPHS (...);\nCREATE TABLE REF_TEMPLATE_TYPES (...);\nCREATE TABLE TEMPLATES (...);"
+  },
+  {
+    "db_id": "course_teach",
+    "schema_text": "-- Database: course_teach\nCREATE TABLE COURSE (...);\nCREATE TABLE COURSE_ARRANGE (...);\nCREATE TABLE TEACHER (...);"
+  },
+  {
+    "db_id": "museum_visit",
+    "schema_text": "-- Database: museum_visit\nCREATE TABLE MUSEUM (...);\nCREATE TABLE VISIT (...);\nCREATE TABLE VISITOR (...);"
+  },
+  {
+    "db_id": "wta_1",
+    "schema_text": "-- Database: wta_1\nCREATE TABLE MATCHES (...);\nCREATE TABLE PLAYERS (...);\nCREATE TABLE RANKINGS (...);"
+  },
+  {
+    "db_id": "battle_death",
+    "schema_text": "-- Database: battle_death\nCREATE TABLE BATTLE (...);\nCREATE TABLE DEATH (...);\nCREATE TABLE SHIP (...);"
+  },
+  {
+    "db_id": "student_transcripts_tracking",
+    "schema_text": "-- Database: student_transcripts_tracking\nCREATE TABLE ADDRESSES (...);\nCREATE TABLE COURSES (...);\nCREATE TABLE DEGREE_PROGRAMS (...);\nCREATE TABLE DEPARTMENTS (...);\nCREATE TABLE SECTIONS (...);\nCREATE TABLE SEMESTERS (...);\nCREATE TABLE STUDENTS (...);\nCREATE TABLE STUDENT_ENROLMENT (...);\nCREATE TABLE STUDENT_ENROLMENT_COURSES (...);\nCREATE TABLE TRANSCRIPTS (...);\nCREATE TABLE TRANSCRIPT_CONTENTS (...);"
+  },
+  {
+    "db_id": "tvshow",
+    "schema_text": "-- Database: tvshow\nCREATE TABLE CARTOON (...);\nCREATE TABLE TV_CHANNEL (...);\nCREATE TABLE TV_SERIES (...);"
+  },
+  {
+    "db_id": "poker_player",
+    "schema_text": "-- Database: poker_player\nCREATE TABLE PEOPLE (...);\nCREATE TABLE POKER_PLAYER (...);"
+  },
+  {
+    "db_id": "voter_1",
+    "schema_text": "-- Database: voter_1\nCREATE TABLE AREA_CODE_STATE (...);\nCREATE TABLE CONTESTANTS (...);\nCREATE TABLE VOTES (...);"
+  },
+  {
+    "db_id": "world_1",
+    "schema_text": "-- Database: world_1\nCREATE TABLE CITY (...);\nCREATE TABLE COUNTRY (...);\nCREATE TABLE COUNTRYLANGUAGE (...);"
+  },
+  {
+    "db_id": "orchestra",
+    "schema_text": "-- Database: orchestra\nCREATE TABLE CONDUCTOR (...);\nCREATE TABLE ORCHESTRA (...);\nCREATE TABLE PERFORMANCE (...);\nCREATE TABLE SHOW (...);"
+  },
+  {
+    "db_id": "network_1",
+    "schema_text": "-- Database: network_1\nCREATE TABLE FRIEND (...);\nCREATE TABLE HIGHSCHOOLER (...);\nCREATE TABLE LIKES (...);"
+  },
+  {
+    "db_id": "dog_kennels",
+    "schema_text": "-- Database: dog_kennels\nCREATE TABLE BREEDS (...);\nCREATE TABLE CHARGES (...);\nCREATE TABLE DOGS (...);\nCREATE TABLE OWNERS (...);\nCREATE TABLE PROFESSIONALS (...);\nCREATE TABLE TREATMENTS (...);\nCREATE TABLE TREATMENT_TYPES (...);"
+  },
+  {
+    "db_id": "singer",
+    "schema_text": "-- Database: singer\nCREATE TABLE SINGER (...);\nCREATE TABLE SONG (...);"
+  },
+  {
+    "db_id": "real_estate_properties",
+    "schema_text": "-- Database: real_estate_properties\nCREATE TABLE OTHER_AVAILABLE_FEATURES (...);\nCREATE TABLE PROPERTIES (...);\nCREATE TABLE REF_FEATURE_TYPES (...);\nCREATE TABLE REF_PROPERTY_TYPES (...);"
+  },
+  {
+    "db_id": "department_management",
+    "schema_text": "-- Database: department_management\nCREATE TABLE DEPARTMENT (...);\nCREATE TABLE HEAD (...);\nCREATE TABLE MANAGEMENT (...);"
+  },
+  {
+    "db_id": "farm",
+    "schema_text": "-- Database: farm\nCREATE TABLE CITY (...);\nCREATE TABLE FARM (...);\nCREATE TABLE FARM_COMPETITION (...);"
+  },
+  {
+    "db_id": "student_assessment",
+    "schema_text": "-- Database: student_assessment\nCREATE TABLE ADDRESSES (...);\nCREATE TABLE CANDIDATES (...);\nCREATE TABLE CANDIDATE_ASSESSMENTS (...);\nCREATE TABLE COURSES (...);\nCREATE TABLE PEOPLE (...);\nCREATE TABLE PEOPLE_ADDRESSES (...);\nCREATE TABLE STUDENTS (...);\nCREATE TABLE STUDENT_COURSE_ATTENDANCE (...);\nCREATE TABLE STUDENT_COURSE_REGISTRATIONS (...);"
+  },
+  {
+    "db_id": "bike_1",
+    "schema_text": "-- Database: bike_1\nCREATE TABLE STATION (...);\nCREATE TABLE STATUS (...);\nCREATE TABLE TRIP (...);\nCREATE TABLE WEATHER (...);"
+  },
+  {
+    "db_id": "book_2",
+    "schema_text": "-- Database: book_2\nCREATE TABLE BOOK (...);\nCREATE TABLE PUBLICATION (...);"
+  },
+  {
+    "db_id": "musical",
+    "schema_text": "-- Database: musical\nCREATE TABLE ACTOR (...);\nCREATE TABLE MUSICAL (...);"
+  },
+  {
+    "db_id": "twitter_1",
+    "schema_text": "-- Database: twitter_1\nCREATE TABLE FOLLOWS (...);\nCREATE TABLE TWEETS (...);\nCREATE TABLE USER_PROFILES (...);"
+  },
+  {
+    "db_id": "product_catalog",
+    "schema_text": "-- Database: product_catalog\nCREATE TABLE ATTRIBUTE_DEFINITIONS (...);\nCREATE TABLE CATALOGS (...);\nCREATE TABLE CATALOG_CONTENTS (...);\nCREATE TABLE CATALOG_CONTENTS_ADDITIONAL_ATTRIBUTES (...);\nCREATE TABLE CATALOG_STRUCTURE (...);"
+  },
+  {
+    "db_id": "flight_1",
+    "schema_text": "-- Database: flight_1\nCREATE TABLE AIRCRAFT (...);\nCREATE TABLE CERTIFICATE (...);\nCREATE TABLE EMPLOYEE (...);\nCREATE TABLE FLIGHT (...);"
+  },
+  {
+    "db_id": "allergy_1",
+    "schema_text": "-- Database: allergy_1\nCREATE TABLE ALLERGY_TYPE (...);\nCREATE TABLE HAS_ALLERGY (...);\nCREATE TABLE STUDENT (...);"
+  },
+  {
+    "db_id": "store_1",
+    "schema_text": "-- Database: store_1\nCREATE TABLE ALBUMS (...);\nCREATE TABLE ARTISTS (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE EMPLOYEES (...);\nCREATE TABLE GENRES (...);\nCREATE TABLE INVOICES (...);\nCREATE TABLE INVOICE_LINES (...);\nCREATE TABLE MEDIA_TYPES (...);\nCREATE TABLE PLAYLISTS (...);\nCREATE TABLE PLAYLIST_TRACKS (...);\nCREATE TABLE TRACKS (...);"
+  },
+  {
+    "db_id": "journal_committee",
+    "schema_text": "-- Database: journal_committee\nCREATE TABLE EDITOR (...);\nCREATE TABLE JOURNAL (...);\nCREATE TABLE JOURNAL_COMMITTEE (...);"
+  },
+  {
+    "db_id": "customers_card_transactions",
+    "schema_text": "-- Database: customers_card_transactions\nCREATE TABLE ACCOUNTS (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE CUSTOMERS_CARDS (...);\nCREATE TABLE FINANCIAL_TRANSACTIONS (...);"
+  },
+  {
+    "db_id": "race_track",
+    "schema_text": "-- Database: race_track\nCREATE TABLE RACE (...);\nCREATE TABLE TRACK (...);"
+  },
+  {
+    "db_id": "coffee_shop",
+    "schema_text": "-- Database: coffee_shop\nCREATE TABLE HAPPY_HOUR (...);\nCREATE TABLE MEMBER (...);\nCREATE TABLE SHOP (...);"
+  },
+  {
+    "db_id": "chinook_1",
+    "schema_text": "-- Database: chinook_1\nCREATE TABLE ALBUM (...);\nCREATE TABLE ARTIST (...);\nCREATE TABLE CUSTOMER (...);\nCREATE TABLE EMPLOYEE (...);\nCREATE TABLE GENRE (...);\nCREATE TABLE INVOICE (...);\nCREATE TABLE MEDIATYPE (...);\nCREATE TABLE TRACK (...);"
+  },
+  {
+    "db_id": "insurance_fnol",
+    "schema_text": "-- Database: insurance_fnol\nCREATE TABLE AVAILABLE_POLICIES (...);\nCREATE TABLE CLAIMS (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE CUSTOMERS_POLICIES (...);\nCREATE TABLE FIRST_NOTIFICATION_OF_LOSS (...);\nCREATE TABLE SERVICES (...);\nCREATE TABLE SETTLEMENTS (...);"
+  },
+  {
+    "db_id": "medicine_enzyme_interaction",
+    "schema_text": "-- Database: medicine_enzyme_interaction\nCREATE TABLE ENZYME (...);\nCREATE TABLE MEDICINE (...);\nCREATE TABLE MEDICINE_ENZYME_INTERACTION (...);"
+  },
+  {
+    "db_id": "university_basketball",
+    "schema_text": "-- Database: university_basketball\nCREATE TABLE BASKETBALL_MATCH (...);\nCREATE TABLE UNIVERSITY (...);"
+  },
+  {
+    "db_id": "phone_1",
+    "schema_text": "-- Database: phone_1\nCREATE TABLE CHIP_MODEL (...);\nCREATE TABLE PHONE (...);\nCREATE TABLE SCREEN_MODE (...);"
+  },
+  {
+    "db_id": "match_season",
+    "schema_text": "-- Database: match_season\nCREATE TABLE COUNTRY (...);\nCREATE TABLE MATCH_SEASON (...);\nCREATE TABLE PLAYER (...);\nCREATE TABLE TEAM (...);"
+  },
+  {
+    "db_id": "climbing",
+    "schema_text": "-- Database: climbing\nCREATE TABLE CLIMBER (...);\nCREATE TABLE MOUNTAIN (...);"
+  },
+  {
+    "db_id": "body_builder",
+    "schema_text": "-- Database: body_builder\nCREATE TABLE BODY_BUILDER (...);\nCREATE TABLE PEOPLE (...);"
+  },
+  {
+    "db_id": "election_representative",
+    "schema_text": "-- Database: election_representative\nCREATE TABLE ELECTION (...);\nCREATE TABLE REPRESENTATIVE (...);"
+  },
+  {
+    "db_id": "apartment_rentals",
+    "schema_text": "-- Database: apartment_rentals\nCREATE TABLE APARTMENTS (...);\nCREATE TABLE APARTMENT_BOOKINGS (...);\nCREATE TABLE APARTMENT_BUILDINGS (...);\nCREATE TABLE APARTMENT_FACILITIES (...);\nCREATE TABLE GUESTS (...);\nCREATE TABLE VIEW_UNIT_STATUS (...);"
+  },
+  {
+    "db_id": "game_injury",
+    "schema_text": "-- Database: game_injury\nCREATE TABLE GAME (...);\nCREATE TABLE INJURY_ACCIDENT (...);\nCREATE TABLE STADIUM (...);"
+  },
+  {
+    "db_id": "soccer_1",
+    "schema_text": "-- Database: soccer_1\nCREATE TABLE COUNTRY (...);\nCREATE TABLE LEAGUE (...);\nCREATE TABLE PLAYER (...);\nCREATE TABLE PLAYER_ATTRIBUTES (...);"
+  },
+  {
+    "db_id": "performance_attendance",
+    "schema_text": "-- Database: performance_attendance\nCREATE TABLE MEMBER (...);\nCREATE TABLE MEMBER_ATTENDANCE (...);\nCREATE TABLE PERFORMANCE (...);"
+  },
+  {
+    "db_id": "college_2",
+    "schema_text": "-- Database: college_2\nCREATE TABLE ADVISOR (...);\nCREATE TABLE CLASSROOM (...);\nCREATE TABLE COURSE (...);\nCREATE TABLE DEPARTMENT (...);\nCREATE TABLE INSTRUCTOR (...);\nCREATE TABLE PREREQ (...);\nCREATE TABLE SECTION (...);\nCREATE TABLE STUDENT (...);\nCREATE TABLE TAKES (...);\nCREATE TABLE TEACHES (...);"
+  },
+  {
+    "db_id": "debate",
+    "schema_text": "-- Database: debate\nCREATE TABLE DEBATE (...);\nCREATE TABLE DEBATE_PEOPLE (...);\nCREATE TABLE PEOPLE (...);"
+  },
+  {
+    "db_id": "insurance_and_eClaims",
+    "schema_text": "-- Database: insurance_and_eClaims\nCREATE TABLE CLAIMS_DOCUMENTS (...);\nCREATE TABLE CLAIMS_PROCESSING (...);\nCREATE TABLE CLAIMS_PROCESSING_STAGES (...);\nCREATE TABLE CLAIM_HEADERS (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE POLICIES (...);\nCREATE TABLE STAFF (...);"
+  },
+  {
+    "db_id": "customers_and_invoices",
+    "schema_text": "-- Database: customers_and_invoices\nCREATE TABLE ACCOUNTS (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE FINANCIAL_TRANSACTIONS (...);\nCREATE TABLE INVOICES (...);\nCREATE TABLE ORDERS (...);\nCREATE TABLE ORDER_ITEMS (...);\nCREATE TABLE PRODUCTS (...);"
+  },
+  {
+    "db_id": "wedding",
+    "schema_text": "-- Database: wedding\nCREATE TABLE CHURCH (...);\nCREATE TABLE PEOPLE (...);\nCREATE TABLE WEDDING (...);"
+  },
+  {
+    "db_id": "theme_gallery",
+    "schema_text": "-- Database: theme_gallery\nCREATE TABLE ARTIST (...);\nCREATE TABLE EXHIBITION (...);\nCREATE TABLE EXHIBITION_RECORD (...);"
+  },
+  {
+    "db_id": "epinions_1",
+    "schema_text": "-- Database: epinions_1\nCREATE TABLE ITEM (...);\nCREATE TABLE REVIEW (...);\nCREATE TABLE TRUST (...);\nCREATE TABLE USERACCT (...);"
+  },
+  {
+    "db_id": "riding_club",
+    "schema_text": "-- Database: riding_club\nCREATE TABLE CLUB (...);\nCREATE TABLE COACH (...);\nCREATE TABLE MATCH_RESULT (...);\nCREATE TABLE PLAYER (...);\nCREATE TABLE PLAYER_COACH (...);"
+  },
+  {
+    "db_id": "gymnast",
+    "schema_text": "-- Database: gymnast\nCREATE TABLE GYMNAST (...);\nCREATE TABLE PEOPLE (...);"
+  },
+  {
+    "db_id": "small_bank_1",
+    "schema_text": "-- Database: small_bank_1\nCREATE TABLE ACCOUNTS (...);\nCREATE TABLE CHECKING (...);\nCREATE TABLE SAVINGS (...);"
+  },
+  {
+    "db_id": "browser_web",
+    "schema_text": "-- Database: browser_web\nCREATE TABLE ACCELERATOR_COMPATIBLE_BROWSER (...);\nCREATE TABLE BROWSER (...);\nCREATE TABLE WEB_CLIENT_ACCELERATOR (...);"
+  },
+  {
+    "db_id": "wrestler",
+    "schema_text": "-- Database: wrestler\nCREATE TABLE ELIMINATION (...);\nCREATE TABLE WRESTLER (...);"
+  },
+  {
+    "db_id": "school_finance",
+    "schema_text": "-- Database: school_finance\nCREATE TABLE BUDGET (...);\nCREATE TABLE ENDOWMENT (...);\nCREATE TABLE SCHOOL (...);"
+  },
+  {
+    "db_id": "protein_institute",
+    "schema_text": "-- Database: protein_institute\nCREATE TABLE BUILDING (...);\nCREATE TABLE INSTITUTION (...);\nCREATE TABLE PROTEIN (...);"
+  },
+  {
+    "db_id": "cinema",
+    "schema_text": "-- Database: cinema\nCREATE TABLE CINEMA (...);\nCREATE TABLE FILM (...);\nCREATE TABLE SCHEDULE (...);"
+  },
+  {
+    "db_id": "products_for_hire",
+    "schema_text": "-- Database: products_for_hire\nCREATE TABLE BOOKINGS (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE DISCOUNT_COUPONS (...);\nCREATE TABLE PAYMENTS (...);\nCREATE TABLE PRODUCTS_BOOKED (...);\nCREATE TABLE PRODUCTS_FOR_HIRE (...);\nCREATE TABLE VIEW_PRODUCT_AVAILABILITY (...);"
+  },
+  {
+    "db_id": "phone_market",
+    "schema_text": "-- Database: phone_market\nCREATE TABLE MARKET (...);\nCREATE TABLE PHONE (...);\nCREATE TABLE PHONE_MARKET (...);"
+  },
+  {
+    "db_id": "gas_company",
+    "schema_text": "-- Database: gas_company\nCREATE TABLE COMPANY (...);\nCREATE TABLE GAS_STATION (...);\nCREATE TABLE STATION_COMPANY (...);"
+  },
+  {
+    "db_id": "party_people",
+    "schema_text": "-- Database: party_people\nCREATE TABLE MEMBER (...);\nCREATE TABLE PARTY (...);\nCREATE TABLE PARTY_EVENTS (...);\nCREATE TABLE REGION (...);"
+  },
+  {
+    "db_id": "pilot_record",
+    "schema_text": "-- Database: pilot_record\nCREATE TABLE AIRCRAFT (...);\nCREATE TABLE PILOT (...);\nCREATE TABLE PILOT_RECORD (...);"
+  },
+  {
+    "db_id": "cre_Doc_Control_Systems",
+    "schema_text": "-- Database: cre_Doc_Control_Systems\nCREATE TABLE ADDRESSES (ADDRESS_DETAILS, ADDRESS_ID);\nCREATE TABLE CIRCULATION_HISTORY (COPY_NUMBER, DOCUMENT_ID, DRAFT_NUMBER, EMPLOYEE_ID);\nCREATE TABLE DOCUMENTS (DOCUMENT_ID, DOCUMENT_STATUS_CODE, SHIPPING_AGENT_CODE);\nCREATE TABLE DOCUMENTS_MAILED (MAILED_TO_ADDRESS_ID);\nCREATE TABLE DOCUMENT_DRAFTS (...);\nCREATE TABLE DRAFT_COPIES (...);\nCREATE TABLE EMPLOYEES (EMPLOYEE_ID, EMPLOYEE_NAME, ROLE_CODE);\nCREATE TABLE REF_DOCUMENT_STATUS (DOCUMENT_STATUS_CODE, DOCUMENT_STATUS_DESCRIPTION);\nCREATE TABLE REF_DOCUMENT_TYPES (...);\nCREATE TABLE REF_SHIPPING_AGENTS (SHIPPING_AGENT_CODE, SHIPPING_AGENT_NAME);\nCREATE TABLE ROLES (ROLE_CODE, ROLE_DESCRIPTION);"
+  },
+  {
+    "db_id": "company_1",
+    "schema_text": "-- Database: company_1\nCREATE TABLE DEPARTMENT (...);\nCREATE TABLE DEPENDENT (...);\nCREATE TABLE DEPT_LOCATIONS (...);\nCREATE TABLE EMPLOYEE (...);"
+  },
+  {
+    "db_id": "local_govt_in_alabama",
+    "schema_text": "-- Database: local_govt_in_alabama\nCREATE TABLE EVENTS (...);\nCREATE TABLE PARTICIPANTS (...);\nCREATE TABLE PARTICIPANTS_IN_EVENTS (...);\nCREATE TABLE SERVICES (...);"
+  },
+  {
+    "db_id": "formula_1",
+    "schema_text": "-- Database: formula_1\nCREATE TABLE CIRCUITS (...);\nCREATE TABLE CONSTRUCTORS (...);\nCREATE TABLE CONSTRUCTORSTANDINGS (...);\nCREATE TABLE DRIVERS (...);\nCREATE TABLE DRIVERSTANDINGS (...);\nCREATE TABLE LAPTIMES (...);\nCREATE TABLE PITSTOPS (...);\nCREATE TABLE RACES (...);\nCREATE TABLE RESULTS (...);"
+  },
+  {
+    "db_id": "machine_repair",
+    "schema_text": "-- Database: machine_repair\nCREATE TABLE MACHINE (...);\nCREATE TABLE REPAIR_ASSIGNMENT (...);\nCREATE TABLE TECHNICIAN (...);"
+  },
+  {
+    "db_id": "entrepreneur",
+    "schema_text": "-- Database: entrepreneur\nCREATE TABLE ENTREPRENEUR (...);\nCREATE TABLE PEOPLE (...);"
+  },
+  {
+    "db_id": "perpetrator",
+    "schema_text": "-- Database: perpetrator\nCREATE TABLE PEOPLE (...);\nCREATE TABLE PERPETRATOR (...);"
+  },
+  {
+    "db_id": "csu_1",
+    "schema_text": "-- Database: csu_1\nCREATE TABLE CAMPUSES (...);\nCREATE TABLE CSU_FEES (...);\nCREATE TABLE DEGREES (...);\nCREATE TABLE DISCIPLINE_ENROLLMENTS (...);\nCREATE TABLE ENROLLMENTS (...);\nCREATE TABLE FACULTY (...);"
+  },
+  {
+    "db_id": "candidate_poll",
+    "schema_text": "-- Database: candidate_poll\nCREATE TABLE CANDIDATE (...);\nCREATE TABLE PEOPLE (...);"
+  },
+  {
+    "db_id": "movie_1",
+    "schema_text": "-- Database: movie_1\nCREATE TABLE MOVIE (...);\nCREATE TABLE RATING (...);\nCREATE TABLE REVIEWER (...);"
+  },
+  {
+    "db_id": "county_public_safety",
+    "schema_text": "-- Database: county_public_safety\nCREATE TABLE CITY (...);\nCREATE TABLE COUNTY_PUBLIC_SAFETY (...);"
+  },
+  {
+    "db_id": "inn_1",
+    "schema_text": "-- Database: inn_1\nCREATE TABLE RESERVATIONS (...);\nCREATE TABLE ROOMS (...);"
+  },
+  {
+    "db_id": "local_govt_mdm",
+    "schema_text": "-- Database: local_govt_mdm\nCREATE TABLE BENEFITS_OVERPAYMENTS (...);\nCREATE TABLE BUSINESS_RATES (...);\nCREATE TABLE CMI_CROSS_REFERENCES (...);\nCREATE TABLE COUNCIL_TAX (...);\nCREATE TABLE CUSTOMER_MASTER_INDEX (...);\nCREATE TABLE ELECTORAL_REGISTER (...);\nCREATE TABLE PARKING_FINES (...);\nCREATE TABLE RENT_ARREARS (...);"
+  },
+  {
+    "db_id": "party_host",
+    "schema_text": "-- Database: party_host\nCREATE TABLE HOST (...);\nCREATE TABLE PARTY (...);\nCREATE TABLE PARTY_HOST (...);"
+  },
+  {
+    "db_id": "storm_record",
+    "schema_text": "-- Database: storm_record\nCREATE TABLE AFFECTED_REGION (...);\nCREATE TABLE REGION (...);\nCREATE TABLE STORM (...);"
+  },
+  {
+    "db_id": "election",
+    "schema_text": "-- Database: election\nCREATE TABLE COUNTY (...);\nCREATE TABLE ELECTION (...);\nCREATE TABLE PARTY (...);"
+  },
+  {
+    "db_id": "news_report",
+    "schema_text": "-- Database: news_report\nCREATE TABLE EVENT (...);\nCREATE TABLE JOURNALIST (...);\nCREATE TABLE NEWS_REPORT (...);"
+  },
+  {
+    "db_id": "restaurant_1",
+    "schema_text": "-- Database: restaurant_1\nCREATE TABLE RESTAURANT (RESID, RESNAME);\nCREATE TABLE RESTAURANT_TYPE (RESTYPEID, RESTYPENAME);\nCREATE TABLE STUDENT (FNAME, LNAME, STUID);\nCREATE TABLE TYPE_OF_RESTAURANT (RESID, RESTYPEID);\nCREATE TABLE VISITS_RESTAURANT (RESID, SPENT, STUID);"
+  },
+  {
+    "db_id": "customer_deliveries",
+    "schema_text": "-- Database: customer_deliveries\nCREATE TABLE ACTUAL_ORDERS (...);\nCREATE TABLE ADDRESSES (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE CUSTOMER_ADDRESSES (...);\nCREATE TABLE DELIVERY_ROUTES (...);\nCREATE TABLE DELIVERY_ROUTE_LOCATIONS (...);\nCREATE TABLE EMPLOYEES (...);\nCREATE TABLE PRODUCTS (...);\nCREATE TABLE REGULAR_ORDER_PRODUCTS (...);\nCREATE TABLE TRUCKS (...);"
+  },
+  {
+    "db_id": "icfp_1",
+    "schema_text": "-- Database: icfp_1\nCREATE TABLE AUTHORS (...);\nCREATE TABLE AUTHORSHIP (...);\nCREATE TABLE INST (...);\nCREATE TABLE PAPERS (...);"
+  },
+  {
+    "db_id": "sakila_1",
+    "schema_text": "-- Database: sakila_1\nCREATE TABLE ACTOR (...);\nCREATE TABLE ADDRESS (...);\nCREATE TABLE CATEGORY (...);\nCREATE TABLE CITY (...);\nCREATE TABLE COUNTRY (...);\nCREATE TABLE CUSTOMER (...);\nCREATE TABLE FILM (...);\nCREATE TABLE FILM_ACTOR (...);\nCREATE TABLE FILM_CATEGORY (...);\nCREATE TABLE INVENTORY (...);\nCREATE TABLE LANGUAGE (...);\nCREATE TABLE PAYMENT (...);\nCREATE TABLE RENTAL (...);\nCREATE TABLE STAFF (...);\nCREATE TABLE STORE (...);"
+  },
+  {
+    "db_id": "loan_1",
+    "schema_text": "-- Database: loan_1\nCREATE TABLE BANK (...);\nCREATE TABLE CUSTOMER (...);\nCREATE TABLE LOAN (...);"
+  },
+  {
+    "db_id": "behavior_monitoring",
+    "schema_text": "-- Database: behavior_monitoring\nCREATE TABLE ADDRESSES (...);\nCREATE TABLE ASSESSMENT_NOTES (...);\nCREATE TABLE BEHAVIOR_INCIDENT (...);\nCREATE TABLE DETENTION (...);\nCREATE TABLE REF_DETENTION_TYPE (...);\nCREATE TABLE REF_INCIDENT_TYPE (...);\nCREATE TABLE STUDENTS (...);\nCREATE TABLE STUDENTS_IN_DETENTION (...);\nCREATE TABLE STUDENT_ADDRESSES (...);\nCREATE TABLE TEACHERS (...);"
+  },
+  {
+    "db_id": "assets_maintenance",
+    "schema_text": "-- Database: assets_maintenance\nCREATE TABLE ASSETS (...);\nCREATE TABLE ASSET_PARTS (...);\nCREATE TABLE ENGINEER_SKILLS (...);\nCREATE TABLE ENGINEER_VISITS (...);\nCREATE TABLE FAULT_LOG (...);\nCREATE TABLE FAULT_LOG_PARTS (...);\nCREATE TABLE MAINTENANCE_CONTRACTS (...);\nCREATE TABLE MAINTENANCE_ENGINEERS (...);\nCREATE TABLE PARTS (...);\nCREATE TABLE PART_FAULTS (...);\nCREATE TABLE REF_COMPANY_TYPES (...);\nCREATE TABLE SKILLS (...);\nCREATE TABLE SKILLS_REQUIRED_TO_FIX (...);\nCREATE TABLE STAFF (...);\nCREATE TABLE THIRD_PARTY_COMPANIES (...);"
+  },
+  {
+    "db_id": "station_weather",
+    "schema_text": "-- Database: station_weather\nCREATE TABLE ROUTE (...);\nCREATE TABLE STATION (...);\nCREATE TABLE TRAIN (...);\nCREATE TABLE WEEKLY_WEATHER (...);"
+  },
+  {
+    "db_id": "college_1",
+    "schema_text": "-- Database: college_1\nCREATE TABLE CLASS (...);\nCREATE TABLE COURSE (...);\nCREATE TABLE DEPARTMENT (...);\nCREATE TABLE EMPLOYEE (...);\nCREATE TABLE ENROLL (...);\nCREATE TABLE PROFESSOR (...);\nCREATE TABLE STUDENT (...);"
+  },
+  {
+    "db_id": "sports_competition",
+    "schema_text": "-- Database: sports_competition\nCREATE TABLE CLUB (...);\nCREATE TABLE CLUB_RANK (...);\nCREATE TABLE COMPETITION (...);\nCREATE TABLE PLAYER (...);"
+  },
+  {
+    "db_id": "manufacturer",
+    "schema_text": "-- Database: manufacturer\nCREATE TABLE FURNITURE (...);\nCREATE TABLE FURNITURE_MANUFACTE (...);\nCREATE TABLE MANUFACTURER (...);"
+  },
+  {
+    "db_id": "hr_1",
+    "schema_text": "-- Database: hr_1\nCREATE TABLE COUNTRIES (...);\nCREATE TABLE DEPARTMENTS (...);\nCREATE TABLE EMPLOYEES (...);\nCREATE TABLE JOBS (...);\nCREATE TABLE JOB_HISTORY (...);\nCREATE TABLE LOCATIONS (...);"
+  },
+  {
+    "db_id": "music_1",
+    "schema_text": "-- Database: music_1\nCREATE TABLE ARTIST (...);\nCREATE TABLE FILES (...);\nCREATE TABLE GENRE (...);\nCREATE TABLE SONG (...);"
+  },
+  {
+    "db_id": "baseball_1",
+    "schema_text": "-- Database: baseball_1\nCREATE TABLE ALL_STAR (...);\nCREATE TABLE COLLEGE (...);\nCREATE TABLE HALL_OF_FAME (...);\nCREATE TABLE HOME_GAME (...);\nCREATE TABLE MANAGER_AWARD (...);\nCREATE TABLE PARK (...);\nCREATE TABLE PLAYER (...);\nCREATE TABLE PLAYER_AWARD (...);\nCREATE TABLE PLAYER_COLLEGE (...);\nCREATE TABLE POSTSEASON (...);\nCREATE TABLE SALARY (...);\nCREATE TABLE TEAM (...);\nCREATE TABLE TEAM_FRANCHISE (...);"
+  },
+  {
+    "db_id": "mountain_photos",
+    "schema_text": "-- Database: mountain_photos\nCREATE TABLE CAMERA_LENS (...);\nCREATE TABLE MOUNTAIN (...);\nCREATE TABLE PHOTOS (...);"
+  },
+  {
+    "db_id": "program_share",
+    "schema_text": "-- Database: program_share\nCREATE TABLE BROADCAST (...);\nCREATE TABLE CHANNEL (...);\nCREATE TABLE PROGRAM (...);"
+  },
+  {
+    "db_id": "e_learning",
+    "schema_text": "-- Database: e_learning\nCREATE TABLE COURSES (...);\nCREATE TABLE COURSE_AUTHORS_AND_TUTORS (...);\nCREATE TABLE STUDENTS (...);\nCREATE TABLE STUDENT_COURSE_ENROLMENT (...);\nCREATE TABLE STUDENT_TESTS_TAKEN (...);\nCREATE TABLE SUBJECTS (...);"
+  },
+  {
+    "db_id": "insurance_policies",
+    "schema_text": "-- Database: insurance_policies\nCREATE TABLE CLAIMS (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE CUSTOMER_POLICIES (...);\nCREATE TABLE PAYMENTS (...);\nCREATE TABLE SETTLEMENTS (...);"
+  },
+  {
+    "db_id": "hospital_1",
+    "schema_text": "-- Database: hospital_1\nCREATE TABLE AFFILIATED_WITH (...);\nCREATE TABLE APPOINTMENT (...);\nCREATE TABLE BLOCK (...);\nCREATE TABLE DEPARTMENT (...);\nCREATE TABLE MEDICATION (...);\nCREATE TABLE NURSE (...);\nCREATE TABLE ON_CALL (...);\nCREATE TABLE PATIENT (...);\nCREATE TABLE PHYSICIAN (...);\nCREATE TABLE PRESCRIBES (...);\nCREATE TABLE PROCEDURES (...);\nCREATE TABLE ROOM (...);\nCREATE TABLE STAY (...);\nCREATE TABLE TRAINED_IN (...);\nCREATE TABLE UNDERGOES (...);"
+  },
+  {
+    "db_id": "ship_mission",
+    "schema_text": "-- Database: ship_mission\nCREATE TABLE MISSION (...);\nCREATE TABLE SHIP (...);"
+  },
+  {
+    "db_id": "student_1",
+    "schema_text": "-- Database: student_1\nCREATE TABLE LIST (...);\nCREATE TABLE TEACHERS (...);"
+  },
+  {
+    "db_id": "company_employee",
+    "schema_text": "-- Database: company_employee\nCREATE TABLE COMPANY (...);\nCREATE TABLE EMPLOYMENT (...);\nCREATE TABLE PEOPLE (...);"
+  },
+  {
+    "db_id": "film_rank",
+    "schema_text": "-- Database: film_rank\nCREATE TABLE FILM (...);\nCREATE TABLE FILM_MARKET_ESTIMATION (...);\nCREATE TABLE MARKET (...);"
+  },
+  {
+    "db_id": "cre_Doc_Tracking_DB",
+    "schema_text": "-- Database: cre_Doc_Tracking_DB\nCREATE TABLE ALL_DOCUMENTS (...);\nCREATE TABLE DOCUMENTS_TO_BE_DESTROYED (...);\nCREATE TABLE DOCUMENT_LOCATIONS (...);\nCREATE TABLE EMPLOYEES (...);\nCREATE TABLE REF_CALENDAR (...);\nCREATE TABLE REF_DOCUMENT_TYPES (...);\nCREATE TABLE REF_LOCATIONS (...);\nCREATE TABLE ROLES (...);"
+  },
+  {
+    "db_id": "club_1",
+    "schema_text": "-- Database: club_1\nCREATE TABLE CLUB (...);\nCREATE TABLE MEMBER_OF_CLUB (...);\nCREATE TABLE STUDENT (...);"
+  },
+  {
+    "db_id": "tracking_grants_for_research",
+    "schema_text": "-- Database: tracking_grants_for_research\nCREATE TABLE DOCUMENTS (...);\nCREATE TABLE DOCUMENT_TYPES (...);\nCREATE TABLE GRANTS (...);\nCREATE TABLE ORGANISATIONS (...);\nCREATE TABLE ORGANISATION_TYPES (...);\nCREATE TABLE PROJECTS (...);\nCREATE TABLE PROJECT_OUTCOMES (...);\nCREATE TABLE PROJECT_STAFF (...);\nCREATE TABLE RESEARCH_OUTCOMES (...);\nCREATE TABLE RESEARCH_STAFF (...);\nCREATE TABLE STAFF_ROLES (...);\nCREATE TABLE TASKS (...);"
+  },
+  {
+    "db_id": "network_2",
+    "schema_text": "-- Database: network_2\nCREATE TABLE PERSON (...);\nCREATE TABLE PERSONFRIEND (...);"
+  },
+  {
+    "db_id": "decoration_competition",
+    "schema_text": "-- Database: decoration_competition\nCREATE TABLE COLLEGE (...);\nCREATE TABLE MEMBER (...);\nCREATE TABLE ROUND (...);"
+  },
+  {
+    "db_id": "document_management",
+    "schema_text": "-- Database: document_management\nCREATE TABLE DOCUMENTS (...);\nCREATE TABLE DOCUMENT_FUNCTIONAL_AREAS (...);\nCREATE TABLE DOCUMENT_SECTIONS (...);\nCREATE TABLE DOCUMENT_SECTIONS_IMAGES (...);\nCREATE TABLE DOCUMENT_STRUCTURES (...);\nCREATE TABLE FUNCTIONAL_AREAS (...);\nCREATE TABLE IMAGES (...);\nCREATE TABLE ROLES (...);\nCREATE TABLE USERS (...);"
+  },
+  {
+    "db_id": "company_office",
+    "schema_text": "-- Database: company_office\nCREATE TABLE BUILDINGS (...);\nCREATE TABLE COMPANIES (...);\nCREATE TABLE OFFICE_LOCATIONS (...);"
+  },
+  {
+    "db_id": "solvency_ii",
+    "schema_text": "-- Database: solvency_ii\nCREATE TABLE PRODUCTS (...);\nCREATE TABLE PRODUCTS_IN_EVENTS (...);"
+  },
+  {
+    "db_id": "entertainment_awards",
+    "schema_text": "-- Database: entertainment_awards\nCREATE TABLE ARTWORK (...);\nCREATE TABLE FESTIVAL_DETAIL (...);\nCREATE TABLE NOMINATION (...);"
+  },
+  {
+    "db_id": "customers_campaigns_ecommerce",
+    "schema_text": "-- Database: customers_campaigns_ecommerce\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE CUSTOMER_ADDRESSES (...);\nCREATE TABLE CUSTOMER_ORDERS (...);\nCREATE TABLE MAILSHOT_CAMPAIGNS (...);\nCREATE TABLE MAILSHOT_CUSTOMERS (...);\nCREATE TABLE PREMISES (...);"
+  },
+  {
+    "db_id": "college_3",
+    "schema_text": "-- Database: college_3\nCREATE TABLE COURSE (...);\nCREATE TABLE DEPARTMENT (...);\nCREATE TABLE ENROLLED_IN (...);\nCREATE TABLE FACULTY (...);\nCREATE TABLE GRADECONVERSION (...);\nCREATE TABLE MEMBER_OF (...);\nCREATE TABLE MINOR_IN (...);\nCREATE TABLE STUDENT (...);"
+  },
+  {
+    "db_id": "department_store",
+    "schema_text": "-- Database: department_store\nCREATE TABLE ADDRESSES (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE CUSTOMER_ADDRESSES (...);\nCREATE TABLE CUSTOMER_ORDERS (...);\nCREATE TABLE DEPARTMENTS (...);\nCREATE TABLE DEPARTMENT_STORES (...);\nCREATE TABLE DEPARTMENT_STORE_CHAIN (...);\nCREATE TABLE ORDER_ITEMS (...);\nCREATE TABLE PRODUCTS (...);\nCREATE TABLE PRODUCT_SUPPLIERS (...);\nCREATE TABLE STAFF (...);\nCREATE TABLE STAFF_DEPARTMENT_ASSIGNMENTS (...);\nCREATE TABLE SUPPLIERS (...);\nCREATE TABLE SUPPLIER_ADDRESSES (...);"
+  },
+  {
+    "db_id": "aircraft",
+    "schema_text": "-- Database: aircraft\nCREATE TABLE AIRCRAFT (...);\nCREATE TABLE AIRPORT (...);\nCREATE TABLE AIRPORT_AIRCRAFT (...);\nCREATE TABLE MATCH (...);\nCREATE TABLE PILOT (...);"
+  },
+  {
+    "db_id": "local_govt_and_lot",
+    "schema_text": "-- Database: local_govt_and_lot\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE CUSTOMER_EVENTS (...);\nCREATE TABLE CUSTOMER_EVENT_NOTES (...);\nCREATE TABLE ORGANIZATIONS (...);\nCREATE TABLE PROPERTIES (...);\nCREATE TABLE RESIDENTS (...);\nCREATE TABLE RESIDENTS_SERVICES (...);\nCREATE TABLE SERVICES (...);\nCREATE TABLE THINGS (...);\nCREATE TABLE TIMED_LOCATIONS_OF_THINGS (...);\nCREATE TABLE TIMED_STATUS_OF_THINGS (...);"
+  },
+  {
+    "db_id": "school_player",
+    "schema_text": "-- Database: school_player\nCREATE TABLE PLAYER (...);\nCREATE TABLE SCHOOL (...);\nCREATE TABLE SCHOOL_DETAILS (...);"
+  },
+  {
+    "db_id": "store_product",
+    "schema_text": "-- Database: store_product\nCREATE TABLE DISTRICT (...);\nCREATE TABLE PRODUCT (...);\nCREATE TABLE STORE (...);\nCREATE TABLE STORE_DISTRICT (...);\nCREATE TABLE STORE_PRODUCT (...);"
+  },
+  {
+    "db_id": "soccer_2",
+    "schema_text": "-- Database: soccer_2\nCREATE TABLE COLLEGE (...);\nCREATE TABLE PLAYER (...);\nCREATE TABLE TRYOUT (...);"
+  },
+  {
+    "db_id": "device",
+    "schema_text": "-- Database: device\nCREATE TABLE DEVICE (...);\nCREATE TABLE SHOP (...);\nCREATE TABLE STOCK (...);"
+  },
+  {
+    "db_id": "cre_Drama_Workshop_Groups",
+    "schema_text": "-- Database: cre_Drama_Workshop_Groups\nCREATE TABLE ADDRESSES (...);\nCREATE TABLE BOOKINGS (...);\nCREATE TABLE CLIENTS (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE CUSTOMER_ORDERS (...);\nCREATE TABLE DRAMA_WORKSHOP_GROUPS (...);\nCREATE TABLE INVOICES (...);\nCREATE TABLE MARKETING_REGIONS (...);\nCREATE TABLE ORDER_ITEMS (...);\nCREATE TABLE PERFORMERS (...);\nCREATE TABLE PRODUCTS (...);\nCREATE TABLE REF_SERVICE_TYPES (...);\nCREATE TABLE SERVICES (...);\nCREATE TABLE STORES (...);"
+  },
+  {
+    "db_id": "music_2",
+    "schema_text": "-- Database: music_2\nCREATE TABLE ALBUMS (...);\nCREATE TABLE BAND (...);\nCREATE TABLE INSTRUMENTS (...);\nCREATE TABLE PERFORMANCE (...);\nCREATE TABLE SONGS (...);\nCREATE TABLE TRACKLISTS (...);\nCREATE TABLE VOCALS (...);"
+  },
+  {
+    "db_id": "manufactory_1",
+    "schema_text": "-- Database: manufactory_1\nCREATE TABLE MANUFACTURERS (...);\nCREATE TABLE PRODUCTS (...);"
+  },
+  {
+    "db_id": "tracking_software_problems",
+    "schema_text": "-- Database: tracking_software_problems\nCREATE TABLE PROBLEMS (...);\nCREATE TABLE PROBLEM_LOG (...);\nCREATE TABLE PRODUCT (...);\nCREATE TABLE STAFF (...);"
+  },
+  {
+    "db_id": "shop_membership",
+    "schema_text": "-- Database: shop_membership\nCREATE TABLE BRANCH (...);\nCREATE TABLE MEMBER (...);\nCREATE TABLE MEMBERSHIP_REGISTER_BRANCH (...);\nCREATE TABLE PURCHASE (...);"
+  },
+  {
+    "db_id": "voter_2",
+    "schema_text": "-- Database: voter_2\nCREATE TABLE STUDENT (...);\nCREATE TABLE VOTING_RECORD (...);"
+  },
+  {
+    "db_id": "products_gen_characteristics",
+    "schema_text": "-- Database: products_gen_characteristics\nCREATE TABLE CHARACTERISTICS (...);\nCREATE TABLE PRODUCTS (...);\nCREATE TABLE PRODUCT_CHARACTERISTICS (...);\nCREATE TABLE REF_COLORS (...);\nCREATE TABLE REF_PRODUCT_CATEGORIES (...);"
+  },
+  {
+    "db_id": "swimming",
+    "schema_text": "-- Database: swimming\nCREATE TABLE EVENT (...);\nCREATE TABLE RECORD (...);\nCREATE TABLE STADIUM (...);\nCREATE TABLE SWIMMER (...);"
+  },
+  {
+    "db_id": "railway",
+    "schema_text": "-- Database: railway\nCREATE TABLE MANAGER (...);\nCREATE TABLE RAILWAY (...);\nCREATE TABLE TRAIN (...);"
+  },
+  {
+    "db_id": "customers_and_products_contacts",
+    "schema_text": "-- Database: customers_and_products_contacts\nCREATE TABLE ADDRESSES (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE CUSTOMER_ADDRESS_HISTORY (...);\nCREATE TABLE CUSTOMER_ORDERS (...);\nCREATE TABLE ORDER_ITEMS (...);\nCREATE TABLE PRODUCTS (...);"
+  },
+  {
+    "db_id": "dorm_1",
+    "schema_text": "-- Database: dorm_1\nCREATE TABLE DORM (...);\nCREATE TABLE DORM_AMENITY (...);\nCREATE TABLE HAS_AMENITY (...);\nCREATE TABLE LIVES_IN (...);\nCREATE TABLE STUDENT (...);"
+  },
+  {
+    "db_id": "customer_complaints",
+    "schema_text": "-- Database: customer_complaints\nCREATE TABLE COMPLAINTS (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE PRODUCTS (...);\nCREATE TABLE STAFF (...);"
+  },
+  {
+    "db_id": "workshop_paper",
+    "schema_text": "-- Database: workshop_paper\nCREATE TABLE ACCEPTANCE (...);\nCREATE TABLE SUBMISSION (...);\nCREATE TABLE WORKSHOP (...);"
+  },
+  {
+    "db_id": "tracking_share_transactions",
+    "schema_text": "-- Database: tracking_share_transactions\nCREATE TABLE INVESTORS (...);\nCREATE TABLE LOTS (...);\nCREATE TABLE PURCHASES (...);\nCREATE TABLE REF_TRANSACTION_TYPES (...);\nCREATE TABLE SALES (...);\nCREATE TABLE TRANSACTIONS (...);\nCREATE TABLE TRANSACTIONS_LOTS (...);"
+  },
+  {
+    "db_id": "cre_Theme_park",
+    "schema_text": "-- Database: cre_Theme_park\nCREATE TABLE FEATURES (...);\nCREATE TABLE HOTELS (...);\nCREATE TABLE LOCATIONS (...);\nCREATE TABLE MUSEUMS (...);\nCREATE TABLE PHOTOS (...);\nCREATE TABLE REF_ATTRACTION_TYPES (...);\nCREATE TABLE REF_HOTEL_STAR_RATINGS (...);\nCREATE TABLE ROYAL_FAMILY (...);\nCREATE TABLE SHOPS (...);\nCREATE TABLE STAFF (...);\nCREATE TABLE STREET_MARKETS (...);\nCREATE TABLE TOURIST_ATTRACTIONS (...);\nCREATE TABLE TOURIST_ATTRACTION_FEATURES (...);\nCREATE TABLE VISITORS (...);\nCREATE TABLE VISITS (...);"
+  },
+  {
+    "db_id": "game_1",
+    "schema_text": "-- Database: game_1\nCREATE TABLE PLAYS_GAMES (...);\nCREATE TABLE SPORTSINFO (...);\nCREATE TABLE STUDENT (...);\nCREATE TABLE VIDEO_GAMES (...);"
+  },
+  {
+    "db_id": "customers_and_addresses",
+    "schema_text": "-- Database: customers_and_addresses\nCREATE TABLE ADDRESSES (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE CUSTOMER_ADDRESSES (...);\nCREATE TABLE CUSTOMER_CONTACT_CHANNELS (...);\nCREATE TABLE CUSTOMER_ORDERS (...);\nCREATE TABLE ORDER_ITEMS (...);\nCREATE TABLE PRODUCTS (...);"
+  },
+  {
+    "db_id": "music_4",
+    "schema_text": "-- Database: music_4\nCREATE TABLE ARTIST (...);\nCREATE TABLE MUSIC_FESTIVAL (...);\nCREATE TABLE VOLUME (...);"
+  },
+  {
+    "db_id": "roller_coaster",
+    "schema_text": "-- Database: roller_coaster\nCREATE TABLE COUNTRY (...);\nCREATE TABLE ROLLER_COASTER (...);"
+  },
+  {
+    "db_id": "ship_1",
+    "schema_text": "-- Database: ship_1\nCREATE TABLE CAPTAIN (...);\nCREATE TABLE SHIP (...);"
+  },
+  {
+    "db_id": "city_record",
+    "schema_text": "-- Database: city_record\nCREATE TABLE CITY (...);\nCREATE TABLE HOSTING_CITY (...);\nCREATE TABLE MATCH (...);\nCREATE TABLE TEMPERATURE (...);"
+  },
+  {
+    "db_id": "e_government",
+    "schema_text": "-- Database: e_government\nCREATE TABLE ADDRESSES (...);\nCREATE TABLE FORMS (...);\nCREATE TABLE INDIVIDUALS (...);\nCREATE TABLE ORGANIZATIONS (...);\nCREATE TABLE ORGANIZATION_CONTACT_INDIVIDUALS (...);\nCREATE TABLE PARTIES (...);\nCREATE TABLE PARTY_FORMS (...);\nCREATE TABLE PARTY_SERVICES (...);\nCREATE TABLE SERVICES (...);"
+  },
+  {
+    "db_id": "school_bus",
+    "schema_text": "-- Database: school_bus\nCREATE TABLE DRIVER (...);\nCREATE TABLE SCHOOL (...);\nCREATE TABLE SCHOOL_BUS (...);"
+  },
+  {
+    "db_id": "flight_company",
+    "schema_text": "-- Database: flight_company\nCREATE TABLE AIRPORT (...);\nCREATE TABLE FLIGHT (...);\nCREATE TABLE OPERATE_COMPANY (...);"
+  },
+  {
+    "db_id": "cre_Docs_and_Epenses",
+    "schema_text": "-- Database: cre_Docs_and_Epenses\nCREATE TABLE ACCOUNTS (...);\nCREATE TABLE DOCUMENTS (...);\nCREATE TABLE DOCUMENTS_WITH_EXPENSES (...);\nCREATE TABLE PROJECTS (...);\nCREATE TABLE REF_BUDGET_CODES (...);\nCREATE TABLE REF_DOCUMENT_TYPES (...);\nCREATE TABLE STATEMENTS (...);"
+  },
+  {
+    "db_id": "scientist_1",
+    "schema_text": "-- Database: scientist_1\nCREATE TABLE ASSIGNEDTO (...);\nCREATE TABLE PROJECTS (...);\nCREATE TABLE SCIENTISTS (...);"
+  },
+  {
+    "db_id": "wine_1",
+    "schema_text": "-- Database: wine_1\nCREATE TABLE APPELLATIONS (...);\nCREATE TABLE GRAPES (...);\nCREATE TABLE WINE (...);"
+  },
+  {
+    "db_id": "train_station",
+    "schema_text": "-- Database: train_station\nCREATE TABLE STATION (...);\nCREATE TABLE TRAIN (...);\nCREATE TABLE TRAIN_STATION (...);"
+  },
+  {
+    "db_id": "driving_school",
+    "schema_text": "-- Database: driving_school\nCREATE TABLE ADDRESSES (...);\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE CUSTOMER_PAYMENTS (...);\nCREATE TABLE LESSONS (...);\nCREATE TABLE STAFF (...);\nCREATE TABLE VEHICLES (...);"
+  },
+  {
+    "db_id": "activity_1",
+    "schema_text": "-- Database: activity_1\nCREATE TABLE ACTIVITY (...);\nCREATE TABLE FACULTY (...);\nCREATE TABLE FACULTY_PARTICIPATES_IN (...);\nCREATE TABLE PARTICIPATES_IN (...);\nCREATE TABLE STUDENT (...);"
+  },
+  {
+    "db_id": "flight_4",
+    "schema_text": "-- Database: flight_4\nCREATE TABLE AIRLINES (...);\nCREATE TABLE AIRPORTS (...);\nCREATE TABLE ROUTES (...);"
+  },
+  {
+    "db_id": "tracking_orders",
+    "schema_text": "-- Database: tracking_orders\nCREATE TABLE CUSTOMERS (...);\nCREATE TABLE INVOICES (...);\nCREATE TABLE ORDERS (...);\nCREATE TABLE ORDER_ITEMS (...);\nCREATE TABLE PRODUCTS (...);\nCREATE TABLE SHIPMENTS (...);"
+  },
+  {
+    "db_id": "architecture",
+    "schema_text": "-- Database: architecture\nCREATE TABLE ARCHITECT (...);\nCREATE TABLE BRIDGE (...);\nCREATE TABLE MILL (...);"
+  },
+  {
+    "db_id": "culture_company",
+    "schema_text": "-- Database: culture_company\nCREATE TABLE BOOK_CLUB (...);\nCREATE TABLE CULTURE_COMPANY (...);\nCREATE TABLE MOVIE (...);"
+  }
+]

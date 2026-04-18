@@ -30,6 +30,16 @@ from pathlib import Path
 from collections import Counter
 from datetime import datetime
 
+# Load .env file if present
+ENV_PATH = Path(__file__).parent / ".env"
+if ENV_PATH.exists():
+    with open(ENV_PATH) as _f:
+        for _line in _f:
+            _line = _line.strip()
+            if _line and not _line.startswith("#") and "=" in _line:
+                _key, _val = _line.split("=", 1)
+                os.environ.setdefault(_key.strip(), _val.strip())
+
 from classify_sql_structure import classify_sql, STRUCTURAL_TYPES
 
 # ─── Config ──────────────────────────────────────────────────────────────────
@@ -79,6 +89,12 @@ def load_schemas(tables_path: Path) -> dict:
     schemas = {}
     for db in tables_data:
         db_id = db["db_id"]
+
+        # Handle simplified format (from download_schemas.py fallback)
+        if "schema_text" in db:
+            schemas[db_id] = db["schema_text"]
+            continue
+
         lines = []
 
         table_names = db.get("table_names_original", db.get("table_names", []))

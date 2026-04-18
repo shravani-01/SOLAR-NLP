@@ -1,0 +1,26 @@
+{
+  "model": "gpt4o",
+  "n_examples": 1034,
+  "n_errors": 0,
+  "piece_level": {
+    "table_f1": 0.36,
+    "select_f1": 0.2776,
+    "where_f1": 0.5261,
+    "groupby_f1": 0.7408,
+    "orderby_f1": 0.7969,
+    "keyword_f1": 0.6212,
+    "piece_f1": 0.5538
+  },
+  "piece_f1": 0.5538,
+  "structure_level": {
+    "SIMPLE": 0.6844,
+    "JOIN": 0.1102,
+    "NESTED": 0.3899,
+    "SET-OP": 0.0,
+    "MULTI-AGG": 0.1053
+  },
+  "structure_macro_f1": 0.258,
+  "composition_gap": 0.2958,
+  "composition_gap_pct": 29.6,
+  "timestamp": "2026-04-18T14:33:51.560092"
+}

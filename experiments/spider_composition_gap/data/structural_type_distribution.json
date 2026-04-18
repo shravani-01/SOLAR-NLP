@@ -1,0 +1,7 @@
+{
+  "SIMPLE": 508,
+  "NESTED": 83,
+  "JOIN": 331,
+  "SET-OP": 76,
+  "MULTI-AGG": 36
+}
