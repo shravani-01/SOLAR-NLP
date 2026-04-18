@@ -1,7 +1,7 @@
 # SOLAR — Experiment Tracker & Paper Planning Document
 
 **Target:** EMNLP 2026 (May 25 ARR deadline)
-**Last updated:** April 17, 2026
+**Last updated:** April 18, 2026
 
 ---
 
@@ -13,7 +13,7 @@
 
 ## Core Thesis
 
-LLMs can extract individual constraint components (thresholds, entities, exceptions) at high accuracy (0.88–0.92 F1) but fail catastrophically at composing them into the correct structural type (0.30–0.43 Macro F1 on 5-class classification). We call this the **Composition Gap**. Linear probes show the model internally encodes the correct structure (0.68 F1) but cannot output it. We introduce a **probe-guided diagnostic-to-intervention framework** that closes the gap through error-targeted fine-tuning.
+LLMs can extract individual constraint components (thresholds, entities, exceptions) at high accuracy (0.88–0.92 F1) but fail catastrophically at composing them into the correct structural type (0.30–0.43 Macro F1 on 5-class classification). We call this the **Composition Gap**. Linear probes show the model internally encodes the correct structure (0.68 F1) but cannot output it. We show that **any SFT — even with natural class distributions — closes the gap** (0.72+ F1), and all SFT variants surpass the probe ceiling. The probes serve as a **diagnostic framework** that explains *why* SFT works: it aligns the decoder with structural representations the model already possesses.
 
 ---
 
@@ -80,72 +80,92 @@ LLMs can extract individual constraint components (thresholds, entities, excepti
 
 ---
 
-### Claim 4: Probe-Guided Intervention Closes the Gap (RUNNING)
+### Claim 4: SFT Closes the Composition Gap (COMPLETE)
 
-**Goal:** Show that targeted fine-tuning, guided by the probe's error analysis, can close the Composition Gap where naive approaches fail.
+**Finding:** All three SFT strategies close the Composition Gap, jumping from 0.43 to 0.72+ Macro F1. All surpass the probe ceiling (0.6832), indicating SFT not only unlocks existing representations but improves decoder alignment beyond what probes can recover from frozen states.
 
-**Method:** Error-Targeted Contrastive SFT with ablation study.
+**Method:** LoRA SFT with three-way ablation study.
 
 **Technical details:**
 - Base model: Qwen2.5-7B (ungated, no license needed)
 - LoRA: r=16, alpha=32, dropout=0.05, all projection layers
 - 4-bit quantization via bitsandbytes (NF4)
 - Prompt format: ChatML (Qwen2.5 native)
-- Training: lr=2e-4, batch=4×4=16 effective, 5 epochs, cosine scheduler
+- Training: lr=2e-4, batch=4x4=16 effective, 5 epochs, cosine scheduler
 - Optimizer: paged_adamw_8bit
+- Hardware: NVIDIA RTX PRO 6000 Blackwell (102 GB VRAM), RunPod
 
-#### Ablation Study (THREE training strategies)
-
-This is the key methodological contribution. We run three variants to prove that the probe diagnosis is essential:
+#### Ablation Results (THREE training strategies)
 
 **A. Vanilla SFT** (`--strategy vanilla`)
 - Natural distribution (57% HARD, 18% SOFT, 12% HARD-COND, 7% SOFT-COND, 5% NON-CONST)
 - ~7,500 examples, no balancing
-- **Expected:** Model predicts HARD for everything. Minimal improvement.
-- **Purpose:** Shows that naive SFT doesn't solve the problem.
 
 **B. Random Balanced SFT** (`--strategy random_balanced`)
 - Uniform oversampling: 1,500 per class = 7,500 total
-- All classes treated equally, no error analysis
-- **Expected:** Marginal improvement on minority classes, but not targeted.
-- **Purpose:** Shows that generic class balancing isn't enough.
 
 **C. Probe-Guided Error-Targeted SFT** (`--strategy probe_guided`)
-- Uses probe analysis to identify which classes have the worst Composition Gap
 - Hard classes (HARD-CONDITIONAL, SOFT-CONDITIONAL, NON-CONSTRAINT): 1,500 each
 - Easy classes (HARD, SOFT): 750 each
-- Total: ~6,000 examples, deliberately skewed toward failure modes
-- **Expected:** Significant improvement, especially on the three hard classes.
-- **Purpose:** Shows that the probe diagnosis → targeted intervention pipeline works.
+- Total: ~6,000 examples
 
-**Running on:** NVIDIA RTX PRO 6000 Blackwell (102 GB VRAM), RunPod
+#### Final Results
 
-**Current status:** probe_guided strategy training (~2,345 steps, loss dropped to 0.20). Ablation variants ready to run.
+| Strategy | Macro F1 | Improvement over Best Baseline |
+|----------|----------|-------------------------------|
+| Best baseline (DeepSeek-CoT) | 0.4268 | — |
+| Probe ceiling (layer -8) | 0.6832 | +0.2564 |
+| **Vanilla SFT** | **0.7164** | **+0.2896** |
+| **Probe-guided SFT** | **0.7264** | **+0.2996** |
+| **Random balanced SFT** | **0.7311** | **+0.3043** |
 
-**Target results:**
+#### Per-Class F1 Breakdown
 
-| Strategy | Expected Macro F1 | Paper Narrative |
-|----------|-------------------|-----------------|
-| Vanilla SFT | ~0.35–0.40 | "Naive SFT fails" |
-| Random Balanced | ~0.42–0.48 | "Generic balancing helps marginally" |
-| Probe-Guided | ~0.55–0.65 | "Targeted intervention closes the gap" |
-| Probe ceiling | 0.6832 | Upper bound from Claim 3 |
-| Best baseline | 0.4268 | DeepSeek-CoT (no fine-tuning) |
+| Class | Baselines (best) | Vanilla | Probe-guided | Random Balanced |
+|-------|-----------------|---------|--------------|-----------------|
+| HARD | ~0.55 | 0.8993 | 0.8776 | 0.8804 |
+| SOFT | ~0.40 | 0.7717 | 0.7711 | 0.7845 |
+| HARD-CONDITIONAL | ~0.30 | 0.6743 | 0.6727 | 0.6809 |
+| SOFT-CONDITIONAL | ~0.20 | 0.6003 | 0.6541 | 0.6585 |
+| NON-CONSTRAINT | ~0.15 | 0.6362 | 0.6567 | 0.6514 |
+
+#### Per-Domain F1
+
+| Domain | Vanilla | Probe-guided | Random Balanced |
+|--------|---------|--------------|-----------------|
+| Healthcare | 0.7287 | 0.7821 | 0.7819 |
+| Aviation | 0.7183 | 0.7289 | 0.7319 |
+| Building Services | 0.7017 | 0.6831 | 0.7137 |
+| Transit | 0.6846 | 0.7248 | 0.6976 |
+
+#### Key Insights
+
+1. **SFT robustly closes the gap regardless of class distribution.** Even vanilla SFT with heavily imbalanced data achieves 0.7164 — a 30-point jump over the best zero-shot baseline.
+
+2. **All SFT variants surpass the probe ceiling (0.6832).** This means SFT doesn't merely unlock frozen representations — it restructures the decoder-representation interface. The probe ceiling measured what a linear readout could extract from frozen hidden states; SFT changes both the representations and the generation head.
+
+3. **Probe-guided targeting shows modest gains on hard classes.** SOFT-CONDITIONAL improves from 0.6003 (vanilla) to 0.6541 (probe-guided), and NON-CONSTRAINT from 0.6362 to 0.6567. The error-targeting works as intended but the effect is incremental, not transformative.
+
+4. **The Composition Gap is primarily a decoder alignment problem.** The probes correctly diagnosed that the model already encodes structural information internally. SFT aligns the generation head with these representations — any amount of supervised signal suffices.
+
+**Status:** Complete. Results in `data/results/composition_gap/`. All three result JSONs and prediction files saved.
 
 ---
 
-## Paper Structure (Planned)
+## Paper Structure (Revised)
 
-1. **Introduction** — The Composition Gap phenomenon
-2. **Related Work** — Probing (Conneau et al.), constraint extraction, compositional generalization
-3. **The Composition Gap** — Definition, measurement methodology
-4. **Experimental Setup** — Dataset (8 domains, 46k examples), baselines, evaluation
-5. **Results: The Gap is Real** — Claim 1 (7 baselines all show 40–60 pt gap)
-6. **Results: The Model Knows** — Claim 3 (linear probes at 0.68 F1)
-7. **Results: Closing the Gap** — Claim 4 (ablation study, probe-guided intervention)
-8. **Analysis** — Per-class breakdown, per-domain generalization, layer-wise patterns
-9. **Discussion** — Implications for compositional reasoning in LLMs
+1. **Introduction** — The Composition Gap phenomenon: LLMs extract pieces but fail at structure
+2. **Related Work** — Probing (Conneau et al., Hewitt & Liang), constraint extraction, compositional generalization, representation-behavior gaps
+3. **The Composition Gap** — Formal definition, measurement methodology, taxonomy
+4. **Experimental Setup** — Dataset (8 domains, 46k examples), 7 baselines, 5-class taxonomy, evaluation metrics
+5. **Results: The Gap is Real** — Claim 1 (all 7 baselines show 40–60 pt gap across all domains)
+6. **Results: The Model Knows** — Claim 3 (linear probes at 0.68 F1, layer-wise analysis, control tasks)
+7. **Results: SFT Closes the Gap** — Claim 4 (3-way ablation: all strategies achieve 0.72+, all surpass probe ceiling)
+8. **Analysis** — Why all SFT strategies work (decoder alignment hypothesis), per-class gains on minority types, per-domain consistency, probe ceiling surpassed
+9. **Discussion** — The Composition Gap as a decoder alignment problem, implications for compositional reasoning, when probing reveals actionable bottlenecks
 10. **Conclusion**
+
+**Revised narrative:** The paper's contribution is the *diagnostic framework* — probes identify *where* and *why* LLMs fail at composition, and this diagnosis explains why even simple SFT succeeds. The probes don't just guide the fix; they explain the mechanism.
 
 ---
 
@@ -184,7 +204,7 @@ This is the key methodological contribution. We run three variants to prove that
 | `scripts/compare_baselines.py` | Compute Composition Gap | Complete |
 | `linear_probe/train_probes.py` | PyTorch GPU linear probes | Complete |
 | `linear_probe/analyze_results.py` | Probe analysis & figures | Complete |
-| `scripts/14_cfft_composition_gap.py` | Ablation study (3 strategies) | Running |
+| `scripts/14_cfft_composition_gap.py` | Ablation study (3 strategies) | Complete |
 | `scripts/13_final_evaluation.py` | Legacy 2-class evaluation | Complete (legacy) |
 
 ---
@@ -193,11 +213,11 @@ This is the key methodological contribution. We run three variants to prove that
 
 | Week | Task | Status |
 |------|------|--------|
-| Week 1 (Apr 14–18) | Probe experiment, CFFT training, ablation setup | In Progress |
-| Week 2 (Apr 21–25) | Ablation results, start paper draft | Planned |
-| Week 3 (Apr 28–May 2) | Spider SQL replication (Claim 2), figures | Planned |
-| Week 4 (May 5–9) | Paper writing, internal review | Planned |
-| Week 5 (May 12–16) | Revisions, camera-ready prep | Planned |
+| Week 1 (Apr 14–18) | Probe experiment, CFFT training, 3-way ablation | **Complete** |
+| Week 2 (Apr 21–25) | Spider SQL replication (Claim 2), post-SFT probing, start paper draft | Planned |
+| Week 3 (Apr 28–May 2) | IAA annotation (500 examples), figures & tables, paper writing | Planned |
+| Week 4 (May 5–9) | Paper writing, internal review with advisors | Planned |
+| Week 5 (May 12–16) | Revisions based on feedback, camera-ready prep | Planned |
 | Week 6 (May 19–25) | Final polish, submit by May 25 | Planned |
 
 ---
@@ -218,7 +238,22 @@ This is the key methodological contribution. We run three variants to prove that
 
 ## Open Issues
 
-1. **Inter-annotator agreement:** No IAA scores yet. Need at least a sample validation.
-2. **Spider SQL replication:** Not started. Would strengthen universality claim.
-3. **Literature review URLs:** Papers [27]–[30] have placeholder arXiv IDs.
-4. **GitHub token exposure:** needs to be revoked.
+1. **Inter-annotator agreement:** No IAA scores yet. Need someone to annotate 500 examples; compute Cohen's kappa. Target: Week 3.
+2. **Spider SQL replication (Claim 2):** Critical for EMNLP main. Must show Composition Gap in at least one other domain (Text-to-SQL) to prevent "domain artifact" critique. Target: Week 2.
+3. **Post-SFT probing:** Run linear probes on fine-tuned model hidden states to test whether SFT changed internal representations or only the decoder. Strengthens "decoder alignment" narrative. Target: Week 2.
+4. **Literature review URLs:** Papers [27]–[30] have placeholder arXiv IDs.
+5. **GitHub token exposure:** Token has been exposed — **must be revoked immediately** via GitHub Settings → Developer settings → Personal access tokens.
+6. **Reframe probe ceiling narrative:** SFT surpassing probe ceiling is expected — SFT changes both representations and decoder, while probes only read frozen representations. Need careful framing in paper.
+
+---
+
+## Completed Experiments Summary
+
+| Experiment | Key Result | Date |
+|-----------|-----------|------|
+| 7 LLM baselines | 0.30–0.43 Structure F1 (40–60 pt gap) | Apr 15 |
+| Linear probes (6 layers) | 0.6832 F1 at layer -8 | Apr 16 |
+| Probe-guided SFT | 0.7264 Macro F1 | Apr 17 |
+| Vanilla SFT ablation | 0.7164 Macro F1 | Apr 18 |
+| Random balanced SFT ablation | 0.7311 Macro F1 | Apr 18 |
+                                         
