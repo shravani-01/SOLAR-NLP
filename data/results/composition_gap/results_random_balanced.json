@@ -1,0 +1,35 @@
+{
+  "model": "Qwen/Qwen2.5-7B",
+  "strategy": "random_balanced",
+  "adapter": "composition_gap_random_balanced",
+  "macro_f1": 0.7311,
+  "per_class_f1": {
+    "HARD": 0.8804,
+    "SOFT": 0.7845,
+    "HARD-CONDITIONAL": 0.6809,
+    "SOFT-CONDITIONAL": 0.6585,
+    "NON-CONSTRAINT": 0.6514
+  },
+  "per_domain_f1": {
+    "transit": 0.6976,
+    "healthcare": 0.7819,
+    "aviation": 0.7319,
+    "building_services": 0.7137
+  },
+  "json_validity": 1.0,
+  "n_test": 4230,
+  "n_errors": 0,
+  "inference_time_min": 101.8,
+  "baseline_comparison": {
+    "deepseek-cot": 0.4268,
+    "gpt4o-rag": 0.3986,
+    "gpt4o-mini": 0.3935,
+    "gpt4o": 0.3696,
+    "gpt4o-cot": 0.3434,
+    "llama3.3-70b": 0.3145,
+    "deepseek": 0.307
+  },
+  "probe_ceiling": 0.6832,
+  "improvement_over_best_baseline": 0.3043,
+  "timestamp": "2026-04-18T07:51:30.476666"
+}
