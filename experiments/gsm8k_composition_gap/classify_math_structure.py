@@ -3,11 +3,11 @@
 Rule-based math solution structural type classifier.
 
 Classifies each GSM8K problem by its solution's structural pattern:
-  1. SINGLE-OP      — One arithmetic operation
-  2. MULTI-STEP     — 2-3 sequential operations
-  3. RATIO-PROP     — Ratios, percentages, proportional reasoning
-  4. COMPARISON     — Compute values for multiple entities, then compare
-  5. SYSTEM         — Multiple interacting quantities, iterative logic
+  1. SINGLE-OP      — 1-2 arithmetic operations, simple chain
+  2. MULTI-STEP     — 3+ sequential operations, straightforward chain
+  3. RATIO-PROP     — Core reasoning involves ratios, percentages, proportions
+  4. COMPARISON     — Explicitly compares quantities (difference, who has more)
+  5. SYSTEM         — Multiple interacting constraints, conditional/iterative logic
 
 Classification is based on the GOLD solution steps (not the question).
 """
@@ -32,96 +32,137 @@ STRUCTURAL_TYPES = [SINGLE_OP, MULTI_STEP, RATIO_PROP, COMPARISON, SYSTEM]
 
 # ─── Classification helpers ─────────────────────────────────────────────────
 
-def _count_operations(text: str) -> int:
-    """Count arithmetic operations in solution text."""
-    # Count explicit arithmetic: +, -, *, /, =
-    ops = len(re.findall(r'[\+\-\*\/×÷]', text))
-    # Count word-based operations
-    ops += len(re.findall(r'\b(plus|minus|times|divided|multiplied|subtract|add)\b', text, re.IGNORECASE))
-    # Count <<...>> calculation annotations (GSM8K format)
-    ops += len(re.findall(r'<<(.+?)>>', text))
-    return max(ops, 0)
+def _count_calc_ops(full_answer: str) -> int:
+    """Count <<...>> calculation annotations (GSM8K gold standard format)."""
+    return len(re.findall(r'<<(.+?)>>', full_answer))
+
+
+def _count_steps(steps: list) -> int:
+    """Count meaningful solution steps."""
+    meaningful = [s for s in steps if s.strip() and len(s.strip()) > 5]
+    return len(meaningful)
 
 
 def _has_ratio_proportion(question: str, answer: str) -> bool:
-    """Check if problem involves ratios, percentages, or proportions."""
-    combined = (question + " " + answer).lower()
+    """
+    Check if the CORE reasoning involves ratios, percentages, or proportions.
+    Must be the central mechanism, not just a passing mention of 'half'.
+    """
+    q_lower = question.lower()
+    a_lower = answer.lower()
 
-    ratio_keywords = [
+    # Strong ratio signals in the QUESTION (what's being asked)
+    strong_q_patterns = [
         r'\b\d+\s*%', r'percent', r'percentage',
         r'\bratio\b', r'\bproportion\b',
-        r'\bfraction\b', r'\bhalf\b', r'\bthird\b', r'\bquarter\b',
-        r'\bdouble\b', r'\btriple\b', r'\btwice\b', r'\bthrice\b',
-        r'\b\d+/\d+\b',  # fractions like 2/3
+        r'\bdiscount\b', r'\bmarkup\b', r'\btax\b',
+        r'\btip\b', r'\binterest\s+rate\b',
         r'\btimes\s+as\s+(many|much|large|big|long|fast|heavy)',
-        r'\b\d+\s*x\s+', r'\bdiscount\b', r'\bmarkup\b', r'\btax\b',
-        r'\btip\b', r'\binterest\b', r'\brate\b',
+        r'\btwice\s+as\b', r'\bthrice\s+as\b',
+        r'\btriple\s+(?:the|his|her|their)\b',
+        r'\bdouble\s+(?:the|his|her|their)\b',
     ]
 
-    for pattern in ratio_keywords:
-        if re.search(pattern, combined):
+    for pattern in strong_q_patterns:
+        if re.search(pattern, q_lower):
             return True
+
+    # Ratio operations in the ANSWER (how it's solved)
+    # Look for division that produces a fraction/ratio, or multiplication by fraction
+    answer_ratio_patterns = [
+        r'\b\d+\s*/\s*\d+\s*=',  # "2/3 = ..."
+        r'<<\d+/\d+=[^>]*>>',     # calc annotation with division
+        r'\b\d+\s*\*\s*0\.\d+',   # multiply by decimal (percentage)
+        r'<<[^>]*\*\s*0\.\d+[^>]*>>', # calc with decimal multiplication
+    ]
+
+    # Need at least one ratio operation in answer
+    ratio_op_count = 0
+    for pattern in answer_ratio_patterns:
+        ratio_op_count += len(re.findall(pattern, a_lower))
+
+    # Only classify as RATIO-PROP if question mentions ratio concepts
+    # OR answer uses ratio operations prominently
+    if ratio_op_count >= 1:
+        # Confirm with question context
+        soft_q_patterns = [
+            r'\bhalf\b', r'\bthird\b', r'\bquarter\b',
+            r'\bfraction\b', r'\b\d+/\d+\b',
+            r'\bdouble\b', r'\btriple\b', r'\btwice\b',
+        ]
+        for pattern in soft_q_patterns:
+            if re.search(pattern, q_lower):
+                return True
+
     return False
 
 
 def _has_comparison(question: str, answer: str) -> bool:
-    """Check if problem requires comparing quantities across entities."""
-    combined = (question + " " + answer).lower()
+    """
+    Check if problem EXPLICITLY asks to compare quantities.
+    Only triggers on questions that ask for a difference or comparison.
+    """
+    q_lower = question.lower()
 
-    comparison_keywords = [
-        r'\bhow\s+many\s+more\b', r'\bhow\s+much\s+more\b',
-        r'\bhow\s+many\s+less\b', r'\bhow\s+much\s+less\b',
-        r'\bwho\s+has\s+more\b', r'\bwho\s+has\s+less\b',
-        r'\bmore\s+than\b.*\bless\s+than\b',
+    comparison_question_patterns = [
+        r'\bhow\s+many\s+more\b',
+        r'\bhow\s+much\s+more\b',
+        r'\bhow\s+many\s+(?:fewer|less)\b',
+        r'\bhow\s+much\s+(?:fewer|less)\b',
+        r'\bwho\s+(?:has|had|gets|got|earns|earned)\s+more\b',
+        r'\bwho\s+(?:has|had|gets|got|earns|earned)\s+(?:fewer|less)\b',
         r'\bdifference\s+between\b',
-        r'\bcompare\b', r'\bcompared\s+to\b',
-        r'\btogether\b.*\bhow\s+many\b',
-        r'\bcombined\b', r'\btotal\b.*\bboth\b',
-        r'\beach\b.*\bhow\s+many\b',
+        r'\bhow\s+many\s+times\s+(?:more|greater|larger)\b',
+        r'\bcompare\b',
+        r'\bmore\s+.*\bor\s+(?:fewer|less)\b',
     ]
 
-    for pattern in comparison_keywords:
-        if re.search(pattern, combined):
-            return True
-
-    # Multiple named entities with quantities
-    # Look for patterns like "Alice has X, Bob has Y"
-    names = re.findall(r'\b[A-Z][a-z]+\b', question)
-    unique_names = set(names)
-    if len(unique_names) >= 2:
-        # Multiple people/entities mentioned
-        has_quantities = len(re.findall(r'\b\d+\b', question)) >= 2
-        if has_quantities:
+    for pattern in comparison_question_patterns:
+        if re.search(pattern, q_lower):
             return True
 
     return False
 
 
 def _has_system(question: str, answer: str) -> bool:
-    """Check if problem involves iterative/accumulative/system-like reasoning."""
+    """
+    Check if problem involves multi-phase processes, conditional logic,
+    or iterative/accumulative reasoning over time periods.
+    Requires STRONG signals.
+    """
     combined = (question + " " + answer).lower()
 
-    system_keywords = [
-        r'\beach\s+(day|week|month|year|hour|minute|time|round|turn)',
-        r'\bper\s+(day|week|month|year|hour|minute)',
-        r'\bevery\s+(day|week|month|year|hour|minute)',
+    strong_patterns = [
         r'\bfirst\b.*\bthen\b.*\bfinally\b',
-        r'\bday\s+\d+\b', r'\bweek\s+\d+\b',
-        r'\bremaining\b.*\bremaining\b',
-        r'\bleft\s+over\b.*\bleft\s+over\b',
-        r'\brepeat\b', r'\bcycle\b', r'\bpattern\b',
-        r'\bif\b.*\bthen\b.*\botherwise\b',
-        r'\bfirst\s+\d+\b.*\bnext\s+\d+\b',
+        r'\bif\b.*\bthen\b.*\b(?:otherwise|else)\b',
+        r'\bday\s+\d+\b',
+        r'\bweek\s+\d+\b',
         r'\bround\s*\d+\b',
+        r'\brepeat\b',
+        r'\bcycle\b',
+        r'\bremaining\b.*\bthen\b',
+        r'\bfirst\s+\d+\b.*\bnext\s+\d+\b',
+        r'\bfirst\s+\d+\b.*\blast\s+\d+\b',
+        r'\bfor\s+the\s+first\b.*\bfor\s+the\s+(?:next|rest|remaining)\b',
+        r'\bfor\s+\d+\s+(?:days|weeks|months|hours)\b.*\bfor\s+\d+\s+(?:days|weeks|months|hours)\b',
     ]
 
-    for pattern in system_keywords:
+    for pattern in strong_patterns:
         if re.search(pattern, combined):
             return True
 
-    # Multiple time references suggest iterative reasoning
-    time_refs = len(re.findall(r'\b(day|week|month|year|hour|morning|evening|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b', combined))
-    if time_refs >= 3:
+    # Multiple "each/every/per" time references
+    time_segments = re.findall(
+        r'\b(?:each|every|per)\s+(?:day|week|month|year|hour|minute)\b', combined
+    )
+    if len(time_segments) >= 2:
+        return True
+
+    # Multiple days of the week mentioned
+    days = re.findall(
+        r'\b(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b', combined
+    )
+    if len(set(days)) >= 3:
         return True
 
     return False
@@ -131,32 +172,29 @@ def classify_math(question: str, full_answer: str, steps: list) -> str:
     """
     Classify a math problem into one of 5 structural types.
 
-    Priority: SYSTEM > COMPARISON > RATIO-PROP > MULTI-STEP > SINGLE-OP
+    Priority: SYSTEM > COMPARISON > RATIO-PROP > (by operation count) MULTI-STEP / SINGLE-OP
     """
-    n_steps = len(steps)
-    n_ops = _count_operations(full_answer)
+    n_ops = _count_calc_ops(full_answer)
+    n_steps = _count_steps(steps)
 
-    # Priority-based classification
+    # Use calc ops if available, else fall back to step count
+    complexity = n_ops if n_ops > 0 else n_steps
+
+    # Priority-based classification (most complex first)
     if _has_system(question, full_answer):
         return SYSTEM
 
-    if _has_comparison(question, full_answer) and n_steps >= 2:
+    if _has_comparison(question, full_answer):
         return COMPARISON
 
     if _has_ratio_proportion(question, full_answer):
         return RATIO_PROP
 
-    if n_steps >= 3 or n_ops >= 3:
-        return MULTI_STEP
-
-    if n_steps <= 1 and n_ops <= 1:
+    # Fall through to complexity-based classification
+    if complexity <= 2:
         return SINGLE_OP
 
-    # Default: MULTI-STEP for anything with 2+ steps
-    if n_steps >= 2:
-        return MULTI_STEP
-
-    return SINGLE_OP
+    return MULTI_STEP
 
 
 # ─── Batch classification ────────────────────────────────────────────────────

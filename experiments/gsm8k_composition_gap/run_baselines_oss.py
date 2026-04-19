@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 """
-Run API-based LLM baselines on GSM8K for Composition Gap analysis.
+Run open-source LLM baselines on GSM8K for Composition Gap analysis.
 
-Models (need API keys in .env):
-  - gpt4o, gpt4o-cot        (OpenAI GPT-4o)
-  - deepseek, deepseek-cot   (DeepSeek-chat)
+Runs locally on GPU using transformers (no API keys needed).
 
-Usage:
-    python run_baselines.py --model gpt4o
-    python run_baselines.py --model gpt4o-cot
-    python run_baselines.py --model deepseek
-    python run_baselines.py --model deepseek-cot
-    python run_baselines.py --model all
-    python run_baselines.py --model gpt4o --limit 10
+Models:
+  - qwen7b, qwen7b-cot       (Qwen2.5-7B-Instruct)
+  - qwen72b, qwen72b-cot     (Qwen2.5-72B-Instruct, 4-bit quantized)
+
+Usage (on RunPod):
+    python run_baselines_oss.py --model qwen7b
+    python run_baselines_oss.py --model qwen7b-cot
+    python run_baselines_oss.py --model qwen72b
+    python run_baselines_oss.py --model qwen72b-cot
+    python run_baselines_oss.py --model all
+    python run_baselines_oss.py --model qwen7b --limit 10
 """
 
 import json
@@ -25,6 +27,9 @@ from pathlib import Path
 from collections import Counter
 from datetime import datetime
 
+import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
+
 from classify_math_structure import classify_math, STRUCTURAL_TYPES
 
 # ─── Config ──────────────────────────────────────────────────────────────────
@@ -32,32 +37,30 @@ from classify_math_structure import classify_math, STRUCTURAL_TYPES
 DATA_DIR = Path(__file__).parent / "data"
 RESULTS_DIR = Path(__file__).parent / "results"
 
-# Load .env (try local first, then spider experiment folder as fallback)
-for _env_candidate in [
-    Path(__file__).parent / ".env",
-    Path(__file__).parent.parent / "spider_composition_gap" / ".env",
-]:
-    if _env_candidate.exists():
-        with open(_env_candidate) as _f:
-            for _line in _f:
-                _line = _line.strip()
-                if _line and not _line.startswith("#") and "=" in _line:
-                    _key, _val = _line.split("=", 1)
-                    os.environ.setdefault(_key.strip(), _val.strip())
-        break
-
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
-DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY", "")
-
 MODELS = {
-    "gpt4o":        {"provider": "openai",   "model": "gpt-4o",        "cot": False},
-    "gpt4o-cot":    {"provider": "openai",   "model": "gpt-4o",        "cot": True},
-    "deepseek":     {"provider": "deepseek", "model": "deepseek-chat", "cot": False},
-    "deepseek-cot": {"provider": "deepseek", "model": "deepseek-chat", "cot": True},
+    "qwen7b": {
+        "hf_name": "Qwen/Qwen2.5-7B-Instruct",
+        "cot": False,
+        "quantize": False,
+    },
+    "qwen7b-cot": {
+        "hf_name": "Qwen/Qwen2.5-7B-Instruct",
+        "cot": True,
+        "quantize": False,
+    },
+    "qwen72b": {
+        "hf_name": "Qwen/Qwen2.5-72B-Instruct",
+        "cot": False,
+        "quantize": True,
+    },
+    "qwen72b-cot": {
+        "hf_name": "Qwen/Qwen2.5-72B-Instruct",
+        "cot": True,
+        "quantize": True,
+    },
 }
 
-REQUESTS_PER_MINUTE = 30
-REQUEST_DELAY = 60.0 / REQUESTS_PER_MINUTE
+MAX_NEW_TOKENS = 1024
 
 
 # ─── Prompt templates ────────────────────────────────────────────────────────
@@ -86,44 +89,66 @@ def build_prompt(question: str, cot: bool) -> str:
     return template.format(question=question)
 
 
-# ─── API calls ──────────────────────────────────────────────────────────────
+# ─── Model loading & inference ──────────────────────────────────────────────
 
-def call_openai(prompt: str, model: str) -> str:
-    from openai import OpenAI
-    client = OpenAI(api_key=OPENAI_API_KEY)
-    response = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": "You are a math expert. Solve problems step by step and give the final numerical answer."},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=0.0,
-        max_tokens=1024,
-    )
-    return response.choices[0].message.content.strip()
+def load_model(hf_name: str, quantize: bool):
+    """Load model and tokenizer."""
+    print(f"[INFO] Loading {hf_name} (quantize={quantize})...")
+
+    tokenizer = AutoTokenizer.from_pretrained(hf_name, trust_remote_code=True)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+
+    if quantize:
+        bnb_config = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_compute_dtype=torch.bfloat16,
+            bnb_4bit_use_double_quant=True,
+        )
+        model = AutoModelForCausalLM.from_pretrained(
+            hf_name,
+            quantization_config=bnb_config,
+            device_map="auto",
+            trust_remote_code=True,
+            torch_dtype=torch.bfloat16,
+        )
+    else:
+        model = AutoModelForCausalLM.from_pretrained(
+            hf_name,
+            device_map="auto",
+            trust_remote_code=True,
+            torch_dtype=torch.bfloat16,
+        )
+
+    model.eval()
+    print(f"[INFO] Model loaded. Device: {model.device}")
+    return model, tokenizer
 
 
-def call_deepseek(prompt: str, model: str) -> str:
-    from openai import OpenAI
-    client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
-    response = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": "You are a math expert. Solve problems step by step and give the final numerical answer."},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=0.0,
-        max_tokens=1024,
-    )
-    return response.choices[0].message.content.strip()
+def generate_response(model, tokenizer, prompt: str) -> str:
+    """Generate a response from the model."""
+    messages = [
+        {"role": "system", "content": "You are a math expert. Solve problems step by step and give the final numerical answer."},
+        {"role": "user", "content": prompt},
+    ]
 
+    text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=2048)
+    inputs = {k: v.to(model.device) for k, v in inputs.items()}
 
-def call_model(prompt: str, provider: str, model: str) -> str:
-    if provider == "openai":
-        return call_openai(prompt, model)
-    elif provider == "deepseek":
-        return call_deepseek(prompt, model)
-    raise ValueError(f"Unknown provider: {provider}")
+    with torch.no_grad():
+        outputs = model.generate(
+            **inputs,
+            max_new_tokens=MAX_NEW_TOKENS,
+            temperature=None,
+            do_sample=False,
+            pad_token_id=tokenizer.pad_token_id,
+        )
+
+    new_tokens = outputs[0][inputs["input_ids"].shape[1]:]
+    response = tokenizer.decode(new_tokens, skip_special_tokens=True)
+    return response.strip()
 
 
 # ─── Response parsing ────────────────────────────────────────────────────────
@@ -133,22 +158,18 @@ def extract_answer(response: str) -> str:
     if not response:
         return ""
 
-    # Look for #### pattern
     match = re.search(r'####\s*([\d,\.]+)', response)
     if match:
         return match.group(1).replace(",", "")
 
-    # Look for "answer is X" pattern
     match = re.search(r'(?:answer|result|total)\s+(?:is|=)\s*\$?\s*([\d,\.]+)', response, re.IGNORECASE)
     if match:
         return match.group(1).replace(",", "")
 
-    # Look for boxed answer \boxed{X}
     match = re.search(r'\\boxed\{([\d,\.]+)\}', response)
     if match:
         return match.group(1).replace(",", "")
 
-    # Last number in the response
     numbers = re.findall(r'[\d,]+\.?\d*', response)
     if numbers:
         return numbers[-1].replace(",", "")
@@ -158,8 +179,7 @@ def extract_answer(response: str) -> str:
 
 def extract_numbers(text: str) -> set:
     """Extract all numbers mentioned in text."""
-    numbers = re.findall(r'\b\d+(?:\.\d+)?\b', text)
-    return set(numbers)
+    return set(re.findall(r'\b\d+(?:\.\d+)?\b', text))
 
 
 def extract_operations(text: str) -> set:
@@ -187,22 +207,18 @@ def classify_response(response: str) -> str:
 # ─── Main pipeline ───────────────────────────────────────────────────────────
 
 def run_baseline(model_key: str, test_data: list, limit: int = None):
-    """Run a single API baseline."""
+    """Run a single OSS baseline."""
     config = MODELS[model_key]
-    provider = config["provider"]
-    model = config["model"]
+    hf_name = config["hf_name"]
     cot = config["cot"]
+    quantize = config["quantize"]
 
     print(f"\n{'='*60}")
-    print(f"  Running: {model_key} ({model}, CoT={cot})")
+    print(f"  Running: {model_key} ({hf_name}, CoT={cot})")
     print(f"{'='*60}")
 
-    if provider == "openai" and not OPENAI_API_KEY:
-        print("[ERROR] OPENAI_API_KEY not set. Add to .env file.")
-        return None
-    if provider == "deepseek" and not DEEPSEEK_API_KEY:
-        print("[ERROR] DEEPSEEK_API_KEY not set. Add to .env file.")
-        return None
+    # Load model
+    model, tokenizer = load_model(hf_name, quantize)
 
     examples = test_data[:limit] if limit else test_data
     print(f"[INFO] Processing {len(examples)} examples...")
@@ -219,7 +235,7 @@ def run_baseline(model_key: str, test_data: list, limit: int = None):
         prompt = build_prompt(question, cot)
 
         try:
-            raw_response = call_model(prompt, provider, model)
+            raw_response = generate_response(model, tokenizer, prompt)
             pred_answer = extract_answer(raw_response)
             pred_type = classify_response(raw_response)
 
@@ -274,26 +290,32 @@ def run_baseline(model_key: str, test_data: list, limit: int = None):
             print(f"[INFO] Progress: {i + 1}/{len(examples)} "
                   f"(errors: {errors}, {rate:.1f} ex/s, ETA: {eta/60:.1f} min)")
 
-        time.sleep(REQUEST_DELAY)
-
     elapsed = time.time() - start_time
     print(f"[INFO] Done. {len(predictions)} predictions, {errors} errors, "
           f"{elapsed/60:.1f} minutes")
 
+    # Save predictions
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     pred_path = RESULTS_DIR / f"predictions_{model_key}.json"
     with open(pred_path, "w") as f:
         json.dump(predictions, f, indent=2)
     print(f"[INFO] Predictions saved to {pred_path}")
 
+    # Free GPU memory before next model
+    del model
+    del tokenizer
+    torch.cuda.empty_cache()
+
     return predictions
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run API baselines on GSM8K for Composition Gap")
+    parser = argparse.ArgumentParser(description="Run OSS baselines on GSM8K for Composition Gap (GPU)")
     parser.add_argument("--model", type=str, required=True,
-                        choices=list(MODELS.keys()) + ["all"])
-    parser.add_argument("--limit", type=int, default=None)
+                        choices=list(MODELS.keys()) + ["all"],
+                        help="Which model to run")
+    parser.add_argument("--limit", type=int, default=None,
+                        help="Limit number of examples (for testing)")
     args = parser.parse_args()
 
     # Load classified test data
@@ -308,7 +330,11 @@ def main():
         test_data = json.load(f)
     print(f"[INFO] Loaded {len(test_data)} examples")
 
-    models_to_run = list(MODELS.keys()) if args.model == "all" else [args.model]
+    # Run in order: small models first, then large
+    if args.model == "all":
+        models_to_run = ["qwen7b", "qwen7b-cot", "qwen72b", "qwen72b-cot"]
+    else:
+        models_to_run = [args.model]
 
     all_predictions = {}
     for model_key in models_to_run:
@@ -316,6 +342,7 @@ def main():
         if predictions:
             all_predictions[model_key] = predictions
 
+    # Print summary
     if all_predictions:
         print(f"\n{'='*60}")
         print(f"  Summary")

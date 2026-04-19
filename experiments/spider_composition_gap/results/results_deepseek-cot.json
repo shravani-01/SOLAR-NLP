@@ -1,0 +1,26 @@
+{
+  "model": "deepseek-cot",
+  "n_examples": 1034,
+  "n_errors": 0,
+  "piece_level": {
+    "table_f1": 0.8724,
+    "select_f1": 0.3094,
+    "where_f1": 0.494,
+    "groupby_f1": 0.7756,
+    "orderby_f1": 0.764,
+    "keyword_f1": 0.8641,
+    "piece_f1": 0.6799
+  },
+  "piece_f1": 0.6799,
+  "structure_level": {
+    "SIMPLE": 0.8568,
+    "JOIN": 0.7694,
+    "NESTED": 0.456,
+    "SET-OP": 0.2609,
+    "MULTI-AGG": 0.6984
+  },
+  "structure_macro_f1": 0.6083,
+  "composition_gap": 0.0716,
+  "composition_gap_pct": 7.2,
+  "timestamp": "2026-04-18T20:53:33.487209"
+}
