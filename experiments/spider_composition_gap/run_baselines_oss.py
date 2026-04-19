@@ -52,13 +52,13 @@ MODELS = {
         "cot": True,
         "quantize": False,
     },
-    "llama70b": {
-        "hf_name": "meta-llama/Llama-3.3-70B-Instruct",
+    "qwen72b": {
+        "hf_name": "Qwen/Qwen2.5-72B-Instruct",
         "cot": False,
-        "quantize": True,  # 70B needs 4-bit quantization
+        "quantize": True,  # 72B needs 4-bit quantization
     },
-    "llama70b-cot": {
-        "hf_name": "meta-llama/Llama-3.3-70B-Instruct",
+    "qwen72b-cot": {
+        "hf_name": "Qwen/Qwen2.5-72B-Instruct",
         "cot": True,
         "quantize": True,
     },
@@ -377,7 +377,7 @@ def main():
     # Run baselines
     if args.model == "all":
         # Run in order: small models first, then large
-        models_to_run = ["qwen7b", "qwen7b-cot", "llama70b", "llama70b-cot"]
+        models_to_run = ["qwen7b", "qwen7b-cot", "qwen72b", "qwen72b-cot"]
     else:
         models_to_run = [args.model]
 
