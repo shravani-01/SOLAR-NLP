@@ -1,0 +1,16 @@
+{
+  "gsm8k_results": {
+    "gpt4o-cot": {
+      "piece_f1": 0.7044,
+      "structure_macro_f1": 0.7418,
+      "composition_gap": -0.0373
+    },
+    "gpt4o": {
+      "piece_f1": 0.7406,
+      "structure_macro_f1": 0.739,
+      "composition_gap": 0.0016
+    }
+  },
+  "average_gap": -0.0179,
+  "timestamp": "2026-04-19T03:37:49.062860"
+}

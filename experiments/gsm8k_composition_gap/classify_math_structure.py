@@ -33,8 +33,25 @@ STRUCTURAL_TYPES = [SINGLE_OP, MULTI_STEP, RATIO_PROP, COMPARISON, SYSTEM]
 # ─── Classification helpers ─────────────────────────────────────────────────
 
 def _count_calc_ops(full_answer: str) -> int:
-    """Count <<...>> calculation annotations (GSM8K gold standard format)."""
-    return len(re.findall(r'<<(.+?)>>', full_answer))
+    """Count arithmetic operations. Prefers <<...>> annotations (gold format),
+    falls back to counting arithmetic expressions for model responses."""
+    # Gold format: <<...>> annotations
+    calc_ops = len(re.findall(r'<<(.+?)>>', full_answer))
+    if calc_ops > 0:
+        return calc_ops
+
+    # Model response fallback: count lines with arithmetic (=, +, -, *, /)
+    arith_lines = 0
+    for line in full_answer.split('\n'):
+        line = line.strip()
+        if re.search(r'\d+\s*[\+\-\*\/×÷=]\s*\d+', line):
+            arith_lines += 1
+    if arith_lines > 0:
+        return arith_lines
+
+    # Last resort: count step markers (1., 2., Step 1, etc.)
+    step_markers = len(re.findall(r'(?:^|\n)\s*(?:\d+[\.\):]|Step\s+\d+)', full_answer))
+    return max(step_markers, 1)
 
 
 def _count_steps(steps: list) -> int:
@@ -68,23 +85,21 @@ def _has_ratio_proportion(question: str, answer: str) -> bool:
             return True
 
     # Ratio operations in the ANSWER (how it's solved)
-    # Look for division that produces a fraction/ratio, or multiplication by fraction
     answer_ratio_patterns = [
         r'\b\d+\s*/\s*\d+\s*=',  # "2/3 = ..."
         r'<<\d+/\d+=[^>]*>>',     # calc annotation with division
         r'\b\d+\s*\*\s*0\.\d+',   # multiply by decimal (percentage)
         r'<<[^>]*\*\s*0\.\d+[^>]*>>', # calc with decimal multiplication
+        r'\b\d+%\s*(?:of|×|\*)', # "20% of ..."
+        r'\bdivide\b.*\bby\b',    # "divide X by Y"
+        r'\bmultiply\b.*\bby\s+0\.\d+', # "multiply by 0.5"
     ]
 
-    # Need at least one ratio operation in answer
     ratio_op_count = 0
     for pattern in answer_ratio_patterns:
         ratio_op_count += len(re.findall(pattern, a_lower))
 
-    # Only classify as RATIO-PROP if question mentions ratio concepts
-    # OR answer uses ratio operations prominently
     if ratio_op_count >= 1:
-        # Confirm with question context
         soft_q_patterns = [
             r'\bhalf\b', r'\bthird\b', r'\bquarter\b',
             r'\bfraction\b', r'\b\d+/\d+\b',
@@ -93,6 +108,16 @@ def _has_ratio_proportion(question: str, answer: str) -> bool:
         for pattern in soft_q_patterns:
             if re.search(pattern, q_lower):
                 return True
+
+    # For model responses: if question has strong ratio signals, trust the question
+    # (model responses won't have <<...>> annotations but the question still indicates the type)
+    if q_lower:  # only if question is provided
+        strong_count = 0
+        for pattern in strong_q_patterns:
+            if re.search(pattern, q_lower):
+                strong_count += 1
+        if strong_count >= 1:
+            return True
 
     return False
 

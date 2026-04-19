@@ -20,7 +20,7 @@ from pathlib import Path
 from collections import Counter, defaultdict
 from datetime import datetime
 
-from classify_math_structure import STRUCTURAL_TYPES
+from classify_math_structure import STRUCTURAL_TYPES, classify_math
 
 RESULTS_DIR = Path(__file__).parent / "results"
 
@@ -55,6 +55,15 @@ def evaluate_model(model_key: str) -> dict:
     print(f"  Total predictions: {len(predictions)}")
     errors = sum(1 for p in predictions if p.get("error"))
     print(f"  Errors: {errors}")
+
+    # ── Re-classify predictions using original question ──
+    for pred in predictions:
+        if pred.get("error"):
+            continue
+        question = pred.get("question", "")
+        response = pred.get("raw_response", "")
+        steps = [l.strip() for l in response.split('\n') if l.strip() and not l.strip().startswith('####')]
+        pred["pred_type"] = classify_math(question, response, steps)
 
     # ── Piece-level ──
     number_f1s = []

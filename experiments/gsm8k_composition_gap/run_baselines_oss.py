@@ -198,10 +198,12 @@ def extract_operations(text: str) -> set:
     return ops
 
 
-def classify_response(response: str) -> str:
-    """Classify the structural type of the model's solution approach."""
+def classify_response(question: str, response: str) -> str:
+    """Classify the structural type of the model's solution approach.
+    Uses the original question for pattern detection (ratio, comparison, system)
+    and the response for operation counting."""
     steps = [l.strip() for l in response.strip().split('\n') if l.strip() and not l.strip().startswith('####')]
-    return classify_math("", response, steps)
+    return classify_math(question, response, steps)
 
 
 # ─── Main pipeline ───────────────────────────────────────────────────────────
@@ -237,7 +239,7 @@ def run_baseline(model_key: str, test_data: list, limit: int = None):
         try:
             raw_response = generate_response(model, tokenizer, prompt)
             pred_answer = extract_answer(raw_response)
-            pred_type = classify_response(raw_response)
+            pred_type = classify_response(question, raw_response)
 
             # Piece-level: extract numbers and operations
             gold_numbers = extract_numbers(question)

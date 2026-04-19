@@ -1,0 +1,22 @@
+{
+  "model": "gpt4o",
+  "n_examples": 1319,
+  "n_errors": 2,
+  "piece_level": {
+    "number_extraction_f1": 0.4694,
+    "operation_id_f1": 0.8049,
+    "answer_accuracy": 0.9476
+  },
+  "piece_f1": 0.7406,
+  "structure_level": {
+    "SINGLE-OP": 0.5676,
+    "MULTI-STEP": 0.6399,
+    "RATIO-PROP": 0.7914,
+    "COMPARISON": 0.9672,
+    "SYSTEM": 0.729
+  },
+  "structure_macro_f1": 0.739,
+  "composition_gap": 0.0016,
+  "composition_gap_pct": 0.2,
+  "timestamp": "2026-04-19T03:37:49.050916"
+}
