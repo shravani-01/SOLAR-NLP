@@ -1,0 +1,22 @@
+{
+  "model": "qwen7b",
+  "n_examples": 1319,
+  "n_errors": 0,
+  "piece_level": {
+    "number_extraction_f1": 0.4764,
+    "operation_id_f1": 0.7951,
+    "answer_accuracy": 0.9098
+  },
+  "piece_f1": 0.7271,
+  "structure_level": {
+    "SINGLE-OP": 0.6128,
+    "MULTI-STEP": 0.6506,
+    "RATIO-PROP": 0.791,
+    "COMPARISON": 0.9492,
+    "SYSTEM": 0.7429
+  },
+  "structure_macro_f1": 0.7493,
+  "composition_gap": -0.0222,
+  "composition_gap_pct": -2.2,
+  "timestamp": "2026-04-19T14:33:16.156265"
+}

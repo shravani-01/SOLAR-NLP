@@ -1,0 +1,22 @@
+{
+  "model": "deepseek",
+  "n_examples": 1319,
+  "n_errors": 1,
+  "piece_level": {
+    "number_extraction_f1": 0.4444,
+    "operation_id_f1": 0.7916,
+    "answer_accuracy": 0.9476
+  },
+  "piece_f1": 0.7279,
+  "structure_level": {
+    "SINGLE-OP": 0.6036,
+    "MULTI-STEP": 0.6822,
+    "RATIO-PROP": 0.7755,
+    "COMPARISON": 0.9412,
+    "SYSTEM": 0.748
+  },
+  "structure_macro_f1": 0.7501,
+  "composition_gap": -0.0222,
+  "composition_gap_pct": -2.2,
+  "timestamp": "2026-04-19T14:33:13.955789"
+}
