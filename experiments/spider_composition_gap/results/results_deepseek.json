@@ -1,0 +1,26 @@
+{
+  "model": "deepseek",
+  "n_examples": 1034,
+  "n_errors": 0,
+  "piece_level": {
+    "table_f1": 0.5795,
+    "select_f1": 0.3746,
+    "where_f1": 0.538,
+    "groupby_f1": 0.7766,
+    "orderby_f1": 0.8037,
+    "keyword_f1": 0.7206,
+    "piece_f1": 0.6322
+  },
+  "piece_f1": 0.6322,
+  "structure_level": {
+    "SIMPLE": 0.7324,
+    "JOIN": 0.2807,
+    "NESTED": 0.4267,
+    "SET-OP": 0.1647,
+    "MULTI-AGG": 0.3922
+  },
+  "structure_macro_f1": 0.3993,
+  "composition_gap": 0.2329,
+  "composition_gap_pct": 23.3,
+  "timestamp": "2026-04-19T01:26:53.890280"
+}

@@ -1,0 +1,26 @@
+{
+  "model": "qwen7b",
+  "n_examples": 1034,
+  "n_errors": 0,
+  "piece_level": {
+    "table_f1": 0.8223,
+    "select_f1": 0.2431,
+    "where_f1": 0.4951,
+    "groupby_f1": 0.7476,
+    "orderby_f1": 0.8075,
+    "keyword_f1": 0.8879,
+    "piece_f1": 0.6673
+  },
+  "piece_f1": 0.6673,
+  "structure_level": {
+    "SIMPLE": 0.8392,
+    "JOIN": 0.6667,
+    "NESTED": 0.4701,
+    "SET-OP": 0.1647,
+    "MULTI-AGG": 0.5614
+  },
+  "structure_macro_f1": 0.5404,
+  "composition_gap": 0.1269,
+  "composition_gap_pct": 12.7,
+  "timestamp": "2026-04-19T01:26:54.378980"
+}

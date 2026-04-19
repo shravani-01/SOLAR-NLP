@@ -1,0 +1,32 @@
+{
+  "spider_results": {
+    "deepseek": {
+      "piece_f1": 0.6322,
+      "structure_macro_f1": 0.3993,
+      "composition_gap": 0.2329
+    },
+    "gpt4o-cot": {
+      "piece_f1": 0.6904,
+      "structure_macro_f1": 0.5975,
+      "composition_gap": 0.0929
+    },
+    "gpt4o": {
+      "piece_f1": 0.5538,
+      "structure_macro_f1": 0.258,
+      "composition_gap": 0.2958
+    },
+    "qwen7b-cot": {
+      "piece_f1": 0.6593,
+      "structure_macro_f1": 0.5195,
+      "composition_gap": 0.1398
+    },
+    "qwen7b": {
+      "piece_f1": 0.6673,
+      "structure_macro_f1": 0.5404,
+      "composition_gap": 0.1269
+    }
+  },
+  "average_gap": 0.1777,
+  "labor_contract_avg_gap": 0.5,
+  "timestamp": "2026-04-19T01:26:54.382835"
+}

@@ -1,0 +1,26 @@
+{
+  "model": "qwen7b-cot",
+  "n_examples": 1034,
+  "n_errors": 0,
+  "piece_level": {
+    "table_f1": 0.8791,
+    "select_f1": 0.1844,
+    "where_f1": 0.5027,
+    "groupby_f1": 0.7153,
+    "orderby_f1": 0.7998,
+    "keyword_f1": 0.8745,
+    "piece_f1": 0.6593
+  },
+  "piece_f1": 0.6593,
+  "structure_level": {
+    "SIMPLE": 0.8337,
+    "JOIN": 0.6726,
+    "NESTED": 0.3148,
+    "SET-OP": 0.1429,
+    "MULTI-AGG": 0.6333
+  },
+  "structure_macro_f1": 0.5195,
+  "composition_gap": 0.1398,
+  "composition_gap_pct": 14.0,
+  "timestamp": "2026-04-19T01:26:54.256755"
+}
