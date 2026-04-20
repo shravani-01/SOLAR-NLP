@@ -1,0 +1,18 @@
+{
+  "method": "PaP",
+  "domain": "contracts",
+  "model": "gpt4o",
+  "n_examples": 500,
+  "n_errors": 0,
+  "macro_f1": 0.1913,
+  "per_class_f1": {
+    "HARD": 0.6029,
+    "SOFT": 0.3537,
+    "HARD-CONDITIONAL": 0,
+    "SOFT-CONDITIONAL": 0,
+    "NON-CONSTRAINT": 0
+  },
+  "probe_alone_accuracy": 0.0,
+  "followed_probe_pct": 0.0,
+  "timestamp": "2026-04-20T18:01:40.082343"
+}

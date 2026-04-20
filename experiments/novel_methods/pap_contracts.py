@@ -419,7 +419,7 @@ def run_pap(model_key: str, test_data: list):
 
     pred_path = RESULTS_DIR / f"pap_contracts_predictions_{model_key}.json"
     with open(pred_path, "w") as f:
-        json.dump(predictions, f, indent=2)
+        json.dump(predictions, f, indent=2, default=str)
 
     print(f"[INFO] Results saved to {results_path}")
     return results
