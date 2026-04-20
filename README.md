@@ -1,7 +1,7 @@
 # SOLAR — Solver-in-the-Loop Constraint Acquisition and Refinement
 
 **Paper:** SOLAR: Solver-in-the-Loop Constraint Acquisition and Refinement for Operational Policy Documents  
-**Authors:** Shravani Hariprasad, Kapil Wanaskar, Vinija Jain, Aman Chadha  
+**Authors:** Shravani Hariprasad, Mohsin Ali, Vinija Jain, Aman Chadha  
 **Target:** ARR April 2026 → EMNLP 2026  
 **Status:** Phase 6 complete — all baselines done, paper draft live
 
