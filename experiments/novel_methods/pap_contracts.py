@@ -148,8 +148,11 @@ def load_probe():
 
     print(f"[INFO] Loading probe from {probe_path}")
     with open(probe_path, 'rb') as f:
-        probe = pickle.load(f)
-    return probe
+        probe_data = pickle.load(f)
+    if isinstance(probe_data, dict):
+        print(f"[INFO] Probe keys: {list(probe_data.keys())}")
+        return probe_data
+    return {"model": probe_data, "scaler": None, "pca": None}
 
 
 def extract_hidden_state(model, tokenizer, text: str, layer: int = -8) -> np.ndarray:
@@ -171,11 +174,19 @@ def extract_hidden_state(model, tokenizer, text: str, layer: int = -8) -> np.nda
     return hidden
 
 
-def probe_predict(probe, hidden_state: np.ndarray) -> tuple:
+def probe_predict(probe_data, hidden_state: np.ndarray) -> tuple:
     """Run probe on hidden state, return (prediction, confidence)."""
     hidden_2d = hidden_state.reshape(1, -1)
-    pred = probe.predict(hidden_2d)[0]
-    proba = probe.predict_proba(hidden_2d)[0]
+    if isinstance(probe_data, dict):
+        if probe_data.get("scaler") is not None:
+            hidden_2d = probe_data["scaler"].transform(hidden_2d)
+        if probe_data.get("pca") is not None:
+            hidden_2d = probe_data["pca"].transform(hidden_2d)
+        model = probe_data["model"]
+    else:
+        model = probe_data
+    pred = model.predict(hidden_2d)[0]
+    proba = model.predict_proba(hidden_2d)[0]
     confidence = max(proba)
     return pred, confidence
 
