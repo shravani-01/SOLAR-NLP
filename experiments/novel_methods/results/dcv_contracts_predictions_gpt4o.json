@@ -1,0 +1,242 @@
+[
+  {
+    "idx": 0,
+    "sentence_id": "ATU_758__0076",
+    "text": "New employees, with the exception of Transit Operator Trainees shall be subject to a probationary period of one thousand forty (1,040) hours of time worked from the employment start date, provided tha",
+    "gold_type": "SOFT",
+    "pieces": {
+      "entities": [
+        "New employees",
+        "Transit Operator Trainees",
+        "Employer"
+      ],
+      "thresholds": [
+        "1,040 hours",
+        "520 additional hours"
+      ],
+      "exceptions": [
+        "Transit Operator Trainees"
+      ],
+      "modality": "mandatory",
+      "conditions": [
+        "from the employment start date"
+      ]
+    },
+    "proposed_type": "HARD-CONDITIONAL",
+    "final_type": "HARD-CONDITIONAL",
+    "verified_changed": false,
+    "reasoning": "The constraint uses mandatory language ('shall be subject') and includes a condition ('from the employment start date'), making it a firm requirement triggered by a specific condition."
+  },
+  {
+    "idx": 1,
+    "sentence_id": "ATU_758__0320",
+    "text": "The Employer shall at all times maintain at least 6% of all shake-ups as full-time Extra Board.",
+    "gold_type": "HARD",
+    "pieces": {
+      "entities": [
+        "Employer",
+        "full-time Extra Board"
+      ],
+      "thresholds": [
+        "6%"
+      ],
+      "exceptions": [],
+      "modality": "mandatory",
+      "conditions": []
+    },
+    "proposed_type": "HARD",
+    "final_type": "HARD",
+    "verified_changed": false,
+    "reasoning": "The constraint uses mandatory language ('shall') and has no conditions, making it a firm requirement."
+  },
+  {
+    "idx": 2,
+    "sentence_id": "ATU_758__0285",
+    "text": "Employees who refuse to accept such assignments will be subject to forfeiture of any remaining supplemental payments over the L&I minimum as provided in Section B above and may be subject to disciplin",
+    "gold_type": "HARD",
+    "pieces": {
+      "entities": [
+        "Employees",
+        "supplemental payments",
+        "L&I minimum",
+        "Section B",
+        "agreement"
+      ],
+      "thresholds": [],
+      "exceptions": [],
+      "modality": "mandatory",
+      "conditions": [
+        "if such refusal constitutes insubordination under the terms of this agreement"
+      ]
+    },
+    "proposed_type": "HARD-CONDITIONAL",
+    "final_type": "HARD-CONDITIONAL",
+    "verified_changed": false,
+    "reasoning": "The constraint uses mandatory language ('will be subject to') and includes a condition ('if such refusal constitutes insubordination'), making it a firm requirement triggered by a specific condition."
+  },
+  {
+    "idx": 3,
+    "sentence_id": "ATU_758__0052",
+    "text": "In case of non-disciplinary arbitration, the power and authority of the Arbitrator shall be to hear and decide each non-disciplinary dispute and shall be limited to determining the meaning and interpr",
+    "gold_type": "HARD",
+    "pieces": {
+      "entities": [
+        "Arbitrator",
+        "non-disciplinary dispute",
+        "terms of this Agreement"
+      ],
+      "thresholds": [],
+      "exceptions": [],
+      "modality": "mandatory",
+      "conditions": [
+        "In case of non-disciplinary arbitration"
+      ]
+    },
+    "proposed_type": "HARD-CONDITIONAL",
+    "final_type": "HARD-CONDITIONAL",
+    "verified_changed": false,
+    "reasoning": "The constraint uses mandatory language ('shall') and is triggered by a specific condition ('In case of non-disciplinary arbitration'), making it a firm requirement contingent on the condition."
+  },
+  {
+    "idx": 4,
+    "sentence_id": "ATU_758__0473",
+    "text": "An employee may be subject to coaching, counseling, or more serious discipline as a result.",
+    "gold_type": "SOFT",
+    "pieces": {
+      "entities": [
+        "employee"
+      ],
+      "thresholds": [],
+      "exceptions": [],
+      "modality": "discretionary",
+      "conditions": []
+    },
+    "proposed_type": "SOFT",
+    "final_type": "SOFT",
+    "verified_changed": false,
+    "reasoning": "The use of 'may' indicates discretionary language, and there are no conditions specified, making it a flexible guideline."
+  },
+  {
+    "idx": 5,
+    "sentence_id": "ATU_758__0154",
+    "text": "Survivor Dependent Medical Coverage: In the event of the death of an employee caused by workplace violence, surviving dependent(s) covered by the decedent\u2019s medical, dental and vision plan at the time",
+    "gold_type": "HARD",
+    "pieces": {
+      "entities": [
+        "surviving dependent(s)",
+        "decedent\u2019s medical, dental and vision plan",
+        "Employer"
+      ],
+      "thresholds": [
+        "no change in premium share",
+        "period of six"
+      ],
+      "exceptions": [],
+      "modality": "mandatory",
+      "conditions": [
+        "In the event of the death of an employee caused by workplace violence",
+        "covered by the decedent\u2019s medical, dental and vision plan at the time of the employee\u2019s death"
+      ]
+    },
+    "proposed_type": "HARD-CONDITIONAL",
+    "final_type": "HARD-CONDITIONAL",
+    "verified_changed": false,
+    "reasoning": "The constraint uses mandatory language ('shall') and includes conditions ('In the event of the death of an employee caused by workplace violence' and 'covered by the decedent\u2019s medical, dental and vision plan at the time of the employee\u2019s death'), making it a firm requirement triggered by specific conditions."
+  },
+  {
+    "idx": 6,
+    "sentence_id": "ATU_758__0091",
+    "text": "Disciplinary actions involving suspensions without pay, demotions, or dismissal shall be subject to the grievance procedure of this Agreement.",
+    "gold_type": "HARD",
+    "pieces": {
+      "entities": [
+        "Disciplinary actions",
+        "suspensions without pay",
+        "demotions",
+        "dismissal",
+        "grievance procedure",
+        "Agreement"
+      ],
+      "thresholds": [],
+      "exceptions": [],
+      "modality": "mandatory",
+      "conditions": []
+    },
+    "proposed_type": "HARD",
+    "final_type": "HARD",
+    "verified_changed": false,
+    "reasoning": "The use of 'shall' indicates mandatory language, and there are no conditions specified, making it a firm requirement."
+  },
+  {
+    "idx": 7,
+    "sentence_id": "ATU_758__0435",
+    "text": "All shifts will be declared vacant except for positions named in section G.1 and employees shall select shifts in accordance with their seniority. 1.",
+    "gold_type": "HARD",
+    "pieces": {
+      "entities": [
+        "shifts",
+        "positions named in section G.1",
+        "employees"
+      ],
+      "thresholds": [],
+      "exceptions": [
+        "positions named in section G.1"
+      ],
+      "modality": "mandatory",
+      "conditions": []
+    },
+    "proposed_type": "HARD",
+    "final_type": "HARD",
+    "verified_changed": false,
+    "reasoning": "The constraint uses mandatory language ('shall') without any conditions, indicating a firm requirement."
+  },
+  {
+    "idx": 8,
+    "sentence_id": "ATU_758__0305",
+    "text": "To be eligible for the award(s) the employee must have worked at least 1250 hours in the calendar year and have attended not less than three safety meetings in the calendar year.",
+    "gold_type": "HARD",
+    "pieces": {
+      "entities": [
+        "employee"
+      ],
+      "thresholds": [
+        "1250 hours",
+        "three safety meetings",
+        "calendar year"
+      ],
+      "exceptions": [],
+      "modality": "mandatory",
+      "conditions": [
+        "To be eligible for the award(s)"
+      ]
+    },
+    "proposed_type": "HARD-CONDITIONAL",
+    "final_type": "HARD-CONDITIONAL",
+    "verified_changed": false,
+    "reasoning": "The constraint uses mandatory language ('must') and includes a condition ('To be eligible for the award(s)'), making it a firm requirement triggered by specific conditions."
+  },
+  {
+    "idx": 9,
+    "sentence_id": "ATU_758__0411",
+    "text": "Days Off: Full time Comm Controllers shall have consecutive days off whenever possible, except those who serve on the Comm Controller Extra Board. 3.",
+    "gold_type": "SOFT",
+    "pieces": {
+      "entities": [
+        "Full time Comm Controllers",
+        "Comm Controller Extra Board"
+      ],
+      "thresholds": [],
+      "exceptions": [
+        "those who serve on the Comm Controller Extra Board"
+      ],
+      "modality": "mandatory",
+      "conditions": [
+        "whenever possible"
+      ]
+    },
+    "proposed_type": "HARD-CONDITIONAL",
+    "final_type": "HARD-CONDITIONAL",
+    "verified_changed": false,
+    "reasoning": "The constraint uses mandatory language ('shall') and includes a condition ('whenever possible'), making it a firm requirement that is triggered by the condition."
+  }
+]

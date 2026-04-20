@@ -1,0 +1,278 @@
+[
+  {
+    "idx": 0,
+    "db_id": "concert_singer",
+    "question": "How many singers do we have?",
+    "gold_sql": "SELECT count(*) FROM singer",
+    "gold_type": "SIMPLE",
+    "pieces": {
+      "tables": [
+        "SINGER"
+      ],
+      "columns": [
+        "singer_id"
+      ],
+      "conditions": [],
+      "aggregations": [
+        "COUNT"
+      ],
+      "ordering": [],
+      "relationships": []
+    },
+    "pred_structure": "SIMPLE",
+    "pred_sql": "SELECT COUNT(singer_id) FROM SINGER;",
+    "actual_type": "SIMPLE",
+    "reasoning": "The query involves a single table with a basic aggregation function (COUNT) and no joins or subqueries."
+  },
+  {
+    "idx": 1,
+    "db_id": "concert_singer",
+    "question": "What is the total number of singers?",
+    "gold_sql": "SELECT count(*) FROM singer",
+    "gold_type": "SIMPLE",
+    "pieces": {
+      "tables": [
+        "SINGER"
+      ],
+      "columns": [
+        "COUNT(*)"
+      ],
+      "conditions": [],
+      "aggregations": [
+        "COUNT"
+      ],
+      "ordering": [],
+      "relationships": []
+    },
+    "pred_structure": "SIMPLE",
+    "pred_sql": "SELECT COUNT(*) FROM SINGER;",
+    "actual_type": "SIMPLE",
+    "reasoning": "The query involves a single table with a basic aggregation function and no joins or subqueries."
+  },
+  {
+    "idx": 2,
+    "db_id": "concert_singer",
+    "question": "Show name, country, age for all singers ordered by age from the oldest to the youngest.",
+    "gold_sql": "SELECT name ,  country ,  age FROM singer ORDER BY age DESC",
+    "gold_type": "SIMPLE",
+    "pieces": {
+      "tables": [
+        "SINGER"
+      ],
+      "columns": [
+        "name",
+        "country",
+        "age"
+      ],
+      "conditions": [],
+      "aggregations": [],
+      "ordering": [
+        "age DESC"
+      ],
+      "relationships": []
+    },
+    "pred_structure": "SIMPLE",
+    "pred_sql": "SELECT name, country, age FROM SINGER ORDER BY age DESC;",
+    "actual_type": "SIMPLE",
+    "reasoning": "The query involves a single table with no joins or subqueries, and it uses basic SELECT and ORDER BY clauses."
+  },
+  {
+    "idx": 3,
+    "db_id": "concert_singer",
+    "question": "What are the names, countries, and ages for every singer in descending order of age?",
+    "gold_sql": "SELECT name ,  country ,  age FROM singer ORDER BY age DESC",
+    "gold_type": "SIMPLE",
+    "pieces": {
+      "tables": [
+        "SINGER"
+      ],
+      "columns": [
+        "name",
+        "country",
+        "age"
+      ],
+      "conditions": [],
+      "aggregations": [],
+      "ordering": [
+        "age DESC"
+      ],
+      "relationships": []
+    },
+    "pred_structure": "SIMPLE",
+    "pred_sql": "SELECT name, country, age FROM SINGER ORDER BY age DESC;",
+    "actual_type": "SIMPLE",
+    "reasoning": "The query involves a single table with no joins or subqueries, and it uses basic SELECT and ORDER BY clauses."
+  },
+  {
+    "idx": 4,
+    "db_id": "concert_singer",
+    "question": "What is the average, minimum, and maximum age of all singers from France?",
+    "gold_sql": "SELECT avg(age) ,  min(age) ,  max(age) FROM singer WHERE country  =  'France'",
+    "gold_type": "SIMPLE",
+    "pieces": {
+      "tables": [
+        "SINGER"
+      ],
+      "columns": [
+        "age"
+      ],
+      "conditions": [
+        "country = 'France'"
+      ],
+      "aggregations": [
+        "AVG(age)",
+        "MIN(age)",
+        "MAX(age)"
+      ],
+      "ordering": [],
+      "relationships": []
+    },
+    "pred_structure": "MULTI-AGG",
+    "pred_sql": "SELECT AVG(age), MIN(age), MAX(age)\nFROM SINGER\nWHERE country = 'France';",
+    "actual_type": "SIMPLE",
+    "reasoning": "The query involves multiple aggregation functions (AVG, MIN, MAX) on a single table with a WHERE condition."
+  },
+  {
+    "idx": 5,
+    "db_id": "concert_singer",
+    "question": "What is the average, minimum, and maximum age for all French singers?",
+    "gold_sql": "SELECT avg(age) ,  min(age) ,  max(age) FROM singer WHERE country  =  'France'",
+    "gold_type": "SIMPLE",
+    "pieces": {
+      "tables": [
+        "SINGER"
+      ],
+      "columns": [
+        "age"
+      ],
+      "conditions": [
+        "nationality = 'French'"
+      ],
+      "aggregations": [
+        "AVG(age)",
+        "MIN(age)",
+        "MAX(age)"
+      ],
+      "ordering": [],
+      "relationships": []
+    },
+    "pred_structure": "MULTI-AGG",
+    "pred_sql": "SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM SINGER WHERE nationality = 'French';",
+    "actual_type": "SIMPLE",
+    "reasoning": "The query involves multiple aggregation functions (AVG, MIN, MAX) on a single table with a WHERE condition."
+  },
+  {
+    "idx": 6,
+    "db_id": "concert_singer",
+    "question": "Show the name and the release year of the song by the youngest singer.",
+    "gold_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY age LIMIT 1",
+    "gold_type": "SIMPLE",
+    "pieces": {
+      "tables": [
+        "SINGER",
+        "SONG"
+      ],
+      "columns": [
+        "SONG.name",
+        "SONG.release_year"
+      ],
+      "conditions": [
+        "SINGER.age IS NOT NULL"
+      ],
+      "aggregations": [
+        "MIN(SINGER.age)"
+      ],
+      "ordering": [],
+      "relationships": [
+        "SINGER.id = SONG.singer_id"
+      ]
+    },
+    "pred_structure": "NESTED",
+    "pred_sql": "SELECT SONG.name, SONG.release_year\nFROM SONG\nWHERE SONG.singer_id = (\n    SELECT SINGER.id\n    FROM SINGER\n    WHERE SINGER.age IS NOT NULL\n    ORDER BY SINGER.age ASC\n    LIMIT 1\n);",
+    "actual_type": "NESTED",
+    "reasoning": "The query requires finding the song by the youngest singer, which involves a subquery to determine the minimum age of the singer."
+  },
+  {
+    "idx": 7,
+    "db_id": "concert_singer",
+    "question": "What are the names and release years for all the songs of the youngest singer?",
+    "gold_sql": "SELECT song_name ,  song_release_year FROM singer ORDER BY age LIMIT 1",
+    "gold_type": "SIMPLE",
+    "pieces": {
+      "tables": [
+        "SINGER",
+        "SONG"
+      ],
+      "columns": [
+        "SONG.name",
+        "SONG.release_year"
+      ],
+      "conditions": [
+        "SINGER.age IS NOT NULL"
+      ],
+      "aggregations": [
+        "MIN(SINGER.age)"
+      ],
+      "ordering": [],
+      "relationships": [
+        "SINGER.id = SONG.singer_id"
+      ]
+    },
+    "pred_structure": "NESTED",
+    "pred_sql": "SELECT SONG.name, SONG.release_year\nFROM SONG\nWHERE SONG.singer_id = (\n    SELECT SINGER.id\n    FROM SINGER\n    WHERE SINGER.age IS NOT NULL\n    ORDER BY SINGER.age ASC\n    LIMIT 1\n);",
+    "actual_type": "NESTED",
+    "reasoning": "The query requires finding the youngest singer using an aggregation (MIN) and then using this result to filter songs, which typically involves a subquery."
+  },
+  {
+    "idx": 8,
+    "db_id": "concert_singer",
+    "question": "What are all distinct countries where singers above age 20 are from?",
+    "gold_sql": "SELECT DISTINCT country FROM singer WHERE age  >  20",
+    "gold_type": "SIMPLE",
+    "pieces": {
+      "tables": [
+        "SINGER"
+      ],
+      "columns": [
+        "country"
+      ],
+      "conditions": [
+        "age > 20"
+      ],
+      "aggregations": [
+        "DISTINCT"
+      ],
+      "ordering": [],
+      "relationships": []
+    },
+    "pred_structure": "SIMPLE",
+    "pred_sql": "SELECT DISTINCT country\nFROM SINGER\nWHERE age > 20;",
+    "actual_type": "SIMPLE",
+    "reasoning": "The query involves a single table with a basic SELECT-WHERE clause to filter singers above age 20 and retrieve distinct countries."
+  },
+  {
+    "idx": 9,
+    "db_id": "concert_singer",
+    "question": "What are  the different countries with singers above age 20?",
+    "gold_sql": "SELECT DISTINCT country FROM singer WHERE age  >  20",
+    "gold_type": "SIMPLE",
+    "pieces": {
+      "tables": [
+        "SINGER"
+      ],
+      "columns": [
+        "country"
+      ],
+      "conditions": [
+        "age > 20"
+      ],
+      "aggregations": [],
+      "ordering": [],
+      "relationships": []
+    },
+    "pred_structure": "SIMPLE",
+    "pred_sql": "SELECT DISTINCT country FROM SINGER WHERE age > 20;",
+    "actual_type": "SIMPLE",
+    "reasoning": "The query involves a single table with a basic SELECT-WHERE clause to filter singers by age and list distinct countries."
+  }
+]

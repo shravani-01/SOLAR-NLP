@@ -1,0 +1,18 @@
+{
+  "method": "DCV",
+  "domain": "contracts",
+  "model": "gpt4o",
+  "n_examples": 10,
+  "n_errors": 0,
+  "accuracy": 0.4,
+  "macro_f1": 0.22,
+  "per_class_f1": {
+    "HARD": 0.6,
+    "SOFT": 0.5,
+    "HARD-CONDITIONAL": 0,
+    "SOFT-CONDITIONAL": 0,
+    "NON-CONSTRAINT": 0
+  },
+  "n_verify_changed": 0,
+  "timestamp": "2026-04-19T15:04:34.436526"
+}

@@ -1,0 +1,17 @@
+{
+  "method": "DCV",
+  "domain": "sql",
+  "model": "gpt4o",
+  "n_examples": 10,
+  "n_errors": 0,
+  "structure_macro_f1": 0.1778,
+  "per_type_f1": {
+    "SIMPLE": 0.8889,
+    "JOIN": 0,
+    "NESTED": 0,
+    "SET-OP": 0,
+    "MULTI-AGG": 0
+  },
+  "followed_plan_pct": 80.0,
+  "timestamp": "2026-04-19T15:07:00.656022"
+}
