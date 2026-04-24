@@ -1,0 +1,33 @@
+{
+  "model": "deepseek",
+  "domain": "folio",
+  "metric": "P(struct_wrong | pieces_correct)",
+  "total_examples": 204,
+  "pieces_correct_count": 7,
+  "pieces_correct_pct": 3.4,
+  "structure_correct_count": 204,
+  "structure_accuracy": 1.0,
+  "both_correct": 7,
+  "pieces_right_structure_wrong": 0,
+  "composition_gap": 0.0,
+  "composition_gap_pct": 0.0,
+  "avg_piece_f1": 0.1536,
+  "per_type_gap": {
+    "SYLLOGISM": {
+      "pieces_correct": 2,
+      "struct_wrong": 0,
+      "gap": 0.0
+    },
+    "CONDITIONAL-CHAIN": {
+      "pieces_correct": 1,
+      "struct_wrong": 0,
+      "gap": 0.0
+    },
+    "MODUS-PONENS": {
+      "pieces_correct": 4,
+      "struct_wrong": 0,
+      "gap": 0.0
+    }
+  },
+  "timestamp": "2026-04-23T21:40:45.976078"
+}

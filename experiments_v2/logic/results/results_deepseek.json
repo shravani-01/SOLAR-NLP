@@ -1,0 +1,22 @@
+{
+  "model": "deepseek",
+  "domain": "logic",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 50,
+  "pieces_correct": 10,
+  "pieces_correct_pct": 20.0,
+  "composed_correct": 20,
+  "composed_accuracy": 0.4,
+  "both_correct": 4,
+  "pieces_right_composed_wrong": 6,
+  "composition_gap": 0.6,
+  "composition_gap_pct": 60.0,
+  "per_type_gap": {
+    "CONDITIONAL-CHAIN": {
+      "pieces_ok": 10,
+      "composed_fail": 6,
+      "gap": 0.6
+    }
+  },
+  "timestamp": "2026-04-23T23:37:51.694648"
+}

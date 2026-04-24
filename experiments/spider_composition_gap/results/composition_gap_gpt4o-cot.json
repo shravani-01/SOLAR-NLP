@@ -1,0 +1,43 @@
+{
+  "model": "gpt4o-cot",
+  "domain": "spider",
+  "metric": "P(struct_wrong | pieces_correct)",
+  "total_examples": 1034,
+  "pieces_correct_count": 1003,
+  "pieces_correct_pct": 97.0,
+  "structure_correct_count": 777,
+  "structure_accuracy": 0.7515,
+  "both_correct": 776,
+  "pieces_right_structure_wrong": 227,
+  "composition_gap": 0.2263,
+  "composition_gap_pct": 22.6,
+  "avg_piece_f1": 0.8984,
+  "per_type_gap": {
+    "SIMPLE": {
+      "pieces_correct": 490,
+      "struct_wrong": 85,
+      "gap": 0.1735
+    },
+    "NESTED": {
+      "pieces_correct": 83,
+      "struct_wrong": 23,
+      "gap": 0.2771
+    },
+    "JOIN": {
+      "pieces_correct": 324,
+      "struct_wrong": 42,
+      "gap": 0.1296
+    },
+    "SET-OP": {
+      "pieces_correct": 70,
+      "struct_wrong": 61,
+      "gap": 0.8714
+    },
+    "MULTI-AGG": {
+      "pieces_correct": 36,
+      "struct_wrong": 16,
+      "gap": 0.4444
+    }
+  },
+  "timestamp": "2026-04-23T21:40:45.533042"
+}

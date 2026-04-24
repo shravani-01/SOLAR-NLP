@@ -1,0 +1,22 @@
+{
+  "model": "deepseek-cot",
+  "domain": "contracts",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 49,
+  "pieces_correct": 8,
+  "pieces_correct_pct": 16.3,
+  "composed_correct": 39,
+  "composed_accuracy": 0.7959,
+  "both_correct": 8,
+  "pieces_right_composed_wrong": 0,
+  "composition_gap": 0.0,
+  "composition_gap_pct": 0.0,
+  "per_type_gap": {
+    "HARD": {
+      "pieces_ok": 8,
+      "composed_fail": 0,
+      "gap": 0.0
+    }
+  },
+  "timestamp": "2026-04-23T22:15:57.467947"
+}

@@ -1,0 +1,37 @@
+{
+  "model": "deepseek-cot",
+  "domain": "sql",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 50,
+  "pieces_correct": 39,
+  "pieces_correct_pct": 78.0,
+  "composed_correct": 34,
+  "composed_accuracy": 0.68,
+  "both_correct": 32,
+  "pieces_right_composed_wrong": 7,
+  "composition_gap": 0.1795,
+  "composition_gap_pct": 17.9,
+  "per_type_gap": {
+    "SIMPLE": {
+      "pieces_ok": 21,
+      "composed_fail": 3,
+      "gap": 0.1429
+    },
+    "NESTED": {
+      "pieces_ok": 6,
+      "composed_fail": 2,
+      "gap": 0.3333
+    },
+    "JOIN": {
+      "pieces_ok": 10,
+      "composed_fail": 0,
+      "gap": 0.0
+    },
+    "SET-OP": {
+      "pieces_ok": 2,
+      "composed_fail": 2,
+      "gap": 1.0
+    }
+  },
+  "timestamp": "2026-04-23T22:40:16.446494"
+}

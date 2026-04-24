@@ -1,0 +1,43 @@
+{
+  "model": "gpt4o-cot",
+  "domain": "humaneval",
+  "metric": "P(struct_wrong | pieces_correct)",
+  "total_examples": 164,
+  "pieces_correct_count": 160,
+  "pieces_correct_pct": 97.6,
+  "structure_correct_count": 93,
+  "structure_accuracy": 0.5671,
+  "both_correct": 92,
+  "pieces_right_structure_wrong": 68,
+  "composition_gap": 0.425,
+  "composition_gap_pct": 42.5,
+  "avg_piece_f1": 0.7194,
+  "per_type_gap": {
+    "RECURSIVE": {
+      "pieces_correct": 44,
+      "struct_wrong": 21,
+      "gap": 0.4773
+    },
+    "MULTI-STRUCT": {
+      "pieces_correct": 100,
+      "struct_wrong": 41,
+      "gap": 0.41
+    },
+    "SINGLE-FUNC": {
+      "pieces_correct": 5,
+      "struct_wrong": 3,
+      "gap": 0.6
+    },
+    "LOOP": {
+      "pieces_correct": 9,
+      "struct_wrong": 2,
+      "gap": 0.2222
+    },
+    "CONDITIONAL": {
+      "pieces_correct": 2,
+      "struct_wrong": 1,
+      "gap": 0.5
+    }
+  },
+  "timestamp": "2026-04-23T21:40:45.945485"
+}

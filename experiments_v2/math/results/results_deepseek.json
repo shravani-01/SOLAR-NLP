@@ -1,0 +1,37 @@
+{
+  "model": "deepseek",
+  "domain": "math",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 50,
+  "pieces_correct": 49,
+  "pieces_correct_pct": 98.0,
+  "composed_correct": 48,
+  "composed_accuracy": 0.96,
+  "both_correct": 47,
+  "pieces_right_composed_wrong": 2,
+  "composition_gap": 0.0408,
+  "composition_gap_pct": 4.1,
+  "per_type_gap": {
+    "SYSTEM": {
+      "pieces_ok": 9,
+      "composed_fail": 0,
+      "gap": 0.0
+    },
+    "RATIO-PROP": {
+      "pieces_ok": 16,
+      "composed_fail": 1,
+      "gap": 0.0625
+    },
+    "SINGLE-OP": {
+      "pieces_ok": 14,
+      "composed_fail": 1,
+      "gap": 0.0714
+    },
+    "MULTI-STEP": {
+      "pieces_ok": 10,
+      "composed_fail": 0,
+      "gap": 0.0
+    }
+  },
+  "timestamp": "2026-04-24T01:16:33.953968"
+}

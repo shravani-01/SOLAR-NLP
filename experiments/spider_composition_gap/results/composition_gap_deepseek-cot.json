@@ -1,0 +1,43 @@
+{
+  "model": "deepseek-cot",
+  "domain": "spider",
+  "metric": "P(struct_wrong | pieces_correct)",
+  "total_examples": 1034,
+  "pieces_correct_count": 970,
+  "pieces_correct_pct": 93.8,
+  "structure_correct_count": 772,
+  "structure_accuracy": 0.7466,
+  "both_correct": 763,
+  "pieces_right_structure_wrong": 207,
+  "composition_gap": 0.2134,
+  "composition_gap_pct": 21.3,
+  "avg_piece_f1": 0.8653,
+  "per_type_gap": {
+    "SIMPLE": {
+      "pieces_correct": 484,
+      "struct_wrong": 82,
+      "gap": 0.1694
+    },
+    "NESTED": {
+      "pieces_correct": 79,
+      "struct_wrong": 22,
+      "gap": 0.2785
+    },
+    "JOIN": {
+      "pieces_correct": 304,
+      "struct_wrong": 34,
+      "gap": 0.1118
+    },
+    "SET-OP": {
+      "pieces_correct": 68,
+      "struct_wrong": 56,
+      "gap": 0.8235
+    },
+    "MULTI-AGG": {
+      "pieces_correct": 35,
+      "struct_wrong": 13,
+      "gap": 0.3714
+    }
+  },
+  "timestamp": "2026-04-23T21:40:45.442796"
+}

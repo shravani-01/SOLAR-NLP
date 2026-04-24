@@ -1,0 +1,43 @@
+{
+  "model": "random_balanced",
+  "domain": "contracts",
+  "metric": "P(struct_wrong | pieces_correct)",
+  "total_examples": 4230,
+  "pieces_correct_count": 3129,
+  "pieces_correct_pct": 74.0,
+  "structure_correct_count": 3376,
+  "structure_accuracy": 0.7981,
+  "both_correct": 2725,
+  "pieces_right_structure_wrong": 404,
+  "composition_gap": 0.1291,
+  "composition_gap_pct": 12.9,
+  "avg_piece_f1": 0.7397,
+  "per_type_gap": {
+    "HARD": {
+      "pieces_correct": 2029,
+      "struct_wrong": 174,
+      "gap": 0.0858
+    },
+    "SOFT": {
+      "pieces_correct": 800,
+      "struct_wrong": 101,
+      "gap": 0.1263
+    },
+    "HARD-CONDITIONAL": {
+      "pieces_correct": 46,
+      "struct_wrong": 46,
+      "gap": 1.0
+    },
+    "NON-CONSTRAINT": {
+      "pieces_correct": 193,
+      "struct_wrong": 22,
+      "gap": 0.114
+    },
+    "SOFT-CONDITIONAL": {
+      "pieces_correct": 61,
+      "struct_wrong": 61,
+      "gap": 1.0
+    }
+  },
+  "timestamp": "2026-04-23T21:40:46.164879"
+}

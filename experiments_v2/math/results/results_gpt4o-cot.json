@@ -1,0 +1,16 @@
+{
+  "model": "gpt4o-cot",
+  "domain": "math",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 0,
+  "pieces_correct": 0,
+  "pieces_correct_pct": 0,
+  "composed_correct": 0,
+  "composed_accuracy": 0,
+  "both_correct": 0,
+  "pieces_right_composed_wrong": 0,
+  "composition_gap": 0.0,
+  "composition_gap_pct": 0.0,
+  "per_type_gap": {},
+  "timestamp": "2026-04-23T22:43:30.178205"
+}

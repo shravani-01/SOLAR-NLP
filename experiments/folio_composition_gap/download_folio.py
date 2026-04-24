@@ -38,8 +38,8 @@ def download_and_classify():
                 import requests
                 import tempfile
                 urls = {
-                    "train": "https://raw.githubusercontent.com/Yale-LILY/FOLIO/main/data/v2/folio-train.jsonl",
-                    "validation": "https://raw.githubusercontent.com/Yale-LILY/FOLIO/main/data/v2/folio-validation.jsonl",
+                    "train": "https://raw.githubusercontent.com/Yale-LILY/FOLIO/main/data/v0.0/folio-train.jsonl",
+                    "validation": "https://raw.githubusercontent.com/Yale-LILY/FOLIO/main/data/v0.0/folio-validation.jsonl",
                 }
                 DATA_DIR.mkdir(parents=True, exist_ok=True)
                 all_items = []

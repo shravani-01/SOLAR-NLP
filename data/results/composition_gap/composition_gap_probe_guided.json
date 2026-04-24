@@ -1,0 +1,43 @@
+{
+  "model": "probe_guided",
+  "domain": "contracts",
+  "metric": "P(struct_wrong | pieces_correct)",
+  "total_examples": 4230,
+  "pieces_correct_count": 3115,
+  "pieces_correct_pct": 73.6,
+  "structure_correct_count": 3351,
+  "structure_accuracy": 0.7922,
+  "both_correct": 2702,
+  "pieces_right_structure_wrong": 413,
+  "composition_gap": 0.1326,
+  "composition_gap_pct": 13.3,
+  "avg_piece_f1": 0.7364,
+  "per_type_gap": {
+    "HARD": {
+      "pieces_correct": 2030,
+      "struct_wrong": 187,
+      "gap": 0.0921
+    },
+    "SOFT": {
+      "pieces_correct": 786,
+      "struct_wrong": 102,
+      "gap": 0.1298
+    },
+    "HARD-CONDITIONAL": {
+      "pieces_correct": 48,
+      "struct_wrong": 48,
+      "gap": 1.0
+    },
+    "NON-CONSTRAINT": {
+      "pieces_correct": 194,
+      "struct_wrong": 19,
+      "gap": 0.0979
+    },
+    "SOFT-CONDITIONAL": {
+      "pieces_correct": 57,
+      "struct_wrong": 57,
+      "gap": 1.0
+    }
+  },
+  "timestamp": "2026-04-23T21:40:46.095576"
+}

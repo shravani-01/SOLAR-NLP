@@ -1,0 +1,37 @@
+{
+  "model": "deepseek",
+  "domain": "code",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 50,
+  "pieces_correct": 50,
+  "pieces_correct_pct": 100.0,
+  "composed_correct": 32,
+  "composed_accuracy": 0.64,
+  "both_correct": 32,
+  "pieces_right_composed_wrong": 18,
+  "composition_gap": 0.36,
+  "composition_gap_pct": 36.0,
+  "per_type_gap": {
+    "RECURSIVE": {
+      "pieces_ok": 14,
+      "composed_fail": 8,
+      "gap": 0.5714
+    },
+    "MULTI-STRUCT": {
+      "pieces_ok": 34,
+      "composed_fail": 10,
+      "gap": 0.2941
+    },
+    "LOOP": {
+      "pieces_ok": 1,
+      "composed_fail": 0,
+      "gap": 0.0
+    },
+    "SINGLE-FUNC": {
+      "pieces_ok": 1,
+      "composed_fail": 0,
+      "gap": 0.0
+    }
+  },
+  "timestamp": "2026-04-24T07:17:02.251800"
+}

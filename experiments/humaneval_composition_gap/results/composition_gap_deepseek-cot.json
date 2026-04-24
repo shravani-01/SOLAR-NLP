@@ -1,0 +1,43 @@
+{
+  "model": "deepseek-cot",
+  "domain": "humaneval",
+  "metric": "P(struct_wrong | pieces_correct)",
+  "total_examples": 164,
+  "pieces_correct_count": 162,
+  "pieces_correct_pct": 98.8,
+  "structure_correct_count": 79,
+  "structure_accuracy": 0.4817,
+  "both_correct": 79,
+  "pieces_right_structure_wrong": 83,
+  "composition_gap": 0.5123,
+  "composition_gap_pct": 51.2,
+  "avg_piece_f1": 0.7334,
+  "per_type_gap": {
+    "RECURSIVE": {
+      "pieces_correct": 45,
+      "struct_wrong": 23,
+      "gap": 0.5111
+    },
+    "MULTI-STRUCT": {
+      "pieces_correct": 101,
+      "struct_wrong": 55,
+      "gap": 0.5446
+    },
+    "LOOP": {
+      "pieces_correct": 10,
+      "struct_wrong": 2,
+      "gap": 0.2
+    },
+    "SINGLE-FUNC": {
+      "pieces_correct": 5,
+      "struct_wrong": 3,
+      "gap": 0.6
+    },
+    "CONDITIONAL": {
+      "pieces_correct": 1,
+      "struct_wrong": 0,
+      "gap": 0.0
+    }
+  },
+  "timestamp": "2026-04-23T21:40:45.918460"
+}

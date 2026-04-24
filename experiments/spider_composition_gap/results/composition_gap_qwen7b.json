@@ -1,0 +1,43 @@
+{
+  "model": "qwen7b",
+  "domain": "spider",
+  "metric": "P(struct_wrong | pieces_correct)",
+  "total_examples": 1034,
+  "pieces_correct_count": 965,
+  "pieces_correct_pct": 93.3,
+  "structure_correct_count": 723,
+  "structure_accuracy": 0.6992,
+  "both_correct": 699,
+  "pieces_right_structure_wrong": 266,
+  "composition_gap": 0.2756,
+  "composition_gap_pct": 27.6,
+  "avg_piece_f1": 0.8448,
+  "per_type_gap": {
+    "SIMPLE": {
+      "pieces_correct": 469,
+      "struct_wrong": 91,
+      "gap": 0.194
+    },
+    "NESTED": {
+      "pieces_correct": 83,
+      "struct_wrong": 24,
+      "gap": 0.2892
+    },
+    "JOIN": {
+      "pieces_correct": 312,
+      "struct_wrong": 73,
+      "gap": 0.234
+    },
+    "SET-OP": {
+      "pieces_correct": 66,
+      "struct_wrong": 59,
+      "gap": 0.8939
+    },
+    "MULTI-AGG": {
+      "pieces_correct": 35,
+      "struct_wrong": 19,
+      "gap": 0.5429
+    }
+  },
+  "timestamp": "2026-04-23T21:40:45.657106"
+}

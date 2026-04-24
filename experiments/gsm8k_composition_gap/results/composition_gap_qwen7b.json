@@ -1,0 +1,43 @@
+{
+  "model": "qwen7b",
+  "domain": "gsm8k",
+  "metric": "P(struct_wrong | pieces_correct)",
+  "total_examples": 1319,
+  "pieces_correct_count": 1209,
+  "pieces_correct_pct": 91.7,
+  "structure_correct_count": 487,
+  "structure_accuracy": 0.3692,
+  "both_correct": 450,
+  "pieces_right_structure_wrong": 759,
+  "composition_gap": 0.6278,
+  "composition_gap_pct": 62.8,
+  "avg_piece_f1": 0.7271,
+  "per_type_gap": {
+    "SYSTEM": {
+      "pieces_correct": 185,
+      "struct_wrong": 57,
+      "gap": 0.3081
+    },
+    "RATIO-PROP": {
+      "pieces_correct": 370,
+      "struct_wrong": 370,
+      "gap": 1.0
+    },
+    "SINGLE-OP": {
+      "pieces_correct": 240,
+      "struct_wrong": 240,
+      "gap": 1.0
+    },
+    "MULTI-STEP": {
+      "pieces_correct": 358,
+      "struct_wrong": 36,
+      "gap": 0.1006
+    },
+    "COMPARISON": {
+      "pieces_correct": 56,
+      "struct_wrong": 56,
+      "gap": 1.0
+    }
+  },
+  "timestamp": "2026-04-23T21:40:45.898342"
+}

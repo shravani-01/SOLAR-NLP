@@ -1,0 +1,43 @@
+{
+  "model": "deepseek",
+  "domain": "gsm8k",
+  "metric": "P(struct_wrong | pieces_correct)",
+  "total_examples": 1318,
+  "pieces_correct_count": 1248,
+  "pieces_correct_pct": 94.7,
+  "structure_correct_count": 943,
+  "structure_accuracy": 0.7155,
+  "both_correct": 895,
+  "pieces_right_structure_wrong": 353,
+  "composition_gap": 0.2829,
+  "composition_gap_pct": 28.3,
+  "avg_piece_f1": 0.7279,
+  "per_type_gap": {
+    "SYSTEM": {
+      "pieces_correct": 191,
+      "struct_wrong": 15,
+      "gap": 0.0785
+    },
+    "RATIO-PROP": {
+      "pieces_correct": 390,
+      "struct_wrong": 139,
+      "gap": 0.3564
+    },
+    "SINGLE-OP": {
+      "pieces_correct": 241,
+      "struct_wrong": 93,
+      "gap": 0.3859
+    },
+    "MULTI-STEP": {
+      "pieces_correct": 369,
+      "struct_wrong": 100,
+      "gap": 0.271
+    },
+    "COMPARISON": {
+      "pieces_correct": 57,
+      "struct_wrong": 6,
+      "gap": 0.1053
+    }
+  },
+  "timestamp": "2026-04-23T21:40:45.725033"
+}

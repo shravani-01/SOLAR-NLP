@@ -1,18 +1,18 @@
 {
   "method": "DCV",
   "domain": "contracts",
-  "model": "gpt4o",
+  "model": "deepseek",
   "n_examples": 500,
   "n_errors": 0,
-  "accuracy": 0.332,
-  "macro_f1": 0.1697,
+  "accuracy": 0.244,
+  "macro_f1": 0.138,
   "per_class_f1": {
-    "HARD": 0.543,
-    "SOFT": 0.3057,
+    "HARD": 0.4286,
+    "SOFT": 0.2614,
     "HARD-CONDITIONAL": 0,
     "SOFT-CONDITIONAL": 0,
     "NON-CONSTRAINT": 0
   },
-  "n_verify_changed": 6,
-  "timestamp": "2026-04-20T11:32:08.259934"
+  "n_verify_changed": 8,
+  "timestamp": "2026-04-20T14:19:10.634660"
 }

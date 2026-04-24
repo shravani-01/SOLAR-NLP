@@ -1,0 +1,4977 @@
+[
+  {
+    "idx": 0,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Bonnie",
+      "People"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_inactive",
+      "are_not",
+      "are_students",
+      "are_very",
+      "attend_and",
+      "attend_the",
+      "attends_and",
+      "attends_the",
+      "is_a",
+      "is_very"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 1,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Bonnie",
+      "People"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_inactive",
+      "are_not",
+      "are_students",
+      "are_very",
+      "attend_and",
+      "attend_the",
+      "attends_and",
+      "attends_the",
+      "is_a",
+      "is_very"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 2,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Bonnie",
+      "People"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_inactive",
+      "are_not",
+      "are_students",
+      "are_very",
+      "attend_and",
+      "attend_the",
+      "attends_and",
+      "attends_the",
+      "is_a",
+      "is_very"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 3,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Employees",
+      "Everyone",
+      "James"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_in",
+      "has_lunch",
+      "have_lunch",
+      "is_either",
+      "is_working",
+      "will_appear",
+      "will_either",
+      "work_remotely"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 4,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Employees",
+      "Everyone",
+      "James"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_in",
+      "has_lunch",
+      "have_lunch",
+      "is_either",
+      "is_working",
+      "will_appear",
+      "will_either",
+      "work_remotely"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 5,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Employees",
+      "Everyone",
+      "James"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_in",
+      "has_lunch",
+      "have_lunch",
+      "is_either",
+      "is_working",
+      "will_appear",
+      "will_either",
+      "work_remotely"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 6,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Humans",
+      "Mammals",
+      "Monkeypox",
+      "People",
+      "Symptons"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "are_mammals",
+      "can_occur",
+      "is_an"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 7,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Humans",
+      "Mammals",
+      "Monkeypox",
+      "People",
+      "Symptons"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "are_mammals",
+      "can_occur",
+      "is_an"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 8,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Humans",
+      "Mammals",
+      "Monkeypox",
+      "People",
+      "Symptons"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "are_mammals",
+      "can_occur",
+      "is_an"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 9,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Eastern",
+      "Goulds",
+      "Grande",
+      "Merriams",
+      "Ocellated",
+      "Osceola",
+      "Rio",
+      "There",
+      "Tom"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_six",
+      "is_a",
+      "is_also",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 10,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Eastern",
+      "Goulds",
+      "Grande",
+      "Merriams",
+      "Ocellated",
+      "Osceola",
+      "Rio",
+      "There",
+      "Tom"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_six",
+      "is_a",
+      "is_also",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 11,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Eastern",
+      "Goulds",
+      "Grande",
+      "Merriams",
+      "Ocellated",
+      "Osceola",
+      "Rio",
+      "There",
+      "Tom"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_six",
+      "is_a",
+      "is_also",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 12,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Japanese",
+      "Legend",
+      "Top",
+      "Zelda"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_made",
+      "will_be"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 13,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "BG",
+      "Japanese",
+      "Legend",
+      "Top",
+      "Zelda"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_made",
+      "will_be"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 14,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Japanese",
+      "Legend",
+      "Top",
+      "Zelda"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_made",
+      "will_be"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 15,
+    "gold_type": "SYLLOGISM",
+    "pred_type": "SYLLOGISM",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_shapes",
+      "have_four"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 16,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "An",
+      "Rock"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_cute",
+      "are_skittish",
+      "is_either",
+      "is_not",
+      "is_skittish",
+      "is_still"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 17,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "An",
+      "Rock"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_cute",
+      "are_skittish",
+      "is_either",
+      "is_not",
+      "is_skittish",
+      "is_still"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 18,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "An",
+      "Rock"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_cute",
+      "are_skittish",
+      "is_either",
+      "is_not",
+      "is_skittish",
+      "is_still"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 19,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "An",
+      "Rock"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_cute",
+      "are_skittish",
+      "is_either",
+      "is_not",
+      "is_skittish",
+      "is_still"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 20,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "An",
+      "Rock"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_cute",
+      "are_skittish",
+      "is_either",
+      "is_not",
+      "is_skittish",
+      "is_still"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 21,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Black",
+      "Karen",
+      "Lisa",
+      "Mirror",
+      "Netflix",
+      "Stranger",
+      "Things"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a",
+      "is_popular",
+      "will_binge",
+      "will_download",
+      "will_share"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 22,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Black",
+      "Karen",
+      "Lisa",
+      "Mirror",
+      "Netflix",
+      "Stranger",
+      "Things"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a",
+      "is_popular",
+      "will_binge",
+      "will_download",
+      "will_share"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 23,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Black",
+      "Karen",
+      "Lisa",
+      "Mirror",
+      "Netflix",
+      "Stranger",
+      "Things"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a",
+      "is_popular",
+      "will_binge",
+      "will_download",
+      "will_share"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 24,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "AsiaPacific",
+      "Beijing",
+      "Beijings",
+      "China",
+      "Games",
+      "Many",
+      "Northern",
+      "Olympics",
+      "Paralympics",
+      "Peoples",
+      "Republic",
+      "Summer",
+      "Winter"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "has_hosted",
+      "is_located",
+      "is_the"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 25,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "AsiaPacific",
+      "Beijing",
+      "Beijings",
+      "China",
+      "Games",
+      "Many",
+      "Northern",
+      "Olympics",
+      "Paralympics",
+      "Peoples",
+      "Republic",
+      "Summer",
+      "Winter"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "has_hosted",
+      "is_located",
+      "is_the"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 26,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "AsiaPacific",
+      "Beijing",
+      "Beijings",
+      "China",
+      "Games",
+      "Many",
+      "Northern",
+      "Olympics",
+      "Paralympics",
+      "Peoples",
+      "Republic",
+      "Summer",
+      "Winter"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "has_hosted",
+      "is_located",
+      "is_the"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 27,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Earth",
+      "Everyone",
+      "Mars",
+      "Marvin"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_aliens",
+      "are_extraterrestrial",
+      "is_a",
+      "is_an",
+      "is_from",
+      "is_human",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 28,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Earth",
+      "Everyone",
+      "Mars",
+      "Marvin"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_aliens",
+      "are_extraterrestrial",
+      "is_a",
+      "is_an",
+      "is_from",
+      "is_human",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 29,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Earth",
+      "Everyone",
+      "Mars",
+      "Marvin"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_aliens",
+      "are_extraterrestrial",
+      "is_a",
+      "is_an",
+      "is_from",
+      "is_human",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 30,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Djokovic",
+      "Grand",
+      "Oscarnominated",
+      "Slam"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_athletes",
+      "are_celebrities",
+      "are_famous",
+      "are_grand",
+      "are_professional",
+      "are_well",
+      "is_a",
+      "is_an",
+      "is_either",
+      "is_famous",
+      "live_in",
+      "lives_in"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 31,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Djokovic",
+      "Grand",
+      "Oscarnominated",
+      "Slam"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_athletes",
+      "are_celebrities",
+      "are_famous",
+      "are_grand",
+      "are_professional",
+      "are_well",
+      "is_a",
+      "is_an",
+      "is_either",
+      "is_famous",
+      "live_in",
+      "lives_in"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 32,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Djokovic",
+      "Grand",
+      "Oscarnominated",
+      "Slam"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_athletes",
+      "are_celebrities",
+      "are_famous",
+      "are_grand",
+      "are_professional",
+      "are_well",
+      "is_a",
+      "is_an",
+      "is_either",
+      "is_famous",
+      "live_in",
+      "lives_in"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 33,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Brothers",
+      "Creed",
+      "Diamond",
+      "Imperium",
+      "Ivy",
+      "Mine",
+      "Nile",
+      "Roderick",
+      "Strong",
+      "WWE"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "has_a",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 34,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Brothers",
+      "Creed",
+      "Diamond",
+      "Imperium",
+      "Ivy",
+      "Mine",
+      "Nile",
+      "Roderick",
+      "Strong",
+      "WWE"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "has_a",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 35,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Brothers",
+      "Creed",
+      "Diamond",
+      "Imperium",
+      "Ivy",
+      "Mine",
+      "Nile",
+      "Roderick",
+      "Strong",
+      "WWE"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "has_a",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 36,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Beethoven",
+      "Composers",
+      "Music",
+      "Orchestras",
+      "Society",
+      "Symphony",
+      "Vienna"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_led",
+      "is_a",
+      "is_an",
+      "write_music"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 37,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Beethoven",
+      "Composers",
+      "Music",
+      "Orchestras",
+      "Society",
+      "Symphony",
+      "Vienna"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_led",
+      "is_a",
+      "is_an",
+      "write_music"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 38,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Beethoven",
+      "Composers",
+      "Music",
+      "Orchestras",
+      "Society",
+      "Symphony",
+      "Vienna"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_led",
+      "is_a",
+      "is_an",
+      "write_music"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 39,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Hadids",
+      "Kelly",
+      "Max",
+      "Wearstlers",
+      "Zaha"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_dreamy",
+      "are_evocative",
+      "are_timeless",
+      "is_a",
+      "is_timeless"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 40,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Hadids",
+      "Kelly",
+      "Max",
+      "Wearstlers",
+      "Zaha"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_dreamy",
+      "are_evocative",
+      "are_timeless",
+      "is_a",
+      "is_timeless"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 41,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "False",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Hadids",
+      "Kelly",
+      "Max",
+      "Wearstlers",
+      "Zaha"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_dreamy",
+      "are_evocative",
+      "are_timeless",
+      "is_a",
+      "is_timeless"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 42,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Association",
+      "Coco",
+      "Everyone",
+      "Garros",
+      "Gauff",
+      "Iga",
+      "Nadal",
+      "Rafael",
+      "Roland",
+      "Tennis",
+      "Womens",
+      "\u015awi\u0105tek"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_among",
+      "is_a",
+      "is_not",
+      "is_ranked"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 43,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Association",
+      "Coco",
+      "Everyone",
+      "Garros",
+      "Gauff",
+      "Iga",
+      "Nadal",
+      "Rafael",
+      "Roland",
+      "Tennis",
+      "Womens",
+      "\u015awi\u0105tek"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_among",
+      "is_a",
+      "is_not",
+      "is_ranked"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 44,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Association",
+      "Coco",
+      "Everyone",
+      "Garros",
+      "Gauff",
+      "Iga",
+      "Nadal",
+      "Rafael",
+      "Roland",
+      "Tennis",
+      "Womens",
+      "\u015awi\u0105tek"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_among",
+      "is_a",
+      "is_not",
+      "is_ranked"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 45,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_mammals",
+      "are_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 46,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Emmas",
+      "Fall",
+      "James",
+      "Mias",
+      "Spring",
+      "Summer",
+      "There",
+      "Winter"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_four",
+      "have_a",
+      "is_not",
+      "is_summer"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 47,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "BG",
+      "Emmas",
+      "Fall",
+      "James",
+      "Mias",
+      "Spring",
+      "Summer",
+      "There",
+      "Winter"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_four",
+      "have_a",
+      "is_not",
+      "is_summer"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 48,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "BG",
+      "Emmas",
+      "Fall",
+      "James",
+      "Mias",
+      "Spring",
+      "Summer",
+      "There",
+      "Winter"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_four",
+      "have_a",
+      "is_not",
+      "is_summer"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 49,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_analog",
+      "are_digital",
+      "is_a",
+      "is_analog",
+      "is_printed"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 50,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_analog",
+      "are_digital",
+      "is_a",
+      "is_analog",
+      "is_printed"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 51,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_analog",
+      "are_digital",
+      "is_a",
+      "is_analog",
+      "is_printed"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 52,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Basque",
+      "French",
+      "German",
+      "IndoEuropean",
+      "Romance",
+      "Spanish"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_both",
+      "are_indo",
+      "are_related",
+      "is_not",
+      "is_related"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 53,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Basque",
+      "French",
+      "German",
+      "IndoEuropean",
+      "Romance",
+      "Spanish"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_both",
+      "are_indo",
+      "are_related",
+      "is_not",
+      "is_related"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 54,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Basque",
+      "French",
+      "German",
+      "IndoEuropean",
+      "Romance",
+      "Spanish"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_both",
+      "are_indo",
+      "are_related",
+      "is_not",
+      "is_related"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 55,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Bayern",
+      "Lewandowski",
+      "Munchen",
+      "Robert",
+      "Strikers"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_soccer",
+      "is_a",
+      "play_for"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 56,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Bayern",
+      "Lewandowski",
+      "Munchen",
+      "Robert",
+      "Strikers"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_soccer",
+      "is_a",
+      "play_for"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 57,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "BG",
+      "Bayern",
+      "Lewandowski",
+      "Munchen",
+      "Robert",
+      "Strikers"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_soccer",
+      "is_a",
+      "play_for"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 58,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Any",
+      "Billings",
+      "Butte",
+      "Helena",
+      "Missoula",
+      "Montana",
+      "Pierre",
+      "Springs",
+      "Sulphur",
+      "White"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_cities",
+      "is_a",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 59,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Any",
+      "Billings",
+      "Butte",
+      "Helena",
+      "Missoula",
+      "Montana",
+      "Pierre",
+      "Springs",
+      "Sulphur",
+      "White"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_cities",
+      "is_a",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 60,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Any",
+      "Billings",
+      "Butte",
+      "Helena",
+      "Missoula",
+      "Montana",
+      "Pierre",
+      "Springs",
+      "Sulphur",
+      "White"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_cities",
+      "is_a",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 61,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "An",
+      "CPT",
+      "F1",
+      "International",
+      "J1",
+      "Mike",
+      "OPT",
+      "US"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "have_either",
+      "is_an",
+      "work_in"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 62,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "An",
+      "CPT",
+      "F1",
+      "International",
+      "J1",
+      "Mike",
+      "OPT",
+      "US"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "have_either",
+      "is_an",
+      "work_in"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 63,
+    "gold_type": "SYLLOGISM",
+    "pred_type": "SYLLOGISM",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Ted"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_alligators",
+      "are_bovines",
+      "are_cows",
+      "is_a",
+      "is_an",
+      "is_domesticated"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 64,
+    "gold_type": "SYLLOGISM",
+    "pred_type": "SYLLOGISM",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Ted"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_alligators",
+      "are_bovines",
+      "are_cows",
+      "is_a",
+      "is_an",
+      "is_domesticated"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 65,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Ted"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_alligators",
+      "are_bovines",
+      "are_cows",
+      "is_a",
+      "is_an",
+      "is_domesticated"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 66,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Arts",
+      "Benjamin",
+      "Berkeley",
+      "Branford",
+      "College",
+      "Davenport",
+      "Dwight",
+      "Edwards",
+      "Ezra",
+      "Franklin",
+      "Grace",
+      "Graduate",
+      "Haven",
+      "Hopper",
+      "Ivy",
+      "Jonathan",
+      "League",
+      "Morse",
+      "Murray",
+      "New",
+      "Pauli",
+      "Pierson",
+      "Saybrook",
+      "School",
+      "Sciences",
+      "Silliman",
+      "Stiles",
+      "Timothy",
+      "Trumbull",
+      "University",
+      "Yale"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "has_been",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 67,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Arts",
+      "Benjamin",
+      "Berkeley",
+      "Branford",
+      "College",
+      "Davenport",
+      "Dwight",
+      "Edwards",
+      "Ezra",
+      "Franklin",
+      "Grace",
+      "Graduate",
+      "Haven",
+      "Hopper",
+      "Ivy",
+      "Jonathan",
+      "League",
+      "Morse",
+      "Murray",
+      "New",
+      "Pauli",
+      "Pierson",
+      "Saybrook",
+      "School",
+      "Sciences",
+      "Silliman",
+      "Stiles",
+      "Timothy",
+      "Trumbull",
+      "University",
+      "Yale"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "has_been",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 68,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Arts",
+      "Benjamin",
+      "Berkeley",
+      "Branford",
+      "College",
+      "Davenport",
+      "Dwight",
+      "Edwards",
+      "Ezra",
+      "Franklin",
+      "Grace",
+      "Graduate",
+      "Haven",
+      "Hopper",
+      "Ivy",
+      "Jonathan",
+      "League",
+      "Morse",
+      "Murray",
+      "New",
+      "Pauli",
+      "Pierson",
+      "Saybrook",
+      "School",
+      "Sciences",
+      "Silliman",
+      "Stiles",
+      "Timothy",
+      "Trumbull",
+      "University",
+      "Yale"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "has_been",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 69,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Andrew",
+      "BBC",
+      "Badults",
+      "British",
+      "Collins",
+      "Dude",
+      "July",
+      "Pappys",
+      "Secret",
+      "Sitcom",
+      "Society",
+      "Three",
+      "Working"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 70,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Andrew",
+      "BBC",
+      "Badults",
+      "British",
+      "Collins",
+      "Dude",
+      "July",
+      "Pappys",
+      "Secret",
+      "Sitcom",
+      "Society",
+      "Three",
+      "Working"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 71,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "KO"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_growth",
+      "are_suitable",
+      "are_volatile",
+      "is_a",
+      "is_not",
+      "is_volatile"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 72,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "KO"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_growth",
+      "are_suitable",
+      "are_volatile",
+      "is_a",
+      "is_not",
+      "is_volatile"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 73,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "KO"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_growth",
+      "are_suitable",
+      "are_volatile",
+      "is_a",
+      "is_not",
+      "is_volatile"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 74,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Istanbul",
+      "Joes",
+      "Plates",
+      "Toms"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_not",
+      "is_from"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 75,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Istanbul",
+      "Joes",
+      "Plates",
+      "Toms"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_not",
+      "is_from"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 76,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Mary",
+      "People"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_not",
+      "is_neither",
+      "work_in",
+      "works_in"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 77,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Mary",
+      "People"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_not",
+      "is_neither",
+      "work_in",
+      "works_in"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 78,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Mary",
+      "People"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_not",
+      "is_neither",
+      "work_in",
+      "works_in"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 79,
+    "gold_type": "SYLLOGISM",
+    "pred_type": "SYLLOGISM",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Baked",
+      "Melissa",
+      "Thai"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_bakeries",
+      "are_cupcakes",
+      "are_spicy",
+      "is_spicy"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 80,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Baked",
+      "Melissa",
+      "Thai"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_bakeries",
+      "are_cupcakes",
+      "are_spicy",
+      "is_spicy"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 81,
+    "gold_type": "SYLLOGISM",
+    "pred_type": "SYLLOGISM",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Baked",
+      "Melissa",
+      "Thai"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_bakeries",
+      "are_cupcakes",
+      "are_spicy",
+      "is_spicy"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 82,
+    "gold_type": "SYLLOGISM",
+    "pred_type": "SYLLOGISM",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Baked",
+      "Melissa",
+      "Thai"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_bakeries",
+      "are_cupcakes",
+      "are_spicy",
+      "is_spicy"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 83,
+    "gold_type": "SYLLOGISM",
+    "pred_type": "SYLLOGISM",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Baked",
+      "Melissa",
+      "Thai"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_bakeries",
+      "are_cupcakes",
+      "are_spicy",
+      "is_spicy"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 84,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Subway",
+      "Yelps"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_listed",
+      "are_popular",
+      "has_a",
+      "have_ratings",
+      "is_listed",
+      "is_popular"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 85,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Subway",
+      "Yelps"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_listed",
+      "are_popular",
+      "has_a",
+      "have_ratings",
+      "is_listed",
+      "is_popular"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 86,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Subway",
+      "Yelps"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_listed",
+      "are_popular",
+      "has_a",
+      "have_ratings",
+      "is_listed",
+      "is_popular"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 87,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Adventures",
+      "Caesar",
+      "Chicken",
+      "Digby",
+      "Good",
+      "In",
+      "Sir",
+      "Surprising"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_fighting",
+      "is_a",
+      "is_named"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 88,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Books",
+      "Harry",
+      "Henry",
+      "Thoreau",
+      "Walden"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "read_the",
+      "reads_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 89,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Books",
+      "Harry",
+      "Henry",
+      "Thoreau",
+      "Walden"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "read_the",
+      "reads_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 90,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "BG",
+      "Books",
+      "Harry",
+      "Henry",
+      "Thoreau",
+      "Walden"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "read_the",
+      "reads_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 91,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Machine",
+      "Natural"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "can_be",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 92,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Machine",
+      "Natural"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "can_be",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 93,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Cats",
+      "Fluffy",
+      "Garden",
+      "Olive",
+      "Pets",
+      "Tom",
+      "Toms"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_allowed",
+      "are_pets",
+      "can_be",
+      "is_a",
+      "is_allowed",
+      "is_more",
+      "is_no",
+      "is_required",
+      "is_tom",
+      "will_rent"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 94,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "BG",
+      "Cats",
+      "Fluffy",
+      "Garden",
+      "Olive",
+      "Pets",
+      "Tom",
+      "Toms"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_allowed",
+      "are_pets",
+      "can_be",
+      "is_a",
+      "is_allowed",
+      "is_more",
+      "is_no",
+      "is_required",
+      "is_tom",
+      "will_rent"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 95,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Cats",
+      "Fluffy",
+      "Garden",
+      "Olive",
+      "Pets",
+      "Tom",
+      "Toms"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_allowed",
+      "are_pets",
+      "can_be",
+      "is_a",
+      "is_allowed",
+      "is_more",
+      "is_no",
+      "is_required",
+      "is_tom",
+      "will_rent"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 96,
+    "gold_type": "SYLLOGISM",
+    "pred_type": "SYLLOGISM",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Australia",
+      "Maxs"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "are_loved",
+      "are_max",
+      "are_very",
+      "is_not",
+      "is_very"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 97,
+    "gold_type": "SYLLOGISM",
+    "pred_type": "SYLLOGISM",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Australia",
+      "Maxs"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "are_loved",
+      "are_max",
+      "are_very",
+      "is_not",
+      "is_very"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 98,
+    "gold_type": "SYLLOGISM",
+    "pred_type": "SYLLOGISM",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Australia",
+      "Maxs"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "are_loved",
+      "are_max",
+      "are_very",
+      "is_not",
+      "is_very"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 99,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "CEOs",
+      "Harry"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_gentlemen",
+      "are_handsome",
+      "are_ugly",
+      "is_a",
+      "is_either",
+      "is_handsome"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 100,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "CEOs",
+      "Harry"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_gentlemen",
+      "are_handsome",
+      "are_ugly",
+      "is_a",
+      "is_either",
+      "is_handsome"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 101,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "CEOs",
+      "Harry"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_gentlemen",
+      "are_handsome",
+      "are_ugly",
+      "is_a",
+      "is_either",
+      "is_handsome"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 102,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Luke"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_the",
+      "are_twins",
+      "have_siblings",
+      "is_a",
+      "is_either",
+      "live_at"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 103,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Luke"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_the",
+      "are_twins",
+      "have_siblings",
+      "is_a",
+      "is_either",
+      "live_at"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 104,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Luke"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_the",
+      "are_twins",
+      "have_siblings",
+      "is_a",
+      "is_either",
+      "live_at"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 105,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "ETS",
+      "Economic",
+      "GRE",
+      "His",
+      "It",
+      "Tom",
+      "US"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "has_been",
+      "lives_in",
+      "work_for"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 106,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "ETS",
+      "Economic",
+      "GRE",
+      "His",
+      "It",
+      "Tom",
+      "US"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "has_been",
+      "lives_in",
+      "work_for"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 107,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "ETS",
+      "Economic",
+      "GRE",
+      "His",
+      "It",
+      "Tom",
+      "US"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "has_been",
+      "lives_in",
+      "work_for"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 108,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Peter"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_people",
+      "are_very",
+      "have_parents",
+      "have_people",
+      "is_either",
+      "is_neither"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 109,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Peter"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_people",
+      "are_very",
+      "have_parents",
+      "have_people",
+      "is_either",
+      "is_neither"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 110,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Peter"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_people",
+      "are_very",
+      "have_parents",
+      "have_people",
+      "is_either",
+      "is_neither"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 111,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_evergreens",
+      "are_fir"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 112,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Harding",
+      "Juan",
+      "Mexico",
+      "Mine",
+      "Mountains",
+      "New",
+      "Onate",
+      "Pegmatite",
+      "Picuris",
+      "Texas",
+      "There"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_no",
+      "have_been",
+      "have_mines"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 113,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Harding",
+      "Juan",
+      "Mexico",
+      "Mine",
+      "Mountains",
+      "New",
+      "Onate",
+      "Pegmatite",
+      "Picuris",
+      "Texas",
+      "There"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_no",
+      "have_been",
+      "have_mines"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 114,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Harding",
+      "Juan",
+      "Mexico",
+      "Mine",
+      "Mountains",
+      "New",
+      "Onate",
+      "Pegmatite",
+      "Picuris",
+      "Texas",
+      "There"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_no",
+      "have_been",
+      "have_mines"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 115,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Michael",
+      "Peter",
+      "Windys"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "can_block",
+      "can_jump",
+      "is_a",
+      "is_taller"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 116,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Michael",
+      "Peter",
+      "Windys"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "can_block",
+      "can_jump",
+      "is_a",
+      "is_taller"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 117,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Michael",
+      "Peter",
+      "Windys"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "can_block",
+      "can_jump",
+      "is_a",
+      "is_taller"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 118,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Antarctica",
+      "Barutin",
+      "Bulgarian",
+      "Cove",
+      "Deception",
+      "Greenwich",
+      "Island",
+      "Islands",
+      "Shetland",
+      "Snow",
+      "South"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_considered",
+      "is_located",
+      "is_named",
+      "is_on"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 119,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Antarctica",
+      "Barutin",
+      "Bulgarian",
+      "Cove",
+      "Deception",
+      "Greenwich",
+      "Island",
+      "Islands",
+      "Shetland",
+      "Snow",
+      "South"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_considered",
+      "is_located",
+      "is_named",
+      "is_on"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 120,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Antarctica",
+      "Barutin",
+      "Bulgarian",
+      "Cove",
+      "Deception",
+      "Greenwich",
+      "Island",
+      "Islands",
+      "Shetland",
+      "Snow",
+      "South"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_considered",
+      "is_located",
+      "is_named",
+      "is_on"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 121,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_love",
+      "is_positive"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 122,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Boeing",
+      "Greyhound"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_empty",
+      "are_no",
+      "are_not",
+      "are_planes",
+      "can_transport",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 123,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Boeing",
+      "Greyhound"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_empty",
+      "are_no",
+      "are_not",
+      "are_planes",
+      "can_transport",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 124,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Boeing",
+      "Greyhound"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_empty",
+      "are_no",
+      "are_not",
+      "are_planes",
+      "can_transport",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 125,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "An",
+      "Rock"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "are_mammals",
+      "can_fly",
+      "has_wings",
+      "is_either",
+      "is_neither"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 126,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "An",
+      "Rock"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "are_mammals",
+      "can_fly",
+      "has_wings",
+      "is_either",
+      "is_neither"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 127,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "False",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "An",
+      "Rock"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "are_mammals",
+      "can_fly",
+      "has_wings",
+      "is_either",
+      "is_neither"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 128,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "John",
+      "July",
+      "Paris"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_people",
+      "are_well",
+      "has_a",
+      "has_at",
+      "have_a",
+      "have_at",
+      "is_well"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 129,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "John",
+      "July",
+      "Paris"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_people",
+      "are_well",
+      "has_a",
+      "has_at",
+      "have_a",
+      "have_at",
+      "is_well"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 130,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "John",
+      "July",
+      "Paris"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_people",
+      "are_well",
+      "has_a",
+      "has_at",
+      "have_a",
+      "have_at",
+      "is_well"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 131,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "John",
+      "July",
+      "Paris"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_people",
+      "are_well",
+      "has_a",
+      "has_at",
+      "have_a",
+      "have_at",
+      "is_well"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 132,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Humans",
+      "Platypus"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_mammals",
+      "have_no",
+      "have_teeth"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 133,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "BG",
+      "Humans",
+      "Platypus"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_mammals",
+      "have_no",
+      "have_teeth"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 134,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "BG",
+      "Humans",
+      "Platypus"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_mammals",
+      "have_no",
+      "have_teeth"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 135,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Plungers",
+      "Space",
+      "Vacuums",
+      "Vampires"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 136,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Plungers",
+      "Space",
+      "Vacuums",
+      "Vampires"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 137,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Plungers",
+      "Space",
+      "Vacuums",
+      "Vampires"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 138,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Learning",
+      "Machine",
+      "Reinforcement",
+      "Unsupervised"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "can_be",
+      "is_not",
+      "is_trained"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 139,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Learning",
+      "Machine",
+      "Reinforcement",
+      "Unsupervised"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "can_be",
+      "is_not",
+      "is_trained"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 140,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Ben",
+      "Simpsons"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_either",
+      "is_from",
+      "is_funny",
+      "is_loved",
+      "is_not",
+      "is_popular",
+      "is_ugly",
+      "is_yellow"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 141,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Ben",
+      "Simpsons"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_either",
+      "is_from",
+      "is_funny",
+      "is_loved",
+      "is_not",
+      "is_popular",
+      "is_ugly",
+      "is_yellow"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 142,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Ben",
+      "Simpsons"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_either",
+      "is_from",
+      "is_funny",
+      "is_loved",
+      "is_not",
+      "is_popular",
+      "is_ugly",
+      "is_yellow"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 143,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Aurochs",
+      "BG",
+      "Breeding",
+      "Heck"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "are_extinct",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 144,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Aurochs",
+      "BG",
+      "Breeding",
+      "Heck"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "are_extinct",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 145,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Jerry",
+      "Rose"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_humans",
+      "is_a",
+      "is_young"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 146,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Jerry",
+      "Rose"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_humans",
+      "is_a",
+      "is_young"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 147,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Jerry",
+      "Rose"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_humans",
+      "is_a",
+      "is_young"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 148,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Jerry",
+      "Rose"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_humans",
+      "is_a",
+      "is_young"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 149,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "False",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Jerry",
+      "Rose"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_a",
+      "are_humans",
+      "is_a",
+      "is_young"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 150,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Chronicles",
+      "English",
+      "Flies",
+      "Italian",
+      "Neapolitan",
+      "New",
+      "Palace",
+      "Press",
+      "Presss",
+      "Vessel"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_in",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 151,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Chronicles",
+      "English",
+      "Flies",
+      "Italian",
+      "Neapolitan",
+      "New",
+      "Palace",
+      "Press",
+      "Presss",
+      "Vessel"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_in",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 152,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Chronicles",
+      "English",
+      "Flies",
+      "Italian",
+      "Neapolitan",
+      "New",
+      "Palace",
+      "Press",
+      "Presss",
+      "Vessel"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_in",
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 153,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Remy"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_people",
+      "goes_to",
+      "have_a",
+      "visit_the",
+      "work_regularly"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 154,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Remy"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_people",
+      "goes_to",
+      "have_a",
+      "visit_the",
+      "work_regularly"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 155,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Remy"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_people",
+      "goes_to",
+      "have_a",
+      "visit_the",
+      "work_regularly"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 156,
+    "gold_type": "SYLLOGISM",
+    "pred_type": "SYLLOGISM",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Greeks"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_humans",
+      "are_mortal"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 157,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "David",
+      "Jack",
+      "James"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_from",
+      "are_instructed",
+      "are_students",
+      "are_taking",
+      "has_a",
+      "have_part",
+      "is_a",
+      "work_in",
+      "works_in"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 158,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "David",
+      "Jack",
+      "James"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_from",
+      "are_instructed",
+      "are_students",
+      "are_taking",
+      "has_a",
+      "have_part",
+      "is_a",
+      "work_in",
+      "works_in"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 159,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "David",
+      "Jack",
+      "James"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_from",
+      "are_instructed",
+      "are_students",
+      "are_taking",
+      "has_a",
+      "have_part",
+      "is_a",
+      "work_in",
+      "works_in"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 160,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "David",
+      "Jack",
+      "James"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_from",
+      "are_instructed",
+      "are_students",
+      "are_taking",
+      "has_a",
+      "have_part",
+      "is_a",
+      "work_in",
+      "works_in"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 161,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "George"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "can_compose",
+      "has_access",
+      "likes_music",
+      "will_compose"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 162,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "George"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "can_compose",
+      "has_access",
+      "likes_music",
+      "will_compose"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 163,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_hawks"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 164,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Bachelor",
+      "Bad",
+      "Breaking",
+      "Everything",
+      "Mondays",
+      "On",
+      "TV"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_given",
+      "are_reality",
+      "is_not",
+      "is_on",
+      "lives_of"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 165,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Bachelor",
+      "Bad",
+      "Breaking",
+      "Everything",
+      "Mondays",
+      "On",
+      "TV"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_given",
+      "are_reality",
+      "is_not",
+      "is_on",
+      "lives_of"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 166,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Bachelor",
+      "Bad",
+      "Breaking",
+      "Everything",
+      "Mondays",
+      "On",
+      "TV"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_given",
+      "are_reality",
+      "is_not",
+      "is_on",
+      "lives_of"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 167,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "German",
+      "Heeinrich",
+      "Heinrich",
+      "Nazi",
+      "Parliament",
+      "Prussian",
+      "Reichstag",
+      "Scmidt",
+      "State"
+    ],
+    "pred_entities": [],
+    "gold_relations": [],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 168,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "German",
+      "Heeinrich",
+      "Heinrich",
+      "Nazi",
+      "Parliament",
+      "Prussian",
+      "Reichstag",
+      "Scmidt",
+      "State"
+    ],
+    "pred_entities": [],
+    "gold_relations": [],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 169,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "German",
+      "Heeinrich",
+      "Heinrich",
+      "Nazi",
+      "Parliament",
+      "Prussian",
+      "Reichstag",
+      "Scmidt",
+      "State"
+    ],
+    "pred_entities": [],
+    "gold_relations": [],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 170,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Bile",
+      "Cholangiocarcinoma"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_deadly",
+      "has_a",
+      "is_a",
+      "is_bile",
+      "is_low",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 171,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Bile",
+      "Cholangiocarcinoma"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_deadly",
+      "has_a",
+      "is_a",
+      "is_bile",
+      "is_low",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 172,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Bile",
+      "Cholangiocarcinoma"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_deadly",
+      "has_a",
+      "is_a",
+      "is_bile",
+      "is_low",
+      "is_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 173,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "It",
+      "Taylor"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_very",
+      "eat_salads",
+      "has_a",
+      "have_good",
+      "is_either",
+      "is_true",
+      "visit_the"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 174,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "It",
+      "Taylor"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_very",
+      "eat_salads",
+      "has_a",
+      "have_good",
+      "is_either",
+      "is_true",
+      "visit_the"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 175,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "It",
+      "Taylor"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_very",
+      "eat_salads",
+      "has_a",
+      "have_good",
+      "is_either",
+      "is_true",
+      "visit_the"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 176,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "BG",
+      "Olympic",
+      "States",
+      "Tokyo",
+      "United"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 177,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Olympic",
+      "States",
+      "Tokyo",
+      "United"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 178,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "BG",
+      "Olympic",
+      "States",
+      "Tokyo",
+      "United"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 179,
+    "gold_type": "SYLLOGISM",
+    "pred_type": "SYLLOGISM",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [],
+    "pred_entities": [],
+    "gold_relations": [
+      "have_hooves"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 180,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "John",
+      "LGA",
+      "Susan"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "can_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 181,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "John",
+      "LGA",
+      "Susan"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "can_not"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 182,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Tom"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_mean",
+      "are_nice",
+      "is_a",
+      "is_mean"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 183,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Tom"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_mean",
+      "are_nice",
+      "is_a",
+      "is_mean"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 184,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Tom"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_mean",
+      "are_nice",
+      "is_a",
+      "is_mean"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 185,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "American",
+      "BG",
+      "Boston",
+      "City",
+      "Dani",
+      "Family",
+      "History",
+      "Secrets",
+      "Shapiro"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a",
+      "is_american",
+      "is_an",
+      "is_born",
+      "is_not",
+      "is_novel",
+      "is_written"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 186,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "American",
+      "BG",
+      "Boston",
+      "City",
+      "Dani",
+      "Family",
+      "History",
+      "Secrets",
+      "Shapiro"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a",
+      "is_american",
+      "is_an",
+      "is_born",
+      "is_not",
+      "is_novel",
+      "is_written"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 187,
+    "gold_type": "MODUS-PONENS",
+    "pred_type": "MODUS-PONENS",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "American",
+      "BG",
+      "Boston",
+      "City",
+      "Dani",
+      "Family",
+      "History",
+      "Secrets",
+      "Shapiro"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a",
+      "is_american",
+      "is_an",
+      "is_born",
+      "is_not",
+      "is_novel",
+      "is_written"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 188,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "American",
+      "Yuri"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_not",
+      "are_tall",
+      "is_tall"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 189,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "American",
+      "Yuri"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_not",
+      "are_tall",
+      "is_tall"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 190,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "American",
+      "Yuri"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_not",
+      "are_tall",
+      "is_tall"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 191,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "American",
+      "Yuri"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_not",
+      "are_tall",
+      "is_tall"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 192,
+    "gold_type": "NEGATION",
+    "pred_type": "NEGATION",
+    "gold_label": "False",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "American",
+      "Yuri"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_not",
+      "are_tall",
+      "is_tall"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 193,
+    "gold_type": "DISJUNCTIVE",
+    "pred_type": "DISJUNCTIVE",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "At",
+      "Events"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_either",
+      "is_happy"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 194,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Belgium",
+      "Classic",
+      "Descampe",
+      "Maurier",
+      "Steinhauer",
+      "There"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_from",
+      "is_on"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 195,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Belgium",
+      "Classic",
+      "Descampe",
+      "Maurier",
+      "Steinhauer",
+      "There"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_from",
+      "is_on"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 196,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "False",
+    "answer_correct": false,
+    "gold_entities": [
+      "Jane",
+      "KiKi"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "has_legs",
+      "is_terricolous",
+      "like_it",
+      "likes_it"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 197,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Jane",
+      "KiKi"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "has_legs",
+      "is_terricolous",
+      "like_it",
+      "likes_it"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 198,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "True",
+    "pred_label": "True",
+    "answer_correct": true,
+    "gold_entities": [
+      "Jane",
+      "KiKi"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "are_animals",
+      "has_legs",
+      "is_terricolous",
+      "like_it",
+      "likes_it"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  },
+  {
+    "idx": 199,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Ailton",
+      "Braga",
+      "Brazillian",
+      "Fluminense",
+      "Nautico",
+      "Silva"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a",
+      "is_commonly",
+      "plays_for"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 200,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Ailton",
+      "Braga",
+      "Brazillian",
+      "Fluminense",
+      "Nautico",
+      "Silva"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a",
+      "is_commonly",
+      "plays_for"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 201,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "False",
+    "pred_label": "False",
+    "answer_correct": true,
+    "gold_entities": [
+      "Ailton",
+      "Braga",
+      "Brazillian",
+      "Fluminense",
+      "Nautico",
+      "Silva"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a",
+      "is_commonly",
+      "plays_for"
+    ],
+    "pred_relations": [],
+    "raw_response": "False"
+  },
+  {
+    "idx": 202,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "Unknown",
+    "answer_correct": false,
+    "gold_entities": [
+      "Ailton",
+      "Braga",
+      "Brazillian",
+      "Fluminense",
+      "Nautico",
+      "Silva"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a",
+      "is_commonly",
+      "plays_for"
+    ],
+    "pred_relations": [],
+    "raw_response": "Unknown"
+  },
+  {
+    "idx": 203,
+    "gold_type": "CONDITIONAL-CHAIN",
+    "pred_type": "CONDITIONAL-CHAIN",
+    "gold_label": "Uncertain",
+    "pred_label": "True",
+    "answer_correct": false,
+    "gold_entities": [
+      "Ailton",
+      "Braga",
+      "Brazillian",
+      "Fluminense",
+      "Nautico",
+      "Silva"
+    ],
+    "pred_entities": [],
+    "gold_relations": [
+      "is_a",
+      "is_commonly",
+      "plays_for"
+    ],
+    "pred_relations": [],
+    "raw_response": "True"
+  }
+]

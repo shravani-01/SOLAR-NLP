@@ -2,8 +2,8 @@
   {
     "idx": 0,
     "task_id": "HumanEval/0",
-    "gold_type": "MULTI-STRUCT",
-    "pred_type": "MULTI-STRUCT",
+    "gold_type": "RECURSIVE",
+    "pred_type": "LOOP",
     "gold_identifiers": [
       "distance",
       "has_close_elements",
@@ -37,7 +37,7 @@
     "idx": 1,
     "task_id": "HumanEval/1",
     "gold_type": "MULTI-STRUCT",
-    "pred_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
     "gold_identifiers": [
       "c",
       "current_depth",
@@ -101,7 +101,7 @@
     "idx": 3,
     "task_id": "HumanEval/3",
     "gold_type": "MULTI-STRUCT",
-    "pred_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
     "gold_identifiers": [
       "balance",
       "below_zero",
@@ -126,23 +126,22 @@
       "recursion",
       "return"
     ],
-    "raw_response": "```python\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False\n```"
+    "raw_response": "```python\nbalance = 0\nfor operation in operations:\n    balance += operation\n    if balance < 0:\n        return True\nreturn False\n```"
   },
   {
     "idx": 4,
     "task_id": "HumanEval/4",
     "gold_type": "RECURSIVE",
-    "pred_type": "LOOP",
+    "pred_type": "CONDITIONAL",
     "gold_identifiers": [
       "mean",
       "mean_absolute_deviation",
       "numbers"
     ],
     "pred_identifiers": [
-      "deviations",
       "mad",
+      "mean",
       "mean_absolute_deviation",
-      "mean_value",
       "numbers"
     ],
     "gold_ops": [
@@ -156,12 +155,11 @@
       "arithmetic",
       "branching",
       "builtin",
-      "comprehension",
       "iteration",
       "recursion",
       "return"
     ],
-    "raw_response": "```python\n    if not numbers:\n        return 0.0\n    \n    mean_value = sum(numbers) / len(numbers)\n    deviations = [abs(x - mean_value) for x in numbers]\n    mad = sum(deviations) / len(numbers)\n    \n    return mad\n```"
+    "raw_response": "```python\n    if not numbers:\n        return 0.0\n    mean = sum(numbers) / len(numbers)\n    mad = sum(abs(x - mean) for x in numbers) / len(numbers)\n    return mad\n```"
   },
   {
     "idx": 5,
@@ -216,8 +214,8 @@
     ],
     "pred_identifiers": [
       "char",
-      "current_level",
-      "max_level",
+      "current_depth",
+      "max_depth",
       "max_nesting_level",
       "paren_string",
       "parse_nested_parens"
@@ -240,7 +238,7 @@
       "method",
       "return"
     ],
-    "raw_response": "```python\n    def max_nesting_level(s: str) -> int:\n        max_level = 0\n        current_level = 0\n        for char in s:\n            if char == '(':\n                current_level += 1\n                max_level = max(max_level, current_level)\n            elif char == ')':\n                current_level -= 1\n        return max_level\n\n    return [max_nesting_level(group) for group in paren_string.split()]\n```"
+    "raw_response": "```python\n    def max_nesting_level(s: str) -> int:\n        max_depth = 0\n        current_depth = 0\n        for char in s:\n            if char == '(':\n                current_depth += 1\n                max_depth = max(max_depth, current_depth)\n            elif char == ')':\n                current_depth -= 1\n        return max_depth\n\n    return [max_nesting_level(group) for group in paren_string.split()]\n```"
   },
   {
     "idx": 7,
@@ -310,7 +308,7 @@
     "idx": 9,
     "task_id": "HumanEval/9",
     "gold_type": "MULTI-STRUCT",
-    "pred_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
     "gold_identifiers": [
       "numbers",
       "result",
@@ -318,10 +316,10 @@
       "running_max"
     ],
     "pred_identifiers": [
-      "current_max",
+      "max_so_far",
       "numbers",
-      "rolling_max",
-      "rolling_max_list"
+      "result",
+      "rolling_max"
     ],
     "gold_ops": [
       "branching",
@@ -340,6 +338,5148 @@
       "recursion",
       "return"
     ],
-    "raw_response": "```python\nif not numbers:\n    return []\nrolling_max_list = []\ncurrent_max = numbers[0]\nfor num in numbers:\n    if num > current_max:\n        current_max = num\n    rolling_max_list.append(current_max)\nreturn rolling_max_list\n```"
+    "raw_response": "```python\n    if not numbers:\n        return []\n    \n    max_so_far = numbers[0]\n    result = [max_so_far]\n    \n    for num in numbers[1:]:\n        if num > max_so_far:\n            max_so_far = num\n        result.append(max_so_far)\n    \n    return result\n```"
+  },
+  {
+    "idx": 10,
+    "task_id": "HumanEval/10",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "beginning_of_suffix",
+      "is_palindrome",
+      "make_palindrome",
+      "string"
+    ],
+    "pred_identifiers": [
+      "is_palindrome",
+      "make_palindrome",
+      "string"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if is_palindrome(string):\n        return string\n    \n    for i in range(len(string)):\n        if is_palindrome(string[i:]):\n            return string + string[:i][::-1]\n    \n    return string + string[:-1][::-1]\n```"
+  },
+  {
+    "idx": 11,
+    "task_id": "HumanEval/11",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "a",
+      "b",
+      "i",
+      "string_xor",
+      "xor"
+    ],
+    "pred_identifiers": [
+      "a",
+      "b",
+      "string_xor"
+    ],
+    "gold_ops": [
+      "branching",
+      "builtin",
+      "method",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "builtin",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    return ''.join('1' if x != y else '0' for x, y in zip(a, b))\n```"
+  },
+  {
+    "idx": 12,
+    "task_id": "HumanEval/12",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "longest",
+      "maxlen",
+      "strings"
+    ],
+    "pred_identifiers": [
+      "key",
+      "longest",
+      "strings"
+    ],
+    "gold_ops": [
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif not strings:\n    return None\nreturn max(strings, key=len)\n```"
+  },
+  {
+    "idx": 13,
+    "task_id": "HumanEval/13",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "a",
+      "b",
+      "greatest_common_divisor"
+    ],
+    "pred_identifiers": [
+      "a",
+      "b",
+      "greatest_common_divisor"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nwhile b:\n    a, b = b, a % b\nreturn a\n```"
+  },
+  {
+    "idx": 14,
+    "task_id": "HumanEval/14",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "all_prefixes",
+      "result",
+      "string"
+    ],
+    "pred_identifiers": [
+      "all_prefixes",
+      "string"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn [string[:i] for i in range(1, len(string) + 1)]\n```"
+  },
+  {
+    "idx": 15,
+    "task_id": "HumanEval/15",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "n",
+      "string_sequence"
+    ],
+    "pred_identifiers": [
+      "n",
+      "string_sequence"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn ' '.join(str(i) for i in range(n + 1))\n```"
+  },
+  {
+    "idx": 16,
+    "task_id": "HumanEval/16",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "count_distinct_characters",
+      "string"
+    ],
+    "pred_identifiers": [
+      "count_distinct_characters",
+      "string"
+    ],
+    "gold_ops": [
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn len(set(string.lower()))\n```"
+  },
+  {
+    "idx": 17,
+    "task_id": "HumanEval/17",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "music_string",
+      "note_map",
+      "parse_music"
+    ],
+    "pred_identifiers": [
+      "beats",
+      "music_string",
+      "note_map",
+      "notes",
+      "parse_music"
+    ],
+    "gold_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nnote_map = {\n    'o': 4,\n    'o|': 2,\n    '.|': 1\n}\n\nnotes = music_string.split()\nbeats = [note_map[note] for note in notes]\nreturn beats\n```"
+  },
+  {
+    "idx": 18,
+    "task_id": "HumanEval/18",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "how_many_times",
+      "string",
+      "substring",
+      "times"
+    ],
+    "pred_identifiers": [
+      "count",
+      "how_many_times",
+      "start",
+      "string",
+      "substring"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif not substring:\n    return 0\n\ncount = start = 0\nwhile True:\n    start = string.find(substring, start)\n    if start == -1:\n        break\n    count += 1\n    start += 1\nreturn count\n```"
+  },
+  {
+    "idx": 19,
+    "task_id": "HumanEval/19",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "key",
+      "numbers",
+      "sort_numbers",
+      "value_map"
+    ],
+    "pred_identifiers": [
+      "key",
+      "number_map",
+      "numbers",
+      "sort_numbers",
+      "sorted_words",
+      "words"
+    ],
+    "gold_ops": [
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "builtin",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    number_map = {\n        'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,\n        'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9\n    }\n    words = numbers.split()\n    sorted_words = sorted(words, key=lambda word: number_map[word])\n    return ' '.join(sorted_words)\n```"
+  },
+  {
+    "idx": 20,
+    "task_id": "HumanEval/20",
+    "gold_type": "RECURSIVE",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "closest_pair",
+      "distance",
+      "find_closest_elements",
+      "new_distance",
+      "numbers"
+    ],
+    "pred_identifiers": [
+      "closest_pair",
+      "diff",
+      "find_closest_elements",
+      "min_diff",
+      "numbers"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    numbers.sort()\n    min_diff = float('inf')\n    closest_pair = (numbers[0], numbers[1])\n    \n    for i in range(len(numbers) - 1):\n        diff = numbers[i + 1] - numbers[i]\n        if diff < min_diff:\n            min_diff = diff\n            closest_pair = (numbers[i], numbers[i + 1])\n    \n    return closest_pair\n```"
+  },
+  {
+    "idx": 21,
+    "task_id": "HumanEval/21",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "max_number",
+      "min_number",
+      "numbers",
+      "rescale_to_unit"
+    ],
+    "pred_identifiers": [
+      "max_num",
+      "min_num",
+      "numbers",
+      "range_num",
+      "rescale_to_unit"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    min_num = min(numbers)\n    max_num = max(numbers)\n    range_num = max_num - min_num\n    return [(num - min_num) / range_num for num in numbers]\n```"
+  },
+  {
+    "idx": 22,
+    "task_id": "HumanEval/22",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "filter_integers",
+      "values"
+    ],
+    "pred_identifiers": [
+      "filter_integers",
+      "values"
+    ],
+    "gold_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn [value for value in values if isinstance(value, int)]\n```"
+  },
+  {
+    "idx": 23,
+    "task_id": "HumanEval/23",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "string",
+      "strlen"
+    ],
+    "pred_identifiers": [
+      "string",
+      "strlen"
+    ],
+    "gold_ops": [
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn len(string)\n```"
+  },
+  {
+    "idx": 24,
+    "task_id": "HumanEval/24",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "i",
+      "largest_divisor",
+      "n"
+    ],
+    "pred_identifiers": [
+      "i",
+      "largest_divisor",
+      "n"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```\nfor i in range(n // 2, 0, -1):\n    if n % i == 0:\n        return i\n```"
+  },
+  {
+    "idx": 25,
+    "task_id": "HumanEval/25",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "fact",
+      "factorize",
+      "i",
+      "n"
+    ],
+    "pred_identifiers": [
+      "divisor",
+      "factorize",
+      "factors",
+      "n"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nfactors = []\ndivisor = 2\nwhile n >= 2:\n    while n % divisor == 0:\n        factors.append(divisor)\n        n //= divisor\n    divisor += 1\nreturn factors\n```"
+  },
+  {
+    "idx": 26,
+    "task_id": "HumanEval/26",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "c",
+      "numbers",
+      "remove_duplicates"
+    ],
+    "pred_identifiers": [
+      "count",
+      "numbers",
+      "remove_duplicates"
+    ],
+    "gold_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    from collections import Counter\n    \n    count = Counter(numbers)\n    return [num for num in numbers if count[num] == 1]\n```"
+  },
+  {
+    "idx": 27,
+    "task_id": "HumanEval/27",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "flip_case",
+      "string"
+    ],
+    "pred_identifiers": [
+      "flip_case",
+      "string"
+    ],
+    "gold_ops": [
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn ''.join(char.lower() if char.isupper() else char.upper() for char in string)\n```"
+  },
+  {
+    "idx": 28,
+    "task_id": "HumanEval/28",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "concatenate",
+      "strings"
+    ],
+    "pred_identifiers": [
+      "concatenate",
+      "strings"
+    ],
+    "gold_ops": [
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn ''.join(strings)\n```"
+  },
+  {
+    "idx": 29,
+    "task_id": "HumanEval/29",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "filter_by_prefix",
+      "prefix",
+      "strings"
+    ],
+    "pred_identifiers": [
+      "filter_by_prefix",
+      "prefix",
+      "strings"
+    ],
+    "gold_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    return [s for s in strings if s.startswith(prefix)]\n```"
+  },
+  {
+    "idx": 30,
+    "task_id": "HumanEval/30",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "get_positive",
+      "l"
+    ],
+    "pred_identifiers": [
+      "get_positive",
+      "l"
+    ],
+    "gold_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn [x for x in l if x > 0]\n```"
+  },
+  {
+    "idx": 31,
+    "task_id": "HumanEval/31",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "is_prime",
+      "k",
+      "n"
+    ],
+    "pred_identifiers": [
+      "2",
+      "3",
+      "i",
+      "is_prime",
+      "n"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif n <= 1:\n    return False\nif n <= 3:\n    return True\nif n % 2 == 0 or n % 3 == 0:\n    return False\ni = 5\nwhile i * i <= n:\n    if n % i == 0 or n % (i + 2) == 0:\n        return False\n    i += 6\nreturn True\n```"
+  },
+  {
+    "idx": 32,
+    "task_id": "HumanEval/32",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "begin",
+      "center",
+      "end",
+      "find_zero",
+      "poly",
+      "x",
+      "xs"
+    ],
+    "pred_identifiers": [
+      "f",
+      "find_zero",
+      "poly",
+      "x",
+      "xs"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    from scipy.optimize import bisect\n\n    def f(x):\n        return poly(xs, x)\n\n    # Use the bisection method to find a root\n    # We assume the root is between -1000 and 1000 for simplicity\n    return bisect(f, -1000, 1000)\n```"
+  },
+  {
+    "idx": 33,
+    "task_id": "HumanEval/33",
+    "gold_type": "RECURSIVE",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "l",
+      "sort_third"
+    ],
+    "pred_identifiers": [
+      "3",
+      "divisible_by_three",
+      "j",
+      "l",
+      "result",
+      "sort_third"
+    ],
+    "gold_ops": [
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    # Extract elements at indices divisible by 3\n    divisible_by_three = [l[i] for i in range(len(l)) if i % 3 == 0]\n    \n    # Sort the extracted elements\n    divisible_by_three.sort()\n    \n    # Create a new list to store the result\n    result = l[:]\n    \n    # Replace elements at indices divisible by 3 with sorted elements\n    j = 0\n    for i in range(len(l)):\n        if i % 3 == 0:\n            result[i] = divisible_by_three[j]\n            j += 1\n    \n    return result\n```"
+  },
+  {
+    "idx": 34,
+    "task_id": "HumanEval/34",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "l",
+      "unique"
+    ],
+    "pred_identifiers": [
+      "l",
+      "unique"
+    ],
+    "gold_ops": [
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn sorted(set(l))\n```"
+  },
+  {
+    "idx": 35,
+    "task_id": "HumanEval/35",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "l",
+      "m",
+      "max_element"
+    ],
+    "pred_identifiers": [
+      "l",
+      "max_element",
+      "max_value"
+    ],
+    "gold_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "if not l:\n    return None\nmax_value = l[0]\nfor element in l:\n    if element > max_value:\n        max_value = element\nreturn max_value"
+  },
+  {
+    "idx": 36,
+    "task_id": "HumanEval/36",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "11",
+      "13",
+      "ans",
+      "c",
+      "fizz_buzz",
+      "n",
+      "ns",
+      "s"
+    ],
+    "pred_identifiers": [
+      "11",
+      "13",
+      "count",
+      "fizz_buzz",
+      "n"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\ncount = 0\nfor i in range(n):\n    if i % 11 == 0 or i % 13 == 0:\n        count += str(i).count('7')\nreturn count\n```"
+  },
+  {
+    "idx": 37,
+    "task_id": "HumanEval/37",
+    "gold_type": "RECURSIVE",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "ans",
+      "evens",
+      "l",
+      "odds",
+      "sort_even"
+    ],
+    "pred_identifiers": [
+      "even_indices_values",
+      "l",
+      "result",
+      "sort_even"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    even_indices_values = [l[i] for i in range(0, len(l), 2)]\n    even_indices_values.sort()\n    result = l[:]\n    for i, value in enumerate(even_indices_values):\n        result[i * 2] = value\n    return result\n```"
+  },
+  {
+    "idx": 38,
+    "task_id": "HumanEval/38",
+    "gold_type": "LOOP",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "decode_cyclic",
+      "encode_cyclic",
+      "s"
+    ],
+    "pred_identifiers": [
+      "decode_cyclic",
+      "encode_cyclic",
+      "groups",
+      "s"
+    ],
+    "gold_ops": [
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n# split string to groups. Each of length 3.\ngroups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]\n# reverse cycle elements in each group. Unless group has fewer elements than 3.\ngroups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]\nreturn \"\".join(groups)\n```"
+  },
+  {
+    "idx": 39,
+    "task_id": "HumanEval/39",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "f",
+      "is_prime",
+      "k",
+      "n",
+      "prime_fib"
+    ],
+    "pred_identifiers": [
+      "2",
+      "3",
+      "b",
+      "count",
+      "fib_gen",
+      "fib_num",
+      "fibonacci_generator",
+      "i",
+      "is_prime",
+      "n",
+      "prime_fib"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "method",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "return"
+    ],
+    "raw_response": "```python\n    def is_prime(num: int) -> bool:\n        if num <= 1:\n            return False\n        if num <= 3:\n            return True\n        if num % 2 == 0 or num % 3 == 0:\n            return False\n        i = 5\n        while i * i <= num:\n            if num % i == 0 or num % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    def fibonacci_generator():\n        a, b = 0, 1\n        while True:\n            yield b\n            a, b = b, a + b\n\n    count = 0\n    fib_gen = fibonacci_generator()\n    while True:\n        fib_num = next(fib_gen)\n        if is_prime(fib_num):\n            count += 1\n            if count == n:\n                return fib_num\n```"
+  },
+  {
+    "idx": 40,
+    "task_id": "HumanEval/40",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "l",
+      "triples_sum_to_zero"
+    ],
+    "pred_identifiers": [
+      "current_sum",
+      "l",
+      "n",
+      "right",
+      "triples_sum_to_zero"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    n = len(l)\n    if n < 3:\n        return False\n\n    l.sort()\n    for i in range(n - 2):\n        if i > 0 and l[i] == l[i - 1]:\n            continue\n        left, right = i + 1, n - 1\n        while left < right:\n            current_sum = l[i] + l[left] + l[right]\n            if current_sum == 0:\n                return True\n            elif current_sum < 0:\n                left += 1\n            else:\n                right -= 1\n\n    return False\n```"
+  },
+  {
+    "idx": 41,
+    "task_id": "HumanEval/41",
+    "gold_type": "SINGLE-FUNC",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "car_race_collision",
+      "n"
+    ],
+    "pred_identifiers": [
+      "car_race_collision",
+      "n"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn n\n```"
+  },
+  {
+    "idx": 42,
+    "task_id": "HumanEval/42",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "incr_list",
+      "l"
+    ],
+    "pred_identifiers": [
+      "incr_list",
+      "l"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "return [x + 1 for x in l]"
+  },
+  {
+    "idx": 43,
+    "task_id": "HumanEval/43",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "l",
+      "pairs_sum_to_zero"
+    ],
+    "pred_identifiers": [
+      "l",
+      "pairs_sum_to_zero",
+      "seen"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    seen = set()\n    for num in l:\n        if -num in seen:\n            return True\n        seen.add(num)\n    return False\n```"
+  },
+  {
+    "idx": 44,
+    "task_id": "HumanEval/44",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "base",
+      "change_base",
+      "ret",
+      "x"
+    ],
+    "pred_identifiers": [
+      "base",
+      "change_base",
+      "digits",
+      "x"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif x == 0:\n    return '0'\ndigits = []\nwhile x > 0:\n    digits.append(str(x % base))\n    x //= base\nreturn ''.join(reversed(digits))\n```"
+  },
+  {
+    "idx": 45,
+    "task_id": "HumanEval/45",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "a",
+      "h",
+      "triangle_area"
+    ],
+    "pred_identifiers": [
+      "a",
+      "h",
+      "triangle_area"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn 0.5 * a * h\n```"
+  },
+  {
+    "idx": 46,
+    "task_id": "HumanEval/46",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "fib4",
+      "n",
+      "results"
+    ],
+    "pred_identifiers": [
+      "fib4",
+      "fib4_values",
+      "n",
+      "next_value"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if n == 0 or n == 1 or n == 3:\n        return 0\n    elif n == 2:\n        return 2\n\n    fib4_values = [0, 0, 2, 0]\n    for i in range(4, n + 1):\n        next_value = fib4_values[-1] + fib4_values[-2] + fib4_values[-3] + fib4_values[-4]\n        fib4_values.append(next_value)\n        fib4_values.pop(0)\n\n    return fib4_values[-1]\n```"
+  },
+  {
+    "idx": 47,
+    "task_id": "HumanEval/47",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "2",
+      "l",
+      "median"
+    ],
+    "pred_identifiers": [
+      "2",
+      "l",
+      "l_sorted",
+      "median",
+      "mid",
+      "n"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if not l:\n        raise ValueError(\"The list is empty\")\n    l_sorted = sorted(l)\n    n = len(l_sorted)\n    mid = n // 2\n    if n % 2 == 0:\n        return (l_sorted[mid - 1] + l_sorted[mid]) / 2\n    else:\n        return l_sorted[mid]\n```"
+  },
+  {
+    "idx": 48,
+    "task_id": "HumanEval/48",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "is_palindrome",
+      "text"
+    ],
+    "pred_identifiers": [
+      "cleaned_text",
+      "is_palindrome",
+      "text"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```\ncleaned_text = ''.join(char.lower() for char in text if char.isalnum())\nreturn cleaned_text == cleaned_text[::-1]\n```"
+  },
+  {
+    "idx": 49,
+    "task_id": "HumanEval/49",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "modp",
+      "n",
+      "p",
+      "ret"
+    ],
+    "pred_identifiers": [
+      "2",
+      "base",
+      "modp",
+      "n",
+      "p",
+      "result"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nresult = 1\nbase = 2\n\nwhile n > 0:\n    if n % 2 == 1:\n        result = (result * base) % p\n    base = (base * base) % p\n    n //= 2\n\nreturn result\n```"
+  },
+  {
+    "idx": 50,
+    "task_id": "HumanEval/50",
+    "gold_type": "LOOP",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "decode_shift",
+      "encode_shift",
+      "s"
+    ],
+    "pred_identifiers": [
+      "decode_shift",
+      "encode_shift",
+      "s"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn \"\".join([chr(((ord(ch) - 5 - ord(\"a\")) % 26) + ord(\"a\")) for ch in s])\n```"
+  },
+  {
+    "idx": 51,
+    "task_id": "HumanEval/51",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "remove_vowels",
+      "text"
+    ],
+    "pred_identifiers": [
+      "remove_vowels",
+      "text",
+      "vowels"
+    ],
+    "gold_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nvowels = \"aeiouAEIOU\"\nreturn ''.join(char for char in text if char not in vowels)\n```"
+  },
+  {
+    "idx": 52,
+    "task_id": "HumanEval/52",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "below_threshold",
+      "l",
+      "t"
+    ],
+    "pred_identifiers": [
+      "below_threshold",
+      "l",
+      "t"
+    ],
+    "gold_ops": [
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nfor number in l:\n    if number >= t:\n        return False\nreturn True\n```"
+  },
+  {
+    "idx": 53,
+    "task_id": "HumanEval/53",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "add",
+      "x",
+      "y"
+    ],
+    "pred_identifiers": [
+      "add",
+      "x",
+      "y"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn x + y\n```"
+  },
+  {
+    "idx": 54,
+    "task_id": "HumanEval/54",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "s0",
+      "s1",
+      "same_chars"
+    ],
+    "pred_identifiers": [
+      "s0",
+      "s1",
+      "same_chars"
+    ],
+    "gold_ops": [
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    return set(s0) == set(s1)\n```"
+  },
+  {
+    "idx": 55,
+    "task_id": "HumanEval/55",
+    "gold_type": "RECURSIVE",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "fib",
+      "n"
+    ],
+    "pred_identifiers": [
+      "b",
+      "fib",
+      "n"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif n <= 0:\n    return 0\nelif n == 1:\n    return 1\n\na, b = 0, 1\nfor _ in range(2, n + 1):\n    a, b = b, a + b\nreturn b\n```"
+  },
+  {
+    "idx": 56,
+    "task_id": "HumanEval/56",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "b",
+      "brackets",
+      "correct_bracketing",
+      "depth"
+    ],
+    "pred_identifiers": [
+      "balance",
+      "bracket",
+      "brackets",
+      "correct_bracketing"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    balance = 0\n    for bracket in brackets:\n        if bracket == '<':\n            balance += 1\n        elif bracket == '>':\n            balance -= 1\n        if balance < 0:\n            return False\n    return balance == 0\n```"
+  },
+  {
+    "idx": 57,
+    "task_id": "HumanEval/57",
+    "gold_type": "RECURSIVE",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "l",
+      "monotonic",
+      "reverse"
+    ],
+    "pred_identifiers": [
+      "decreasing",
+      "increasing",
+      "l",
+      "monotonic"
+    ],
+    "gold_ops": [
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif not l:\n    return True\n\nincreasing = decreasing = True\n\nfor i in range(1, len(l)):\n    if l[i] > l[i - 1]:\n        decreasing = False\n    elif l[i] < l[i - 1]:\n        increasing = False\n\nreturn increasing or decreasing\n```"
+  },
+  {
+    "idx": 58,
+    "task_id": "HumanEval/58",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "common",
+      "e1",
+      "l1",
+      "l2",
+      "ret"
+    ],
+    "pred_identifiers": [
+      "common",
+      "l1",
+      "l2"
+    ],
+    "gold_ops": [
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    return sorted(set(l1) & set(l2))\n```"
+  },
+  {
+    "idx": 59,
+    "task_id": "HumanEval/59",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "i",
+      "is_prime",
+      "j",
+      "largest",
+      "largest_prime_factor",
+      "n"
+    ],
+    "pred_identifiers": [
+      "2",
+      "3",
+      "factor",
+      "i",
+      "is_prime",
+      "largest_factor",
+      "largest_prime_factor",
+      "n"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "return"
+    ],
+    "raw_response": "```python\n    def is_prime(num):\n        if num <= 1:\n            return False\n        if num <= 3:\n            return True\n        if num % 2 == 0 or num % 3 == 0:\n            return False\n        i = 5\n        while i * i <= num:\n            if num % i == 0 or num % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    largest_factor = 1\n    factor = 2\n\n    while n % factor == 0:\n        largest_factor = factor\n        n //= factor\n\n    factor = 3\n    while n != 1:\n        while n % factor == 0:\n            largest_factor = factor\n            n //= factor\n        factor += 2\n\n    return largest_factor\n```"
+  },
+  {
+    "idx": 60,
+    "task_id": "HumanEval/60",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "n",
+      "sum_to_n"
+    ],
+    "pred_identifiers": [
+      "n",
+      "sum_to_n"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn n * (n + 1) // 2\n```"
+  },
+  {
+    "idx": 61,
+    "task_id": "HumanEval/61",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "b",
+      "brackets",
+      "correct_bracketing",
+      "depth"
+    ],
+    "pred_identifiers": [
+      "balance",
+      "brackets",
+      "char",
+      "correct_bracketing"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    balance = 0\n    for char in brackets:\n        if char == '(':\n            balance += 1\n        elif char == ')':\n            balance -= 1\n        if balance < 0:\n            return False\n    return balance == 0\n```"
+  },
+  {
+    "idx": 62,
+    "task_id": "HumanEval/62",
+    "gold_type": "RECURSIVE",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "derivative",
+      "xs"
+    ],
+    "pred_identifiers": [
+      "derivative",
+      "xs"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn [i * xs[i] for i in range(1, len(xs))]\n```"
+  },
+  {
+    "idx": 63,
+    "task_id": "HumanEval/63",
+    "gold_type": "RECURSIVE",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "fibfib",
+      "n"
+    ],
+    "pred_identifiers": [
+      "c",
+      "fibfib",
+      "n"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if n == 0 or n == 1:\n        return 0\n    elif n == 2:\n        return 1\n\n    a, b, c = 0, 0, 1\n    for _ in range(3, n + 1):\n        a, b, c = b, c, a + b + c\n    return c\n```"
+  },
+  {
+    "idx": 64,
+    "task_id": "HumanEval/64",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "n_vowels",
+      "s",
+      "vowels",
+      "vowels_count"
+    ],
+    "pred_identifiers": [
+      "count",
+      "i",
+      "s",
+      "vowels",
+      "vowels_count"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nvowels = set('aeiouAEIOU')\n\ncount = 0\nfor i, char in enumerate(s):\n    if char in vowels:\n        count += 1\n    elif char.lower() == 'y' and i == len(s) - 1:\n        count += 1\n\nreturn count\n```"
+  },
+  {
+    "idx": 65,
+    "task_id": "HumanEval/65",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "circular_shift",
+      "s",
+      "shift",
+      "x"
+    ],
+    "pred_identifiers": [
+      "circular_shift",
+      "num_digits",
+      "shift",
+      "x",
+      "x_str"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    x_str = str(x)\n    num_digits = len(x_str)\n    \n    if shift >= num_digits:\n        return x_str[::-1]\n    \n    shift = shift % num_digits\n    return x_str[-shift:] + x_str[:-shift]\n```"
+  },
+  {
+    "idx": 66,
+    "task_id": "HumanEval/66",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "digitSum",
+      "s"
+    ],
+    "pred_identifiers": [
+      "digitSum",
+      "s"
+    ],
+    "gold_ops": [
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    return sum(ord(char) for char in s if char.isupper())\n```"
+  },
+  {
+    "idx": 67,
+    "task_id": "HumanEval/67",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "fruit_distribution",
+      "lis",
+      "n",
+      "s"
+    ],
+    "pred_identifiers": [
+      "fruit_distribution",
+      "n",
+      "numbers",
+      "oranges",
+      "s"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nimport re\n\n# Extract numbers from the string and calculate the number of mangoes\nnumbers = list(map(int, re.findall(r'\\d+', s)))\napples, oranges = numbers[0], numbers[1]\nreturn n - apples - oranges\n```"
+  },
+  {
+    "idx": 68,
+    "task_id": "HumanEval/68",
+    "gold_type": "SINGLE-FUNC",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "2",
+      "arr",
+      "evens",
+      "pluck"
+    ],
+    "pred_identifiers": [
+      "2",
+      "arr",
+      "pluck",
+      "smallest_even",
+      "smallest_index"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if not arr:\n        return []\n    \n    smallest_even = float('inf')\n    smallest_index = -1\n    \n    for index, value in enumerate(arr):\n        if value % 2 == 0:\n            if value < smallest_even:\n                smallest_even = value\n                smallest_index = index\n    \n    if smallest_index == -1:\n        return []\n    \n    return [smallest_even, smallest_index]\n```"
+  },
+  {
+    "idx": 69,
+    "task_id": "HumanEval/69",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "ans",
+      "frq",
+      "lst",
+      "search"
+    ],
+    "pred_identifiers": [
+      "freq",
+      "lst",
+      "result",
+      "search"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    from collections import Counter\n\n    freq = Counter(lst)\n    result = -1\n\n    for num, count in freq.items():\n        if count >= num:\n            result = max(result, num)\n\n    return result\n```"
+  },
+  {
+    "idx": 70,
+    "task_id": "HumanEval/70",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "lst",
+      "strange_sort_list",
+      "switch"
+    ],
+    "pred_identifiers": [
+      "lst",
+      "result",
+      "strange_sort_list"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    result = []\n    lst = sorted(lst)\n    while lst:\n        result.append(lst.pop(0))  # Append the minimum\n        if lst:\n            result.append(lst.pop(-1))  # Append the maximum\n    return result\n```"
+  },
+  {
+    "idx": 71,
+    "task_id": "HumanEval/71",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "a",
+      "area",
+      "b",
+      "c",
+      "s",
+      "triangle_area"
+    ],
+    "pred_identifiers": [
+      "a",
+      "area",
+      "b",
+      "c",
+      "s",
+      "triangle_area"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    # Check if the sides form a valid triangle\n    if a + b <= c or a + c <= b or b + c <= a:\n        return -1\n    \n    # Calculate the semi-perimeter\n    s = (a + b + c) / 2\n    \n    # Calculate the area using Heron's formula\n    area = (s * (s - a) * (s - b) * (s - c)) ** 0.5\n    \n    # Return the area rounded to 2 decimal points\n    return round(area, 2)\n```"
+  },
+  {
+    "idx": 72,
+    "task_id": "HumanEval/72",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "j",
+      "q",
+      "w",
+      "will_it_fly"
+    ],
+    "pred_identifiers": [
+      "q",
+      "w",
+      "will_it_fly"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    return q == q[::-1] and sum(q) <= w\n```"
+  },
+  {
+    "idx": 73,
+    "task_id": "HumanEval/73",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "ans",
+      "arr",
+      "smallest_change"
+    ],
+    "pred_identifiers": [
+      "arr",
+      "changes",
+      "n",
+      "smallest_change"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```\nn = len(arr)\nchanges = 0\nfor i in range(n // 2):\n    if arr[i] != arr[n - i - 1]:\n        changes += 1\nreturn changes\n```"
+  },
+  {
+    "idx": 74,
+    "task_id": "HumanEval/74",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "RECURSIVE",
+    "gold_identifiers": [
+      "l1",
+      "l2",
+      "lst1",
+      "lst2",
+      "total_match"
+    ],
+    "pred_identifiers": [
+      "lst1",
+      "lst2",
+      "total_chars",
+      "total_match"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "builtin",
+      "iteration",
+      "return"
+    ],
+    "raw_response": "```python\n    def total_chars(lst):\n        return sum(len(s) for s in lst)\n\n    if total_chars(lst1) < total_chars(lst2):\n        return lst1\n    elif total_chars(lst1) > total_chars(lst2):\n        return lst2\n    else:\n        return lst1\n```"
+  },
+  {
+    "idx": 75,
+    "task_id": "HumanEval/75",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "a",
+      "is_multiply_prime",
+      "is_prime",
+      "j",
+      "k"
+    ],
+    "pred_identifiers": [
+      "2",
+      "3",
+      "a",
+      "i",
+      "is_multiply_prime",
+      "is_prime",
+      "primes"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "return"
+    ],
+    "raw_response": "```python\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    primes = [i for i in range(2, 100) if is_prime(i)]\n    \n    for i in range(len(primes)):\n        for j in range(i, len(primes)):\n            for k in range(j, len(primes)):\n                if primes[i] * primes[j] * primes[k] == a:\n                    return True\n    return False\n```"
+  },
+  {
+    "idx": 76,
+    "task_id": "HumanEval/76",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "is_simple_power",
+      "n",
+      "power",
+      "x"
+    ],
+    "pred_identifiers": [
+      "is_simple_power",
+      "n",
+      "power",
+      "x"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif x == 1:\n    return True\nif n <= 1:\n    return False\npower = n\nwhile power < x:\n    power *= n\nreturn power == x\n```"
+  },
+  {
+    "idx": 77,
+    "task_id": "HumanEval/77",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "3",
+      "a",
+      "iscube"
+    ],
+    "pred_identifiers": [
+      "3",
+      "a",
+      "cube_root",
+      "iscube"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```\nif a < 0:\n    a = -a\ncube_root = round(a ** (1/3))\nreturn cube_root ** 3 == a\n```"
+  },
+  {
+    "idx": 78,
+    "task_id": "HumanEval/78",
+    "gold_type": "LOOP",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "hex_key",
+      "num",
+      "primes",
+      "total"
+    ],
+    "pred_identifiers": [
+      "count",
+      "hex_key",
+      "num",
+      "prime_hex_digits"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nprime_hex_digits = {'2', '3', '5', '7', 'B', 'D'}\ncount = 0\nfor char in num:\n    if char in prime_hex_digits:\n        count += 1\nreturn count\n```"
+  },
+  {
+    "idx": 79,
+    "task_id": "HumanEval/79",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "decimal",
+      "decimal_to_binary"
+    ],
+    "pred_identifiers": [
+      "binary",
+      "decimal",
+      "decimal_to_binary"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    binary = bin(decimal)[2:]  # Convert to binary and remove the '0b' prefix\n    return f\"db{binary}db\"\n```"
+  },
+  {
+    "idx": 80,
+    "task_id": "HumanEval/80",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "is_happy",
+      "s"
+    ],
+    "pred_identifiers": [
+      "is_happy",
+      "s"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif len(s) < 3:\n    return False\n\nfor i in range(len(s) - 2):\n    if s[i] == s[i + 1] or s[i] == s[i + 2] or s[i + 1] == s[i + 2]:\n        return False\n\nreturn True\n```"
+  },
+  {
+    "idx": 81,
+    "task_id": "HumanEval/81",
+    "gold_type": "LOOP",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "gpa",
+      "grades",
+      "letter_grade",
+      "numerical_letter_grade"
+    ],
+    "pred_identifiers": [
+      "gpa",
+      "grades",
+      "letter_grades",
+      "numerical_letter_grade"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    letter_grades = []\n    for gpa in grades:\n        if gpa == 4.0:\n            letter_grades.append('A+')\n        elif gpa > 3.7:\n            letter_grades.append('A')\n        elif gpa > 3.3:\n            letter_grades.append('A-')\n        elif gpa > 3.0:\n            letter_grades.append('B+')\n        elif gpa > 2.7:\n            letter_grades.append('B')\n        elif gpa > 2.3:\n            letter_grades.append('B-')\n        elif gpa > 2.0:\n            letter_grades.append('C+')\n        elif gpa > 1.7:\n            letter_grades.append('C')\n        elif gpa > 1.3:\n            letter_grades.append('C-')\n        elif gpa > 1.0:\n            letter_grades.append('D+')\n        elif gpa > 0.7:\n            letter_grades.append('D')\n        elif gpa > 0.0:\n            letter_grades.append('D-')\n        else:\n            letter_grades.append('E')\n    return letter_grades\n```"
+  },
+  {
+    "idx": 82,
+    "task_id": "HumanEval/82",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "i",
+      "l",
+      "prime_length",
+      "string"
+    ],
+    "pred_identifiers": [
+      "2",
+      "3",
+      "i",
+      "is_prime",
+      "prime_length",
+      "string"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "return"
+    ],
+    "raw_response": "```python\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    return is_prime(len(string))\n```"
+  },
+  {
+    "idx": 83,
+    "task_id": "HumanEval/83",
+    "gold_type": "CONDITIONAL",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "n",
+      "starts_one_ends"
+    ],
+    "pred_identifiers": [
+      "end_with_1",
+      "n",
+      "start_and_end_with_1",
+      "start_with_1",
+      "starts_one_ends",
+      "total_n_digit_numbers"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if n == 1:\n        return 1  # Only the number 1 itself\n\n    # Total n-digit numbers\n    total_n_digit_numbers = 9 * (10 ** (n - 1))\n\n    # Numbers starting with 1: 1XX...X (n-1 digits after 1)\n    start_with_1 = 10 ** (n - 1)\n\n    # Numbers ending with 1: XX...X1 (n-1 digits before 1)\n    end_with_1 = 10 ** (n - 1)\n\n    # Numbers that start and end with 1: 1XX...X1 (n-2 digits between)\n    start_and_end_with_1 = 10 ** (n - 2)\n\n    # Use inclusion-exclusion principle\n    return start_with_1 + end_with_1 - start_and_end_with_1\n```"
+  },
+  {
+    "idx": 84,
+    "task_id": "HumanEval/84",
+    "gold_type": "SINGLE-FUNC",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "N",
+      "solve"
+    ],
+    "pred_identifiers": [
+      "N",
+      "digit_sum",
+      "solve"
+    ],
+    "gold_ops": [
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\ndigit_sum = sum(int(digit) for digit in str(N))\nreturn bin(digit_sum)[2:]\n```"
+  },
+  {
+    "idx": 85,
+    "task_id": "HumanEval/85",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "2",
+      "add",
+      "lst"
+    ],
+    "pred_identifiers": [
+      "2",
+      "add",
+      "lst"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    return sum(lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0)\n```"
+  },
+  {
+    "idx": 86,
+    "task_id": "HumanEval/86",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "anti_shuffle",
+      "s"
+    ],
+    "pred_identifiers": [
+      "anti_shuffle",
+      "s",
+      "sorted_words",
+      "words"
+    ],
+    "gold_ops": [
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    words = s.split(' ')\n    sorted_words = [''.join(sorted(word)) for word in words]\n    return ' '.join(sorted_words)\n```"
+  },
+  {
+    "idx": 87,
+    "task_id": "HumanEval/87",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "coords",
+      "get_row",
+      "key",
+      "lst",
+      "reverse",
+      "x"
+    ],
+    "pred_identifiers": [
+      "coordinates",
+      "get_row",
+      "key",
+      "lst",
+      "value",
+      "x"
+    ],
+    "gold_ops": [
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\ncoordinates = []\nfor row_index, row in enumerate(lst):\n    for col_index, value in enumerate(row):\n        if value == x:\n            coordinates.append((row_index, col_index))\ncoordinates.sort(key=lambda coord: (coord[0], -coord[1]))\nreturn coordinates\n```"
+  },
+  {
+    "idx": 88,
+    "task_id": "HumanEval/88",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "2",
+      "array",
+      "reverse",
+      "sort_array"
+    ],
+    "pred_identifiers": [
+      "2",
+      "array",
+      "first_value",
+      "last_value",
+      "reverse",
+      "sort_array",
+      "sum_first_last"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```\nif not array:\n    return []\n\nfirst_value = array[0]\nlast_value = array[-1]\nsum_first_last = first_value + last_value\n\nif sum_first_last % 2 == 0:\n    return sorted(array, reverse=True)\nelse:\n    return sorted(array)\n```"
+  },
+  {
+    "idx": 89,
+    "task_id": "HumanEval/89",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "RECURSIVE",
+    "gold_identifiers": [
+      "d",
+      "encrypt",
+      "out",
+      "s"
+    ],
+    "pred_identifiers": [
+      "encrypt",
+      "rotate_char",
+      "s",
+      "shift"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "method",
+      "return"
+    ],
+    "raw_response": "```python\n    def rotate_char(c, shift):\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') + shift) % 26 + ord('a'))\n        elif 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') + shift) % 26 + ord('A'))\n        else:\n            return c\n\n    shift = 2 * 2\n    return ''.join(rotate_char(c, shift) for c in s)\n```"
+  },
+  {
+    "idx": 90,
+    "task_id": "HumanEval/90",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "lst",
+      "next_smallest"
+    ],
+    "pred_identifiers": [
+      "lst",
+      "next_smallest",
+      "sorted_elements",
+      "unique_elements"
+    ],
+    "gold_ops": [
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if len(lst) < 2:\n        return None\n    \n    unique_elements = set(lst)\n    \n    if len(unique_elements) < 2:\n        return None\n    \n    sorted_elements = sorted(unique_elements)\n    return sorted_elements[1]\n```"
+  },
+  {
+    "idx": 91,
+    "task_id": "HumanEval/91",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "S",
+      "is_bored",
+      "sentences"
+    ],
+    "pred_identifiers": [
+      "S",
+      "boredom_count",
+      "is_bored",
+      "sentences"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    import re\n    \n    # Split the string into sentences using regex to handle '.', '?' and '!' as delimiters\n    sentences = re.split(r'[.!?]', S)\n    \n    # Initialize a counter for boredoms\n    boredom_count = 0\n    \n    # Iterate over each sentence\n    for sentence in sentences:\n        # Strip leading and trailing whitespace and check if it starts with 'I'\n        if sentence.strip().startswith('I'):\n            boredom_count += 1\n    \n    return boredom_count\n```"
+  },
+  {
+    "idx": 92,
+    "task_id": "HumanEval/92",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "any_int",
+      "x",
+      "y",
+      "z"
+    ],
+    "pred_identifiers": [
+      "any_int",
+      "x",
+      "y",
+      "z"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif not all(isinstance(i, int) for i in (x, y, z)):\n    return False\nreturn x == y + z or y == x + z or z == x + y\n```"
+  },
+  {
+    "idx": 93,
+    "task_id": "HumanEval/93",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "encode",
+      "message",
+      "vowels",
+      "vowels_replace"
+    ],
+    "pred_identifiers": [
+      "encode",
+      "encoded_message",
+      "message",
+      "vowel_replacement",
+      "vowels"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    vowels = 'aeiouAEIOU'\n    vowel_replacement = {'a': 'c', 'e': 'g', 'i': 'k', 'o': 'q', 'u': 'w',\n                         'A': 'C', 'E': 'G', 'I': 'K', 'O': 'Q', 'U': 'W'}\n    \n    encoded_message = []\n    \n    for char in message:\n        if char in vowels:\n            encoded_message.append(vowel_replacement[char])\n        else:\n            encoded_message.append(char.swapcase())\n    \n    return ''.join(encoded_message)\n```"
+  },
+  {
+    "idx": 94,
+    "task_id": "HumanEval/94",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "i",
+      "isPrime",
+      "lst",
+      "maxx",
+      "result",
+      "skjkasdkd"
+    ],
+    "pred_identifiers": [
+      "2",
+      "3",
+      "i",
+      "is_prime",
+      "largest_prime",
+      "lst",
+      "primes",
+      "skjkasdkd",
+      "sum_of_digits"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "return"
+    ],
+    "raw_response": "```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\ndef sum_of_digits(n):\n    return sum(int(digit) for digit in str(n))\n\nprimes = [num for num in lst if is_prime(num)]\nif not primes:\n    return 0\nlargest_prime = max(primes)\nreturn sum_of_digits(largest_prime)\n```"
+  },
+  {
+    "idx": 95,
+    "task_id": "HumanEval/95",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "check_dict_case",
+      "dict",
+      "state"
+    ],
+    "pred_identifiers": [
+      "all_lower",
+      "all_upper",
+      "check_dict_case",
+      "dict"
+    ],
+    "gold_ops": [
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if not dict:\n        return False\n    \n    all_lower = all(isinstance(key, str) and key.islower() for key in dict)\n    all_upper = all(isinstance(key, str) and key.isupper() for key in dict)\n    \n    return all_lower or all_upper\n```"
+  },
+  {
+    "idx": 96,
+    "task_id": "HumanEval/96",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "count_up_to",
+      "is_prime",
+      "j",
+      "n",
+      "primes"
+    ],
+    "pred_identifiers": [
+      "2",
+      "3",
+      "count_up_to",
+      "i",
+      "is_prime",
+      "n",
+      "primes"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "return"
+    ],
+    "raw_response": "```python\ndef count_up_to(n):\n    def is_prime(num):\n        if num <= 1:\n            return False\n        if num <= 3:\n            return True\n        if num % 2 == 0 or num % 3 == 0:\n            return False\n        i = 5\n        while i * i <= num:\n            if num % i == 0 or num % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    primes = []\n    for i in range(2, n):\n        if is_prime(i):\n            primes.append(i)\n    return primes\n```"
+  },
+  {
+    "idx": 97,
+    "task_id": "HumanEval/97",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "a",
+      "b",
+      "multiply"
+    ],
+    "pred_identifiers": [
+      "a",
+      "b",
+      "multiply",
+      "unit_digit_a",
+      "unit_digit_b"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nunit_digit_a = abs(a) % 10\nunit_digit_b = abs(b) % 10\nreturn unit_digit_a * unit_digit_b\n```"
+  },
+  {
+    "idx": 98,
+    "task_id": "HumanEval/98",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "count",
+      "count_upper",
+      "s"
+    ],
+    "pred_identifiers": [
+      "count",
+      "count_upper",
+      "s",
+      "vowels"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\ncount = 0\nvowels = {'A', 'E', 'I', 'O', 'U'}\nfor i in range(0, len(s), 2):\n    if s[i] in vowels:\n        count += 1\nreturn count\n```"
+  },
+  {
+    "idx": 99,
+    "task_id": "HumanEval/99",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "closest_integer",
+      "num",
+      "res",
+      "value"
+    ],
+    "pred_identifiers": [
+      "closest_integer",
+      "num",
+      "value"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    num = float(value)\n    if num > 0:\n        return int(num + 0.5)\n    else:\n        return int(num - 0.5)\n```"
+  },
+  {
+    "idx": 100,
+    "task_id": "HumanEval/100",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "make_a_pile",
+      "n"
+    ],
+    "pred_identifiers": [
+      "2",
+      "current_stones",
+      "make_a_pile",
+      "n",
+      "pile"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```\npile = []\ncurrent_stones = n\nfor i in range(n):\n    pile.append(current_stones)\n    if current_stones % 2 == 0:\n        current_stones += 2\n    else:\n        current_stones += 2\nreturn pile\n```"
+  },
+  {
+    "idx": 101,
+    "task_id": "HumanEval/101",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "letter",
+      "s",
+      "s_list",
+      "words_string"
+    ],
+    "pred_identifiers": [
+      "s",
+      "words_string"
+    ],
+    "gold_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```\nimport re\n\nreturn re.findall(r'\\b\\w+\\b', s)\n```"
+  },
+  {
+    "idx": 102,
+    "task_id": "HumanEval/102",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "2",
+      "choose_num",
+      "x",
+      "y"
+    ],
+    "pred_identifiers": [
+      "2",
+      "choose_num",
+      "x",
+      "y"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if x > y:\n        return -1\n    \n    # Start from the largest number in the range\n    if y % 2 == 0:\n        return y\n    elif y - 1 >= x:\n        return y - 1\n    else:\n        return -1\n```"
+  },
+  {
+    "idx": 103,
+    "task_id": "HumanEval/103",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "m",
+      "n",
+      "rounded_avg",
+      "summation"
+    ],
+    "pred_identifiers": [
+      "average",
+      "m",
+      "n",
+      "rounded_average",
+      "rounded_avg",
+      "total_numbers",
+      "total_sum"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if n > m:\n        return -1\n    \n    total_numbers = m - n + 1\n    total_sum = (m * (m + 1) // 2) - (n * (n - 1) // 2)\n    average = total_sum / total_numbers\n    rounded_average = round(average)\n    \n    return bin(rounded_average)\n```"
+  },
+  {
+    "idx": 104,
+    "task_id": "HumanEval/104",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "2",
+      "odd_digit_elements",
+      "unique_digits",
+      "x"
+    ],
+    "pred_identifiers": [
+      "result",
+      "unique_digits",
+      "x"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nresult = []\nfor num in x:\n    if all(int(digit) % 2 != 0 for digit in str(num)):\n        result.append(num)\nreturn sorted(result)\n```"
+  },
+  {
+    "idx": 105,
+    "task_id": "HumanEval/105",
+    "gold_type": "LOOP",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "arr",
+      "by_length",
+      "dic",
+      "new_arr",
+      "reverse",
+      "sorted_arr"
+    ],
+    "pred_identifiers": [
+      "arr",
+      "by_length",
+      "filtered_arr",
+      "num_to_name",
+      "reverse"
+    ],
+    "gold_ops": [
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    # Filter numbers between 1 and 9 inclusive\n    filtered_arr = [num for num in arr if 1 <= num <= 9]\n    \n    # Sort and reverse the filtered array\n    filtered_arr.sort(reverse=True)\n    \n    # Mapping of numbers to their corresponding names\n    num_to_name = {\n        1: \"One\",\n        2: \"Two\",\n        3: \"Three\",\n        4: \"Four\",\n        5: \"Five\",\n        6: \"Six\",\n        7: \"Seven\",\n        8: \"Eight\",\n        9: \"Nine\"\n    }\n    \n    # Replace each number with its corresponding name\n    return [num_to_name[num] for num in filtered_arr]\n```"
+  },
+  {
+    "idx": 106,
+    "task_id": "HumanEval/106",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "2",
+      "f",
+      "n",
+      "ret",
+      "x"
+    ],
+    "pred_identifiers": [
+      "2",
+      "f",
+      "factorial",
+      "n",
+      "result",
+      "sum_of_numbers"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nresult = []\nfor i in range(1, n + 1):\n    if i % 2 == 0:\n        factorial = 1\n        for j in range(1, i + 1):\n            factorial *= j\n        result.append(factorial)\n    else:\n        sum_of_numbers = sum(range(1, i + 1))\n        result.append(sum_of_numbers)\nreturn result\n```"
+  },
+  {
+    "idx": 107,
+    "task_id": "HumanEval/107",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "2",
+      "even_odd_palindrome",
+      "even_palindrome_count",
+      "is_palindrome",
+      "n",
+      "odd_palindrome_count"
+    ],
+    "pred_identifiers": [
+      "2",
+      "even_count",
+      "even_odd_palindrome",
+      "is_palindrome",
+      "n",
+      "odd_count",
+      "s"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "return"
+    ],
+    "raw_response": "```python\n    def is_palindrome(x):\n        s = str(x)\n        return s == s[::-1]\n\n    even_count = 0\n    odd_count = 0\n\n    for i in range(1, n + 1):\n        if is_palindrome(i):\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n\n    return (even_count, odd_count)\n```"
+  },
+  {
+    "idx": 108,
+    "task_id": "HumanEval/108",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "arr",
+      "count_nums",
+      "digits_sum",
+      "n",
+      "neg"
+    ],
+    "pred_identifiers": [
+      "arr",
+      "count",
+      "count_nums",
+      "n",
+      "sign",
+      "sum_of_digits",
+      "total"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "return"
+    ],
+    "raw_response": "```python\n    def sum_of_digits(n):\n        if n == 0:\n            return 0\n        sign = -1 if n < 0 else 1\n        n = abs(n)\n        total = 0\n        while n > 0:\n            total += n % 10\n            n //= 10\n        return total * sign\n\n    count = 0\n    for num in arr:\n        if sum_of_digits(num) > 0:\n            count += 1\n    return count\n```"
+  },
+  {
+    "idx": 109,
+    "task_id": "HumanEval/109",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "arr",
+      "min_index",
+      "min_value",
+      "move_one_ball",
+      "my_arr",
+      "sorted_array"
+    ],
+    "pred_identifiers": [
+      "arr",
+      "count",
+      "move_one_ball",
+      "n"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if not arr:\n        return True\n\n    n = len(arr)\n    count = 0\n\n    for i in range(1, n):\n        if arr[i] < arr[i - 1]:\n            count += 1\n            if count > 1:\n                return False\n\n    if count == 0:\n        return True\n\n    if arr[0] >= arr[-1]:\n        return True\n\n    return False\n```"
+  },
+  {
+    "idx": 110,
+    "task_id": "HumanEval/110",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "2",
+      "even",
+      "exchange",
+      "lst1",
+      "lst2",
+      "odd"
+    ],
+    "pred_identifiers": [
+      "2",
+      "exchange",
+      "lst1",
+      "lst2"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    # Check if lst1 already contains only even numbers\n    if all(x % 2 == 0 for x in lst1):\n        return \"YES\"\n    \n    # Check if lst2 contains at least one even number\n    if any(x % 2 == 0 for x in lst2):\n        return \"YES\"\n    \n    return \"NO\"\n```"
+  },
+  {
+    "idx": 111,
+    "task_id": "HumanEval/111",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "dict1",
+      "histogram",
+      "list1",
+      "t",
+      "test"
+    ],
+    "pred_identifiers": [
+      "count",
+      "histogram",
+      "letter_counts",
+      "letters",
+      "max_count",
+      "result",
+      "test"
+    ],
+    "gold_ops": [
+      "branching",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "builtin",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if not test:\n        return {}\n    \n    from collections import Counter\n    \n    # Split the string into a list of letters\n    letters = test.split()\n    \n    # Count the occurrences of each letter\n    letter_counts = Counter(letters)\n    \n    # Find the maximum occurrence count\n    max_count = max(letter_counts.values())\n    \n    # Create a dictionary of letters with the maximum occurrence count\n    result = {letter: count for letter, count in letter_counts.items() if count == max_count}\n    \n    return result\n```"
+  },
+  {
+    "idx": 112,
+    "task_id": "HumanEval/112",
+    "gold_type": "LOOP",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "c",
+      "reverse_delete",
+      "s"
+    ],
+    "pred_identifiers": [
+      "c",
+      "is_palindrome",
+      "result",
+      "reverse_delete",
+      "s"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nresult = ''.join(char for char in s if char not in c)\nis_palindrome = result == result[::-1]\nreturn (result, is_palindrome)\n```"
+  },
+  {
+    "idx": 113,
+    "task_id": "HumanEval/113",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "2",
+      "lst",
+      "n",
+      "odd_count",
+      "res"
+    ],
+    "pred_identifiers": [
+      "lst",
+      "odd_count",
+      "result"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    result = []\n    for s in lst:\n        odd_count = sum(1 for char in s if int(char) % 2 != 0)\n        result.append(f\"the number of odd elements {odd_count}n the str{odd_count}ng {odd_count} of the {odd_count}nput.\")\n    return result\n```"
+  },
+  {
+    "idx": 114,
+    "task_id": "HumanEval/114",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "max_sum",
+      "minSubArraySum",
+      "min_sum",
+      "nums",
+      "s"
+    ],
+    "pred_identifiers": [
+      "current_sum",
+      "minSubArraySum",
+      "min_sum",
+      "nums"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif not nums:\n    return 0\n\nmin_sum = float('inf')\ncurrent_sum = 0\n\nfor num in nums:\n    current_sum += num\n    if current_sum < min_sum:\n        min_sum = current_sum\n    if current_sum > 0:\n        current_sum = 0\n\nreturn min_sum\n```"
+  },
+  {
+    "idx": 115,
+    "task_id": "HumanEval/115",
+    "gold_type": "LOOP",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "capacity",
+      "grid",
+      "max_fill"
+    ],
+    "pred_identifiers": [
+      "capacity",
+      "grid",
+      "max_fill",
+      "total_water_units"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\ntotal_water_units = sum(sum(row) for row in grid)\nreturn math.ceil(total_water_units / capacity)\n```"
+  },
+  {
+    "idx": 116,
+    "task_id": "HumanEval/116",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "arr",
+      "key",
+      "sort_array"
+    ],
+    "pred_identifiers": [
+      "arr",
+      "key",
+      "sort_array"
+    ],
+    "gold_ops": [
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    return sorted(arr, key=lambda x: (bin(x).count('1'), x))\n```"
+  },
+  {
+    "idx": 117,
+    "task_id": "HumanEval/117",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "n",
+      "n_consonants",
+      "result",
+      "s",
+      "select_words"
+    ],
+    "pred_identifiers": [
+      "consonant_count",
+      "n",
+      "result",
+      "s",
+      "select_words",
+      "vowels",
+      "words"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    vowels = set('aeiouAEIOU')\n    words = s.split()\n    result = []\n    \n    for word in words:\n        consonant_count = sum(1 for char in word if char not in vowels)\n        if consonant_count == n:\n            result.append(word)\n    \n    return result\n```"
+  },
+  {
+    "idx": 118,
+    "task_id": "HumanEval/118",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "get_closest_vowel",
+      "vowels",
+      "word"
+    ],
+    "pred_identifiers": [
+      "get_closest_vowel",
+      "length",
+      "vowels",
+      "word"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    vowels = \"aeiouAEIOU\"\n    length = len(word)\n    \n    for i in range(length - 2, 0, -1):\n        if word[i] in vowels and word[i-1] not in vowels and word[i+1] not in vowels:\n            return word[i]\n    \n    return \"\"\n```"
+  },
+  {
+    "idx": 119,
+    "task_id": "HumanEval/119",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "S1",
+      "S2",
+      "check",
+      "i",
+      "lst",
+      "match_parens",
+      "val"
+    ],
+    "pred_identifiers": [
+      "b",
+      "balance",
+      "char",
+      "is_balanced",
+      "lst",
+      "match_parens"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "return"
+    ],
+    "raw_response": "```python\n    def is_balanced(s):\n        balance = 0\n        for char in s:\n            if char == '(':\n                balance += 1\n            else:\n                balance -= 1\n            if balance < 0:\n                return False\n        return balance == 0\n\n    a, b = lst\n    if is_balanced(a + b) or is_balanced(b + a):\n        return 'Yes'\n    return 'No'\n```"
+  },
+  {
+    "idx": 120,
+    "task_id": "HumanEval/120",
+    "gold_type": "CONDITIONAL",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "ans",
+      "arr",
+      "k",
+      "maximum"
+    ],
+    "pred_identifiers": [
+      "arr",
+      "k",
+      "maximum",
+      "reverse"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if k == 0:\n        return []\n    return sorted(sorted(arr, reverse=True)[:k])\n```"
+  },
+  {
+    "idx": 121,
+    "task_id": "HumanEval/121",
+    "gold_type": "RECURSIVE",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "2",
+      "lst",
+      "solution"
+    ],
+    "pred_identifiers": [
+      "lst",
+      "solution"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn sum(lst[i] for i in range(0, len(lst), 2) if lst[i] % 2 != 0)\n```"
+  },
+  {
+    "idx": 122,
+    "task_id": "HumanEval/122",
+    "gold_type": "SINGLE-FUNC",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "add_elements",
+      "arr",
+      "k"
+    ],
+    "pred_identifiers": [
+      "add_elements",
+      "arr",
+      "k"
+    ],
+    "gold_ops": [
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    return sum(x for x in arr[:k] if -99 <= x <= 99)\n```"
+  },
+  {
+    "idx": 123,
+    "task_id": "HumanEval/123",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "2",
+      "get_odd_collatz",
+      "n",
+      "odd_collatz"
+    ],
+    "pred_identifiers": [
+      "2",
+      "get_odd_collatz",
+      "n",
+      "odd_numbers"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    odd_numbers = set()\n    while n != 1:\n        if n % 2 != 0:\n            odd_numbers.add(n)\n        if n % 2 == 0:\n            n = n // 2\n        else:\n            n = 3 * n + 1\n    odd_numbers.add(1)\n    return sorted(odd_numbers)\n```"
+  },
+  {
+    "idx": 124,
+    "task_id": "HumanEval/124",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "date",
+      "month",
+      "valid_date",
+      "year"
+    ],
+    "pred_identifiers": [
+      "date",
+      "day",
+      "month",
+      "parts",
+      "valid_date",
+      "year"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if not date:\n        return False\n\n    parts = date.split('-')\n    if len(parts) != 3:\n        return False\n\n    month, day, year = parts\n\n    if not (month.isdigit() and day.isdigit() and year.isdigit()):\n        return False\n\n    month = int(month)\n    day = int(day)\n\n    if month < 1 or month > 12:\n        return False\n\n    if month in {1, 3, 5, 7, 8, 10, 12}:\n        if day < 1 or day > 31:\n            return False\n    elif month in {4, 6, 9, 11}:\n        if day < 1 or day > 30:\n            return False\n    elif month == 2:\n        if day < 1 or day > 29:\n            return False\n\n    return True\n```"
+  },
+  {
+    "idx": 125,
+    "task_id": "HumanEval/125",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "2",
+      "split_words",
+      "txt"
+    ],
+    "pred_identifiers": [
+      "2",
+      "split_words",
+      "txt"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if ' ' in txt:\n        return txt.split()\n    elif ',' in txt:\n        return txt.split(',')\n    else:\n        return sum(1 for char in txt if char.islower() and (ord(char) - ord('a')) % 2 == 0)\n```"
+  },
+  {
+    "idx": 126,
+    "task_id": "HumanEval/126",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "count_digit",
+      "is_sorted",
+      "lst"
+    ],
+    "pred_identifiers": [
+      "is_sorted",
+      "lst"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif len(lst) <= 1:\n    return True\n\nfor i in range(1, len(lst)):\n    if lst[i] < lst[i - 1]:\n        return False\n    if i > 1 and lst[i] == lst[i - 1] == lst[i - 2]:\n        return False\n\nreturn True\n```"
+  },
+  {
+    "idx": 127,
+    "task_id": "HumanEval/127",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "i",
+      "intersection",
+      "interval1",
+      "interval2",
+      "is_prime",
+      "l",
+      "length",
+      "num",
+      "r"
+    ],
+    "pred_identifiers": [
+      "2",
+      "3",
+      "end1",
+      "end2",
+      "i",
+      "intersection",
+      "intersection_end",
+      "intersection_length",
+      "intersection_start",
+      "interval1",
+      "interval2",
+      "is_prime"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "return"
+    ],
+    "raw_response": "```python\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    start1, end1 = interval1\n    start2, end2 = interval2\n\n    intersection_start = max(start1, start2)\n    intersection_end = min(end1, end2)\n\n    if intersection_start <= intersection_end:\n        intersection_length = intersection_end - intersection_start\n        if is_prime(intersection_length):\n            return \"YES\"\n    return \"NO\"\n```"
+  },
+  {
+    "idx": 128,
+    "task_id": "HumanEval/128",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "arr",
+      "prod",
+      "prod_signs"
+    ],
+    "pred_identifiers": [
+      "arr",
+      "magnitude_sum",
+      "prod_signs",
+      "sign_product"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if not arr:\n        return None\n    \n    sign_product = 1\n    magnitude_sum = 0\n    \n    for num in arr:\n        if num > 0:\n            sign_product *= 1\n        elif num < 0:\n            sign_product *= -1\n        else:\n            sign_product *= 0\n        \n        magnitude_sum += abs(num)\n    \n    return magnitude_sum * sign_product\n```"
+  },
+  {
+    "idx": 129,
+    "task_id": "HumanEval/129",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "2",
+      "ans",
+      "grid",
+      "k",
+      "minPath",
+      "n",
+      "temp",
+      "val"
+    ],
+    "pred_identifiers": [
+      "N",
+      "directions",
+      "grid",
+      "k",
+      "last_c",
+      "minPath",
+      "min_heap",
+      "nc",
+      "neighbors",
+      "new_path",
+      "new_value",
+      "path"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "return"
+    ],
+    "raw_response": "```python\nfrom heapq import heappop, heappush\n\ndef minPath(grid, k):\n    N = len(grid)\n    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]\n    \n    def neighbors(r, c):\n        for dr, dc in directions:\n            nr, nc = r + dr, c + dc\n            if 0 <= nr < N and 0 <= nc < N:\n                yield nr, nc\n\n    min_heap = []\n    for r in range(N):\n        for c in range(N):\n            heappush(min_heap, (grid[r][c], [(r, c)]))\n\n    while min_heap:\n        current_value, path = heappop(min_heap)\n        if len(path) == k:\n            return [grid[r][c] for r, c in path]\n        \n        last_r, last_c = path[-1]\n        for nr, nc in neighbors(last_r, last_c):\n            new_path = path + [(nr, nc)]\n            new_value = [grid[r][c] for r, c in new_path]\n            heappush(min_heap, (new_value, new_path))\n```"
+  },
+  {
+    "idx": 130,
+    "task_id": "HumanEval/130",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "2",
+      "my_tri",
+      "n",
+      "tri"
+    ],
+    "pred_identifiers": [
+      "2",
+      "i",
+      "n",
+      "sequence",
+      "tri"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif n < 0:\n    return []\n\nsequence = [1]  # Start with tri(0) = 1\n\nfor i in range(1, n + 1):\n    if i == 1:\n        sequence.append(3)\n    elif i % 2 == 0:\n        sequence.append(1 + i // 2)\n    else:\n        sequence.append(sequence[i - 1] + sequence[i - 2] + sequence[i - 3])\n\nreturn sequence\n```"
+  },
+  {
+    "idx": 131,
+    "task_id": "HumanEval/131",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "2",
+      "digits",
+      "int_digit",
+      "n",
+      "odd_count",
+      "product"
+    ],
+    "pred_identifiers": [
+      "digit",
+      "digits",
+      "has_odd",
+      "n",
+      "product"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nproduct = 1\nhas_odd = False\nwhile n > 0:\n    digit = n % 10\n    if digit % 2 != 0:\n        product *= digit\n        has_odd = True\n    n //= 10\nreturn product if has_odd else 0\n```"
+  },
+  {
+    "idx": 132,
+    "task_id": "HumanEval/132",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "closing_bracket_index",
+      "cnt",
+      "i",
+      "is_nested",
+      "l",
+      "opening_bracket_index",
+      "string"
+    ],
+    "pred_identifiers": [
+      "char",
+      "is_nested",
+      "stack",
+      "string"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nstack = []\nfor char in string:\n    if char == '[':\n        stack.append(char)\n    elif char == ']':\n        if stack and stack[-1] == '[':\n            stack.pop()\n            if stack:\n                return True\n        else:\n            return False\nreturn False\n```"
+  },
+  {
+    "idx": 133,
+    "task_id": "HumanEval/133",
+    "gold_type": "LOOP",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "lst",
+      "squared",
+      "sum_squares"
+    ],
+    "pred_identifiers": [
+      "lst",
+      "sum_squares"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```\nimport math\n\nreturn sum(math.ceil(x) ** 2 for x in lst)\n```"
+  },
+  {
+    "idx": 134,
+    "task_id": "HumanEval/134",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "check",
+      "check_if_last_char_is_a_letter",
+      "txt"
+    ],
+    "pred_identifiers": [
+      "check_if_last_char_is_a_letter",
+      "txt",
+      "words"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    txt = txt.rstrip()\n    if not txt or not txt[-1].isalpha():\n        return False\n    words = txt.split()\n    return len(words) > 1 and words[-1].isalpha() and len(words[-1]) == 1\n```"
+  },
+  {
+    "idx": 135,
+    "task_id": "HumanEval/135",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "arr",
+      "can_arrange",
+      "i",
+      "ind"
+    ],
+    "pred_identifiers": [
+      "arr",
+      "can_arrange"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nfor i in range(len(arr) - 1, 0, -1):\n    if arr[i] < arr[i - 1]:\n        return i\nreturn -1\n```"
+  },
+  {
+    "idx": 136,
+    "task_id": "HumanEval/136",
+    "gold_type": "RECURSIVE",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "largest",
+      "largest_smallest_integers",
+      "lst",
+      "smallest"
+    ],
+    "pred_identifiers": [
+      "largest_negative",
+      "largest_smallest_integers",
+      "lst",
+      "smallest_positive"
+    ],
+    "gold_ops": [
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```\n    largest_negative = None\n    smallest_positive = None\n\n    for num in lst:\n        if num < 0:\n            if largest_negative is None or num > largest_negative:\n                largest_negative = num\n        elif num > 0:\n            if smallest_positive is None or num < smallest_positive:\n                smallest_positive = num\n\n    return (largest_negative, smallest_positive)\n```"
+  },
+  {
+    "idx": 137,
+    "task_id": "HumanEval/137",
+    "gold_type": "RECURSIVE",
+    "pred_type": "RECURSIVE",
+    "gold_identifiers": [
+      "a",
+      "b",
+      "compare_one",
+      "temp_a",
+      "temp_b"
+    ],
+    "pred_identifiers": [
+      "a",
+      "a_float",
+      "b",
+      "b_float",
+      "compare_one",
+      "convert_to_float",
+      "value"
+    ],
+    "gold_ops": [
+      "branching",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "method",
+      "return"
+    ],
+    "raw_response": "```python\n    def convert_to_float(value):\n        if isinstance(value, str):\n            value = value.replace(',', '.')\n        return float(value)\n\n    if a == b:\n        return None\n\n    try:\n        a_float = convert_to_float(a)\n        b_float = convert_to_float(b)\n    except ValueError:\n        return None\n\n    if a_float > b_float:\n        return a\n    elif b_float > a_float:\n        return b\n    else:\n        return None\n```"
+  },
+  {
+    "idx": 138,
+    "task_id": "HumanEval/138",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "2",
+      "is_equal_to_sum_even",
+      "n"
+    ],
+    "pred_identifiers": [
+      "2",
+      "is_equal_to_sum_even",
+      "n"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if n < 8:\n        return False\n    return n % 2 == 0\n```"
+  },
+  {
+    "idx": 139,
+    "task_id": "HumanEval/139",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "fact_i",
+      "n",
+      "special_fact",
+      "special_factorial"
+    ],
+    "pred_identifiers": [
+      "n",
+      "result",
+      "special_factorial"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    from math import factorial\n\n    result = 1\n    for i in range(1, n + 1):\n        result *= factorial(i)\n    return result\n```"
+  },
+  {
+    "idx": 140,
+    "task_id": "HumanEval/140",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "end",
+      "fix_spaces",
+      "i",
+      "new_text",
+      "text"
+    ],
+    "pred_identifiers": [
+      "fix_spaces",
+      "text"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nimport re\n\ntext = re.sub(r' {3,}', '-', text)\ntext = re.sub(r' ', '_', text)\nreturn text\n```"
+  },
+  {
+    "idx": 141,
+    "task_id": "HumanEval/141",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "file_name",
+      "file_name_check",
+      "lst",
+      "sep",
+      "suf",
+      "t"
+    ],
+    "pred_identifiers": [
+      "extension",
+      "file_name",
+      "file_name_check"
+    ],
+    "gold_ops": [
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    import re\n\n    # Check if there is exactly one dot\n    if file_name.count('.') != 1:\n        return 'No'\n    \n    # Split the file name into name and extension\n    name, extension = file_name.rsplit('.', 1)\n    \n    # Check if the extension is valid\n    if extension not in ['txt', 'exe', 'dll']:\n        return 'No'\n    \n    # Check if the name is not empty and starts with a letter\n    if not name or not name[0].isalpha():\n        return 'No'\n    \n    # Check if there are more than three digits in the name\n    if len(re.findall(r'\\d', name)) > 3:\n        return 'No'\n    \n    return 'Yes'\n```"
+  },
+  {
+    "idx": 142,
+    "task_id": "HumanEval/142",
+    "gold_type": "LOOP",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "3",
+      "4",
+      "lst",
+      "result",
+      "sum_squares"
+    ],
+    "pred_identifiers": [
+      "3",
+      "4",
+      "lst",
+      "sum_squares",
+      "total"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    total = 0\n    for i, num in enumerate(lst):\n        if i % 3 == 0:\n            total += num ** 2\n        elif i % 4 == 0:\n            total += num ** 3\n        else:\n            total += num\n    return total\n```"
+  },
+  {
+    "idx": 143,
+    "task_id": "HumanEval/143",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "flg",
+      "i",
+      "new_lst",
+      "sentence",
+      "words_in_sentence"
+    ],
+    "pred_identifiers": [
+      "2",
+      "3",
+      "i",
+      "is_prime",
+      "prime_length_words",
+      "sentence",
+      "words",
+      "words_in_sentence"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "return"
+    ],
+    "raw_response": "```python\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\nwords = sentence.split()\nprime_length_words = [word for word in words if is_prime(len(word))]\nreturn ' '.join(prime_length_words)\n```"
+  },
+  {
+    "idx": 144,
+    "task_id": "HumanEval/144",
+    "gold_type": "RECURSIVE",
+    "pred_type": "RECURSIVE",
+    "gold_identifiers": [
+      "b",
+      "d",
+      "denom",
+      "n",
+      "numerator",
+      "simplify",
+      "x"
+    ],
+    "pred_identifiers": [
+      "denominator",
+      "n",
+      "n_den",
+      "parse_fraction",
+      "result_den",
+      "result_num",
+      "simplify",
+      "x",
+      "x_den"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "method",
+      "return"
+    ],
+    "raw_response": "```python\n    def parse_fraction(fraction):\n        numerator, denominator = map(int, fraction.split('/'))\n        return numerator, denominator\n\n    x_num, x_den = parse_fraction(x)\n    n_num, n_den = parse_fraction(n)\n\n    # Multiply the fractions: (x_num/x_den) * (n_num/n_den)\n    result_num = x_num * n_num\n    result_den = x_den * n_den\n\n    # Check if the result is a whole number\n    return result_num % result_den == 0\n```"
+  },
+  {
+    "idx": 145,
+    "task_id": "HumanEval/145",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "digits_sum",
+      "key",
+      "n",
+      "neg",
+      "nums",
+      "order_by_points"
+    ],
+    "pred_identifiers": [
+      "key",
+      "nums",
+      "order_by_points"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "return"
+    ],
+    "pred_ops": [
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn sorted(nums, key=lambda x: (sum(int(d) for d in str(abs(x))), nums.index(x)))\n```"
+  },
+  {
+    "idx": 146,
+    "task_id": "HumanEval/146",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "count",
+      "number_as_string",
+      "nums",
+      "odd_digits",
+      "specialFilter"
+    ],
+    "pred_identifiers": [
+      "count",
+      "nums",
+      "specialFilter",
+      "str_num"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\ncount = 0\nfor num in nums:\n    if num > 10:\n        str_num = str(abs(num))\n        if int(str_num[0]) % 2 != 0 and int(str_num[-1]) % 2 != 0:\n            count += 1\nreturn count\n```"
+  },
+  {
+    "idx": 147,
+    "task_id": "HumanEval/147",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "3",
+      "A",
+      "ans",
+      "get_max_triples",
+      "n"
+    ],
+    "pred_identifiers": [
+      "a",
+      "count",
+      "get_max_triples",
+      "n",
+      "result"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```\na = [(i * i - i + 1) % 3 for i in range(1, n + 1)]\ncount = [0, 0, 0]\n\nfor value in a:\n    count[value] += 1\n\n# Calculate the number of valid triples\nresult = (count[0] * (count[0] - 1) * (count[0] - 2)) // 6\nresult += (count[1] * (count[1] - 1) * (count[1] - 2)) // 6\nresult += (count[2] * (count[2] - 1) * (count[2] - 2)) // 6\nresult += (count[0] * count[1] * count[2])\n\nreturn result\n```"
+  },
+  {
+    "idx": 148,
+    "task_id": "HumanEval/148",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "bf",
+      "planet1",
+      "planet1_index",
+      "planet2",
+      "planet2_index",
+      "planet_names"
+    ],
+    "pred_identifiers": [
+      "bf",
+      "index1",
+      "index2",
+      "planet1",
+      "planet2",
+      "planets"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n    \n    if planet1 not in planets or planet2 not in planets:\n        return ()\n    \n    index1 = planets.index(planet1)\n    index2 = planets.index(planet2)\n    \n    if index1 > index2:\n        index1, index2 = index2, index1\n    \n    return tuple(planets[index1 + 1:index2])\n```"
+  },
+  {
+    "idx": 149,
+    "task_id": "HumanEval/149",
+    "gold_type": "LOOP",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "2",
+      "key",
+      "lst",
+      "new_lst",
+      "sorted_list_sum"
+    ],
+    "pred_identifiers": [
+      "2",
+      "even_length_strings",
+      "key",
+      "lst",
+      "sorted_list",
+      "sorted_list_sum"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    # Filter out strings with odd lengths\n    even_length_strings = [s for s in lst if len(s) % 2 == 0]\n    \n    # Sort the list first by length, then alphabetically\n    sorted_list = sorted(even_length_strings, key=lambda x: (len(x), x))\n    \n    return sorted_list\n```"
+  },
+  {
+    "idx": 150,
+    "task_id": "HumanEval/150",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "MULTI-STRUCT",
+    "gold_identifiers": [
+      "i",
+      "n",
+      "x",
+      "x_or_y",
+      "y"
+    ],
+    "pred_identifiers": [
+      "2",
+      "3",
+      "i",
+      "is_prime",
+      "n",
+      "x",
+      "x_or_y",
+      "y"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "return"
+    ],
+    "raw_response": "```python\ndef is_prime(num):\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0 or num % 3 == 0:\n        return False\n    i = 5\n    while i * i <= num:\n        if num % i == 0 or num % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\nif is_prime(n):\n    return x\nelse:\n    return y\n```"
+  },
+  {
+    "idx": 151,
+    "task_id": "HumanEval/151",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "double_the_difference",
+      "lst"
+    ],
+    "pred_identifiers": [
+      "double_the_difference",
+      "lst"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```\nreturn sum(x**2 for x in lst if isinstance(x, int) and x > 0 and x % 2 != 0)\n```"
+  },
+  {
+    "idx": 152,
+    "task_id": "HumanEval/152",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "compare",
+      "game",
+      "guess"
+    ],
+    "pred_identifiers": [
+      "compare",
+      "game",
+      "guess"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nreturn [abs(g - s) for g, s in zip(game, guess)]\n```"
+  },
+  {
+    "idx": 153,
+    "task_id": "HumanEval/153",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "Strongest_Extension",
+      "ans",
+      "class_name",
+      "extensions",
+      "my_val",
+      "strong",
+      "val"
+    ],
+    "pred_identifiers": [
+      "Strongest_Extension",
+      "cap_count",
+      "class_name",
+      "extensions",
+      "max_strength",
+      "sm_count",
+      "strength",
+      "strongest_extension"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nmax_strength = float('-inf')\nstrongest_extension = \"\"\n\nfor extension in extensions:\n    cap_count = sum(1 for c in extension if c.isupper())\n    sm_count = sum(1 for c in extension if c.islower())\n    strength = cap_count - sm_count\n    \n    if strength > max_strength:\n        max_strength = strength\n        strongest_extension = extension\n\nreturn f\"{class_name}.{strongest_extension}\"\n```"
+  },
+  {
+    "idx": 154,
+    "task_id": "HumanEval/154",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "a",
+      "b",
+      "cycpattern_check",
+      "l",
+      "pat"
+    ],
+    "pred_identifiers": [
+      "a",
+      "b",
+      "b_rotations",
+      "cycpattern_check"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if not a or not b:\n        return False\n    \n    b_rotations = [b[i:] + b[:i] for i in range(len(b))]\n    \n    for rotation in b_rotations:\n        if rotation in a:\n            return True\n    \n    return False\n```"
+  },
+  {
+    "idx": 155,
+    "task_id": "HumanEval/155",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "2",
+      "even_count",
+      "even_odd_count",
+      "num",
+      "odd_count"
+    ],
+    "pred_identifiers": [
+      "2",
+      "digit",
+      "even_count",
+      "even_odd_count",
+      "num",
+      "odd_count"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nnum = abs(num)\neven_count = 0\nodd_count = 0\n\nwhile num > 0:\n    digit = num % 10\n    if digit % 2 == 0:\n        even_count += 1\n    else:\n        odd_count += 1\n    num //= 10\n\nreturn (even_count, odd_count)\n```"
+  },
+  {
+    "idx": 156,
+    "task_id": "HumanEval/156",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "div",
+      "i",
+      "int_to_mini_roman",
+      "num",
+      "number",
+      "res",
+      "sym"
+    ],
+    "pred_identifiers": [
+      "int_to_mini_roman",
+      "number",
+      "result",
+      "roman_numerals"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "comprehension",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    roman_numerals = [\n        (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),\n        (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),\n        (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')\n    ]\n    \n    result = []\n    for value, numeral in roman_numerals:\n        while number >= value:\n            result.append(numeral)\n            number -= value\n    return ''.join(result).lower()\n```"
+  },
+  {
+    "idx": 157,
+    "task_id": "HumanEval/157",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "a",
+      "b",
+      "c",
+      "right_angle_triangle"
+    ],
+    "pred_identifiers": [
+      "2",
+      "a",
+      "b",
+      "c",
+      "right_angle_triangle",
+      "sides"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nsides = sorted([a, b, c])\nreturn sides[0]**2 + sides[1]**2 == sides[2]**2\n```"
+  },
+  {
+    "idx": 158,
+    "task_id": "HumanEval/158",
+    "gold_type": "RECURSIVE",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "find_max",
+      "key",
+      "words"
+    ],
+    "pred_identifiers": [
+      "find_max",
+      "max_unique_count",
+      "max_word",
+      "unique_count",
+      "words"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    max_word = \"\"\n    max_unique_count = 0\n\n    for word in words:\n        unique_count = len(set(word))\n        if unique_count > max_unique_count or (unique_count == max_unique_count and word < max_word):\n            max_unique_count = unique_count\n            max_word = word\n\n    return max_word\n```"
+  },
+  {
+    "idx": 159,
+    "task_id": "HumanEval/159",
+    "gold_type": "RECURSIVE",
+    "pred_type": "SINGLE-FUNC",
+    "gold_identifiers": [
+      "eat",
+      "need",
+      "number",
+      "remaining"
+    ],
+    "pred_identifiers": [
+      "carrots_left",
+      "eat",
+      "need",
+      "number",
+      "remaining",
+      "total_eaten"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "builtin",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\ntotal_eaten = number + min(need, remaining)\ncarrots_left = max(0, remaining - need)\nreturn [total_eaten, carrots_left]\n```"
+  },
+  {
+    "idx": 160,
+    "task_id": "HumanEval/160",
+    "gold_type": "SINGLE-FUNC",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "do_algebra",
+      "expression",
+      "operand",
+      "operator"
+    ],
+    "pred_identifiers": [
+      "do_algebra",
+      "expression",
+      "operand",
+      "operator"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```\nexpression = str(operand[0])\nfor i in range(len(operator)):\n    expression += f\" {operator[i]} {operand[i + 1]}\"\nreturn eval(expression)\n```"
+  },
+  {
+    "idx": 161,
+    "task_id": "HumanEval/161",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "flg",
+      "idx",
+      "new_str",
+      "s",
+      "solve"
+    ],
+    "pred_identifiers": [
+      "s",
+      "solve"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "iteration",
+      "method",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nif any(c.isalpha() for c in s):\n    return ''.join(c.swapcase() if c.isalpha() else c for c in s)\nelse:\n    return s[::-1]\n```"
+  },
+  {
+    "idx": 162,
+    "task_id": "HumanEval/162",
+    "gold_type": "RECURSIVE",
+    "pred_type": "CONDITIONAL",
+    "gold_identifiers": [
+      "string_to_md5",
+      "text"
+    ],
+    "pred_identifiers": [
+      "md5_hash",
+      "string_to_md5",
+      "text"
+    ],
+    "gold_ops": [
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "branching",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\nimport hashlib\n\nif not text:\n    return None\n\nmd5_hash = hashlib.md5(text.encode())\nreturn md5_hash.hexdigest()\n```"
+  },
+  {
+    "idx": 163,
+    "task_id": "HumanEval/163",
+    "gold_type": "MULTI-STRUCT",
+    "pred_type": "LOOP",
+    "gold_identifiers": [
+      "2",
+      "a",
+      "b",
+      "generate_integers",
+      "lower",
+      "upper"
+    ],
+    "pred_identifiers": [
+      "2",
+      "a",
+      "b",
+      "generate_integers"
+    ],
+    "gold_ops": [
+      "arithmetic",
+      "branching",
+      "builtin",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "pred_ops": [
+      "arithmetic",
+      "branching",
+      "comprehension",
+      "iteration",
+      "recursion",
+      "return"
+    ],
+    "raw_response": "```python\n    if a > b:\n        a, b = b, a\n    return [i for i in range(a, b + 1) if i % 2 == 0 and i < 10]\n```"
   }
 ]

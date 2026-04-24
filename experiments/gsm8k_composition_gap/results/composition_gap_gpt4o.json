@@ -1,0 +1,43 @@
+{
+  "model": "gpt4o",
+  "domain": "gsm8k",
+  "metric": "P(struct_wrong | pieces_correct)",
+  "total_examples": 1317,
+  "pieces_correct_count": 1255,
+  "pieces_correct_pct": 95.3,
+  "structure_correct_count": 501,
+  "structure_accuracy": 0.3804,
+  "both_correct": 482,
+  "pieces_right_structure_wrong": 773,
+  "composition_gap": 0.6159,
+  "composition_gap_pct": 61.6,
+  "avg_piece_f1": 0.7406,
+  "per_type_gap": {
+    "SYSTEM": {
+      "pieces_correct": 195,
+      "struct_wrong": 46,
+      "gap": 0.2359
+    },
+    "RATIO-PROP": {
+      "pieces_correct": 384,
+      "struct_wrong": 384,
+      "gap": 1.0
+    },
+    "SINGLE-OP": {
+      "pieces_correct": 246,
+      "struct_wrong": 246,
+      "gap": 1.0
+    },
+    "MULTI-STEP": {
+      "pieces_correct": 372,
+      "struct_wrong": 39,
+      "gap": 0.1048
+    },
+    "COMPARISON": {
+      "pieces_correct": 58,
+      "struct_wrong": 58,
+      "gap": 1.0
+    }
+  },
+  "timestamp": "2026-04-23T21:40:45.823827"
+}
