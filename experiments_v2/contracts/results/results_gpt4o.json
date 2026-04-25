@@ -2,15 +2,26 @@
   "model": "gpt4o",
   "domain": "contracts",
   "metric": "P(composed_wrong | all_pieces_correct)",
-  "total": 0,
-  "pieces_correct": 0,
-  "pieces_correct_pct": 0,
-  "composed_correct": 0,
-  "composed_accuracy": 0,
-  "both_correct": 0,
-  "pieces_right_composed_wrong": 0,
-  "composition_gap": 0.0,
-  "composition_gap_pct": 0.0,
-  "per_type_gap": {},
-  "timestamp": "2026-04-23T21:57:49.459704"
+  "total": 2000,
+  "pieces_correct": 1114,
+  "pieces_correct_pct": 55.7,
+  "composed_correct": 1729,
+  "composed_accuracy": 0.8645,
+  "both_correct": 1054,
+  "pieces_right_composed_wrong": 60,
+  "composition_gap": 0.0539,
+  "composition_gap_pct": 5.4,
+  "per_type_gap": {
+    "HARD": {
+      "pieces_ok": 852,
+      "composed_fail": 33,
+      "gap": 0.0387
+    },
+    "SOFT": {
+      "pieces_ok": 262,
+      "composed_fail": 27,
+      "gap": 0.1031
+    }
+  },
+  "timestamp": "2026-04-25T05:42:43.299251"
 }

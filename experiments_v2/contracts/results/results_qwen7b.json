@@ -1,0 +1,27 @@
+{
+  "model": "qwen7b",
+  "domain": "contracts",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 2000,
+  "pieces_correct": 964,
+  "pieces_correct_pct": 48.2,
+  "composed_correct": 1714,
+  "composed_accuracy": 0.857,
+  "both_correct": 948,
+  "pieces_right_composed_wrong": 16,
+  "composition_gap": 0.0166,
+  "composition_gap_pct": 1.7,
+  "per_type_gap": {
+    "HARD": {
+      "pieces_ok": 783,
+      "composed_fail": 7,
+      "gap": 0.0089
+    },
+    "SOFT": {
+      "pieces_ok": 181,
+      "composed_fail": 9,
+      "gap": 0.0497
+    }
+  },
+  "timestamp": "2026-04-25T04:22:31.854920"
+}
