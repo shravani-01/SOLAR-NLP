@@ -2,15 +2,41 @@
   "model": "gpt4o",
   "domain": "sql",
   "metric": "P(composed_wrong | all_pieces_correct)",
-  "total": 0,
-  "pieces_correct": 0,
-  "pieces_correct_pct": 0,
-  "composed_correct": 0,
-  "composed_accuracy": 0,
-  "both_correct": 0,
-  "pieces_right_composed_wrong": 0,
-  "composition_gap": 0.0,
-  "composition_gap_pct": 0.0,
-  "per_type_gap": {},
-  "timestamp": "2026-04-23T22:17:39.181815"
+  "total": 1034,
+  "pieces_correct": 887,
+  "pieces_correct_pct": 85.8,
+  "composed_correct": 770,
+  "composed_accuracy": 0.7447,
+  "both_correct": 700,
+  "pieces_right_composed_wrong": 187,
+  "composition_gap": 0.2108,
+  "composition_gap_pct": 21.1,
+  "per_type_gap": {
+    "SIMPLE": {
+      "pieces_ok": 454,
+      "composed_fail": 69,
+      "gap": 0.152
+    },
+    "NESTED": {
+      "pieces_ok": 62,
+      "composed_fail": 27,
+      "gap": 0.4355
+    },
+    "JOIN": {
+      "pieces_ok": 283,
+      "composed_fail": 23,
+      "gap": 0.0813
+    },
+    "SET-OP": {
+      "pieces_ok": 54,
+      "composed_fail": 50,
+      "gap": 0.9259
+    },
+    "MULTI-AGG": {
+      "pieces_ok": 34,
+      "composed_fail": 18,
+      "gap": 0.5294
+    }
+  },
+  "timestamp": "2026-04-25T13:37:12.281562"
 }

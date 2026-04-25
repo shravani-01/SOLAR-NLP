@@ -2,15 +2,41 @@
   "model": "gpt4o-cot",
   "domain": "sql",
   "metric": "P(composed_wrong | all_pieces_correct)",
-  "total": 0,
-  "pieces_correct": 0,
-  "pieces_correct_pct": 0,
-  "composed_correct": 0,
-  "composed_accuracy": 0,
-  "both_correct": 0,
-  "pieces_right_composed_wrong": 0,
-  "composition_gap": 0.0,
-  "composition_gap_pct": 0.0,
-  "per_type_gap": {},
-  "timestamp": "2026-04-23T22:19:17.256552"
+  "total": 1034,
+  "pieces_correct": 889,
+  "pieces_correct_pct": 86.0,
+  "composed_correct": 777,
+  "composed_accuracy": 0.7515,
+  "both_correct": 707,
+  "pieces_right_composed_wrong": 182,
+  "composition_gap": 0.2047,
+  "composition_gap_pct": 20.5,
+  "per_type_gap": {
+    "SIMPLE": {
+      "pieces_ok": 452,
+      "composed_fail": 66,
+      "gap": 0.146
+    },
+    "NESTED": {
+      "pieces_ok": 63,
+      "composed_fail": 26,
+      "gap": 0.4127
+    },
+    "JOIN": {
+      "pieces_ok": 283,
+      "composed_fail": 19,
+      "gap": 0.0671
+    },
+    "SET-OP": {
+      "pieces_ok": 57,
+      "composed_fail": 53,
+      "gap": 0.9298
+    },
+    "MULTI-AGG": {
+      "pieces_ok": 34,
+      "composed_fail": 18,
+      "gap": 0.5294
+    }
+  },
+  "timestamp": "2026-04-25T16:57:10.537403"
 }
