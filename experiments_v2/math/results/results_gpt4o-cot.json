@@ -2,15 +2,41 @@
   "model": "gpt4o-cot",
   "domain": "math",
   "metric": "P(composed_wrong | all_pieces_correct)",
-  "total": 0,
-  "pieces_correct": 0,
-  "pieces_correct_pct": 0,
-  "composed_correct": 0,
-  "composed_accuracy": 0,
-  "both_correct": 0,
-  "pieces_right_composed_wrong": 0,
-  "composition_gap": 0.0,
-  "composition_gap_pct": 0.0,
-  "per_type_gap": {},
-  "timestamp": "2026-04-23T22:43:30.178205"
+  "total": 1319,
+  "pieces_correct": 1293,
+  "pieces_correct_pct": 98.0,
+  "composed_correct": 1207,
+  "composed_accuracy": 0.9151,
+  "both_correct": 1184,
+  "pieces_right_composed_wrong": 109,
+  "composition_gap": 0.0843,
+  "composition_gap_pct": 8.4,
+  "per_type_gap": {
+    "SYSTEM": {
+      "pieces_ok": 202,
+      "composed_fail": 14,
+      "gap": 0.0693
+    },
+    "RATIO-PROP": {
+      "pieces_ok": 410,
+      "composed_fail": 39,
+      "gap": 0.0951
+    },
+    "SINGLE-OP": {
+      "pieces_ok": 248,
+      "composed_fail": 13,
+      "gap": 0.0524
+    },
+    "MULTI-STEP": {
+      "pieces_ok": 372,
+      "composed_fail": 37,
+      "gap": 0.0995
+    },
+    "COMPARISON": {
+      "pieces_ok": 61,
+      "composed_fail": 6,
+      "gap": 0.0984
+    }
+  },
+  "timestamp": "2026-04-26T00:42:06.557446"
 }

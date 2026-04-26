@@ -1,0 +1,42 @@
+{
+  "model": "qwen7b-cot",
+  "domain": "math",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 1319,
+  "pieces_correct": 1261,
+  "pieces_correct_pct": 95.6,
+  "composed_correct": 1178,
+  "composed_accuracy": 0.8931,
+  "both_correct": 1130,
+  "pieces_right_composed_wrong": 131,
+  "composition_gap": 0.1039,
+  "composition_gap_pct": 10.4,
+  "per_type_gap": {
+    "SYSTEM": {
+      "pieces_ok": 199,
+      "composed_fail": 24,
+      "gap": 0.1206
+    },
+    "RATIO-PROP": {
+      "pieces_ok": 390,
+      "composed_fail": 42,
+      "gap": 0.1077
+    },
+    "SINGLE-OP": {
+      "pieces_ok": 243,
+      "composed_fail": 18,
+      "gap": 0.0741
+    },
+    "MULTI-STEP": {
+      "pieces_ok": 372,
+      "composed_fail": 42,
+      "gap": 0.1129
+    },
+    "COMPARISON": {
+      "pieces_ok": 57,
+      "composed_fail": 5,
+      "gap": 0.0877
+    }
+  },
+  "timestamp": "2026-04-26T00:26:41.904955"
+}

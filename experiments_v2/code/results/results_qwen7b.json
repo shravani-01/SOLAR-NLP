@@ -1,0 +1,42 @@
+{
+  "model": "qwen7b",
+  "domain": "code",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 164,
+  "pieces_correct": 164,
+  "pieces_correct_pct": 100.0,
+  "composed_correct": 97,
+  "composed_accuracy": 0.5915,
+  "both_correct": 97,
+  "pieces_right_composed_wrong": 67,
+  "composition_gap": 0.4085,
+  "composition_gap_pct": 40.9,
+  "per_type_gap": {
+    "RECURSIVE": {
+      "pieces_ok": 46,
+      "composed_fail": 13,
+      "gap": 0.2826
+    },
+    "MULTI-STRUCT": {
+      "pieces_ok": 101,
+      "composed_fail": 49,
+      "gap": 0.4851
+    },
+    "LOOP": {
+      "pieces_ok": 10,
+      "composed_fail": 4,
+      "gap": 0.4
+    },
+    "SINGLE-FUNC": {
+      "pieces_ok": 5,
+      "composed_fail": 1,
+      "gap": 0.2
+    },
+    "CONDITIONAL": {
+      "pieces_ok": 2,
+      "composed_fail": 0,
+      "gap": 0.0
+    }
+  },
+  "timestamp": "2026-04-26T00:47:18.535271"
+}

@@ -1,0 +1,32 @@
+{
+  "model": "qwen7b-cot",
+  "domain": "logic",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 204,
+  "pieces_correct": 80,
+  "pieces_correct_pct": 39.2,
+  "composed_correct": 96,
+  "composed_accuracy": 0.4706,
+  "both_correct": 34,
+  "pieces_right_composed_wrong": 46,
+  "composition_gap": 0.575,
+  "composition_gap_pct": 57.5,
+  "per_type_gap": {
+    "CONDITIONAL-CHAIN": {
+      "pieces_ok": 75,
+      "composed_fail": 44,
+      "gap": 0.5867
+    },
+    "DISJUNCTIVE": {
+      "pieces_ok": 4,
+      "composed_fail": 2,
+      "gap": 0.5
+    },
+    "SYLLOGISM": {
+      "pieces_ok": 1,
+      "composed_fail": 0,
+      "gap": 0.0
+    }
+  },
+  "timestamp": "2026-04-26T01:53:27.319407"
+}

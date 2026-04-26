@@ -2,15 +2,41 @@
   "model": "gpt4o",
   "domain": "logic",
   "metric": "P(composed_wrong | all_pieces_correct)",
-  "total": 0,
-  "pieces_correct": 0,
-  "pieces_correct_pct": 0,
-  "composed_correct": 0,
-  "composed_accuracy": 0,
-  "both_correct": 0,
-  "pieces_right_composed_wrong": 0,
-  "composition_gap": 0.0,
-  "composition_gap_pct": 0.0,
-  "per_type_gap": {},
-  "timestamp": "2026-04-23T23:28:36.575406"
+  "total": 204,
+  "pieces_correct": 56,
+  "pieces_correct_pct": 27.5,
+  "composed_correct": 114,
+  "composed_accuracy": 0.5588,
+  "both_correct": 28,
+  "pieces_right_composed_wrong": 28,
+  "composition_gap": 0.5,
+  "composition_gap_pct": 50.0,
+  "per_type_gap": {
+    "DISJUNCTIVE": {
+      "pieces_ok": 2,
+      "composed_fail": 1,
+      "gap": 0.5
+    },
+    "CONDITIONAL-CHAIN": {
+      "pieces_ok": 45,
+      "composed_fail": 23,
+      "gap": 0.5111
+    },
+    "SYLLOGISM": {
+      "pieces_ok": 6,
+      "composed_fail": 2,
+      "gap": 0.3333
+    },
+    "NEGATION": {
+      "pieces_ok": 1,
+      "composed_fail": 1,
+      "gap": 1.0
+    },
+    "MODUS-PONENS": {
+      "pieces_ok": 2,
+      "composed_fail": 1,
+      "gap": 0.5
+    }
+  },
+  "timestamp": "2026-04-26T01:55:48.893153"
 }
