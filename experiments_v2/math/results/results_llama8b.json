@@ -1,0 +1,42 @@
+{
+  "model": "llama8b",
+  "domain": "math",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 1319,
+  "pieces_correct": 1295,
+  "pieces_correct_pct": 98.2,
+  "composed_correct": 1082,
+  "composed_accuracy": 0.8203,
+  "both_correct": 1071,
+  "pieces_right_composed_wrong": 224,
+  "composition_gap": 0.173,
+  "composition_gap_pct": 17.3,
+  "per_type_gap": {
+    "SYSTEM": {
+      "pieces_ok": 203,
+      "composed_fail": 36,
+      "gap": 0.1773
+    },
+    "RATIO-PROP": {
+      "pieces_ok": 407,
+      "composed_fail": 75,
+      "gap": 0.1843
+    },
+    "SINGLE-OP": {
+      "pieces_ok": 246,
+      "composed_fail": 29,
+      "gap": 0.1179
+    },
+    "MULTI-STEP": {
+      "pieces_ok": 377,
+      "composed_fail": 78,
+      "gap": 0.2069
+    },
+    "COMPARISON": {
+      "pieces_ok": 62,
+      "composed_fail": 6,
+      "gap": 0.0968
+    }
+  },
+  "timestamp": "2026-04-26T21:29:58.598872"
+}

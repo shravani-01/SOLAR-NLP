@@ -1,0 +1,42 @@
+{
+  "model": "llama8b-cot",
+  "domain": "sql",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 1034,
+  "pieces_correct": 366,
+  "pieces_correct_pct": 35.4,
+  "composed_correct": 664,
+  "composed_accuracy": 0.6422,
+  "both_correct": 252,
+  "pieces_right_composed_wrong": 114,
+  "composition_gap": 0.3115,
+  "composition_gap_pct": 31.1,
+  "per_type_gap": {
+    "SIMPLE": {
+      "pieces_ok": 153,
+      "composed_fail": 30,
+      "gap": 0.1961
+    },
+    "NESTED": {
+      "pieces_ok": 59,
+      "composed_fail": 15,
+      "gap": 0.2542
+    },
+    "JOIN": {
+      "pieces_ok": 117,
+      "composed_fail": 38,
+      "gap": 0.3248
+    },
+    "MULTI-AGG": {
+      "pieces_ok": 30,
+      "composed_fail": 24,
+      "gap": 0.8
+    },
+    "SET-OP": {
+      "pieces_ok": 7,
+      "composed_fail": 7,
+      "gap": 1.0
+    }
+  },
+  "timestamp": "2026-04-26T17:28:02.991700"
+}
