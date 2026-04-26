@@ -2,15 +2,41 @@
   "model": "deepseek-cot",
   "domain": "code",
   "metric": "P(composed_wrong | all_pieces_correct)",
-  "total": 50,
-  "pieces_correct": 0,
-  "pieces_correct_pct": 0.0,
-  "composed_correct": 6,
-  "composed_accuracy": 0.12,
-  "both_correct": 0,
-  "pieces_right_composed_wrong": 0,
-  "composition_gap": 0.0,
-  "composition_gap_pct": 0.0,
-  "per_type_gap": {},
-  "timestamp": "2026-04-23T23:26:56.620072"
+  "total": 164,
+  "pieces_correct": 164,
+  "pieces_correct_pct": 100.0,
+  "composed_correct": 113,
+  "composed_accuracy": 0.689,
+  "both_correct": 113,
+  "pieces_right_composed_wrong": 51,
+  "composition_gap": 0.311,
+  "composition_gap_pct": 31.1,
+  "per_type_gap": {
+    "RECURSIVE": {
+      "pieces_ok": 46,
+      "composed_fail": 22,
+      "gap": 0.4783
+    },
+    "MULTI-STRUCT": {
+      "pieces_ok": 101,
+      "composed_fail": 25,
+      "gap": 0.2475
+    },
+    "LOOP": {
+      "pieces_ok": 10,
+      "composed_fail": 2,
+      "gap": 0.2
+    },
+    "SINGLE-FUNC": {
+      "pieces_ok": 5,
+      "composed_fail": 1,
+      "gap": 0.2
+    },
+    "CONDITIONAL": {
+      "pieces_ok": 2,
+      "composed_fail": 1,
+      "gap": 0.5
+    }
+  },
+  "timestamp": "2026-04-26T06:42:44.883581"
 }

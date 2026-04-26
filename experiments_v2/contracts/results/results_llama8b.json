@@ -1,0 +1,27 @@
+{
+  "model": "llama8b",
+  "domain": "contracts",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 2000,
+  "pieces_correct": 757,
+  "pieces_correct_pct": 37.9,
+  "composed_correct": 1687,
+  "composed_accuracy": 0.8435,
+  "both_correct": 740,
+  "pieces_right_composed_wrong": 17,
+  "composition_gap": 0.0225,
+  "composition_gap_pct": 2.2,
+  "per_type_gap": {
+    "HARD": {
+      "pieces_ok": 621,
+      "composed_fail": 0,
+      "gap": 0.0
+    },
+    "SOFT": {
+      "pieces_ok": 136,
+      "composed_fail": 17,
+      "gap": 0.125
+    }
+  },
+  "timestamp": "2026-04-26T05:30:33.854291"
+}

@@ -2,15 +2,41 @@
   "model": "deepseek-cot",
   "domain": "math",
   "metric": "P(composed_wrong | all_pieces_correct)",
-  "total": 50,
-  "pieces_correct": 0,
-  "pieces_correct_pct": 0.0,
-  "composed_correct": 0,
-  "composed_accuracy": 0.0,
-  "both_correct": 0,
-  "pieces_right_composed_wrong": 0,
-  "composition_gap": 0.0,
-  "composition_gap_pct": 0.0,
-  "per_type_gap": {},
-  "timestamp": "2026-04-23T23:02:08.110626"
+  "total": 1319,
+  "pieces_correct": 1308,
+  "pieces_correct_pct": 99.2,
+  "composed_correct": 1252,
+  "composed_accuracy": 0.9492,
+  "both_correct": 1242,
+  "pieces_right_composed_wrong": 66,
+  "composition_gap": 0.0505,
+  "composition_gap_pct": 5.0,
+  "per_type_gap": {
+    "SYSTEM": {
+      "pieces_ok": 203,
+      "composed_fail": 10,
+      "gap": 0.0493
+    },
+    "RATIO-PROP": {
+      "pieces_ok": 409,
+      "composed_fail": 20,
+      "gap": 0.0489
+    },
+    "SINGLE-OP": {
+      "pieces_ok": 250,
+      "composed_fail": 9,
+      "gap": 0.036
+    },
+    "MULTI-STEP": {
+      "pieces_ok": 384,
+      "composed_fail": 24,
+      "gap": 0.0625
+    },
+    "COMPARISON": {
+      "pieces_ok": 62,
+      "composed_fail": 3,
+      "gap": 0.0484
+    }
+  },
+  "timestamp": "2026-04-26T06:15:59.210097"
 }
