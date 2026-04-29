@@ -1,0 +1,802 @@
+{
+  "model": "gpt4o-cot",
+  "domain": "logic",
+  "experiment": "mitigation_structure_aware_prompting",
+  "timestamp": "2026-04-29T03:59:33.503684",
+  "original": {
+    "condition": "original",
+    "eligible_examples": 61,
+    "composed_correct": 31,
+    "gap_cases": 30,
+    "gap_rate": 0.4918,
+    "gap_pct": 49.2,
+    "per_type": {
+      "DISJUNCTIVE": {
+        "total": 3,
+        "correct": 1,
+        "wrong": 2,
+        "gap_rate": 0.6667
+      },
+      "CONDITIONAL-CHAIN": {
+        "total": 46,
+        "correct": 22,
+        "wrong": 24,
+        "gap_rate": 0.5217
+      },
+      "SYLLOGISM": {
+        "total": 6,
+        "correct": 4,
+        "wrong": 2,
+        "gap_rate": 0.3333
+      },
+      "NEGATION": {
+        "total": 3,
+        "correct": 2,
+        "wrong": 1,
+        "gap_rate": 0.3333
+      },
+      "MODUS-PONENS": {
+        "total": 3,
+        "correct": 2,
+        "wrong": 1,
+        "gap_rate": 0.3333
+      }
+    }
+  },
+  "self_structure": {
+    "condition": "self_structure",
+    "eligible_examples": 0,
+    "composed_correct": 0,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {}
+  },
+  "cot_structure": {
+    "condition": "cot_structure",
+    "eligible_examples": 0,
+    "composed_correct": 0,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {}
+  },
+  "predictions": {
+    "self_structure": [
+      {
+        "idx": 0,
+        "gold_type": "DISJUNCTIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 1,
+        "gold_type": "DISJUNCTIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 21,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 22,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 23,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 30,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 31,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 32,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 34,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 35,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 41,
+        "gold_type": "DISJUNCTIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 42,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 43,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 44,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 46,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 47,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 48,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 76,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 77,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 78,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 79,
+        "gold_type": "SYLLOGISM",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 81,
+        "gold_type": "SYLLOGISM",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 82,
+        "gold_type": "SYLLOGISM",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 83,
+        "gold_type": "SYLLOGISM",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 87,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 102,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 103,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 104,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 105,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 106,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 107,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 108,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 109,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 110,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 122,
+        "gold_type": "NEGATION",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 123,
+        "gold_type": "NEGATION",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 124,
+        "gold_type": "NEGATION",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 128,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 129,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 130,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 131,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 140,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 141,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 142,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 153,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 154,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 155,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 156,
+        "gold_type": "SYLLOGISM",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 164,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 165,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 166,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 170,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 171,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 172,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 179,
+        "gold_type": "SYLLOGISM",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 185,
+        "gold_type": "MODUS-PONENS",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 186,
+        "gold_type": "MODUS-PONENS",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 187,
+        "gold_type": "MODUS-PONENS",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 196,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 197,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 198,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      }
+    ],
+    "cot_structure": [
+      {
+        "idx": 0,
+        "gold_type": "DISJUNCTIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 1,
+        "gold_type": "DISJUNCTIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 21,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 22,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 23,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 30,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 31,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 32,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 34,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 35,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 41,
+        "gold_type": "DISJUNCTIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 42,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 43,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 44,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 46,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 47,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 48,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 76,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 77,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 78,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 79,
+        "gold_type": "SYLLOGISM",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 81,
+        "gold_type": "SYLLOGISM",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 82,
+        "gold_type": "SYLLOGISM",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 83,
+        "gold_type": "SYLLOGISM",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 87,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 102,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 103,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 104,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 105,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 106,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 107,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 108,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 109,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 110,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 122,
+        "gold_type": "NEGATION",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 123,
+        "gold_type": "NEGATION",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 124,
+        "gold_type": "NEGATION",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 128,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 129,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 130,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 131,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 140,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 141,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 142,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 153,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 154,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 155,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 156,
+        "gold_type": "SYLLOGISM",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 164,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 165,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 166,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 170,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 171,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 172,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 179,
+        "gold_type": "SYLLOGISM",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 185,
+        "gold_type": "MODUS-PONENS",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 186,
+        "gold_type": "MODUS-PONENS",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 187,
+        "gold_type": "MODUS-PONENS",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 196,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 197,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 198,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      }
+    ]
+  }
+}
