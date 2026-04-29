@@ -1,0 +1,42 @@
+{
+  "model": "llama8b-cot",
+  "domain": "code",
+  "metric": "P(composed_wrong | all_pieces_correct)",
+  "total": 164,
+  "pieces_correct": 164,
+  "pieces_correct_pct": 100.0,
+  "composed_correct": 69,
+  "composed_accuracy": 0.4207,
+  "both_correct": 69,
+  "pieces_right_composed_wrong": 95,
+  "composition_gap": 0.5793,
+  "composition_gap_pct": 57.9,
+  "per_type_gap": {
+    "RECURSIVE": {
+      "pieces_ok": 46,
+      "composed_fail": 16,
+      "gap": 0.3478
+    },
+    "MULTI-STRUCT": {
+      "pieces_ok": 101,
+      "composed_fail": 68,
+      "gap": 0.6733
+    },
+    "LOOP": {
+      "pieces_ok": 10,
+      "composed_fail": 8,
+      "gap": 0.8
+    },
+    "SINGLE-FUNC": {
+      "pieces_ok": 5,
+      "composed_fail": 2,
+      "gap": 0.4
+    },
+    "CONDITIONAL": {
+      "pieces_ok": 2,
+      "composed_fail": 1,
+      "gap": 0.5
+    }
+  },
+  "timestamp": "2026-04-27T02:43:17.010415"
+}
