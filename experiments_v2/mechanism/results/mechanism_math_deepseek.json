@@ -2,7 +2,7 @@
   "model": "deepseek",
   "domain": "math",
   "experiment": "mechanism_structure_hint",
-  "timestamp": "2026-04-29T03:59:25.075701",
+  "timestamp": "2026-04-29T19:56:08.084395",
   "original": {
     "condition": "original",
     "eligible_examples": 49,
@@ -39,613 +39,1006 @@
   },
   "hint_correct": {
     "condition": "hint_correct",
-    "eligible_examples": 0,
-    "composed_correct": 0,
-    "gap_cases": 0,
-    "gap_rate": 0.0,
-    "gap_pct": 0.0,
-    "per_type": {}
+    "eligible_examples": 49,
+    "composed_correct": 48,
+    "gap_cases": 1,
+    "gap_rate": 0.0204,
+    "gap_pct": 2.0,
+    "per_type": {
+      "SYSTEM": {
+        "total": 9,
+        "correct": 9,
+        "wrong": 0,
+        "gap_rate": 0.0
+      },
+      "RATIO-PROP": {
+        "total": 16,
+        "correct": 15,
+        "wrong": 1,
+        "gap_rate": 0.0625
+      },
+      "SINGLE-OP": {
+        "total": 14,
+        "correct": 14,
+        "wrong": 0,
+        "gap_rate": 0.0
+      },
+      "MULTI-STEP": {
+        "total": 10,
+        "correct": 10,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
   },
   "hint_wrong": {
     "condition": "hint_wrong",
-    "eligible_examples": 0,
-    "composed_correct": 0,
-    "gap_cases": 0,
-    "gap_rate": 0.0,
-    "gap_pct": 0.0,
-    "per_type": {}
+    "eligible_examples": 49,
+    "composed_correct": 45,
+    "gap_cases": 4,
+    "gap_rate": 0.0816,
+    "gap_pct": 8.2,
+    "per_type": {
+      "SYSTEM": {
+        "total": 9,
+        "correct": 7,
+        "wrong": 2,
+        "gap_rate": 0.2222
+      },
+      "RATIO-PROP": {
+        "total": 16,
+        "correct": 16,
+        "wrong": 0,
+        "gap_rate": 0.0
+      },
+      "SINGLE-OP": {
+        "total": 14,
+        "correct": 13,
+        "wrong": 1,
+        "gap_rate": 0.0714
+      },
+      "MULTI-STEP": {
+        "total": 10,
+        "correct": 9,
+        "wrong": 1,
+        "gap_rate": 0.1
+      }
+    }
   },
   "predictions": {
     "hint_correct": [
       {
         "idx": 0,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "18",
+        "pred_answer": "18",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SYSTEM problem with multiple interacting constraints, requiring 3 steps (subtraction, multiplication)"
       },
       {
         "idx": 1,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "3",
+        "pred_answer": "3",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, division"
       },
       {
         "idx": 2,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "70000",
+        "pred_answer": "70000",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, subtraction"
       },
       {
         "idx": 3,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "540",
+        "pred_answer": "540",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using addition"
       },
       {
         "idx": 4,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "20",
+        "pred_answer": "20",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SYSTEM problem with multiple interacting constraints, requiring 3 steps (subtraction, multiplication)"
       },
       {
         "idx": 5,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "64",
+        "pred_answer": "64",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, subtraction"
       },
       {
         "idx": 6,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "260",
+        "pred_answer": "260",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, multiplication"
       },
       {
         "idx": 7,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "160",
+        "pred_answer": "160",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, multiplication"
       },
       {
         "idx": 8,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "45",
+        "pred_answer": "45",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STEP problem requiring 7 sequential operations (addition, subtraction, multiplication)"
       },
       {
         "idx": 9,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "460",
+        "pred_answer": "460",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SYSTEM problem with multiple interacting constraints, requiring 5 steps (addition, subtraction, multiplication)"
       },
       {
         "idx": 10,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "366",
+        "pred_answer": "366",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, subtraction"
       },
       {
         "idx": 11,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "694",
+        "pred_answer": "694",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (addition, multiplication)"
       },
       {
         "idx": 12,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "13",
+        "pred_answer": "13",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SYSTEM problem with multiple interacting constraints, requiring 4 steps (addition, subtraction, multiplication)"
       },
       {
         "idx": 13,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "18",
+        "pred_answer": "18",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using addition"
       },
       {
         "idx": 14,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "60",
+        "pred_answer": "60",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring subtraction, multiplication"
       },
       {
         "idx": 15,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "125",
+        "pred_answer": "125",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring multiplication, division"
       },
       {
         "idx": 16,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "230",
+        "pred_answer": "230",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (addition, multiplication, division)"
       },
       {
         "idx": 17,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "57500",
+        "pred_answer": "57500",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SYSTEM problem with multiple interacting constraints, requiring 4 steps (addition, multiplication, division)"
       },
       {
         "idx": 18,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "7",
+        "pred_answer": "7",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STEP problem requiring 3 sequential operations (multiplication, division)"
       },
       {
         "idx": 19,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "6",
+        "pred_answer": "6",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SYSTEM problem with multiple interacting constraints, requiring 4 steps (addition, subtraction, multiplication)"
       },
       {
         "idx": 20,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "15",
+        "pred_answer": "15",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (addition, subtraction, multiplication)"
       },
       {
         "idx": 21,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "14",
+        "pred_answer": "14",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using subtraction"
       },
       {
         "idx": 22,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "7",
+        "pred_answer": "7",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SYSTEM problem with multiple interacting constraints, requiring 3 steps (addition, multiplication)"
       },
       {
         "idx": 23,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "8",
+        "pred_answer": "8",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using subtraction"
       },
       {
         "idx": 24,
         "gold_type": "RATIO-PROP",
+        "gold_answer": "26",
+        "pred_answer": "26.00",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring subtraction, multiplication"
       },
       {
         "idx": 25,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "2",
+        "pred_answer": "2",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STEP problem requiring 5 sequential operations (addition, subtraction, multiplication)"
       },
       {
         "idx": 26,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "243",
+        "pred_answer": "243",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using addition"
       },
       {
         "idx": 27,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "16",
+        "pred_answer": "16",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using multiplication"
       },
       {
         "idx": 28,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "25",
+        "pred_answer": "25",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using addition"
       },
       {
         "idx": 29,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "104",
+        "pred_answer": "104",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, subtraction"
       },
       {
         "idx": 30,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "109",
+        "pred_answer": "109",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, multiplication"
       },
       {
         "idx": 31,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "80",
+        "pred_answer": "80",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, multiplication"
       },
       {
         "idx": 33,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "70",
+        "pred_answer": "70",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using addition"
       },
       {
         "idx": 34,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "23",
+        "pred_answer": "23",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, subtraction"
       },
       {
         "idx": 35,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "9",
+        "pred_answer": "9",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, multiplication"
       },
       {
         "idx": 36,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "75",
+        "pred_answer": "75",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STEP problem requiring 3 sequential operations (subtraction, multiplication, division)"
       },
       {
         "idx": 37,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "2",
+        "pred_answer": "2",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (addition, subtraction, multiplication)"
       },
       {
         "idx": 38,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "10",
+        "pred_answer": "10",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, subtraction"
       },
       {
         "idx": 39,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "18",
+        "pred_answer": "18",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SYSTEM problem with multiple interacting constraints, requiring 6 steps (addition, subtraction, multiplication)"
       },
       {
         "idx": 40,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "8",
+        "pred_answer": "8",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using multiplication"
       },
       {
         "idx": 41,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "200",
+        "pred_answer": "200",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using subtraction"
       },
       {
         "idx": 42,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "26",
+        "pred_answer": "26",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using subtraction"
       },
       {
         "idx": 43,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "48",
+        "pred_answer": "48",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using addition"
       },
       {
         "idx": 44,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "20",
+        "pred_answer": "20",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (subtraction, multiplication, division)"
       },
       {
         "idx": 45,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "104",
+        "pred_answer": "104",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SYSTEM problem with multiple interacting constraints, requiring 4 steps (addition, multiplication, division)"
       },
       {
         "idx": 46,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "163",
+        "pred_answer": "163",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using addition"
       },
       {
         "idx": 47,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "800",
+        "pred_answer": "800",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages or ratios, requiring addition, multiplication"
       },
       {
         "idx": 48,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "8",
+        "pred_answer": "8",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step using addition"
       },
       {
         "idx": 49,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "30",
+        "pred_answer": "30",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STEP problem requiring 3 sequential operations (addition, subtraction, multiplication)"
       }
     ],
     "hint_wrong": [
       {
         "idx": 0,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "18",
+        "pred_answer": "18",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 1,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "3",
+        "pred_answer": "3",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 2,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "70000",
+        "pred_answer": "70000",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "COMPARISON",
+        "hint_given": "a COMPARISON problem that requires finding the difference between two quantities"
       },
       {
         "idx": 3,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "540",
+        "pred_answer": "540",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "RATIO-PROP",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages with multiplication and division"
       },
       {
         "idx": 4,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "20",
+        "pred_answer": "20",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-STEP",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (addition, multiplication, subtraction, division)"
       },
       {
         "idx": 5,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "64",
+        "pred_answer": "64",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-STEP",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (addition, multiplication, subtraction, division)"
       },
       {
         "idx": 6,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "260",
+        "pred_answer": "260",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 7,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "160",
+        "pred_answer": "160",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 8,
         "gold_type": "MULTI-STEP",
+        "gold_answer": "45",
+        "pred_answer": "15",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SYSTEM",
+        "hint_given": "a SYSTEM problem with 5 interacting variables and multiple constraints"
       },
       {
         "idx": 9,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "460",
+        "pred_answer": "460",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 10,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "366",
+        "pred_answer": "366",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 11,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "694",
+        "pred_answer": "694",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 12,
         "gold_type": "SYSTEM",
+        "gold_answer": "13",
+        "pred_answer": "12",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-STEP",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (addition, multiplication, subtraction, division)"
       },
       {
         "idx": 13,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "18",
+        "pred_answer": "18",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "RATIO-PROP",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages with multiplication and division"
       },
       {
         "idx": 14,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "60",
+        "pred_answer": "60",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 15,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "125",
+        "pred_answer": "125",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-STEP",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (addition, multiplication, subtraction, division)"
       },
       {
         "idx": 16,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "230",
+        "pred_answer": "230",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SYSTEM",
+        "hint_given": "a SYSTEM problem with 5 interacting variables and multiple constraints"
       },
       {
         "idx": 17,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "57500",
+        "pred_answer": "57500",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-STEP",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (addition, multiplication, subtraction, division)"
       },
       {
         "idx": 18,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "7",
+        "pred_answer": "7",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SYSTEM",
+        "hint_given": "a SYSTEM problem with 5 interacting variables and multiple constraints"
       },
       {
         "idx": 19,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "6",
+        "pred_answer": "6",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "RATIO-PROP",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages with multiplication and division"
       },
       {
         "idx": 20,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "15",
+        "pred_answer": "15",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 21,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "14",
+        "pred_answer": "14",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "RATIO-PROP",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages with multiplication and division"
       },
       {
         "idx": 22,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "7",
+        "pred_answer": "7",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "COMPARISON",
+        "hint_given": "a COMPARISON problem that requires finding the difference between two quantities"
       },
       {
         "idx": 23,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "8",
+        "pred_answer": "8",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "COMPARISON",
+        "hint_given": "a COMPARISON problem that requires finding the difference between two quantities"
       },
       {
         "idx": 24,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "26",
+        "pred_answer": "26",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "COMPARISON",
+        "hint_given": "a COMPARISON problem that requires finding the difference between two quantities"
       },
       {
         "idx": 25,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "2",
+        "pred_answer": "2",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "RATIO-PROP",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages with multiplication and division"
       },
       {
         "idx": 26,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "243",
+        "pred_answer": "243",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "RATIO-PROP",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages with multiplication and division"
       },
       {
         "idx": 27,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "16",
+        "pred_answer": "16",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "COMPARISON",
+        "hint_given": "a COMPARISON problem that requires finding the difference between two quantities"
       },
       {
         "idx": 28,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "25",
+        "pred_answer": "25",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-STEP",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (addition, multiplication, subtraction, division)"
       },
       {
         "idx": 29,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "104",
+        "pred_answer": "104",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 30,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "109",
+        "pred_answer": "109",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SYSTEM",
+        "hint_given": "a SYSTEM problem with 5 interacting variables and multiple constraints"
       },
       {
         "idx": 31,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "80",
+        "pred_answer": "80",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 33,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "70",
+        "pred_answer": "70",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "COMPARISON",
+        "hint_given": "a COMPARISON problem that requires finding the difference between two quantities"
       },
       {
         "idx": 34,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "23",
+        "pred_answer": "23",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "COMPARISON",
+        "hint_given": "a COMPARISON problem that requires finding the difference between two quantities"
       },
       {
         "idx": 35,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "9",
+        "pred_answer": "9",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "COMPARISON",
+        "hint_given": "a COMPARISON problem that requires finding the difference between two quantities"
       },
       {
         "idx": 36,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "75",
+        "pred_answer": "75",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 37,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "2",
+        "pred_answer": "2",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SYSTEM",
+        "hint_given": "a SYSTEM problem with 5 interacting variables and multiple constraints"
       },
       {
         "idx": 38,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "10",
+        "pred_answer": "10",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 39,
         "gold_type": "SYSTEM",
+        "gold_answer": "18",
+        "pred_answer": "6",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "COMPARISON",
+        "hint_given": "a COMPARISON problem that requires finding the difference between two quantities"
       },
       {
         "idx": 40,
         "gold_type": "SINGLE-OP",
+        "gold_answer": "8",
+        "pred_answer": "12",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-STEP",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (addition, multiplication, subtraction, division)"
       },
       {
         "idx": 41,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "200",
+        "pred_answer": "200",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "COMPARISON",
+        "hint_given": "a COMPARISON problem that requires finding the difference between two quantities"
       },
       {
         "idx": 42,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "26",
+        "pred_answer": "26",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "COMPARISON",
+        "hint_given": "a COMPARISON problem that requires finding the difference between two quantities"
       },
       {
         "idx": 43,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "48",
+        "pred_answer": "48",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "RATIO-PROP",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages with multiplication and division"
       },
       {
         "idx": 44,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "20",
+        "pred_answer": "20",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 45,
         "gold_type": "SYSTEM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "104",
+        "pred_answer": "104",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-OP",
+        "hint_given": "a SINGLE-OPERATION problem solvable in one step with simple subtraction"
       },
       {
         "idx": 46,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "163",
+        "pred_answer": "163",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "RATIO-PROP",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages with multiplication and division"
       },
       {
         "idx": 47,
         "gold_type": "RATIO-PROP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "800",
+        "pred_answer": "800",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "COMPARISON",
+        "hint_given": "a COMPARISON problem that requires finding the difference between two quantities"
       },
       {
         "idx": 48,
         "gold_type": "SINGLE-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "8",
+        "pred_answer": "8",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-STEP",
+        "hint_given": "a MULTI-STEP problem requiring 4 sequential operations (addition, multiplication, subtraction, division)"
       },
       {
         "idx": 49,
         "gold_type": "MULTI-STEP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_answer": "30",
+        "pred_answer": "30",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "RATIO-PROP",
+        "hint_given": "a RATIO/PROPORTION problem involving percentages with multiplication and division"
       }
     ]
   }

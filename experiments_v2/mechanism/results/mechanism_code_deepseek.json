@@ -2,7 +2,7 @@
   "model": "deepseek",
   "domain": "code",
   "experiment": "mechanism_structure_hint",
-  "timestamp": "2026-04-29T03:59:25.285166",
+  "timestamp": "2026-04-29T20:03:33.910486",
   "original": {
     "condition": "original",
     "eligible_examples": 50,
@@ -39,625 +39,1325 @@
   },
   "hint_correct": {
     "condition": "hint_correct",
-    "eligible_examples": 0,
-    "composed_correct": 0,
-    "gap_cases": 0,
-    "gap_rate": 0.0,
-    "gap_pct": 0.0,
-    "per_type": {}
+    "eligible_examples": 50,
+    "composed_correct": 14,
+    "gap_cases": 36,
+    "gap_rate": 0.72,
+    "gap_pct": 72.0,
+    "per_type": {
+      "RECURSIVE": {
+        "total": 14,
+        "correct": 11,
+        "wrong": 3,
+        "gap_rate": 0.2143
+      },
+      "MULTI-STRUCT": {
+        "total": 34,
+        "correct": 2,
+        "wrong": 32,
+        "gap_rate": 0.9412
+      },
+      "LOOP": {
+        "total": 1,
+        "correct": 0,
+        "wrong": 1,
+        "gap_rate": 1.0
+      },
+      "SINGLE-FUNC": {
+        "total": 1,
+        "correct": 1,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
   },
   "hint_wrong": {
     "condition": "hint_wrong",
-    "eligible_examples": 0,
-    "composed_correct": 0,
-    "gap_cases": 0,
-    "gap_rate": 0.0,
-    "gap_pct": 0.0,
-    "per_type": {}
+    "eligible_examples": 50,
+    "composed_correct": 6,
+    "gap_cases": 44,
+    "gap_rate": 0.88,
+    "gap_pct": 88.0,
+    "per_type": {
+      "RECURSIVE": {
+        "total": 14,
+        "correct": 1,
+        "wrong": 13,
+        "gap_rate": 0.9286
+      },
+      "MULTI-STRUCT": {
+        "total": 34,
+        "correct": 5,
+        "wrong": 29,
+        "gap_rate": 0.8529
+      },
+      "LOOP": {
+        "total": 1,
+        "correct": 0,
+        "wrong": 1,
+        "gap_rate": 1.0
+      },
+      "SINGLE-FUNC": {
+        "total": 1,
+        "correct": 0,
+        "wrong": 1,
+        "gap_rate": 1.0
+      }
+    }
   },
   "predictions": {
     "hint_correct": [
       {
         "idx": 0,
         "gold_type": "RECURSIVE",
+        "pred_type": "RECURSIVE",
+        "code_has_loop": true,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 1,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "CONDITIONAL",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 2,
         "gold_type": "RECURSIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 3,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 4,
         "gold_type": "RECURSIVE",
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 5,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 6,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "MULTI-STRUCT",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 7,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 8,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 9,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 10,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 11,
         "gold_type": "RECURSIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 12,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 13,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 14,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 15,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 16,
         "gold_type": "RECURSIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 17,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 18,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 19,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "SINGLE-FUNC",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 20,
         "gold_type": "RECURSIVE",
+        "pred_type": "MULTI-STRUCT",
+        "code_has_loop": true,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 21,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 22,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 23,
         "gold_type": "RECURSIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 24,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 25,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "MULTI-STRUCT",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 26,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 27,
         "gold_type": "RECURSIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 28,
         "gold_type": "RECURSIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 29,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 30,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 31,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 32,
         "gold_type": "MULTI-STRUCT",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 33,
         "gold_type": "RECURSIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "RECURSIVE",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 34,
         "gold_type": "RECURSIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 35,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 36,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 37,
         "gold_type": "RECURSIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "RECURSIVE",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 38,
         "gold_type": "LOOP",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 39,
         "gold_type": "MULTI-STRUCT",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "MULTI-STRUCT",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 40,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "MULTI-STRUCT",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 41,
         "gold_type": "SINGLE-FUNC",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SINGLE-FUNC",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": false,
+        "gold_has_rec": false,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 42,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 43,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 44,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 45,
         "gold_type": "RECURSIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 46,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 47,
         "gold_type": "RECURSIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 48,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 49,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       }
     ],
     "hint_wrong": [
       {
         "idx": 0,
         "gold_type": "RECURSIVE",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": false,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 1,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "CONDITIONAL",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 2,
         "gold_type": "RECURSIVE",
+        "pred_type": "CONDITIONAL",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "CONDITIONAL",
+        "hint_given": "CONDITIONAL BRANCHING with multiple if/elif/else cases. The key challenge is handling different case"
       },
       {
         "idx": 3,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 4,
         "gold_type": "RECURSIVE",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 5,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "CONDITIONAL",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 6,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "MULTI-STRUCT",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 7,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "SINGLE-FUNC",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 8,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "RECURSIVE",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 9,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "SINGLE-FUNC",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 10,
         "gold_type": "MULTI-STRUCT",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 11,
         "gold_type": "RECURSIVE",
+        "pred_type": "SINGLE-FUNC",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 12,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 13,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 14,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 15,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 16,
         "gold_type": "RECURSIVE",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": false,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-STRUCT",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 17,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 18,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "RECURSIVE",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 19,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "CONDITIONAL",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "CONDITIONAL",
+        "hint_given": "CONDITIONAL BRANCHING with multiple if/elif/else cases. The key challenge is handling different case"
       },
       {
         "idx": 20,
         "gold_type": "RECURSIVE",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": false,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 21,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 22,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "RECURSIVE",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 23,
         "gold_type": "RECURSIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "CONDITIONAL",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "CONDITIONAL",
+        "hint_given": "CONDITIONAL BRANCHING with multiple if/elif/else cases. The key challenge is handling different case"
       },
       {
         "idx": 24,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "CONDITIONAL",
+        "hint_given": "CONDITIONAL BRANCHING with multiple if/elif/else cases. The key challenge is handling different case"
       },
       {
         "idx": 25,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "MULTI-STRUCT",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 26,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 27,
         "gold_type": "RECURSIVE",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": false,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "CONDITIONAL",
+        "hint_given": "CONDITIONAL BRANCHING with multiple if/elif/else cases. The key challenge is handling different case"
       },
       {
         "idx": 28,
         "gold_type": "RECURSIVE",
+        "pred_type": "SINGLE-FUNC",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 29,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "SINGLE-FUNC",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 30,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "RECURSIVE",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 31,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "CONDITIONAL",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 32,
         "gold_type": "MULTI-STRUCT",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "CONDITIONAL",
+        "hint_given": "CONDITIONAL BRANCHING with multiple if/elif/else cases. The key challenge is handling different case"
       },
       {
         "idx": 33,
         "gold_type": "RECURSIVE",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "CONDITIONAL",
+        "hint_given": "CONDITIONAL BRANCHING with multiple if/elif/else cases. The key challenge is handling different case"
       },
       {
         "idx": 34,
         "gold_type": "RECURSIVE",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": false,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "CONDITIONAL",
+        "hint_given": "CONDITIONAL BRANCHING with multiple if/elif/else cases. The key challenge is handling different case"
       },
       {
         "idx": 35,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "SINGLE-FUNC",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 36,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "RECURSIVE",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 37,
         "gold_type": "RECURSIVE",
+        "pred_type": "SINGLE-FUNC",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 38,
         "gold_type": "LOOP",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-STRUCT",
+        "hint_given": "a MULTI-STRUCTURE approach combining loops with conditionals, or nested loops, or helper functions. "
       },
       {
         "idx": 39,
         "gold_type": "MULTI-STRUCT",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "MULTI-STRUCT",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 40,
         "gold_type": "MULTI-STRUCT",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "MULTI-STRUCT",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "CONDITIONAL",
+        "hint_given": "CONDITIONAL BRANCHING with multiple if/elif/else cases. The key challenge is handling different case"
       },
       {
         "idx": 41,
         "gold_type": "SINGLE-FUNC",
+        "pred_type": "RECURSIVE",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": true,
+        "gold_has_rec": false,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "RECURSIVE",
+        "hint_given": "a RECURSIVE approach where the function calls itself. Define a base case and recursive step. Do NOT "
       },
       {
         "idx": 42,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 43,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "SINGLE-FUNC",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 44,
         "gold_type": "MULTI-STRUCT",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "RECURSIVE",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": true,
+        "gold_has_rec": true,
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 45,
         "gold_type": "RECURSIVE",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": false,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 46,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "CONDITIONAL",
+        "hint_given": "CONDITIONAL BRANCHING with multiple if/elif/else cases. The key challenge is handling different case"
       },
       {
         "idx": 47,
         "gold_type": "RECURSIVE",
+        "pred_type": "CONDITIONAL",
+        "code_has_loop": false,
+        "gold_has_loop": false,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       },
       {
         "idx": 48,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "LOOP",
+        "code_has_loop": true,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "LOOP",
+        "hint_given": "a LOOP-BASED approach using for/while iteration. Iterate over the input, accumulate results, and ret"
       },
       {
         "idx": 49,
         "gold_type": "MULTI-STRUCT",
+        "pred_type": "SINGLE-FUNC",
+        "code_has_loop": false,
+        "gold_has_loop": true,
+        "code_has_rec": false,
+        "gold_has_rec": true,
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SINGLE-FUNC",
+        "hint_given": "a SIMPLE FUNCTION with straightforward logic \u2014 no loops, no recursion, just direct computation or st"
       }
     ]
   }

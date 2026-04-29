@@ -2,7 +2,7 @@
   "model": "deepseek",
   "domain": "logic",
   "experiment": "mechanism_structure_hint",
-  "timestamp": "2026-04-29T03:59:25.170734",
+  "timestamp": "2026-04-29T19:57:08.015019",
   "original": {
     "condition": "original",
     "eligible_examples": 10,
@@ -21,145 +21,229 @@
   },
   "hint_correct": {
     "condition": "hint_correct",
-    "eligible_examples": 0,
-    "composed_correct": 0,
-    "gap_cases": 0,
-    "gap_rate": 0.0,
-    "gap_pct": 0.0,
-    "per_type": {}
+    "eligible_examples": 10,
+    "composed_correct": 5,
+    "gap_cases": 5,
+    "gap_rate": 0.5,
+    "gap_pct": 50.0,
+    "per_type": {
+      "CONDITIONAL-CHAIN": {
+        "total": 10,
+        "correct": 5,
+        "wrong": 5,
+        "gap_rate": 0.5
+      }
+    }
   },
   "hint_wrong": {
     "condition": "hint_wrong",
-    "eligible_examples": 0,
-    "composed_correct": 0,
-    "gap_cases": 0,
-    "gap_rate": 0.0,
-    "gap_pct": 0.0,
-    "per_type": {}
+    "eligible_examples": 10,
+    "composed_correct": 4,
+    "gap_cases": 6,
+    "gap_rate": 0.6,
+    "gap_pct": 60.0,
+    "per_type": {
+      "CONDITIONAL-CHAIN": {
+        "total": 10,
+        "correct": 4,
+        "wrong": 6,
+        "gap_rate": 0.6
+      }
+    }
   },
   "predictions": {
     "hint_correct": [
       {
         "idx": 21,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "CONDITIONAL CHAIN reasoning (if A then B; if B then C; therefore if A then C). Trace the chain of co"
       },
       {
         "idx": 22,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "CONDITIONAL CHAIN reasoning (if A then B; if B then C; therefore if A then C). Trace the chain of co"
       },
       {
         "idx": 23,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "CONDITIONAL CHAIN reasoning (if A then B; if B then C; therefore if A then C). Trace the chain of co"
       },
       {
         "idx": 30,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "CONDITIONAL CHAIN reasoning (if A then B; if B then C; therefore if A then C). Trace the chain of co"
       },
       {
         "idx": 31,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "CONDITIONAL CHAIN reasoning (if A then B; if B then C; therefore if A then C). Trace the chain of co"
       },
       {
         "idx": 32,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "CONDITIONAL CHAIN reasoning (if A then B; if B then C; therefore if A then C). Trace the chain of co"
       },
       {
         "idx": 42,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "CONDITIONAL CHAIN reasoning (if A then B; if B then C; therefore if A then C). Trace the chain of co"
       },
       {
         "idx": 43,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "CONDITIONAL CHAIN reasoning (if A then B; if B then C; therefore if A then C). Trace the chain of co"
       },
       {
         "idx": 44,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "CONDITIONAL CHAIN reasoning (if A then B; if B then C; therefore if A then C). Trace the chain of co"
       },
       {
         "idx": 49,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_correct",
+        "hint_given": "CONDITIONAL CHAIN reasoning (if A then B; if B then C; therefore if A then C). Trace the chain of co"
       }
     ],
     "hint_wrong": [
       {
         "idx": 21,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MODUS-PONENS",
+        "hint_given": "MODUS PONENS reasoning (if P then Q; P is true; therefore Q). Identify the conditional rule (if-then"
       },
       {
         "idx": 22,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MODUS-PONENS",
+        "hint_given": "MODUS PONENS reasoning (if P then Q; P is true; therefore Q). Identify the conditional rule (if-then"
       },
       {
         "idx": 23,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "DISJUNCTIVE",
+        "hint_given": "DISJUNCTIVE reasoning (either P or Q; not P; therefore Q). Identify the disjunction, determine which"
       },
       {
         "idx": 30,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SYLLOGISM",
+        "hint_given": "SYLLOGISTIC reasoning (All X are Y; Z is X; therefore Z is Y). Identify the universal rule, check ca"
       },
       {
         "idx": 31,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SYLLOGISM",
+        "hint_given": "SYLLOGISTIC reasoning (All X are Y; Z is X; therefore Z is Y). Identify the universal rule, check ca"
       },
       {
         "idx": 32,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SYLLOGISM",
+        "hint_given": "SYLLOGISTIC reasoning (All X are Y; Z is X; therefore Z is Y). Identify the universal rule, check ca"
       },
       {
         "idx": 42,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MODUS-PONENS",
+        "hint_given": "MODUS PONENS reasoning (if P then Q; P is true; therefore Q). Identify the conditional rule (if-then"
       },
       {
         "idx": 43,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "MODUS-PONENS",
+        "hint_given": "MODUS PONENS reasoning (if P then Q; P is true; therefore Q). Identify the conditional rule (if-then"
       },
       {
         "idx": 44,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "NEGATION",
+        "hint_given": "NEGATION-based reasoning (not all X are Y; Z is X; therefore Z might not be Y). Carefully track nega"
       },
       {
         "idx": 49,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "MODUS-PONENS",
+        "hint_given": "MODUS PONENS reasoning (if P then Q; P is true; therefore Q). Identify the conditional rule (if-then"
       }
     ]
   }
