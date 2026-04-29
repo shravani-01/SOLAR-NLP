@@ -1,0 +1,154 @@
+{
+  "model": "deepseek",
+  "domain": "contracts",
+  "experiment": "mitigation_structure_aware_prompting",
+  "timestamp": "2026-04-29T03:59:35.578537",
+  "original": {
+    "condition": "original",
+    "eligible_examples": 9,
+    "composed_correct": 9,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {
+      "HARD": {
+        "total": 9,
+        "correct": 9,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
+  },
+  "self_structure": {
+    "condition": "self_structure",
+    "eligible_examples": 0,
+    "composed_correct": 0,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {}
+  },
+  "cot_structure": {
+    "condition": "cot_structure",
+    "eligible_examples": 0,
+    "composed_correct": 0,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {}
+  },
+  "predictions": {
+    "self_structure": [
+      {
+        "idx": 1,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 36,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 39,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 41,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 42,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 43,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 47,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 48,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 49,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      }
+    ],
+    "cot_structure": [
+      {
+        "idx": 1,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 36,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 39,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 41,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 42,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 43,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 47,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 48,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 49,
+        "gold_type": "HARD",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      }
+    ]
+  }
+}

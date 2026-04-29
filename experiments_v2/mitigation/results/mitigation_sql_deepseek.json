@@ -1,0 +1,532 @@
+{
+  "model": "deepseek",
+  "domain": "sql",
+  "experiment": "mitigation_structure_aware_prompting",
+  "timestamp": "2026-04-29T03:59:35.695476",
+  "original": {
+    "condition": "original",
+    "eligible_examples": 39,
+    "composed_correct": 32,
+    "gap_cases": 7,
+    "gap_rate": 0.1795,
+    "gap_pct": 17.9,
+    "per_type": {
+      "SIMPLE": {
+        "total": 21,
+        "correct": 18,
+        "wrong": 3,
+        "gap_rate": 0.1429
+      },
+      "NESTED": {
+        "total": 6,
+        "correct": 4,
+        "wrong": 2,
+        "gap_rate": 0.3333
+      },
+      "JOIN": {
+        "total": 10,
+        "correct": 10,
+        "wrong": 0,
+        "gap_rate": 0.0
+      },
+      "SET-OP": {
+        "total": 2,
+        "correct": 0,
+        "wrong": 2,
+        "gap_rate": 1.0
+      }
+    }
+  },
+  "self_structure": {
+    "condition": "self_structure",
+    "eligible_examples": 0,
+    "composed_correct": 0,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {}
+  },
+  "cot_structure": {
+    "condition": "cot_structure",
+    "eligible_examples": 0,
+    "composed_correct": 0,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {}
+  },
+  "predictions": {
+    "self_structure": [
+      {
+        "idx": 0,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 1,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 2,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 3,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 4,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 5,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 8,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 9,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 10,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 11,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 12,
+        "gold_type": "NESTED",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 13,
+        "gold_type": "NESTED",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 14,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 15,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 16,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 17,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 20,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 21,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 22,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 23,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 24,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 25,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 28,
+        "gold_type": "NESTED",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 29,
+        "gold_type": "NESTED",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 31,
+        "gold_type": "SET-OP",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 32,
+        "gold_type": "SET-OP",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 33,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 34,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 35,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 36,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 37,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 38,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 39,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 40,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 43,
+        "gold_type": "NESTED",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 44,
+        "gold_type": "NESTED",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 45,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 46,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 49,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      }
+    ],
+    "cot_structure": [
+      {
+        "idx": 0,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 1,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 2,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 3,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 4,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 5,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 8,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 9,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 10,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 11,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 12,
+        "gold_type": "NESTED",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 13,
+        "gold_type": "NESTED",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 14,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 15,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 16,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 17,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 20,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 21,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 22,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 23,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 24,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 25,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 28,
+        "gold_type": "NESTED",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 29,
+        "gold_type": "NESTED",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 31,
+        "gold_type": "SET-OP",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 32,
+        "gold_type": "SET-OP",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 33,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 34,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 35,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 36,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 37,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 38,
+        "gold_type": "JOIN",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 39,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 40,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 43,
+        "gold_type": "NESTED",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 44,
+        "gold_type": "NESTED",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 45,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 46,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 49,
+        "gold_type": "SIMPLE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      }
+    ]
+  }
+}

@@ -1,0 +1,664 @@
+{
+  "model": "deepseek",
+  "domain": "code",
+  "experiment": "mitigation_structure_aware_prompting",
+  "timestamp": "2026-04-29T03:59:36.025665",
+  "original": {
+    "condition": "original",
+    "eligible_examples": 50,
+    "composed_correct": 32,
+    "gap_cases": 18,
+    "gap_rate": 0.36,
+    "gap_pct": 36.0,
+    "per_type": {
+      "RECURSIVE": {
+        "total": 14,
+        "correct": 6,
+        "wrong": 8,
+        "gap_rate": 0.5714
+      },
+      "MULTI-STRUCT": {
+        "total": 34,
+        "correct": 24,
+        "wrong": 10,
+        "gap_rate": 0.2941
+      },
+      "LOOP": {
+        "total": 1,
+        "correct": 1,
+        "wrong": 0,
+        "gap_rate": 0.0
+      },
+      "SINGLE-FUNC": {
+        "total": 1,
+        "correct": 1,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
+  },
+  "self_structure": {
+    "condition": "self_structure",
+    "eligible_examples": 0,
+    "composed_correct": 0,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {}
+  },
+  "cot_structure": {
+    "condition": "cot_structure",
+    "eligible_examples": 0,
+    "composed_correct": 0,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {}
+  },
+  "predictions": {
+    "self_structure": [
+      {
+        "idx": 0,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 1,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 2,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 3,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 4,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 5,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 6,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 7,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 8,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 9,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 10,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 11,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 12,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 13,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 14,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 15,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 16,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 17,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 18,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 19,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 20,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 21,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 22,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 23,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 24,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 25,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 26,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 27,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 28,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 29,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 30,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 31,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 32,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 33,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 34,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 35,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 36,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 37,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 38,
+        "gold_type": "LOOP",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 39,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 40,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 41,
+        "gold_type": "SINGLE-FUNC",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 42,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 43,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 44,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 45,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 46,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 47,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 48,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 49,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      }
+    ],
+    "cot_structure": [
+      {
+        "idx": 0,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 1,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 2,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 3,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 4,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 5,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 6,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 7,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 8,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 9,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 10,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 11,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 12,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 13,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 14,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 15,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 16,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 17,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 18,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 19,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 20,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 21,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 22,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 23,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 24,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 25,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 26,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 27,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 28,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 29,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 30,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 31,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 32,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 33,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 34,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 35,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 36,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 37,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 38,
+        "gold_type": "LOOP",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 39,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 40,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 41,
+        "gold_type": "SINGLE-FUNC",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 42,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 43,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 44,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 45,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 46,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 47,
+        "gold_type": "RECURSIVE",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 48,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      },
+      {
+        "idx": 49,
+        "gold_type": "MULTI-STRUCT",
+        "composed_correct": false,
+        "error": "No module named 'openai'"
+      }
+    ]
+  }
+}
