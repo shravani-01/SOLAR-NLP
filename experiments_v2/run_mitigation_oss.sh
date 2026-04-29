@@ -1,0 +1,114 @@
+#!/bin/bash
+# ═══════════════════════════════════════════════════════════════════════
+# SOLAR-NLP — Mitigation Experiment: OSS Models (Sequential + Auto-Commit)
+# ═══════════════════════════════════════════════════════════════════════
+#
+# Runs mitigation experiments for each OSS model one at a time.
+# After each model finishes ALL 5 domains, results are committed & pushed.
+#
+# Requires: GPU (RunPod or similar)
+#
+# Usage:
+#   bash run_mitigation_oss.sh              # All OSS models
+#   bash run_mitigation_oss.sh 10           # All OSS models, limit 10
+#   bash run_mitigation_oss.sh 0 qwen7b    # Single model, no limit
+#
+# ═══════════════════════════════════════════════════════════════════════
+
+set -e
+
+LIMIT=${1:-""}
+SINGLE_MODEL=${2:-""}
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
+MIT_DIR="$SCRIPT_DIR/mitigation"
+
+cd "$MIT_DIR"
+
+LIMIT_ARG=""
+if [ -n "$LIMIT" ] && [ "$LIMIT" != "0" ]; then
+    LIMIT_ARG="--limit $LIMIT"
+fi
+
+# OSS models in order
+OSS_MODELS=("qwen7b" "qwen7b-cot" "llama8b" "llama8b-cot")
+
+if [ -n "$SINGLE_MODEL" ]; then
+    OSS_MODELS=("$SINGLE_MODEL")
+fi
+
+TOTAL=${#OSS_MODELS[@]}
+COUNT=0
+
+echo "═══════════════════════════════════════════════════════════════"
+echo "  SOLAR-NLP Mitigation — OSS Models (Sequential + Auto-Commit)"
+echo "  Models: ${OSS_MODELS[*]}"
+echo "  Limit: ${LIMIT:-none}"
+echo "  Started: $(date '+%Y-%m-%d %H:%M:%S')"
+echo "═══════════════════════════════════════════════════════════════"
+
+# Check GPU availability
+if command -v nvidia-smi &> /dev/null; then
+    echo ""
+    echo "  GPU Info:"
+    nvidia-smi --query-gpu=name,memory.total,memory.free --format=csv,noheader 2>/dev/null || echo "  (could not query GPU)"
+else
+    echo ""
+    echo "  ⚠ WARNING: nvidia-smi not found. OSS models require GPU!"
+    echo "  Continuing anyway (will fail at model load if no GPU)..."
+fi
+
+for MODEL in "${OSS_MODELS[@]}"; do
+    COUNT=$((COUNT + 1))
+    echo ""
+    echo "╔═══════════════════════════════════════════════════════════╗"
+    echo "║  Model $COUNT/$TOTAL: $MODEL"
+    echo "║  Started: $(date '+%Y-%m-%d %H:%M:%S')"
+    echo "╚═══════════════════════════════════════════════════════════╝"
+
+    for DOMAIN in contracts sql math logic code; do
+        echo ""
+        echo "  ▶ [$MODEL] $DOMAIN"
+        echo "  ─────────────────────────────────────────────"
+        python "run_${DOMAIN}.py" --model "$MODEL" --backend oss $LIMIT_ARG
+        echo "  ✓ [$MODEL] $DOMAIN complete"
+    done
+
+    # ── Git commit & push ──────────────────────────────────────────
+    echo ""
+    echo "  ▶ [$MODEL] Committing results..."
+    cd "$REPO_DIR"
+
+    git add experiments_v2/mitigation/results/ || true
+
+    if git diff --cached --quiet; then
+        echo "  ⚠ [$MODEL] No new results to commit (skipping)"
+    else
+        git commit -m "mitigation results: $MODEL (all 5 domains)
+
+Experiment: Section 8 — Structure-Aware Prompting
+Model: $MODEL | Backend: oss | Limit: ${LIMIT:-full}
+Domains: contracts, sql, math, logic, code
+Conditions: self_structure, cot_structure
+Timestamp: $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+
+        git push
+        echo "  ✓ [$MODEL] Committed & pushed"
+    fi
+
+    cd "$MIT_DIR"
+
+    echo ""
+    echo "  ═══════════════════════════════════════════════"
+    echo "  ✓ MODEL COMPLETE: $MODEL ($COUNT/$TOTAL)"
+    echo "  ═══════════════════════════════════════════════"
+done
+
+echo ""
+echo "═══════════════════════════════════════════════════════════════"
+echo "  ALL OSS MITIGATION EXPERIMENTS COMPLETE!"
+echo "  Models run: ${OSS_MODELS[*]}"
+echo "  Results in: $MIT_DIR/results/"
+echo "  Finished: $(date '+%Y-%m-%d %H:%M:%S')"
+echo "═══════════════════════════════════════════════════════════════"
