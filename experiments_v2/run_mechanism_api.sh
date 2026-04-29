@@ -19,7 +19,7 @@ LIMIT=${1:-""}
 SINGLE_MODEL=${2:-""}
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-REPO_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 MECH_DIR="$SCRIPT_DIR/mechanism"
 
 cd "$MECH_DIR"
