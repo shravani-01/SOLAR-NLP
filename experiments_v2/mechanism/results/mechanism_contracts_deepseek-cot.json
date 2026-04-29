@@ -2,7 +2,7 @@
   "model": "deepseek-cot",
   "domain": "contracts",
   "experiment": "mechanism_structure_hint",
-  "timestamp": "2026-04-29T03:59:26.919770",
+  "timestamp": "2026-04-29T20:04:24.369769",
   "original": {
     "condition": "original",
     "eligible_examples": 8,
@@ -21,121 +21,175 @@
   },
   "hint_correct": {
     "condition": "hint_correct",
-    "eligible_examples": 0,
-    "composed_correct": 0,
+    "eligible_examples": 8,
+    "composed_correct": 8,
     "gap_cases": 0,
     "gap_rate": 0.0,
     "gap_pct": 0.0,
-    "per_type": {}
+    "per_type": {
+      "HARD": {
+        "total": 8,
+        "correct": 8,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
   },
   "hint_wrong": {
     "condition": "hint_wrong",
-    "eligible_examples": 0,
-    "composed_correct": 0,
-    "gap_cases": 0,
-    "gap_rate": 0.0,
-    "gap_pct": 0.0,
-    "per_type": {}
+    "eligible_examples": 8,
+    "composed_correct": 7,
+    "gap_cases": 1,
+    "gap_rate": 0.125,
+    "gap_pct": 12.5,
+    "per_type": {
+      "HARD": {
+        "total": 8,
+        "correct": 7,
+        "wrong": 1,
+        "gap_rate": 0.125
+      }
+    }
   },
   "predictions": {
     "hint_correct": [
       {
         "idx": 1,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "uses MANDATORY language (shall/must) and has NO conditions"
       },
       {
         "idx": 36,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "uses MANDATORY language (shall/must) and has NO conditions"
       },
       {
         "idx": 39,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "uses MANDATORY language (shall/must) and has NO conditions"
       },
       {
         "idx": 42,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "uses MANDATORY language (shall/must) and has NO conditions"
       },
       {
         "idx": 43,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "uses MANDATORY language (shall/must) and has NO conditions"
       },
       {
         "idx": 47,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "uses MANDATORY language (shall/must) and has NO conditions"
       },
       {
         "idx": 48,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "uses MANDATORY language (shall/must) and has NO conditions"
       },
       {
         "idx": 49,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "uses MANDATORY language (shall/must) and has NO conditions"
       }
     ],
     "hint_wrong": [
       {
         "idx": 1,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SOFT",
+        "hint_given": "uses DISCRETIONARY language (may/can) and has NO conditions"
       },
       {
         "idx": 36,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SOFT",
+        "hint_given": "uses DISCRETIONARY language (may/can) and has NO conditions"
       },
       {
         "idx": 39,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SOFT-CONDITIONAL",
+        "hint_given": "uses DISCRETIONARY language (may/can) and CONTAINS a condition (if/when/unless)"
       },
       {
         "idx": 42,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "HARD-CONDITIONAL",
+        "hint_given": "uses MANDATORY language (shall/must) and CONTAINS a condition (if/when/unless)"
       },
       {
         "idx": 43,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "HARD-CONDITIONAL",
+        "hint_given": "uses MANDATORY language (shall/must) and CONTAINS a condition (if/when/unless)"
       },
       {
         "idx": 47,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "HARD-CONDITIONAL",
+        "hint_given": "uses MANDATORY language (shall/must) and CONTAINS a condition (if/when/unless)"
       },
       {
         "idx": 48,
         "gold_type": "HARD",
+        "pred_type": "SOFT",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SOFT",
+        "hint_given": "uses DISCRETIONARY language (may/can) and has NO conditions"
       },
       {
         "idx": 49,
         "gold_type": "HARD",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "HARD",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SOFT",
+        "hint_given": "uses DISCRETIONARY language (may/can) and has NO conditions"
       }
     ]
   }

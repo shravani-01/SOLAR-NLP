@@ -2,7 +2,7 @@
   "model": "deepseek-cot",
   "domain": "sql",
   "experiment": "mechanism_structure_hint",
-  "timestamp": "2026-04-29T03:59:27.031383",
+  "timestamp": "2026-04-29T20:09:37.549699",
   "original": {
     "condition": "original",
     "eligible_examples": 39,
@@ -39,493 +39,816 @@
   },
   "hint_correct": {
     "condition": "hint_correct",
-    "eligible_examples": 0,
-    "composed_correct": 0,
+    "eligible_examples": 39,
+    "composed_correct": 39,
     "gap_cases": 0,
     "gap_rate": 0.0,
     "gap_pct": 0.0,
-    "per_type": {}
+    "per_type": {
+      "SIMPLE": {
+        "total": 21,
+        "correct": 21,
+        "wrong": 0,
+        "gap_rate": 0.0
+      },
+      "NESTED": {
+        "total": 6,
+        "correct": 6,
+        "wrong": 0,
+        "gap_rate": 0.0
+      },
+      "JOIN": {
+        "total": 10,
+        "correct": 10,
+        "wrong": 0,
+        "gap_rate": 0.0
+      },
+      "SET-OP": {
+        "total": 2,
+        "correct": 2,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
   },
   "hint_wrong": {
     "condition": "hint_wrong",
-    "eligible_examples": 0,
-    "composed_correct": 0,
-    "gap_cases": 0,
-    "gap_rate": 0.0,
-    "gap_pct": 0.0,
-    "per_type": {}
+    "eligible_examples": 39,
+    "composed_correct": 26,
+    "gap_cases": 13,
+    "gap_rate": 0.3333,
+    "gap_pct": 33.3,
+    "per_type": {
+      "SIMPLE": {
+        "total": 21,
+        "correct": 16,
+        "wrong": 5,
+        "gap_rate": 0.2381
+      },
+      "NESTED": {
+        "total": 6,
+        "correct": 4,
+        "wrong": 2,
+        "gap_rate": 0.3333
+      },
+      "JOIN": {
+        "total": 10,
+        "correct": 6,
+        "wrong": 4,
+        "gap_rate": 0.4
+      },
+      "SET-OP": {
+        "total": 2,
+        "correct": 0,
+        "wrong": 2,
+        "gap_rate": 1.0
+      }
+    }
   },
   "predictions": {
     "hint_correct": [
       {
         "idx": 0,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT COUNT(*) AS singer_count FROM SINGER;"
       },
       {
         "idx": 1,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT COUNT(*) AS total_singers FROM SINGER;"
       },
       {
         "idx": 2,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT name, country, age \nFROM SINGER \nORDER BY age DESC;"
       },
       {
         "idx": 3,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT name, country, age \nFROM SINGER \nORDER BY age DESC;"
       },
       {
         "idx": 4,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT AVG(age), MIN(age), MAX(age) FROM SINGER WHERE country = 'France';"
       },
       {
         "idx": 5,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT AVG(age), MIN(age), MAX(age) FROM SINGER WHERE nationality = 'French';"
       },
       {
         "idx": 8,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT DISTINCT country \nFROM SINGER \nWHERE age > 20;"
       },
       {
         "idx": 9,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT DISTINCT country FROM SINGER WHERE age > 20;"
       },
       {
         "idx": 10,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT country, COUNT(*) AS number_of_singers\nFROM SINGER\nGROUP BY country;"
       },
       {
         "idx": 11,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT country, COUNT(*) AS singer_count\nFROM SINGER\nGROUP BY country;"
       },
       {
         "idx": 12,
         "gold_type": "NESTED",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "NESTED",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT s.song_name\nFROM SINGER_IN_CONCERT s\nJOIN SINGER si ON s.singer_id = si.singer_id\nWHERE si.age > (SELECT AVG(age) FROM SINGER);"
       },
       {
         "idx": 13,
         "gold_type": "NESTED",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "NESTED",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT s.song_name \nFROM SINGER s \nWHERE s.age > (SELECT AVG(age) FROM SINGER);"
       },
       {
         "idx": 14,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT location, name \nFROM STADIUM \nWHERE capacity BETWEEN 5000 AND 10000;"
       },
       {
         "idx": 15,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT location, name \nFROM STADIUM \nWHERE capacity BETWEEN 5000 AND 10000;"
       },
       {
         "idx": 16,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT MAX(capacity) AS maximum_capacity, AVG(capacity) AS average_capacity\nFROM STADIUM;"
       },
       {
         "idx": 17,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity\nFROM STADIUM;"
       },
       {
         "idx": 20,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT COUNT(*) \nFROM CONCERT \nWHERE YEAR(date) IN (2014, 2015);"
       },
       {
         "idx": 21,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT COUNT(*) \nFROM CONCERT \nWHERE YEAR(concert_date) IN (2014, 2015);"
       },
       {
         "idx": 22,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT s.name AS stadium_name, COUNT(c.id) AS number_of_concerts\nFROM STADIUM s\nLEFT JOIN CONCERT c ON s.id = c.stadium_id\nGROUP BY s.id, s.name;"
       },
       {
         "idx": 23,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT \n    s.stadium_name, \n    COUNT(c.concert_id) AS concert_count\nFROM \n    STADIUM s\nLEFT JOIN \n    CONCERT c ON s.stadium_id = c.stadium_id\nGROUP BY \n    s.stadium_id, s.stadium_name;"
       },
       {
         "idx": 24,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT s.name, s.capacity\nFROM STADIUM s\nJOIN CONCERT c ON s.stadium_id = c.stadium_id\nWHERE c.year >= 2014\nGROUP BY s.name, s.capacity\nORDER BY COUNT(c.concert_id) DESC\nLIMIT 1;"
       },
       {
         "idx": 25,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT s.name, s.capacity\nFROM STADIUM s\nJOIN CONCERT c ON s.stadium_id = c.stadium_id\nWHERE c.year > 2013\nGROUP BY s.stadium_id, s.name, s.capacity\nORDER BY COUNT(c.concert_id) DESC\nLIMIT 1;"
       },
       {
         "idx": 28,
         "gold_type": "NESTED",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "NESTED",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT s.name \nFROM STADIUM s \nWHERE s.id NOT IN (SELECT c.stadium_id FROM CONCERT c);"
       },
       {
         "idx": 29,
         "gold_type": "NESTED",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "NESTED",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT s.name \nFROM STADIUM s \nWHERE s.id NOT IN (\n    SELECT c.stadium_id \n    FROM CONCERT c \n    WHERE c.stadium_id IS NOT NULL\n);"
       },
       {
         "idx": 31,
         "gold_type": "SET-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SET-OP",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SET OPERATION query using UNION, INTERSECT, or EXCEPT",
+        "pred_sql": "SELECT name \nFROM STADIUM\nEXCEPT\nSELECT s.name\nFROM STADIUM s\nJOIN CONCERT c ON s.stadium_id = c.stadium_id\nWHERE EXTRACT(YEAR FROM c.concert_date) = 2014;"
       },
       {
         "idx": 32,
         "gold_type": "SET-OP",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SET-OP",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SET OPERATION query using UNION, INTERSECT, or EXCEPT",
+        "pred_sql": "SELECT s.name\nFROM STADIUM s\nEXCEPT\nSELECT st.name\nFROM STADIUM st\nJOIN CONCERT c ON st.stadium_id = c.stadium_id\nWHERE EXTRACT(YEAR FROM c.concert_date) = 2014;"
       },
       {
         "idx": 33,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT c.name, c.theme, COUNT(sic.singer_id) AS number_of_singers\nFROM CONCERT c\nLEFT JOIN SINGER_IN_CONCERT sic ON c.id = sic.concert_id\nGROUP BY c.id, c.name, c.theme;"
       },
       {
         "idx": 34,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT c.name, c.theme, COUNT(sic.singer_id) AS number_of_singers\nFROM CONCERT c\nLEFT JOIN SINGER_IN_CONCERT sic ON c.id = sic.concert_id\nGROUP BY c.id, c.name, c.theme;"
       },
       {
         "idx": 35,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts\nFROM SINGER s\nLEFT JOIN SINGER_IN_CONCERT sic ON s.singer_id = sic.singer_id\nGROUP BY s.singer_id, s.name;"
       },
       {
         "idx": 36,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts\nFROM SINGER s\nLEFT JOIN SINGER_IN_CONCERT sic ON s.singer_id = sic.singer_id\nGROUP BY s.singer_id, s.name;"
       },
       {
         "idx": 37,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT DISTINCT s.name\nFROM SINGER s\nJOIN SINGER_IN_CONCERT sic ON s.id = sic.singer_id\nJOIN CONCERT c ON sic.concert_id = c.id\nWHERE EXTRACT(YEAR FROM c.concert_date) = 2014;"
       },
       {
         "idx": 38,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT DISTINCT s.name\nFROM SINGER s\nJOIN SINGER_IN_CONCERT sic ON s.id = sic.singer_id\nJOIN CONCERT c ON sic.concert_id = c.id\nWHERE c.year = 2014;"
       },
       {
         "idx": 39,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT name, nation \nFROM SINGER \nWHERE song_name LIKE '%Hey%';"
       },
       {
         "idx": 40,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT name, country \nFROM SINGER \nWHERE song_title LIKE '%Hey%';"
       },
       {
         "idx": 43,
         "gold_type": "NESTED",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "NESTED",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT COUNT(*) \nFROM CONCERT \nWHERE stadium_id = (\n    SELECT stadium_id \n    FROM STADIUM \n    ORDER BY capacity DESC \n    LIMIT 1\n);"
       },
       {
         "idx": 44,
         "gold_type": "NESTED",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "NESTED",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT COUNT(*) \nFROM CONCERT \nWHERE stadium_id = (\n    SELECT stadium_id \n    FROM STADIUM \n    ORDER BY capacity DESC \n    LIMIT 1\n);"
       },
       {
         "idx": 45,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT COUNT(*) FROM PETS WHERE weight > 10;"
       },
       {
         "idx": 46,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT COUNT(*) FROM PETS WHERE weight > 10;"
       },
       {
         "idx": 49,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_correct",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT pet_type, MAX(weight) AS max_weight\nFROM PETS\nGROUP BY pet_type;"
       }
     ],
     "hint_wrong": [
       {
         "idx": 0,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "JOIN",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT COUNT(DISTINCT s.singer_id) AS singer_count\nFROM SINGER s;"
       },
       {
         "idx": 1,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "JOIN",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT COUNT(*) AS total_singers FROM SINGER;"
       },
       {
         "idx": 2,
         "gold_type": "SIMPLE",
+        "pred_type": "SET-OP",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SET-OP",
+        "hint_given": "a SET OPERATION query using UNION, INTERSECT, or EXCEPT",
+        "pred_sql": "SELECT name, country, age FROM SINGER\nUNION\nSELECT name, country, age FROM SINGER\nORDER BY age DESC;"
       },
       {
         "idx": 3,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "NESTED",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT s.name, s.country, s.age \nFROM SINGER s \nORDER BY s.age DESC;"
       },
       {
         "idx": 4,
         "gold_type": "SIMPLE",
+        "pred_type": "NESTED",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "NESTED",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT \n    AVG(age) AS average_age,\n    MIN(age) AS minimum_age,\n    MAX(age) AS maximum_age\nFROM (\n    SELECT age\n    FROM SINGER\n    WHERE country = 'France'\n) AS french_singers;"
       },
       {
         "idx": 5,
         "gold_type": "SIMPLE",
+        "pred_type": "NESTED",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "NESTED",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT \n    AVG(age) AS average_age,\n    MIN(age) AS minimum_age,\n    MAX(age) AS maximum_age\nFROM (\n    SELECT age\n    FROM SINGER\n    WHERE nationality = 'French'\n) AS french_singers;"
       },
       {
         "idx": 8,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "JOIN",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT DISTINCT s.country\nFROM SINGER s\nWHERE s.age > 20;"
       },
       {
         "idx": 9,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "JOIN",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT DISTINCT s.country\nFROM SINGER s\nWHERE s.age > 20;"
       },
       {
         "idx": 10,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-AGG",
+        "hint_given": "a MULTI-AGGREGATION query using GROUP BY with multiple aggregate functions",
+        "pred_sql": "SELECT s.country, COUNT(s.singer_id) AS number_of_singers\nFROM SINGER s\nGROUP BY s.country;"
       },
       {
         "idx": 11,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "JOIN",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT s.country, COUNT(*) AS singer_count\nFROM SINGER s\nGROUP BY s.country;"
       },
       {
         "idx": 12,
         "gold_type": "NESTED",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "NESTED",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SIMPLE",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT s.song_name\nFROM SINGER s\nWHERE s.age > (SELECT AVG(age) FROM SINGER);"
       },
       {
         "idx": 13,
         "gold_type": "NESTED",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "NESTED",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SIMPLE",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT s.song_name \nFROM SINGER s \nWHERE s.age > (SELECT AVG(age) FROM SINGER);"
       },
       {
         "idx": 14,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "NESTED",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT location, name \nFROM STADIUM \nWHERE capacity BETWEEN 5000 AND 10000;"
       },
       {
         "idx": 15,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "NESTED",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT s.location, s.name \nFROM STADIUM s \nWHERE s.capacity BETWEEN 5000 AND 10000;"
       },
       {
         "idx": 16,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "JOIN",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT MAX(s.capacity) AS maximum_capacity, AVG(s.capacity) AS average_capacity\nFROM STADIUM s;"
       },
       {
         "idx": 17,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "NESTED",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity\nFROM STADIUM;"
       },
       {
         "idx": 20,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-AGG",
+        "hint_given": "a MULTI-AGGREGATION query using GROUP BY with multiple aggregate functions",
+        "pred_sql": "SELECT COUNT(*) AS concert_count\nFROM CONCERT\nWHERE YEAR(concert_date) IN (2014, 2015);"
       },
       {
         "idx": 21,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "NESTED",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT COUNT(*) \nFROM CONCERT \nWHERE YEAR(concert_date) IN (2014, 2015);"
       },
       {
         "idx": 22,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-AGG",
+        "hint_given": "a MULTI-AGGREGATION query using GROUP BY with multiple aggregate functions",
+        "pred_sql": "SELECT s.name AS stadium_name, COUNT(c.id) AS number_of_concerts\nFROM STADIUM s\nLEFT JOIN CONCERT c ON s.id = c.stadium_id\nGROUP BY s.id, s.name;"
       },
       {
         "idx": 23,
         "gold_type": "JOIN",
+        "pred_type": "SET-OP",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SET-OP",
+        "hint_given": "a SET OPERATION query using UNION, INTERSECT, or EXCEPT",
+        "pred_sql": "SELECT \n    s.stadium_name, \n    COUNT(c.concert_id) AS concert_count\nFROM \n    STADIUM s\nLEFT JOIN \n    CONCERT c ON s.stadium_id = c.stadium_id\nGROUP BY \n    s.stadium_name\nUNION\nSELECT \n    s.stadium_name, \n    0 AS concert_count\nFROM \n    STADIUM s\nWHERE \n    s.stadium_id NOT IN (SELECT DISTINCT stadium_id FROM CONCERT);"
       },
       {
         "idx": 24,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SIMPLE",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT s.name, s.capacity\nFROM STADIUM s\nJOIN CONCERT c ON s.stadium_id = c.stadium_id\nWHERE c.year >= 2014\nGROUP BY s.stadium_id, s.name, s.capacity\nORDER BY COUNT(c.concert_id) DESC\nLIMIT 1;"
       },
       {
         "idx": 25,
         "gold_type": "JOIN",
+        "pred_type": "NESTED",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "NESTED",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT s.name, s.capacity\nFROM STADIUM s\nWHERE s.stadium_id = (\n    SELECT sic.stadium_id\n    FROM SINGER_IN_CONCERT sic\n    JOIN CONCERT c ON sic.concert_id = c.concert_id\n    WHERE c.year > 2013\n    GROUP BY sic.stadium_id\n    ORDER BY COUNT(*) DESC\n    LIMIT 1\n);"
       },
       {
         "idx": 28,
         "gold_type": "NESTED",
+        "pred_type": "JOIN",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-AGG",
+        "hint_given": "a MULTI-AGGREGATION query using GROUP BY with multiple aggregate functions",
+        "pred_sql": "SELECT s.name\nFROM STADIUM s\nLEFT JOIN CONCERT c ON s.id = c.stadium_id\nWHERE c.id IS NULL;"
       },
       {
         "idx": 29,
         "gold_type": "NESTED",
+        "pred_type": "SET-OP",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SET-OP",
+        "hint_given": "a SET OPERATION query using UNION, INTERSECT, or EXCEPT",
+        "pred_sql": "SELECT s.name\nFROM STADIUM s\nEXCEPT\nSELECT st.name\nFROM STADIUM st\nJOIN CONCERT c ON st.id = c.stadium_id;"
       },
       {
         "idx": 31,
         "gold_type": "SET-OP",
+        "pred_type": "NESTED",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "NESTED",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT s.name \nFROM STADIUM s \nWHERE s.id NOT IN (\n    SELECT c.stadium_id \n    FROM CONCERT c \n    WHERE YEAR(c.date) = 2014\n);"
       },
       {
         "idx": 32,
         "gold_type": "SET-OP",
+        "pred_type": "NESTED",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "JOIN",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT s.name\nFROM STADIUM s\nWHERE s.stadium_id NOT IN (\n    SELECT c.stadium_id\n    FROM CONCERT c\n    WHERE YEAR(c.concert_date) = 2014\n);"
       },
       {
         "idx": 33,
         "gold_type": "JOIN",
+        "pred_type": "NESTED",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "NESTED",
+        "hint_given": "a NESTED query with subqueries (SELECT inside SELECT)",
+        "pred_sql": "SELECT \n    c.name, \n    c.theme, \n    (SELECT COUNT(*) \n     FROM SINGER_IN_CONCERT sic \n     WHERE sic.concert_id = c.id) AS singer_count\nFROM CONCERT c;"
       },
       {
         "idx": 34,
         "gold_type": "JOIN",
+        "pred_type": "SET-OP",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SET-OP",
+        "hint_given": "a SET OPERATION query using UNION, INTERSECT, or EXCEPT",
+        "pred_sql": "SELECT \n    c.name, \n    c.theme, \n    COUNT(sic.singer_id) AS number_of_singers\nFROM CONCERT c\nLEFT JOIN SINGER_IN_CONCERT sic ON c.id = sic.concert_id\nGROUP BY c.id, c.name, c.theme\nUNION\nSELECT \n    NULL, \n    NULL, \n    NULL\nWHERE 1=0;"
       },
       {
         "idx": 35,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SIMPLE",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts\nFROM SINGER s\nLEFT JOIN SINGER_IN_CONCERT sic ON s.singer_id = sic.singer_id\nGROUP BY s.singer_id, s.name;"
       },
       {
         "idx": 36,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SIMPLE",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts\nFROM SINGER s\nLEFT JOIN SINGER_IN_CONCERT sic ON s.singer_id = sic.singer_id\nGROUP BY s.singer_id, s.name;"
       },
       {
         "idx": 37,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-AGG",
+        "hint_given": "a MULTI-AGGREGATION query using GROUP BY with multiple aggregate functions",
+        "pred_sql": "SELECT DISTINCT s.singer_name\nFROM SINGER s\nJOIN SINGER_IN_CONCERT sic ON s.singer_id = sic.singer_id\nJOIN CONCERT c ON sic.concert_id = c.concert_id\nWHERE EXTRACT(YEAR FROM c.concert_date) = 2014;"
       },
       {
         "idx": 38,
         "gold_type": "JOIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "JOIN",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SIMPLE",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT DISTINCT s.name\nFROM SINGER s\nJOIN SINGER_IN_CONCERT sic ON s.id = sic.singer_id\nJOIN CONCERT c ON sic.concert_id = c.id\nWHERE c.year = 2014;"
       },
       {
         "idx": 39,
         "gold_type": "SIMPLE",
+        "pred_type": "SET-OP",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SET-OP",
+        "hint_given": "a SET OPERATION query using UNION, INTERSECT, or EXCEPT",
+        "pred_sql": "SELECT s.name, s.nation\nFROM SINGER s\nWHERE s.id IN (\n    SELECT sic.singer_id\n    FROM SINGER_IN_CONCERT sic\n    WHERE sic.song_name LIKE '%Hey%'\n)\nUNION\nSELECT s.name, s.nation\nFROM SINGER s\nWHERE s.id IN (\n    SELECT sic.singer_id\n    FROM SINGER_IN_CONCERT sic\n    WHERE sic.song_name LIKE '%Hey%'\n);"
       },
       {
         "idx": 40,
         "gold_type": "SIMPLE",
+        "pred_type": "NESTED",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "hint_wrong",
+        "wrong_type_given": "SET-OP",
+        "hint_given": "a SET OPERATION query using UNION, INTERSECT, or EXCEPT",
+        "pred_sql": "SELECT DISTINCT s.name, s.country\nFROM SINGER s\nWHERE s.singer_id IN (\n    SELECT sic.singer_id\n    FROM SINGER_IN_CONCERT sic\n    WHERE sic.song_title LIKE '%Hey%'\n);"
       },
       {
         "idx": 43,
         "gold_type": "NESTED",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "NESTED",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SET-OP",
+        "hint_given": "a SET OPERATION query using UNION, INTERSECT, or EXCEPT",
+        "pred_sql": "SELECT COUNT(*) \nFROM CONCERT \nWHERE stadium_id = (\n    SELECT stadium_id \n    FROM STADIUM \n    WHERE capacity = (SELECT MAX(capacity) FROM STADIUM)\n);"
       },
       {
         "idx": 44,
         "gold_type": "NESTED",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "NESTED",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "SIMPLE",
+        "hint_given": "a SIMPLE single-table query with basic SELECT and WHERE",
+        "pred_sql": "SELECT COUNT(*) \nFROM CONCERT \nWHERE stadium_id = (\n    SELECT id \n    FROM STADIUM \n    ORDER BY capacity DESC \n    LIMIT 1\n);"
       },
       {
         "idx": 45,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-AGG",
+        "hint_given": "a MULTI-AGGREGATION query using GROUP BY with multiple aggregate functions",
+        "pred_sql": "SELECT COUNT(*) \nFROM PETS \nWHERE weight > 10;"
       },
       {
         "idx": 46,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "JOIN",
+        "hint_given": "a JOIN query that combines multiple tables using JOIN operations",
+        "pred_sql": "SELECT COUNT(*) \nFROM PETS \nWHERE weight > 10;"
       },
       {
         "idx": 49,
         "gold_type": "SIMPLE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "hint_wrong",
+        "wrong_type_given": "MULTI-AGG",
+        "hint_given": "a MULTI-AGGREGATION query using GROUP BY with multiple aggregate functions",
+        "pred_sql": "SELECT pet_type, MAX(weight) AS max_weight\nFROM PETS\nGROUP BY pet_type;"
       }
     ]
   }
