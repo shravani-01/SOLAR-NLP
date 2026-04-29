@@ -75,10 +75,12 @@ for MODEL in "${OSS_MODELS[@]}"; do
         echo "  ✓ [$MODEL] $DOMAIN complete"
     done
 
-    # ── Git commit & push ──────────────────────────────────────────
+    # ── Git commit & push (with retry for parallel safety) ─────────
     echo ""
     echo "  ▶ [$MODEL] Committing results..."
     cd "$REPO_DIR"
+
+    git pull --rebase --quiet 2>/dev/null || true
 
     git add experiments_v2/mitigation/results/ || true
 
@@ -93,8 +95,16 @@ Domains: contracts, sql, math, logic, code
 Conditions: self_structure, cot_structure
 Timestamp: $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
 
-        git push
-        echo "  ✓ [$MODEL] Committed & pushed"
+        for attempt in 1 2 3; do
+            if git push 2>/dev/null; then
+                echo "  ✓ [$MODEL] Committed & pushed"
+                break
+            else
+                echo "  ⚠ Push attempt $attempt failed, pulling & retrying..."
+                git pull --rebase --quiet 2>/dev/null || true
+                sleep 2
+            fi
+        done
     fi
 
     cd "$MIT_DIR"
