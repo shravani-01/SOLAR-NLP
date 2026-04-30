@@ -2,7 +2,7 @@
   "model": "gpt4o",
   "domain": "logic",
   "experiment": "mitigation_structure_aware_prompting",
-  "timestamp": "2026-04-29T03:59:30.341294",
+  "timestamp": "2026-04-30T10:54:05.293515",
   "original": {
     "condition": "original",
     "eligible_examples": 56,
@@ -45,697 +45,1095 @@
   },
   "self_structure": {
     "condition": "self_structure",
-    "eligible_examples": 0,
-    "composed_correct": 0,
-    "gap_cases": 0,
-    "gap_rate": 0.0,
-    "gap_pct": 0.0,
-    "per_type": {}
+    "eligible_examples": 56,
+    "composed_correct": 30,
+    "gap_cases": 26,
+    "gap_rate": 0.4643,
+    "gap_pct": 46.4,
+    "per_type": {
+      "DISJUNCTIVE": {
+        "total": 2,
+        "correct": 1,
+        "wrong": 1,
+        "gap_rate": 0.5
+      },
+      "CONDITIONAL-CHAIN": {
+        "total": 45,
+        "correct": 24,
+        "wrong": 21,
+        "gap_rate": 0.4667
+      },
+      "SYLLOGISM": {
+        "total": 6,
+        "correct": 4,
+        "wrong": 2,
+        "gap_rate": 0.3333
+      },
+      "NEGATION": {
+        "total": 1,
+        "correct": 0,
+        "wrong": 1,
+        "gap_rate": 1.0
+      },
+      "MODUS-PONENS": {
+        "total": 2,
+        "correct": 1,
+        "wrong": 1,
+        "gap_rate": 0.5
+      }
+    }
   },
   "cot_structure": {
     "condition": "cot_structure",
-    "eligible_examples": 0,
-    "composed_correct": 0,
-    "gap_cases": 0,
-    "gap_rate": 0.0,
-    "gap_pct": 0.0,
-    "per_type": {}
+    "eligible_examples": 56,
+    "composed_correct": 21,
+    "gap_cases": 35,
+    "gap_rate": 0.625,
+    "gap_pct": 62.5,
+    "per_type": {
+      "DISJUNCTIVE": {
+        "total": 2,
+        "correct": 0,
+        "wrong": 2,
+        "gap_rate": 1.0
+      },
+      "CONDITIONAL-CHAIN": {
+        "total": 45,
+        "correct": 17,
+        "wrong": 28,
+        "gap_rate": 0.6222
+      },
+      "SYLLOGISM": {
+        "total": 6,
+        "correct": 3,
+        "wrong": 3,
+        "gap_rate": 0.5
+      },
+      "NEGATION": {
+        "total": 1,
+        "correct": 0,
+        "wrong": 1,
+        "gap_rate": 1.0
+      },
+      "MODUS-PONENS": {
+        "total": 2,
+        "correct": 1,
+        "wrong": 1,
+        "gap_rate": 0.5
+      }
+    }
   },
   "predictions": {
     "self_structure": [
       {
         "idx": 0,
         "gold_type": "DISJUNCTIVE",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: DISJUNCTIVE and CONDITIONAL CHAIN\n\nENTITIES:\n- People who perform in school talent shows often\n- People who attend and are very engaged with school events\n- Inactive and disinterested members of their community\n- People who chaperone high school dances\n- Students who attend the school\n- Young children and teenagers who wish to further their academic careers\n- Bonnie\n\nSTEPS:\n1. From the fi"
       },
       {
         "idx": 2,
         "gold_type": "DISJUNCTIVE",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: DISJUNCTIVE and CONDITIONAL CHAIN\n\nENTITIES:\n- People who perform in school talent shows often\n- People who attend and are very engaged with school events\n- Inactive and disinterested members of their community\n- People who chaperone high school dances\n- Students who attend the school\n- Young children and teenagers who wish to further their academic careers\n- Bonnie\n\nSTEPS:\n1. From the fi"
       },
       {
         "idx": 21,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- \"Stranger Things\" (a Netflix show)\n- \"Black Mirror\" (a Netflix show)\n- Karen (a person who binge-watches, downloads, and shares shows)\n- Popularity of a Netflix show\n- Actions: binge-watching, downloading, sharing\n\nSTEPS:\n1. Identify that \"Stranger Things\" is a popular Netflix show.\n2. Use the premise \"If a Netflix show is popular, Karen will binge-watch it"
       },
       {
         "idx": 22,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and MODUS TOLLENS\n\nENTITIES: \n- \"Stranger Things\" (a popular Netflix show)\n- \"Black Mirror\" (a Netflix show)\n- Karen (a person who binge-watches, downloads, and shares shows)\n- Popular Netflix show (a show that Karen will binge-watch)\n- Binge-watching (an action that leads to downloading and sharing)\n- Downloading (an action that occurs if and only if binge-watching occu"
       },
       {
         "idx": 23,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- \"Stranger Things\" (a Netflix show)\n- \"Black Mirror\" (a Netflix show)\n- Karen (a person who binge-watches, downloads, and shares shows)\n- Popularity of a Netflix show\n- Actions: binge-watching, downloading, sharing\n\nSTEPS:\n1. Identify that \"Stranger Things\" is a popular Netflix show.\n2. Use the premise \"If a Netflix show is popular, Karen will binge-watch it"
       },
       {
         "idx": 30,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN, SYLLOGISM, DISJUNCTIVE\n\nENTITIES: \n- Grand Slam champion\n- Oscar-nominated actor\n- Professional tennis player\n- Celebrity\n- Athlete\n- Well-paid person\n- Tax haven resident\n- Djokovic\n\nSTEPS:\n1. **Disjunctive Reasoning**: \n   - A person is either a Grand Slam champion or an Oscar-nominated actor.\n\n2. **Syllogism**:\n   - All Grand Slam champions are professional tennis pl"
       },
       {
         "idx": 31,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN, SYLLOGISM, DISJUNCTIVE\n\nENTITIES:\n- Grand Slam champion\n- Oscar-nominated actor\n- Professional tennis player\n- Celebrity\n- Well-paid person\n- Athlete\n- Tax haven resident\n- Djokovic\n\nSTEPS:\n1. **Disjunctive Reasoning**: A person is either a Grand Slam champion or an Oscar-nominated actor.\n2. **Syllogism**: \n   - All Grand Slam champions are professional tennis players.\n"
       },
       {
         "idx": 32,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN, SYLLOGISM, DISJUNCTIVE\n\nENTITIES: \n- Grand Slam champion\n- Oscar-nominated actor\n- Professional tennis player\n- Celebrity\n- Well-paid person\n- Athlete\n- Tax haven resident\n- Djokovic\n\nSTEPS:\n1. **Disjunctive Reasoning**: A person is either a Grand Slam champion or an Oscar-nominated actor.\n2. **Syllogism**: \n   - All Grand Slam champions are professional tennis players."
       },
       {
         "idx": 42,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: \n- SYLLOGISM\n- CONDITIONAL CHAIN\n- DISJUNCTIVE\n\nENTITIES:\n- Players ranked highly by the Women's Tennis Association (WTA)\n- Players who lost to Iga \u015awi\u0105tek\n- Female tennis players at Roland Garros 2022\n- Male tennis players at Roland Garros 2022\n- Players who lost to Rafael Nadal\n- Coco Gauff\n\nSTEPS:\n1. **Syllogism**: \n   - All female tennis players at Roland Garros 2022 lost to Iga \u015awi\u0105t"
       },
       {
         "idx": 43,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and SYLLOGISM\n\nENTITIES:\n- Players ranked highly by the Women's Tennis Association (WTA)\n- Most active players in major tennis\n- Players who lost to Iga \u015awi\u0105tek\n- Female tennis players at Roland Garros 2022\n- Male tennis players at Roland Garros 2022\n- Players who lost to Rafael Nadal\n- Coco Gauff\n\nSTEPS:\n1. **Conditional Chain**: \n   - If a player is ranked highly by th"
       },
       {
         "idx": 44,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and SYLLOGISM\n\nENTITIES:\n- Players ranked highly by the Women's Tennis Association (WTA)\n- Most active players in major tennis\n- Players who lost to Iga \u015awi\u0105tek\n- Female tennis players at Roland Garros 2022\n- Male tennis players at Roland Garros 2022\n- Players who lost to Rafael Nadal\n- Coco Gauff\n\nSTEPS:\n1. **Conditional Chain**: \n   - If a player is ranked highly by th"
       },
       {
         "idx": 46,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Seasons (Spring, Summer, Fall, Winter)\n- Students who want a long vacation\n- Emma\n- Mia\n- James\n\nSTEPS:\n1. Identify that all students who want a long vacation love summer the most.\n2. Recognize that James wants to have a long vacation, which implies he loves summer the most.\n3. Note that Emma's favorite season is summer.\n4. Understand that Mia's favorite season is "
       },
       {
         "idx": 47,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Students who want a long vacation\n- Favorite seasons (Summer, not Summer)\n- Emma\n- Mia\n- James\n\nSTEPS:\n1. Identify that all students who want a long vacation love summer the most.\n2. Recognize that James wants to have a long vacation, which implies that James loves summer the most.\n3. Note that Emma's favorite season is summer.\n4. Understand that Mia's favorite sea"
       },
       {
         "idx": 48,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Seasons (Spring, Summer, Fall, Winter)\n- Students who want a long vacation\n- Emma\n- Mia\n- James\n\nSTEPS:\n1. Identify that all students who want a long vacation love summer the most.\n2. Recognize that James wants to have a long vacation, which implies he loves summer the most.\n3. Note that Emma's favorite season is summer, aligning with the preference of students who"
       },
       {
         "idx": 76,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN, DISJUNCTIVE, NEGATION\n\nENTITIES:\n- People working in student jobs on campus\n- Needing to earn money for college tuition\n- Ordering takeout frequently in college\n- Enjoying dining hall meals and recipes\n- Being picky eaters\n- Spending time eating and catching up with friends in dining halls\n- Mary\n\nSTEPS:\n1. **Conditional Chain**: \n   - If people work in student jobs on "
       },
       {
         "idx": 77,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and DISJUNCTIVE\n\nENTITIES:\n- People working in student jobs on campus\n- Needing to earn money for college tuition\n- Ordering takeout frequently in college\n- Enjoying dining hall meals and recipes\n- Being picky eaters\n- Spending time eating and catching up with friends in dining halls\n- Mary\n\nSTEPS:\n1. **Conditional Chain**:\n   - If people work in student jobs on campus, "
       },
       {
         "idx": 78,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN, DISJUNCTIVE, NEGATION\n\nENTITIES:\n- People working in student jobs on campus\n- Needing to earn money for college tuition\n- Ordering takeout frequently in college\n- Enjoying dining hall meals and recipes\n- Being picky eaters\n- Spending time eating and catching up with friends in dining halls\n- Mary\n\nSTEPS:\n1. **Conditional Chain**: \n   - If people work in student jobs on "
       },
       {
         "idx": 79,
         "gold_type": "SYLLOGISM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM and CONDITIONAL CHAIN\n\nENTITIES:\n- Bakeries\n- Spicy\n- Cupcakes\n- Hotpots\n- Products of Baked by Melissa\n- Dried Thai chilies\n\nSTEPS:\n1. **Syllogism**: \n   - From \"All cupcakes are bakeries\" and \"No bakery is spicy,\" we infer that no cupcake is spicy.\n   - From \"All products of Baked by Melissa are cupcakes\" and \"All cupcakes are bakeries,\" we infer that all products of Baked by "
       },
       {
         "idx": 81,
         "gold_type": "SYLLOGISM",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Bakeries\n- Spicy items\n- Cupcakes\n- Hotpots\n- Products of Baked by Melissa\n- Dried Thai chilies\n\nSTEPS:\n1. From \"All cupcakes are bakeries\" and \"No bakery is spicy,\" we infer that no cupcake is spicy.\n2. From \"All products of Baked by Melissa are cupcakes\" and the previous inference, we conclude that no product of Baked by Melissa is spicy.\n3. From \"All hotpots are"
       },
       {
         "idx": 82,
         "gold_type": "SYLLOGISM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM and CONDITIONAL CHAIN\n\nENTITIES: \n- Bakeries\n- Spicy items\n- Cupcakes\n- Hotpots\n- Products of Baked by Melissa\n- Dried Thai chilies\n\nSTEPS:\n1. **Syllogism**: \n   - From \"All cupcakes are bakeries\" and \"No bakery is spicy,\" we infer that no cupcake is spicy.\n   - From \"All products of Baked by Melissa are cupcakes\" and \"All cupcakes are bakeries,\" we infer that all products of Ba"
       },
       {
         "idx": 83,
         "gold_type": "SYLLOGISM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM and CONDITIONAL CHAIN\n\nENTITIES: \n- Bakeries\n- Spicy items\n- Cupcakes\n- Hotpots\n- Products of Baked by Melissa\n- Dried Thai chilies\n\nSTEPS:\n1. **Syllogism**: \n   - From \"All cupcakes are bakeries\" and \"No bakery is spicy,\" we infer that no cupcake is spicy.\n   - From \"All products of Baked by Melissa are cupcakes\" and \"All cupcakes are bakeries,\" we infer that all products of Ba"
       },
       {
         "idx": 87,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and SYLLOGISM\n\nENTITIES:\n- Superhero movies\n- Good guys\n- Bad guys\n- Sir Digby Chicken Caesar\n- The Surprising Adventures of Sir Digby Chicken Caesar (the movie)\n- Fights and winning/losing\n\nSTEPS:\n1. **Identify the movie type and character role:**\n   - Premise: \"The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\"\n   - Premise: \"If a superhero mo"
       },
       {
         "idx": 102,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and DISJUNCTIVE\n\nENTITIES:\n- Twins or triplets\n- Spending time with siblings\n- Siblings who are the same age\n- Complaining about siblings\n- Living at home regularly\n- Developing strong bonds with family members\n- Luke\n\nSTEPS:\n1. **Conditional Chain**:\n   - If people are twins or triplets, then they spend a lot of time with siblings.\n   - If people spend a lot of time wit"
       },
       {
         "idx": 103,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and DISJUNCTIVE\n\nENTITIES:\n- Twins or triplets\n- Spending time with siblings\n- Siblings who are the same age\n- Complaining about siblings\n- Living at home regularly\n- Developing strong bonds with family members\n- Luke\n\nSTEPS:\n1. Establish the conditional chain:\n   - If people are twins or triplets, then they spend a lot of time with siblings.\n   - If people spend a lot o"
       },
       {
         "idx": 104,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES:\n- Twins or triplets\n- Spending time with siblings\n- Siblings who are the same age\n- Complaining about siblings\n- Living at home regularly\n- Developing strong bonds with family members\n\nSTEPS:\n1. Identify the chain of conditionals:\n   - If people are twins or triplets, then they spend a lot of time with siblings.\n   - If people spend a lot of time with siblings"
       },
       {
         "idx": 105,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- GRE applicants\n- Economic hardship\n- Financial aid\n- Tom\n- Single-parent family\n- Unemployment\n\nSTEPS:\n1. Identify the criteria for receiving financial aid: GRE applicants who prove economic hardship are eligible for financial aid.\n2. Define economic hardship: It refers to difficulty caused by having too little money or too few resources.\n3. Analyze Tom's situation"
       },
       {
         "idx": 106,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- GRE applicants\n- Economic hardship\n- Financial aid\n- Tom\n- Single-parent family\n- Unemployment\n\nSTEPS:\n1. Identify the criteria for receiving financial aid: GRE applicants who prove economic hardship are eligible for financial aid.\n2. Define economic hardship: It refers to difficulty caused by having too little money or too few resources.\n3. Analyze Tom's situation"
       },
       {
         "idx": 107,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- GRE applicants\n- Economic hardship\n- Financial aid\n- Tom\n- Single-parent family\n- Unemployment\n\nSTEPS:\n1. Identify the criteria for receiving financial aid: GRE applicants who prove economic hardship are eligible for financial aid.\n2. Define economic hardship: It is characterized by having too little money or too few resources.\n3. Analyze Tom's situation: Tom lives"
       },
       {
         "idx": 108,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN, SYLLOGISM, DISJUNCTIVE\n\nENTITIES:\n- People who spill a lot of food on their clothing\n- People who do not tidy their spaces consistently and enjoy the process of cleaning\n- Foodies who go out frequently to find new food restaurants\n- People who grew up as only children with no siblings\n- People who have parents who are very busy with their regular jobs\n- Households with "
       },
       {
         "idx": 109,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and SYLLOGISM\n\nENTITIES:\n- People who spill a lot of food on their clothing\n- People who do not tidy their spaces consistently and enjoy the process of cleaning\n- Foodies who go out frequently to find new food restaurants\n- People who grew up as only children with no siblings\n- People who have parents who are very busy with their regular jobs\n- Households with a high net"
       },
       {
         "idx": 110,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and SYLLOGISM\n\nENTITIES:\n- People who spill a lot of food on their clothing\n- People who do not tidy their spaces consistently and enjoy the process of cleaning\n- Foodies who go out frequently to find new food restaurants\n- People who grew up as only children with no siblings\n- People who have parents who are very busy with their regular jobs\n- Households with a high net"
       },
       {
         "idx": 122,
         "gold_type": "NEGATION",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: Conditional Chain and Syllogism\n\nENTITIES:\n- Transport multiple passengers\n- Not empty\n- Airlines\n- Planes\n- Boeing 707s\n- Greyhound\n\nSTEPS:\n1. Identify the conditional relationship: \"If something can transport multiple passengers, then they are not empty.\"\n2. Recognize that all airlines can transport multiple passengers, which implies they are not empty.\n3. Note the contradiction with th"
       },
       {
         "idx": 128,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM and CONDITIONAL CHAIN\n\nENTITIES:\n- People who have a wedding\n- People who have at least one child\n- People who travel to Paris for their honeymoon\n- Weddings that occur in July\n- Well-attended weddings\n- John\n\nSTEPS:\n1. **Syllogism**: \n   - From the premises, we can deduce a chain of relationships:\n     - All people who travel to Paris for their honeymoon are people who have a w"
       },
       {
         "idx": 129,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM and CONDITIONAL CHAIN\n\nENTITIES:\n- People who have a wedding\n- People who have at least one child\n- People who travel to Paris for their honeymoon\n- Weddings that occur in July\n- Well-attended weddings\n- John\n\nSTEPS:\n1. **Syllogism**: \n   - From the premises, we can deduce a chain of relationships:\n     - All people who travel to Paris for their honeymoon are people who have a w"
       },
       {
         "idx": 130,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM and CONDITIONAL CHAIN\n\nENTITIES:\n- People who have a wedding\n- People who have at least one child\n- People who travel to Paris for their honeymoon\n- Weddings that occur in July\n- Well-attended weddings\n- John\n\nSTEPS:\n1. **Syllogism**: \n   - From the premises, we can deduce a chain of relationships:\n     - All people who travel to Paris for their honeymoon are people who have a w"
       },
       {
         "idx": 131,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and SYLLOGISM\n\nENTITIES:\n- People who have a wedding\n- People who have at least one child\n- People who travel to Paris for their honeymoon\n- Weddings that occur in July\n- Well-attended weddings\n- John\n\nSTEPS:\n1. **Conditional Chain**: \n   - From the premises, we can establish a chain: \n     - If someone has a wedding, then they have at least one child.\n     - If someone "
       },
       {
         "idx": 140,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN, MODUS PONENS, DISJUNCTIVE\n\nENTITIES: \n- Cartoon character\n- Funny\n- Popular\n- Ugly\n- Loved by children\n- From The Simpsons\n- Yellow\n- Ben\n\nSTEPS:\n1. Establish the conditional chain:\n   - If a cartoon character is yellow, then it is from The Simpsons.\n   - If a cartoon character is from The Simpsons, then it is loved by children.\n   - If a cartoon character is loved by c"
       },
       {
         "idx": 141,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- Cartoon character\n- Funny\n- Popular\n- Ugly\n- Loved by children\n- From The Simpsons\n- Yellow\n- Ben\n\nSTEPS:\n1. Establish the chain of implications:\n   - If a cartoon character is funny, then it is popular.\n   - If a cartoon character is loved by children, then it is funny.\n   - If a cartoon character is from The Simpsons, then it is loved by children.\n   - If"
       },
       {
         "idx": 142,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN, MODUS PONENS, DISJUNCTIVE\n\nENTITIES: \n- Cartoon character\n- Funny\n- Popular\n- Ugly\n- Loved by children\n- From The Simpsons\n- Yellow\n- Ben\n\nSTEPS:\n1. Establish the conditional chain:\n   - If a cartoon character is yellow, then it is from The Simpsons.\n   - If a cartoon character is from The Simpsons, then it is loved by children.\n   - If a cartoon character is loved by c"
       },
       {
         "idx": 144,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Breeding back\n- Heck cattle\n- Aurochs\n- Animals\n- Extinct animals\n\nSTEPS:\n1. Identify that breeding back is a form of artificial selection involving domestic animals.\n2. Recognize that Heck cattle were bred-back to resemble the aurochs.\n3. Understand that both Heck cattle and aurochs are categorized as animals.\n4. Note that some animals that are bred-back resemble "
       },
       {
         "idx": 153,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN, SYLLOGISM, NEGATION\n\nENTITIES:\n- Large desktop monitor\n- Work regularly and often at home\n- Fully stocked and impressive home office\n- Spend free time tidying and organizing\n- Go to bed late and wake up after noon\n- Visit the office supply store regularly\n- Remy\n\nSTEPS:\n1. **Conditional Chain**:\n   - If someone owns a large desktop monitor, then they work regularly and "
       },
       {
         "idx": 154,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN, SYLLOGISM, NEGATION\n\nENTITIES:\n- Large desktop monitor\n- Work regularly and often at home\n- Fully stocked and impressive home office\n- Spend free time tidying and organizing\n- Visit the office supply store regularly\n- Go to bed late and wake up every day after noon\n- Remy\n\nSTEPS:\n1. **Conditional Chain**:\n   - If someone owns a large desktop monitor, then they work regu"
       },
       {
         "idx": 155,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN, SYLLOGISM, NEGATION\n\nENTITIES:\n- Large desktop monitor\n- Work regularly and often at home\n- Fully stocked and impressive home office\n- Spend free time tidying and organizing\n- Go to bed late and wake up after noon\n- Visit the office supply store regularly\n- Remy\n\nSTEPS:\n1. **Conditional Chain**:\n   - If someone owns a large desktop monitor, then they work regularly and "
       },
       {
         "idx": 156,
         "gold_type": "SYLLOGISM",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Humans\n- Mortality\n- Greeks\n\nSTEPS:\n1. Identify the first premise: \"All humans are mortal.\" This establishes a relationship between humans and mortality.\n2. Identify the second premise: \"All Greeks are humans.\" This establishes a relationship between Greeks and humans.\n3. Apply the syllogism pattern: Since all Greeks are humans and all humans are mortal, it follows"
       },
       {
         "idx": 164,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES:\n- Roses given out on TV\n- The Bachelor\n- Reality TV shows\n- Breaking Bad\n\nSTEPS:\n1. Identify the chain of implications:\n   - If roses are given out on TV, then they are on the Bachelor.\n   - If something is on the Bachelor, then it portrays the lives of real people.\n   - If something portrays the lives of real people, then it is a reality TV show.\n\n2. Establis"
       },
       {
         "idx": 165,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES:\n- Roses given out on TV\n- The Bachelor\n- Reality TV shows\n- Breaking Bad\n\nSTEPS:\n1. Identify that roses given out on TV are associated with the Bachelor: \"Every rose given out on TV is on the Bachelor.\"\n2. Recognize that the Bachelor portrays the lives of real people: \"Everything on the Bachelor portrays the lives of real people.\"\n3. Understand that shows port"
       },
       {
         "idx": 166,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- Roses given out on TV\n- The Bachelor\n- Reality TV shows\n- Breaking Bad\n\nSTEPS:\n1. Identify the chain of conditions:\n   - If roses are given out on TV, then they are on the Bachelor.\n   - If something is on the Bachelor, then it portrays the lives of real people.\n   - If something portrays the lives of real people, then it is a reality TV show.\n\n2. Establish"
       },
       {
         "idx": 170,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and SYLLOGISM\n\nENTITIES: \n- Deadly disease\n- Low survival rate\n- Severe cancer\n- Bile duct cancer\n- Cholangiocarcinoma\n- Mild flu\n- Colorectal cancer\n\nSTEPS:\n1. **Conditional Chain**: \n   - From \"If something is a deadly disease, then its survival rate is low\" and \"All severe cancers are deadly diseases,\" we can infer that all severe cancers have a low survival rate.\n   "
       },
       {
         "idx": 171,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and SYLLOGISM\n\nENTITIES:\n- Deadly disease\n- Low survival rate\n- Severe cancer\n- Bile duct cancer\n- Cholangiocarcinoma\n- Mild flu\n- Colorectal cancer\n\nSTEPS:\n1. **Conditional Chain**: \n   - From the first premise, establish a conditional relationship: If something is a deadly disease, then its survival rate is low.\n   - From the second premise, establish that all severe c"
       },
       {
         "idx": 172,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN and SYLLOGISM\n\nENTITIES:\n- Deadly disease\n- Low survival rate\n- Severe cancer\n- Bile duct cancer\n- Cholangiocarcinoma\n- Mild flu\n- Colorectal cancer\n\nSTEPS:\n1. **Conditional Chain**: \n   - From \"If something is a deadly disease, then its survival rate is low\" and \"All severe cancers are deadly diseases,\" we can infer that all severe cancers have a low survival rate.\n   -"
       },
       {
         "idx": 179,
         "gold_type": "SYLLOGISM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Horses\n- Hooves\n- Humans\n\nSTEPS:\n1. Identify the relationship between horses and hooves: All horses have hooves.\n2. Identify the relationship between humans and hooves: No humans have hooves.\n3. Recognize that the premises establish a categorical distinction between horses and humans based on the presence of hooves.\n4. Use the syllogistic structure to infer that hu"
       },
       {
         "idx": 185,
         "gold_type": "MODUS-PONENS",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES:\n- Dani Shapiro\n- American City\n- American\n- Novel\n- Novel Writer\n- Podcast\n- Family History\n- Family Secrets\n\nSTEPS:\n1. Identify that Dani Shapiro is an American writer. This is supported by the premise that if a person is born in an American city, they are American, and Boston is an American city. However, the premises do not explicitly state where Dani Shapiro was b"
       },
       {
         "idx": 187,
         "gold_type": "MODUS-PONENS",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES:\n- Dani Shapiro\n- American City\n- American\n- Novel\n- Novel Writer\n- Podcast\n- Family History\n- Family Secrets\n\nSTEPS:\n1. Identify that Dani Shapiro is an American writer. This is supported by the premise that if a person is born in an American city, they are American, and Boston is an American city. However, the premise does not explicitly state where Dani Shapiro was "
       },
       {
         "idx": 196,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- Animals that bark\n- Jane's preference (likes or does not like)\n- Dogs\n- Animals that jump\n- Animals with legs\n- Terricolous animals\n- KiKi\n\nSTEPS:\n1. **Identify the relationships**:\n   - If an animal barks, Jane does not like it.\n   - All dogs are animals that bark.\n   - If an animal jumps, Jane likes it.\n   - If an animal has legs, it jumps.\n   - If an ani"
       },
       {
         "idx": 197,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- Animals\n- Dogs\n- Barking\n- Jumping\n- Having legs\n- Being terricolous\n- Jane's preference (likes or does not like)\n- KiKi\n\nSTEPS:\n1. **Identify the relationships**:\n   - If an animal barks, Jane does not like it.\n   - All dogs are animals that bark.\n   - If an animal jumps, Jane likes it.\n   - If an animal has legs, it jumps.\n   - If an animal is terricolous"
       },
       {
         "idx": 198,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN, SYLLOGISM, NEGATION\n\nENTITIES:\n- Animals\n- Dogs\n- Barking\n- Jumping\n- Having legs\n- Being terricolous\n- Jane's preference (likes or does not like)\n- KiKi\n\nSTEPS:\n1. **Conditional Chain**: \n   - If an animal is terricolous, then it has legs.\n   - If an animal has legs, then it jumps.\n   - If an animal jumps, then Jane likes it.\n   - Therefore, if an animal is terricolous"
       }
     ],
     "cot_structure": [
       {
         "idx": 0,
         "gold_type": "DISJUNCTIVE",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Bonnie performs in school talent shows often\" follows logically from the given premises, let's analyze the logical structure step by step:\n\n### Step 1: Identify the Type of Reasoning\nThe reasoning involves conditional (if-then) statements, disjunctions (either-or), and universal statements. We need to trace the logical implications and relationships between these statements.\n\n### Step 2: Identify Key Logical Relationships\n1. **Premise 1**: If people perform i"
       },
       {
         "idx": 2,
         "gold_type": "DISJUNCTIVE",
+        "gold_label": "False",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's break down the premises and analyze the logical structure:\n\n1. **Premise 1**: If people perform in school talent shows often, then they attend and are very engaged with school events.\n   - Symbolically: \\( P \\rightarrow E \\)\n\n2. **Premise 2**: People either perform in school talent shows often or are inactive and disinterested members of their community.\n   - Symbolically: \\( P \\lor I \\)\n\n3. **Premise 3**: If people chaperone high school dances, then they are no"
       },
       {
         "idx": 21,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Karen will share 'Stranger Things' to Lisa\" follows logically from the given premises, we need to analyze the logical structure step by step.\n\n**Step 1: Type of Reasoning Needed**\n\nThe reasoning involves conditional (if-then) statements and biconditional (if and only if) statements. We will use chain reasoning to connect these statements.\n\n**Step 2: Identify Key Logical Relationships**\n\n1. \"Stranger Things\" is a popular Netflix show.\n2. If a Netflix show is p"
       },
       {
         "idx": 22,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Black Mirror is popular\" follows logically from the given premises, let's analyze the logical structure step by step:\n\n**Step 1: Type of Reasoning Needed**\n\nThe reasoning involves conditional (if-then) statements and biconditional (if and only if) statements. We need to use chain reasoning and negation to trace the logical implications.\n\n**Step 2: Identify Key Logical Relationships**\n\n1. \"Stranger Things\" is a popular Netflix show.\n2. If a Netflix show is pop"
       },
       {
         "idx": 23,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "Step 1: The reasoning needed involves conditional (if-then) reasoning, biconditional (if and only if) reasoning, and negation.\n\nStep 2: Identify the key logical relationships between premises:\n- Premise 1: \"Stranger Things\" is a popular Netflix show.\n- Premise 2: If a Netflix show is popular, Karen will binge-watch it.\n- Premise 3: If and only if Karen binge-watches a Netflix show, she will download it.\n- Premise 4: Karen does not download \"Black Mirror\".\n- Premise 5: \"Black Mirror\" is a Netflix"
       },
       {
         "idx": 30,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion \"Djokovic is a Grand Slam champion,\" let's analyze the logical structure of the premises and the conclusion.\n\n**Step 1: Type of Reasoning Needed**\n- We need to use a combination of disjunction (either-or), universal (all), and conditional (if-then) reasoning.\n\n**Step 2: Identify Key Logical Relationships**\n1. A person is either a Grand Slam champion or an Oscar-nominated actor.\n2. All Grand Slam champions are professional tennis players.\n3. All Oscar-nominated actors a"
       },
       {
         "idx": 31,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Djokovic lives in a tax haven\" follows logically from the given premises, we need to analyze the logical structure and relationships between the premises.\n\n**Step 1: Type of Reasoning Needed**\n\n- We need to use a combination of universal reasoning (all statements), disjunction (either-or statement), and chain reasoning (if-then statements).\n\n**Step 2: Identify Key Logical Relationships**\n\n1. **Disjunction**: A person is either a Grand Slam champion or an Osca"
       },
       {
         "idx": 32,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, we need to analyze the logical structure of the premises and determine if the conclusion logically follows.\n\n**Step 1: Type of Reasoning**\n- The reasoning involves a combination of universal statements (all, if-then) and disjunction (either-or).\n\n**Step 2: Key Logical Relationships**\n1. A person is either a Grand Slam champion or an Oscar-nominated actor.\n2. All Grand Slam champions are professional tennis players.\n3. All Oscar-nominated actors are celebrities.\n4. All"
       },
       {
         "idx": 42,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Coco Gauff is among the most active players in major tennis\" follows logically from the given premises, we need to analyze the logical structure step by step.\n\n**Step 1: Identify the type of reasoning needed.**\n\n- We have several conditional (if-then) statements, universal statements, and a disjunction (either-or).\n- We need to use chain reasoning to connect these statements and determine if the conclusion follows.\n\n**Step 2: Identify the key logical relation"
       },
       {
         "idx": 43,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Coco Gauff has lost to Rafael Nadal\" follows logically from the given premises, let's analyze the logical structure step by step:\n\n**Step 1: Identify the type of reasoning needed.**\n\n- We have a mix of conditional (if-then) statements, universal statements, and disjunctions (either-or).\n\n**Step 2: Identify the key logical relationships between premises.**\n\n1. **Premise 1:** If a player is ranked highly by the Women's Tennis Association (WTA), then they are am"
       },
       {
         "idx": 44,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's break down the logical structure of the premises and analyze the reasoning step-by-step:\n\n**Step 1: Identify the type of reasoning needed.**\n\n- We have conditional statements (if-then), universal quantifiers (all), disjunctions (either-or), and negations.\n\n**Step 2: Identify the key logical relationships between premises.**\n\n1. **Premise 1:** If a player is ranked highly by the Women's Tennis Association (WTA), then they are among the most active players in majo"
       },
       {
         "idx": 46,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "Step 1: The reasoning needed involves universal and conditional (if-then) reasoning. Specifically, we need to consider the universal statement about students who want a long vacation and their preference for summer.\n\nStep 2: Key logical relationships:\n- Premise 2 states that all students who want a long vacation love summer the most.\n- Premise 3 states that Emma's favorite season is summer.\n- Premise 4 states that Mia's favorite season is not the same as Emma's, so Mia's favorite season is not s"
       },
       {
         "idx": 47,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's analyze the logical structure step by step:\n\n**Step 1: Type of Reasoning**\n- The reasoning involves conditional (if-then) and negation logic.\n\n**Step 2: Key Logical Relationships**\n- Premise 1: [BG] There are four seasons: Spring, Summer, Fall, and Winter.\n- Premise 2: If a student wants a long vacation, then they love summer the most.\n- Premise 3: Emma's favorite season is summer.\n- Premise 4: Mia's favorite season is not summer (since it is not the same as Emm"
       },
       {
         "idx": 48,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's follow the steps outlined:\n\n**Step 1: Type of Reasoning Needed**\n- We need to use a combination of universal reasoning and negation. The premises involve universal statements about preferences and specific negations about individual preferences.\n\n**Step 2: Identify the Key Logical Relationships Between Premises**\n- Premise 1: There are four seasons: Spring, Summer, Fall, and Winter.\n- Premise 2: All students who want a long vacation love summer the most.\n- Premi"
       },
       {
         "idx": 76,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, we need to analyze the logical structure of the premises and see if they support the conclusion that \"Mary needs to earn money to help pay for her college tuition.\"\n\n**Step 1: Identify the type of reasoning needed.**\n\nThe reasoning involves conditional (if-then) statements, disjunctions (either-or), and negations.\n\n**Step 2: Identify the key logical relationships between premises.**\n\n1. \\( A \\rightarrow B \\): If people work in student jobs on campus, then they need to"
       },
       {
         "idx": 77,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's analyze the logical structure of the premises and how they relate to each other.\n\n**Step 1: Type of Reasoning**\n- The reasoning involves conditional (if-then) statements, disjunction (either-or), and negation.\n\n**Step 2: Key Logical Relationships**\n1. \\( A \\rightarrow B \\): If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\n2. \\( C \\rightarrow A \\): If people order takeout frequently in college, then the"
       },
       {
         "idx": 78,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's break down the logical structure of the premises and see if the conclusion logically follows.\n\n**Step 1: Type of Reasoning**\nThe reasoning involves conditional (if-then) statements, disjunctions (either-or), and negations.\n\n**Step 2: Key Logical Relationships**\n1. \\( A \\rightarrow B \\): If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\n2. \\( C \\rightarrow A \\): If people order takeout frequently in coll"
       },
       {
         "idx": 79,
         "gold_type": "SYLLOGISM",
+        "gold_label": "False",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, we need to analyze the logical structure of the premises and see if they support the conclusion.\n\n**Step 1: Type of Reasoning**\n\nThe reasoning involves:\n- Universal statements (e.g., \"All cupcakes are bakeries\").\n- Conditional reasoning (e.g., \"If dried Thai chilies are spicy or a bakery, then dried Thai chilies are a hotpot or are spicy\").\n- Disjunction (e.g., \"spicy or a bakery\").\n\n**Step 2: Key Logical Relationships**\n\n1. **No bakery is spicy.**\n   - This means the"
       },
       {
         "idx": 81,
         "gold_type": "SYLLOGISM",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion \"Dried Thai chilies are a hotpot,\" let's analyze the premises and the logical structure:\n\nStep 1: Identify the type of reasoning needed.\n- The reasoning involves conditional (if-then) statements, universal statements (all/no), and disjunction (or).\n\nStep 2: Identify the key logical relationships between premises.\n- Premise 1: No bakery is spicy. (Universal negative)\n- Premise 2: All cupcakes are bakeries. (Universal affirmative)\n- Premise 3: All hotpots are spicy. (Uni"
       },
       {
         "idx": 82,
         "gold_type": "SYLLOGISM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's analyze the logical structure step by step:\n\n**Step 1: Type of Reasoning Needed**\n- We need to use a combination of universal reasoning (all/no statements) and conditional reasoning (if-then statements).\n\n**Step 2: Identify Key Logical Relationships**\n1. **No bakery is spicy.**  \n   - This means if something is a bakery, it cannot be spicy.\n\n2. **All cupcakes are bakeries.**  \n   - This implies that cupcakes inherit the properties of bakeries, including not bein"
       },
       {
         "idx": 83,
         "gold_type": "SYLLOGISM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's analyze the logical structure step by step:\n\n**Step 1: Type of Reasoning**\n- The reasoning involves universal statements (e.g., \"All cupcakes are bakeries\") and conditional reasoning (e.g., \"If dried Thai chilies are spicy or a bakery, then dried Thai chilies are a hotpot or are spicy\").\n\n**Step 2: Key Logical Relationships**\n- Premise 1: No bakery is spicy.\n- Premise 2: All cupcakes are bakeries.\n- Premise 3: All hotpots are spicy.\n- Premise 4: All products of "
       },
       {
         "idx": 87,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Sir Digby\u2019s nemesis loses\" follows logically from the given premises, let's analyze the logical structure step by step:\n\n**Step 1: Type of Reasoning Needed**\n\nThe reasoning involves a combination of if-then (conditional) reasoning and chain reasoning. We need to establish a sequence of logical implications that lead from the premises to the conclusion.\n\n**Step 2: Key Logical Relationships Between Premises**\n\n1. **Premise 1**: In superhero movies, the good guy"
       },
       {
         "idx": 102,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Luke spends a lot of time hanging out and playing with his siblings\" follows from the given premises, let's analyze the logical structure step by step.\n\n**Step 1: Type of Reasoning**\n\nThe reasoning involves conditional (if-then) statements, disjunctions (either-or), and negations. We need to trace the logical implications of these statements.\n\n**Step 2: Key Logical Relationships**\n\n1. **P1:** If people are twins or triplets, then they spend a lot of time hang"
       },
       {
         "idx": 103,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Luke complains often about annoying siblings\" follows from the given premises, let's analyze the logical structure step by step:\n\n**Step 1: Type of Reasoning**\nThe reasoning involves conditional (if-then) statements, disjunctions (either-or), and negations.\n\n**Step 2: Key Logical Relationships**\n1. **P1:** If twins or triplets, then spend time with siblings.\n2. **P2:** If siblings same age, then twins or triplets.\n3. **P3:** If complain about siblings, then s"
       },
       {
         "idx": 104,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's analyze the logical structure of the premises and the conclusion step-by-step:\n\n**Step 1: Type of Reasoning**\n\nThe reasoning involves conditional (if-then) statements, disjunctions (either-or), and negations.\n\n**Step 2: Key Logical Relationships**\n\n1. **P1:** If people are twins or triplets, then they spend a lot of time with their siblings.\n   - \\( T \\rightarrow S \\)\n\n2. **P2:** If people have siblings who are the same age, then they are twins or triplets.\n   -"
       },
       {
         "idx": 105,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "Step 1: The reasoning needed here is a chain reasoning, where we connect the premises to see if they logically lead to the conclusion.\n\nStep 2: Identify the key logical relationships between premises:\n- Premise 1 states the cost of the GRE test.\n- Premise 2 states that ETS provides financial aid to applicants who prove economic hardship.\n- Premise 3 defines economic hardship as having too little money or resources.\n- Premise 4 and 5 provide information about Tom's family situation, which may imp"
       },
       {
         "idx": 106,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "Step 1: The reasoning needed involves a combination of conditional (if-then) reasoning and universal reasoning. We need to determine if Tom qualifies for financial aid based on the premises and whether this affects the cost of the GRE test.\n\nStep 2: Key logical relationships:\n- Premise 1 states the cost of the GRE test is US $205.\n- Premise 2 states that ETS provides financial aid to applicants who prove economic hardship.\n- Premise 3 defines economic hardship as having too little money or resou"
       },
       {
         "idx": 107,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's analyze the logical structure:\n\nStep 1: Type of Reasoning\nThe reasoning involves conditional (if-then) logic and negation. We need to determine if the premises logically lead to the conclusion that no financial aid is available.\n\nStep 2: Key Logical Relationships\n- Premise 1: It costs US $205 to take the GRE test.\n- Premise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\n- Premise 3: Economic hardship is defined as difficulty c"
       },
       {
         "idx": 108,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Peter tidies his space consistently and enjoys the process of cleaning\" follows logically from the given premises, let's analyze the logical structure step by step:\n\n### Step 1: Identify the Type of Reasoning\nThe reasoning involves a combination of conditional (if-then) statements, universal statements, and a disjunction (either-or) statement.\n\n### Step 2: Identify Key Logical Relationships\n1. **Premise 1**: If people spill a lot of food on their clothing, th"
       },
       {
         "idx": 109,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion follows logically from the premises, let's analyze the logical structure step by step:\n\n**Step 1: Type of Reasoning Needed**\n\nThe reasoning involves a combination of if-then statements (conditional reasoning), universal statements, and disjunctions (either-or statements).\n\n**Step 2: Identify Key Logical Relationships**\n\n1. **Premise 1:** If people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process of cl"
       },
       {
         "idx": 110,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion follows logically from the premises, let's analyze the logical structure step by step:\n\n**Step 1: Identify the type of reasoning needed.**\n\nThe reasoning involves conditional (if-then) statements, universal statements (all), and disjunctions (either-or).\n\n**Step 2: Identify the key logical relationships between premises.**\n\n1. **Premise 1:** If people spill a lot of food on their clothing, then they do not tidy their spaces consistently and enjoy the process o"
       },
       {
         "idx": 122,
         "gold_type": "NEGATION",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Greyhound is an airline\" logically follows from the given premises, let's analyze the logical structure step by step:\n\n### Step 1: Identify the Type of Reasoning\nThe reasoning involves conditional (if-then) statements, universal statements, and negation.\n\n### Step 2: Identify Key Logical Relationships\n1. **Premise 1**: If something can transport multiple passengers, then they are not empty.\n   - Form: \\( A \\rightarrow \\neg B \\) (where \\( A \\) is \"can transpor"
       },
       {
         "idx": 128,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, we need to analyze the logical structure of the premises and see if they support the conclusion that \"John has a wedding that is well-attended.\"\n\n**Step 1: Type of Reasoning Needed**\n\n- We have a mix of universal statements (\"All...\") and conditional statements (\"If...then...\").\n- We need to use chain reasoning to connect these statements and see if they lead to the conclusion.\n- We also need to consider negation, as some premises involve negating certain conditions.\n"
       },
       {
         "idx": 129,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"John does not have a wedding that is well-attended\" follows logically from the given premises, we need to analyze the logical structure of the premises and how they relate to John.\n\n**Step 1: Identify the type of reasoning needed.**\n\nThe reasoning involves conditional (if-then) statements, universal statements (all), existential statements (some), and negation.\n\n**Step 2: Identify the key logical relationships between premises.**\n\n1. **Premise 1:** All people"
       },
       {
         "idx": 130,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"John has at least one child\" follows from the given premises, let's analyze the logical structure step by step:\n\n**Step 1: Identify the type of reasoning needed.**\n\n- The premises involve conditional (if-then) statements, universal statements (all), existential statements (some), and disjunctions (or).\n\n**Step 2: Identify the key logical relationships between premises.**\n\n1. **Premise 1:** All people who have a wedding are people who have at least one child.\n"
       },
       {
         "idx": 131,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's analyze the logical structure of the premises and the conclusion.\n\n**Step 1: Type of Reasoning**\n\nThe reasoning involves conditional (if-then) statements, universal statements (all), existential statements (some), and negation.\n\n**Step 2: Key Logical Relationships**\n\n1. **Universal Statements:**\n   - All people who have a wedding have at least one child.\n   - All people who travel to Paris for their honeymoon have a wedding.\n   - All weddings in July belong to p"
       },
       {
         "idx": 140,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Ben is loved by children\" follows from the given premises, let's analyze the logical structure step by step:\n\n**Step 1: Type of Reasoning Needed**\n\nThe reasoning involves conditional (if-then) statements, disjunction (either-or), and chain reasoning (linking multiple if-then statements).\n\n**Step 2: Identify Key Logical Relationships**\n\n1. If a cartoon character is funny, then it is popular. (F \u2192 P)\n2. If a cartoon character is ugly, then it is not popular. (U"
       },
       {
         "idx": 141,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Ben is ugly or yellow\" follows from the given premises, let's analyze the logical structure step by step:\n\n### Step 1: Type of Reasoning\nThe reasoning involves conditional (if-then) statements, disjunctions (either-or), and possibly chain reasoning to connect the premises to the conclusion.\n\n### Step 2: Key Logical Relationships\n1. **If Funny, Then Popular**: \\( F \\rightarrow P \\)\n2. **If Ugly, Then Not Popular**: \\( U \\rightarrow \\neg P \\)\n3. **If Loved by C"
       },
       {
         "idx": 142,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, we need to analyze the logical structure of the premises and how they relate to the conclusion.\n\n**Step 1: Type of Reasoning**\n\nThe reasoning involves conditional (if-then) statements, disjunctions (either-or), and chain reasoning (linking multiple if-then statements).\n\n**Step 2: Key Logical Relationships**\n\n1. **If Funny, Then Popular**: \\( F \\rightarrow P \\)\n2. **If Ugly, Then Not Popular**: \\( U \\rightarrow \\neg P \\)\n3. **If Loved by Children, Then Funny**: \\( L \\r"
       },
       {
         "idx": 144,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "Step 1: The reasoning needed here involves a combination of universal and existential reasoning, as well as a chain of implications. We need to determine if the premises logically lead to the conclusion that \"Aurochs are extinct.\"\n\nStep 2: Key logical relationships:\n- Breeding back involves selecting domestic animals to resemble extinct animals.\n- Heck cattle were bred-back to resemble aurochs.\n- Heck cattle are animals, and aurochs are animals.\n- Some animals that are bred-back resemble animals"
       },
       {
         "idx": 153,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Remy visits the office supply store regularly\" follows from the given premises, we need to analyze the logical structure and relationships between the premises.\n\n**Step 1: Identify the type of reasoning needed.**\n\nThe reasoning involves a combination of if-then statements (conditional reasoning), universal statements, and a disjunction.\n\n**Step 2: Identify the key logical relationships between premises.**\n\n1. **Premise 1:** If people own a large desktop monit"
       },
       {
         "idx": 154,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, we need to analyze the logical structure of the premises and see if they support the conclusion.\n\n**Step 1: Identify the type of reasoning needed.**\n\n- The premises involve conditional (if-then) reasoning, universal statements, and a disjunction.\n\n**Step 2: Identify the key logical relationships between premises.**\n\n1. **Premise 1:** If people own a large desktop monitor at their home, then they work regularly and often at home.\n2. **Premise 2:** All people who have a"
       },
       {
         "idx": 155,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's break down the logical structure and relationships between the premises:\n\n**Step 1: Type of Reasoning**\n- The reasoning involves conditional (if-then) statements, universal quantifiers (all), and disjunctions (either-or).\n\n**Step 2: Key Logical Relationships**\n1. If someone owns a large desktop monitor, they work regularly and often at home.\n2. If someone has a fully stocked and impressive home office, they own a large desktop monitor.\n3. If someone works regula"
       },
       {
         "idx": 156,
         "gold_type": "SYLLOGISM",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "Step 1: The type of reasoning needed here is universal reasoning. We are dealing with universal statements (\"All humans are mortal\" and \"All Greeks are humans\") and need to determine if the conclusion logically follows from these premises.\n\nStep 2: Identify the key logical relationships between premises:\n- Premise 1: All humans are mortal. This can be expressed as: If x is a human, then x is mortal.\n- Premise 2: All Greeks are humans. This can be expressed as: If x is a Greek, then x is a human."
       },
       {
         "idx": 164,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, we need to analyze the logical structure of the premises and see if they lead to the conclusion.\n\nStep 1: Type of Reasoning\nThe reasoning involves a chain of implications and universal statements. We need to determine if the premises logically lead to the conclusion using these implications.\n\nStep 2: Key Logical Relationships\n- Premise 1: On some Mondays at 8 pm, roses are given out on TV.\n- Premise 2: Every rose given out on TV is on the Bachelor.\n- Premise 3: Everyt"
       },
       {
         "idx": 165,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, we need to analyze the logical structure of the premises and see if they support the conclusion.\n\n**Step 1: Type of Reasoning**\nThe reasoning involves a chain of implications (if-then statements) and universal statements.\n\n**Step 2: Key Logical Relationships**\n1. Some Mondays at 8 pm, roses are given out on TV.\n2. If a rose is given out on TV, then it is on the Bachelor.\n3. If something is on the Bachelor, then it portrays the lives of real people.\n4. If a show portra"
       },
       {
         "idx": 166,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, we need to analyze the logical structure of the premises and the conclusion.\n\n**Step 1: Type of Reasoning**\n\nThe conclusion is an \"if-then\" statement, so we need to determine if the premises support this conditional reasoning.\n\n**Step 2: Key Logical Relationships**\n\n1. \"On some Mondays at 8 pm, roses are given out on TV.\"\n2. \"Every rose given out on TV is on the Bachelor.\"\n3. \"Everything on the Bachelor portrays the lives of real people.\"\n4. \"All shows portraying the "
       },
       {
         "idx": 170,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, we need to analyze the logical structure of the premises and see if they support the conclusion that \"Colorectal cancer is a severe cancer.\"\n\nStep 1: Identify the type of reasoning needed.\n- The reasoning involves conditional (if-then) statements, universal statements, and negation.\n\nStep 2: Identify the key logical relationships between premises.\n1. If something is a deadly disease, then its survival rate is low. (Conditional)\n2. All severe cancers are deadly disease"
       },
       {
         "idx": 171,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "False",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's break down the logical structure and reasoning:\n\n**Step 1: Type of Reasoning**\n- The conclusion involves a disjunction (\"or\") and a conjunction (\"and\"), so we need to consider both disjunctive and conjunctive reasoning.\n- The premises involve conditional (\"if-then\") reasoning and universal statements.\n\n**Step 2: Key Logical Relationships**\n1. If something is a deadly disease, then its survival rate is low.\n2. All severe cancers are deadly diseases.\n3. Bile duct "
       },
       {
         "idx": 172,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, let's break down the logical structure and reasoning:\n\n**Step 1: Type of Reasoning Needed**\n- The reasoning involves conditional (if-then) statements, universal statements (all), and disjunction (or).\n\n**Step 2: Key Logical Relationships Between Premises**\n1. If something is a deadly disease, then its survival rate is low. (P1)\n2. All severe cancers are deadly diseases. (P2)\n3. Bile duct cancer is a severe cancer. (P3)\n4. All Cholangiocarcinoma is bile duct cancer. (P"
       },
       {
         "idx": 179,
         "gold_type": "SYLLOGISM",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "Step 1: The reasoning needed here involves universal statements and negation. We are dealing with categorical logic, specifically universal affirmatives and universal negatives.\n\nStep 2: Identify the key logical relationships between premises:\n- Premise 1: All horses have hooves. (Universal affirmative: If something is a horse, then it has hooves.)\n- Premise 2: No humans have hooves. (Universal negative: If something is a human, then it does not have hooves.)\n\nStep 3: Trace the inference chain f"
       },
       {
         "idx": 185,
         "gold_type": "MODUS-PONENS",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"Dani Shapiro is a novel writer\" follows logically from the given premises, we need to analyze the logical structure of the argument.\n\n**Step 1: Type of Reasoning Needed**\n\nThe reasoning involves conditional (if-then) statements and categorical statements. We need to use these to establish a chain of reasoning.\n\n**Step 2: Identify Key Logical Relationships**\n\n1. **Premise:** If a book is a novel and it is written by a person, then the person is a novel writer."
       },
       {
         "idx": 187,
         "gold_type": "MODUS-PONENS",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion \"Dani Shapiro was born in Boston,\" let's analyze the logical structure of the premises and the conclusion.\n\n**Step 1: Type of Reasoning Needed**\nThe conclusion requires reasoning about birthplace, which involves conditional reasoning (if-then statements) related to being American. However, the conclusion specifically about being born in Boston is not directly addressed by any given conditional premises.\n\n**Step 2: Key Logical Relationships Between Premises**\n- Premise "
       },
       {
         "idx": 196,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"KiKi is terricolous\" follows from the given premises, let's analyze the logical structure step by step:\n\n**Step 1: Type of Reasoning Needed**\n\nThe reasoning involves conditional (if-then) statements, universal statements (all), and disjunctions (or). We need to trace the logical implications of these statements.\n\n**Step 2: Key Logical Relationships**\n\n1. If an animal barks, then Jane does not like it.\n2. All dogs are animals that bark.\n3. If an animal jumps, "
       },
       {
         "idx": 197,
         "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
         "composed_correct": false,
-        "error": "No module named 'openai'"
+        "condition": "cot_structure",
+        "response": "To evaluate the conclusion, we need to analyze the logical structure of the premises and see if they support the conclusion that \"KiKi barks and is a dog.\"\n\n**Step 1: Type of Reasoning Needed**\n\n- We have several conditional (if-then) statements, which suggest chain reasoning.\n- There are also universal statements (e.g., \"All dogs are animals that bark\").\n- We need to consider disjunctions (e.g., \"KiKi is terricolous or has legs\").\n- Negation is involved in some premises (e.g., \"If KiKi neither "
       },
       {
         "idx": 198,
         "gold_type": "CONDITIONAL-CHAIN",
-        "composed_correct": false,
-        "error": "No module named 'openai'"
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To determine whether the conclusion \"KiKi neither barks nor is a dog\" follows from the given premises, we need to analyze the logical structure and relationships between the premises.\n\n**Step 1: Type of Reasoning Needed**\n\n- We have several conditional (if-then) statements.\n- We also have universal statements (e.g., \"All dogs are animals that bark\").\n- We need to use chain reasoning to connect these statements.\n- We need to consider negation to evaluate the conclusion.\n\n**Step 2: Identify Key Lo"
       }
     ]
   }
