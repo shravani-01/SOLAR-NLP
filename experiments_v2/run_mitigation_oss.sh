@@ -68,6 +68,12 @@ for MODEL in "${OSS_MODELS[@]}"; do
     echo "╚═══════════════════════════════════════════════════════════╝"
 
     for DOMAIN in contracts sql math logic code; do
+        RESULT_FILE="$MIT_DIR/results/mitigation_${DOMAIN}_${MODEL}.json"
+        if [ -z "$LIMIT_ARG" ] && [ -f "$RESULT_FILE" ]; then
+            echo ""
+            echo "  ⏭ [$MODEL] $DOMAIN — already done (skipping)"
+            continue
+        fi
         echo ""
         echo "  ▶ [$MODEL] $DOMAIN"
         echo "  ─────────────────────────────────────────────"
