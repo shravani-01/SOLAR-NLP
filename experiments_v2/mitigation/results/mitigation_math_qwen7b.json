@@ -1,0 +1,198 @@
+{
+  "model": "qwen7b",
+  "domain": "math",
+  "experiment": "mitigation_structure_aware_prompting",
+  "timestamp": "2026-05-09T05:01:16.745426",
+  "original": {
+    "condition": "original",
+    "eligible_examples": 1261,
+    "composed_correct": 1130,
+    "gap_cases": 131,
+    "gap_rate": 0.1039,
+    "gap_pct": 10.4,
+    "per_type": {
+      "SYSTEM": {
+        "total": 199,
+        "correct": 175,
+        "wrong": 24,
+        "gap_rate": 0.1206
+      },
+      "RATIO-PROP": {
+        "total": 390,
+        "correct": 348,
+        "wrong": 42,
+        "gap_rate": 0.1077
+      },
+      "SINGLE-OP": {
+        "total": 243,
+        "correct": 225,
+        "wrong": 18,
+        "gap_rate": 0.0741
+      },
+      "MULTI-STEP": {
+        "total": 372,
+        "correct": 330,
+        "wrong": 42,
+        "gap_rate": 0.1129
+      },
+      "COMPARISON": {
+        "total": 57,
+        "correct": 52,
+        "wrong": 5,
+        "gap_rate": 0.0877
+      }
+    }
+  },
+  "self_structure": {
+    "condition": "self_structure",
+    "eligible_examples": 5,
+    "composed_correct": 5,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {
+      "SYSTEM": {
+        "total": 2,
+        "correct": 2,
+        "wrong": 0,
+        "gap_rate": 0.0
+      },
+      "RATIO-PROP": {
+        "total": 2,
+        "correct": 2,
+        "wrong": 0,
+        "gap_rate": 0.0
+      },
+      "SINGLE-OP": {
+        "total": 1,
+        "correct": 1,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
+  },
+  "cot_structure": {
+    "condition": "cot_structure",
+    "eligible_examples": 5,
+    "composed_correct": 5,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {
+      "SYSTEM": {
+        "total": 2,
+        "correct": 2,
+        "wrong": 0,
+        "gap_rate": 0.0
+      },
+      "RATIO-PROP": {
+        "total": 2,
+        "correct": 2,
+        "wrong": 0,
+        "gap_rate": 0.0
+      },
+      "SINGLE-OP": {
+        "total": 1,
+        "correct": 1,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
+  },
+  "predictions": {
+    "self_structure": [
+      {
+        "idx": 0,
+        "gold_type": "SYSTEM",
+        "gold_answer": "18",
+        "pred_answer": "18",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "STEPS: 3\nOPERATIONS: subtraction, multiplication\nPATTERN: MULTI-STEP"
+      },
+      {
+        "idx": 1,
+        "gold_type": "RATIO-PROP",
+        "gold_answer": "3",
+        "pred_answer": "3",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "STEPS: 2\nOPERATIONS: multiplication, addition\nPATTERN: RATIO-PROP"
+      },
+      {
+        "idx": 2,
+        "gold_type": "RATIO-PROP",
+        "gold_answer": "70000",
+        "pred_answer": "70000",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "STEPS: 3\nOPERATIONS: addition, multiplication, subtraction\nPATTERN: MULTI-STEP"
+      },
+      {
+        "idx": 3,
+        "gold_type": "SINGLE-OP",
+        "gold_answer": "540",
+        "pred_answer": "540",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "STEPS: 2\nOPERATIONS: multiplication\nPATTERN: MULTI-STEP"
+      },
+      {
+        "idx": 4,
+        "gold_type": "SYSTEM",
+        "gold_answer": "20",
+        "pred_answer": "20",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "STEPS: 3\nOPERATIONS: multiplication, subtraction\nPATTERN: MULTI-STEP"
+      }
+    ],
+    "cot_structure": [
+      {
+        "idx": 0,
+        "gold_type": "SYSTEM",
+        "gold_answer": "18",
+        "pred_answer": "18",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "Let's break down the problem step by step:\n\n1. **Calculate the total number of eggs laid per day:**\n   Janet's ducks lay 16 eggs per day.\n\n2. **Determine how many eggs Janet uses:**\n   - Janet eats 3 eggs for breakfast every morning.\n   - She uses 4 eggs to bake muffins for her friends every day.\n   Total eggs used = 3 (for breakfast) + 4 (for muffins) = 7 eggs.\n\n3. **Calculate the number of eggs remaining to be sold:**\n   Remaining eggs = Total eggs laid - Eggs used\n   Remaining eggs = 16 - 7 ="
+      },
+      {
+        "idx": 1,
+        "gold_type": "RATIO-PROP",
+        "gold_answer": "3",
+        "pred_answer": "3",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "#### 3\n\n**Explanation:**\n1. The problem states that a robe requires 2 bolts of blue fiber.\n2. It also states that the amount of white fiber required is half the amount of blue fiber. Therefore, the amount of white fiber needed is \\( \\frac{2}{2} = 1 \\) bolt.\n3. To find the total amount of fiber needed, we add the bolts of blue fiber and white fiber together: \\( 2 + 1 = 3 \\).\n\nThus, the total number of bolts needed is 3."
+      },
+      {
+        "idx": 2,
+        "gold_type": "RATIO-PROP",
+        "gold_answer": "70000",
+        "pred_answer": "70000",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "Let's break down the problem into steps:\n\n### Step 0 (PLAN):\n1. **Calculate the total cost**: This includes the purchase price and the repair costs.\n2. **Determine the new value of the house**: The value increases by 150% of its original value after repairs.\n3. **Calculate the profit**: Subtract the total cost from the new value of the house.\n\n### Step-by-Step Execution:\n\n1. **Total Cost**:\n   - Purchase price: $80,000\n   - Repair costs: $50,000\n   - Total cost = $80,000 + $50,000 = $130,000\n\n2."
+      },
+      {
+        "idx": 3,
+        "gold_type": "SINGLE-OP",
+        "gold_answer": "540",
+        "pred_answer": "540",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "To solve this problem, we need to perform a series of multiplications based on the given information. Let's break it down step by step.\n\n1. **Determine the distance James runs per sprint:**\n   - James runs 60 meters per sprint.\n\n2. **Calculate the total distance for one session:**\n   - James runs 3 sprints per session.\n   - Total distance per session = 60 meters/sprint \u00d7 3 sprints = 180 meters.\n\n3. **Calculate the total distance for the week:**\n   - James runs 3 times a week.\n   - Total distance"
+      },
+      {
+        "idx": 4,
+        "gold_type": "SYSTEM",
+        "gold_answer": "20",
+        "pred_answer": "20",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "Let's break down the problem step by step:\n\n### Step 1: Calculate the total daily feed requirement for all chickens.\n- Each chicken needs 3 cups of feed per day.\n- Wendi has 20 chickens.\n\n\\[ \\text{Total daily feed} = 3 \\, \\text{cups/chicken} \\times 20 \\, \\text{chickens} = 60 \\, \\text{cups} \\]\n\n### Step 2: Calculate the amount of feed given in the morning and afternoon.\n- Morning feed: 15 cups\n- Afternoon feed: 25 cups\n\n\\[ \\text{Total morning and afternoon feed} = 15 \\, \\text{cups} + 25 \\, \\text{"
+      }
+    ]
+  }
+}

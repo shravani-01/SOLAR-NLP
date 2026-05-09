@@ -1,0 +1,206 @@
+{
+  "model": "qwen7b",
+  "domain": "code",
+  "experiment": "mitigation_structure_aware_prompting",
+  "timestamp": "2026-05-09T05:02:47.136113",
+  "original": {
+    "condition": "original",
+    "eligible_examples": 164,
+    "composed_correct": 97,
+    "gap_cases": 67,
+    "gap_rate": 0.4085,
+    "gap_pct": 40.9,
+    "per_type": {
+      "RECURSIVE": {
+        "total": 46,
+        "correct": 33,
+        "wrong": 13,
+        "gap_rate": 0.2826
+      },
+      "MULTI-STRUCT": {
+        "total": 101,
+        "correct": 52,
+        "wrong": 49,
+        "gap_rate": 0.4851
+      },
+      "LOOP": {
+        "total": 10,
+        "correct": 6,
+        "wrong": 4,
+        "gap_rate": 0.4
+      },
+      "SINGLE-FUNC": {
+        "total": 5,
+        "correct": 4,
+        "wrong": 1,
+        "gap_rate": 0.2
+      },
+      "CONDITIONAL": {
+        "total": 2,
+        "correct": 2,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
+  },
+  "self_structure": {
+    "condition": "self_structure",
+    "eligible_examples": 5,
+    "composed_correct": 0,
+    "gap_cases": 5,
+    "gap_rate": 1.0,
+    "gap_pct": 100.0,
+    "per_type": {
+      "RECURSIVE": {
+        "total": 3,
+        "correct": 0,
+        "wrong": 3,
+        "gap_rate": 1.0
+      },
+      "MULTI-STRUCT": {
+        "total": 2,
+        "correct": 0,
+        "wrong": 2,
+        "gap_rate": 1.0
+      }
+    }
+  },
+  "cot_structure": {
+    "condition": "cot_structure",
+    "eligible_examples": 5,
+    "composed_correct": 0,
+    "gap_cases": 5,
+    "gap_rate": 1.0,
+    "gap_pct": 100.0,
+    "per_type": {
+      "RECURSIVE": {
+        "total": 3,
+        "correct": 0,
+        "wrong": 3,
+        "gap_rate": 1.0
+      },
+      "MULTI-STRUCT": {
+        "total": 2,
+        "correct": 0,
+        "wrong": 2,
+        "gap_rate": 1.0
+      }
+    }
+  },
+  "predictions": {
+    "self_structure": [
+      {
+        "idx": 0,
+        "gold_type": "RECURSIVE",
+        "gold_has_loop": false,
+        "gen_has_loop": true,
+        "gold_has_rec": true,
+        "gen_has_rec": false,
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "ITERATION: YES and why - The function needs to compare each pair of elements in the list to check if their difference is less than the threshold. This can be efficiently done using iteration.\n\nRECURSION: NO and why - There is no need to solve a smaller instance of the problem by calling the function itself. Iteration is sufficient for this task.\n\nCONDITIONALS: YES and why - Conditional branching i"
+      },
+      {
+        "idx": 1,
+        "gold_type": "MULTI-STRUCT",
+        "gold_has_loop": true,
+        "gen_has_loop": false,
+        "gold_has_rec": true,
+        "gen_has_rec": false,
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "ITERATION: YES\nRECURSION: NO\nCONDITIONALS: YES\nAPPROACH: LOOP\n\nExplanation:\n- **ITERATION**: Yes, because we need to process the string character by character to identify and separate the groups of parentheses. This can be done using a loop.\n- **RECURSION**: No, because the problem does not involve solving a subproblem that is similar to the original problem but on a smaller scale. We are simply i"
+      },
+      {
+        "idx": 2,
+        "gold_type": "RECURSIVE",
+        "gold_has_loop": false,
+        "gen_has_loop": false,
+        "gold_has_rec": true,
+        "gen_has_rec": false,
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "ITERATION: NO\nRECURSION: NO\nCONDITIONALS: YES\nAPPROACH: CONDITIONAL\n\nExplanation:\n- **ITERATION**: No, because the problem does not involve processing elements in a sequence or collection one by one. There's no need to loop through any data structure.\n- **RECURSION**: No, because the task does not naturally lend itself to being solved by breaking it down into smaller instances of the same problem "
+      },
+      {
+        "idx": 3,
+        "gold_type": "MULTI-STRUCT",
+        "gold_has_loop": true,
+        "gen_has_loop": true,
+        "gold_has_rec": true,
+        "gen_has_rec": false,
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "ITERATION: YES and why - The function needs to process each operation in the list to update the account balance and check if it falls below zero. This can be done using a loop.\n\nRECURSION: NO and why - There is no need to solve the problem by breaking it down into smaller subproblems that can be solved recursively. The problem can be solved iteratively without losing generality.\n\nCONDITIONALS: YES"
+      },
+      {
+        "idx": 4,
+        "gold_type": "RECURSIVE",
+        "gold_has_loop": true,
+        "gen_has_loop": true,
+        "gold_has_rec": true,
+        "gen_has_rec": false,
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "ITERATION: YES and why\nRECURSION: NO and why\nCONDITIONALS: YES and why\nAPPROACH: LOOP\n\nExplanation:\n- **ITERATION**: Yes, because calculating the mean absolute deviation involves iterating over the list of numbers to compute the mean and then computing the absolute differences from the mean.\n- **RECURSION**: No, because the problem can be solved efficiently using iteration without the need for rec"
+      }
+    ],
+    "cot_structure": [
+      {
+        "idx": 0,
+        "gold_type": "RECURSIVE",
+        "gold_has_loop": false,
+        "gen_has_loop": true,
+        "gold_has_rec": true,
+        "gen_has_rec": false,
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "```python\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    # Step 1: We need to compare each pair of numbers to see if their difference is less than the threshold.\n    # Step 2: This requires iteration over the list of numbers.\n    # Step 3: Edge cases to consider:\n    #         - The list can be empty or have only one element, in which case it's impossible to have two close elements.\n    #         - The list should be sorted for efficient comparison.\n    \n    # Step 4"
+      },
+      {
+        "idx": 1,
+        "gold_type": "MULTI-STRUCT",
+        "gold_has_loop": true,
+        "gen_has_loop": true,
+        "gold_has_rec": true,
+        "gen_has_rec": false,
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "```python\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    # Step 1: The input is a string with multiple groups of nested parentheses. \n    # The output should be a list of separate strings for each group.\n    # We can use a stack to keep track of the opening parentheses and split when we encounter a closing one.\n    \n    # Step 2: We will use iteration to go through the string and a stack to manage the groups.\n    \n    # Step 3: Edge cases to handle:\n    # - Empty input string\n   "
+      },
+      {
+        "idx": 2,
+        "gold_type": "RECURSIVE",
+        "gold_has_loop": false,
+        "gen_has_loop": false,
+        "gold_has_rec": true,
+        "gen_has_rec": false,
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "```python\ndef truncate_number(number: float) -> float:\n    integer_part = int(number)\n    decimal_part = number - integer_part\n    return decimal_part\n```"
+      },
+      {
+        "idx": 3,
+        "gold_type": "MULTI-STRUCT",
+        "gold_has_loop": true,
+        "gen_has_loop": true,
+        "gold_has_rec": true,
+        "gen_has_rec": false,
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "```python\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for op in operations:\n        balance += op\n        if balance < 0:\n            return True\n    return False\n```"
+      },
+      {
+        "idx": 4,
+        "gold_type": "RECURSIVE",
+        "gold_has_loop": true,
+        "gen_has_loop": true,
+        "gold_has_rec": true,
+        "gen_has_rec": false,
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "```python\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    # Step 2: This requires iteration to compute the mean and then the mean absolute deviation\n    \n    # Step 3: Handle edge case where the input list is empty\n    if not numbers:\n        return 0.0\n    \n    # Calculate the mean of the dataset\n    mean_value = sum(numbers) / len(numbers)\n    \n    # Compute the sum of absolute differences from the mean\n    mad_sum = sum(abs(x - mean_value) for x in numbers)\n    \n    # Return t"
+      }
+    ]
+  }
+}

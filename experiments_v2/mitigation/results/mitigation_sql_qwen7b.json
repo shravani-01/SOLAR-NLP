@@ -1,0 +1,138 @@
+{
+  "model": "qwen7b",
+  "domain": "sql",
+  "experiment": "mitigation_structure_aware_prompting",
+  "timestamp": "2026-05-09T04:59:51.339921",
+  "original": {
+    "condition": "original",
+    "eligible_examples": 504,
+    "composed_correct": 375,
+    "gap_cases": 129,
+    "gap_rate": 0.256,
+    "gap_pct": 25.6,
+    "per_type": {
+      "SIMPLE": {
+        "total": 237,
+        "correct": 178,
+        "wrong": 59,
+        "gap_rate": 0.2489
+      },
+      "NESTED": {
+        "total": 49,
+        "correct": 40,
+        "wrong": 9,
+        "gap_rate": 0.1837
+      },
+      "JOIN": {
+        "total": 180,
+        "correct": 146,
+        "wrong": 34,
+        "gap_rate": 0.1889
+      },
+      "MULTI-AGG": {
+        "total": 34,
+        "correct": 10,
+        "wrong": 24,
+        "gap_rate": 0.7059
+      },
+      "SET-OP": {
+        "total": 4,
+        "correct": 1,
+        "wrong": 3,
+        "gap_rate": 0.75
+      }
+    }
+  },
+  "self_structure": {
+    "condition": "self_structure",
+    "eligible_examples": 3,
+    "composed_correct": 3,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {
+      "SIMPLE": {
+        "total": 3,
+        "correct": 3,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
+  },
+  "cot_structure": {
+    "condition": "cot_structure",
+    "eligible_examples": 3,
+    "composed_correct": 3,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {
+      "SIMPLE": {
+        "total": 3,
+        "correct": 3,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
+  },
+  "predictions": {
+    "self_structure": [
+      {
+        "idx": 0,
+        "gold_type": "SIMPLE",
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "TABLES: 1 (SINGER)\nNESTING: NO\nSET-OPS: NO\nAGGREGATION: NO\nSTRUCTURE: SIMPLE",
+        "pred_sql": "SELECT COUNT(*) AS number_of_singers\nFROM SINGER;"
+      },
+      {
+        "idx": 1,
+        "gold_type": "SIMPLE",
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "TABLES: 2 (SINGER and SINGER_IN_CONCERT)\nNESTING: NO\nSET-OPS: NO\nAGGREGATION: YES\nSTRUCTURE: NESTED",
+        "pred_sql": "SELECT COUNT(*) AS total_singers\nFROM SINGER;"
+      },
+      {
+        "idx": 4,
+        "gold_type": "SIMPLE",
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "TABLES: 2 (SINGER is the main table, and we might need to join with another table if there's a need to filter by country information)\nNESTING: No, a simple query should suffice without needing a subquery\nSET-OPS: Not needed in this case\nAGGREGATION: Yes, we need to use AVG, MIN, and MAX functions\nSTRUCTURE: SIMPLE",
+        "pred_sql": "SELECT \n    AVG(age) AS average_age, \n    MIN(age) AS minimum_age, \n    MAX(age) AS maximum_age\nFROM \n    SINGER\nWHERE \n    country = 'France';"
+      }
+    ],
+    "cot_structure": [
+      {
+        "idx": 0,
+        "gold_type": "SIMPLE",
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "### Structural Reasoning:\n\n1. **Tables Needed**:\n   - `SINGER`: This table contains information about the singers.\n   \n2. **JOINs**:\n   - No JOINs are necessary because we only need to count the number of unique singers, and the `SINGER` table already contains all the singer data directly.\n\n3. **Subqueries**:\n   - No subqueries are needed as the count can be performed directly on the `SINGER` table.\n\n4. **Set Operations**:\n   - No set operations are required since we are simply counting the number of rows in one table.\n\n5. **GROUP BY with Aggregations**:\n   - We will use an aggregation functio",
+        "pred_sql": "QUERY:\nSELECT COUNT(*) AS number_of_singers\nFROM SINGER;"
+      },
+      {
+        "idx": 1,
+        "gold_type": "SIMPLE",
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "### Structural Reasoning:\n\n**Step 1: How many tables are needed? List them.**\n- We need to consider the `SINGER` table to get the list of singers.\n\n**Step 2: Do I need JOINs to connect tables?**\n- No, we only need the `SINGER` table for this query since it directly contains the information about singers.\n\n**Step 3: Do I need subqueries (nested SELECT)?**\n- No, a simple query on the `SINGER` table will suffice.\n\n**Step 4: Do I need set operations (UNION/INTERSECT/EXCEPT)?**\n- No, we don't need any set operations for this query.\n\n**Step 5: Do I need GROUP BY with aggregations?**\n- No, we just ne",
+        "pred_sql": "QUERY:\nSELECT COUNT(*) AS total_singers\nFROM SINGER;"
+      },
+      {
+        "idx": 4,
+        "gold_type": "SIMPLE",
+        "pred_type": "SIMPLE",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "### Structural Reasoning:\n\n**Step 1: How many tables are needed? List them.**\n- We need at least one table to get the singer's information. The most likely candidate is the `SINGER` table since it contains details about the singers.\n\n**Step 2: Do I need JOINs to connect tables?**\n- We might need to join the `SINGER` table with another table if we need additional information like the country of origin. However, based on the schema provided, we can assume that the `SINGER` table has a column indicating the country of origin.\n\n**Step 3: Do I need subqueries (nested SELECT)?**\n- No, we don't need ",
+        "pred_sql": "SELECT \n    AVG(age) AS average_age,\n    MIN(age) AS minimum_age,\n    MAX(age) AS maximum_age\nFROM \n    SINGER\nWHERE \n    country = 'France';"
+      }
+    ]
+  }
+}

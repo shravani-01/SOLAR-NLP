@@ -1,0 +1,56 @@
+{
+  "model": "qwen7b",
+  "domain": "logic",
+  "experiment": "mitigation_structure_aware_prompting",
+  "timestamp": "2026-05-09T05:01:21.210655",
+  "original": {
+    "condition": "original",
+    "eligible_examples": 80,
+    "composed_correct": 34,
+    "gap_cases": 46,
+    "gap_rate": 0.575,
+    "gap_pct": 57.5,
+    "per_type": {
+      "CONDITIONAL-CHAIN": {
+        "total": 75,
+        "correct": 31,
+        "wrong": 44,
+        "gap_rate": 0.5867
+      },
+      "DISJUNCTIVE": {
+        "total": 4,
+        "correct": 2,
+        "wrong": 2,
+        "gap_rate": 0.5
+      },
+      "SYLLOGISM": {
+        "total": 1,
+        "correct": 1,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
+  },
+  "self_structure": {
+    "condition": "self_structure",
+    "eligible_examples": 0,
+    "composed_correct": 0,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {}
+  },
+  "cot_structure": {
+    "condition": "cot_structure",
+    "eligible_examples": 0,
+    "composed_correct": 0,
+    "gap_cases": 0,
+    "gap_rate": 0.0,
+    "gap_pct": 0.0,
+    "per_type": {}
+  },
+  "predictions": {
+    "self_structure": [],
+    "cot_structure": []
+  }
+}
