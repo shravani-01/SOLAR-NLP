@@ -1,0 +1,1392 @@
+{
+  "model": "llama8b",
+  "domain": "logic",
+  "experiment": "mitigation_structure_aware_prompting",
+  "timestamp": "2026-05-10T16:18:09.216039",
+  "original": {
+    "condition": "original",
+    "eligible_examples": 71,
+    "composed_correct": 38,
+    "gap_cases": 33,
+    "gap_rate": 0.4648,
+    "gap_pct": 46.5,
+    "per_type": {
+      "MODUS-PONENS": {
+        "total": 6,
+        "correct": 4,
+        "wrong": 2,
+        "gap_rate": 0.3333
+      },
+      "SYLLOGISM": {
+        "total": 3,
+        "correct": 2,
+        "wrong": 1,
+        "gap_rate": 0.3333
+      },
+      "CONDITIONAL-CHAIN": {
+        "total": 61,
+        "correct": 31,
+        "wrong": 30,
+        "gap_rate": 0.4918
+      },
+      "DISJUNCTIVE": {
+        "total": 1,
+        "correct": 1,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
+  },
+  "self_structure": {
+    "condition": "self_structure",
+    "eligible_examples": 71,
+    "composed_correct": 34,
+    "gap_cases": 37,
+    "gap_rate": 0.5211,
+    "gap_pct": 52.1,
+    "per_type": {
+      "MODUS-PONENS": {
+        "total": 6,
+        "correct": 4,
+        "wrong": 2,
+        "gap_rate": 0.3333
+      },
+      "SYLLOGISM": {
+        "total": 3,
+        "correct": 1,
+        "wrong": 2,
+        "gap_rate": 0.6667
+      },
+      "CONDITIONAL-CHAIN": {
+        "total": 61,
+        "correct": 28,
+        "wrong": 33,
+        "gap_rate": 0.541
+      },
+      "DISJUNCTIVE": {
+        "total": 1,
+        "correct": 1,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
+  },
+  "cot_structure": {
+    "condition": "cot_structure",
+    "eligible_examples": 71,
+    "composed_correct": 16,
+    "gap_cases": 55,
+    "gap_rate": 0.7746,
+    "gap_pct": 77.5,
+    "per_type": {
+      "MODUS-PONENS": {
+        "total": 6,
+        "correct": 3,
+        "wrong": 3,
+        "gap_rate": 0.5
+      },
+      "SYLLOGISM": {
+        "total": 3,
+        "correct": 2,
+        "wrong": 1,
+        "gap_rate": 0.3333
+      },
+      "CONDITIONAL-CHAIN": {
+        "total": 61,
+        "correct": 10,
+        "wrong": 51,
+        "gap_rate": 0.8361
+      },
+      "DISJUNCTIVE": {
+        "total": 1,
+        "correct": 1,
+        "wrong": 0,
+        "gap_rate": 0.0
+      }
+    }
+  },
+  "predictions": {
+    "self_structure": [
+      {
+        "idx": 12,
+        "gold_type": "MODUS-PONENS",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: MODUS PONENS\n\nENTITIES:\n- Key Entities: \n  - The Legend of Zelda (game)\n  - Japanese game company (company)\n  - Top 10 list (list)\n  - One million copies (copies sold)\n- Relationships:\n  - The Legend of Zelda is a game created by a Japanese game company.\n  - The Legend of Zelda sold more than one million copies.\n  - The Top 10 list consists of games made by Japanese game companies.\n  - If"
+      },
+      {
+        "idx": 13,
+        "gold_type": "MODUS-PONENS",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: MODUS PONENS\n\nENTITIES:\n- Key Entities: \n  - The Legend of Zelda (game)\n  - Japanese game company (company)\n  - Top 10 list (list)\n  - One million copies (copies sold)\n- Relationships:\n  - The Legend of Zelda is a game created by a Japanese game company.\n  - The Legend of Zelda sold more than one million copies.\n  - The Top 10 list consists of games made by Japanese game companies.\n  - If"
+      },
+      {
+        "idx": 14,
+        "gold_type": "MODUS-PONENS",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: MODUS PONENS\n\nENTITIES:\n- Key Entities: \n  - The Legend of Zelda (game)\n  - Japanese game company (company)\n  - Top 10 list (list)\n  - One million copies (copies sold)\n- Relationships:\n  - The Legend of Zelda is a game created by a Japanese game company.\n  - The Legend of Zelda sold more than one million copies.\n  - The Top 10 list consists of games made by Japanese game companies.\n  - If"
+      },
+      {
+        "idx": 15,
+        "gold_type": "SYLLOGISM",
+        "gold_label": "True",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- X: squares\n- Y: shapes\n- Z: four-sided things\n\nSTEPS: \n1. All squares are shapes (All X are Y)\n2. All four-sided things are shapes (All Z are Y)\n3. Therefore, all squares are four-sided things (All X are Z)"
+      },
+      {
+        "idx": 21,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES:\n- Entities: \n  - \"Stranger Things\" (a Netflix show)\n  - \"Black Mirror\" (a Netflix show)\n  - Karen (a person)\n  - Netflix show (a category)\n  - Binge-watching (an action)\n  - Downloading (an action)\n  - Sharing (an action)\n- Relationships:\n  - \"Stranger Things\" is a Netflix show\n  - Karen binge-watches a Netflix show\n  - Binge-watching a Netflix show leads to d"
+      },
+      {
+        "idx": 22,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES:\n- Entities: \n  - \"Stranger Things\" (a Netflix show)\n  - \"Black Mirror\" (a Netflix show)\n  - Karen (a person)\n  - Netflix show (a category)\n  - Binge-watching (an action)\n  - Downloading (an action)\n  - Sharing (an action)\n- Relationships:\n  - \"Stranger Things\" is a Netflix show\n  - Karen binge-watches a Netflix show\n  - Binge-watching a Netflix show leads to d"
+      },
+      {
+        "idx": 23,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES:\n- Entities: \n  - \"Stranger Things\" (a Netflix show)\n  - \"Black Mirror\" (a Netflix show)\n  - Karen (a person)\n  - Netflix show (a category)\n  - Binge-watching (an action)\n  - Downloading (an action)\n  - Sharing (an action)\n- Relationships:\n  - \"Stranger Things\" is a Netflix show\n  - Karen binge-watches a Netflix show\n  - Binge-watching a Netflix show leads to d"
+      },
+      {
+        "idx": 30,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES: \n- Grand Slam champion\n- Oscar-nominated actor\n- Professional tennis player\n- Celebrity\n- Athlete\n- Well-paid person\n- Tax haven\n- Famous person\n- Djokovic\n\nRELATIONSHIPS:\n- Grand Slam champion is a subset of Professional tennis player\n- Oscar-nominated actor is a subset of Celebrity\n- Professional tennis player is a subset of Athlete\n- Celebrity is a subset "
+      },
+      {
+        "idx": 31,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES: \n- Grand Slam champion\n- Oscar-nominated actor\n- Professional tennis player\n- Celebrity\n- Athlete\n- Well-paid person\n- Tax haven\n- Famous person\n- Djokovic\n\nRELATIONSHIPS:\n- Grand Slam champion is a subset of Professional tennis player\n- Oscar-nominated actor is a subset of Celebrity\n- Professional tennis player is a subset of Athlete\n- Celebrity is a subset "
+      },
+      {
+        "idx": 32,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES: \n- Grand Slam champion\n- Oscar-nominated actor\n- Professional tennis player\n- Celebrity\n- Athlete\n- Well-paid person\n- Tax haven\n- Famous person\n- Djokovic\n\nRELATIONSHIPS:\n- Grand Slam champion is a subset of Professional tennis player\n- Oscar-nominated actor is a subset of Celebrity\n- Professional tennis player is a subset of Athlete\n- Celebrity is a subset "
+      },
+      {
+        "idx": 33,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Diamond Mine (stable)\n- Roderick Strong (leader)\n- Creed Brothers (members)\n- Ivy Nile (member)\n- Imperium (opponent)\n\nSTEPS:\n1. All members of Diamond Mine are part of a professional wrestling stable.\n2. Roderick Strong is a member of Diamond Mine.\n3. Therefore, Roderick Strong is part of a professional wrestling stable.\n\nHowever, the question asks for the analysi"
+      },
+      {
+        "idx": 34,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Diamond Mine (stable)\n- Roderick Strong (leader)\n- Creed Brothers (members)\n- Ivy Nile (member)\n- Imperium (opponent)\n\nSTEPS:\n1. All members of Diamond Mine are part of a professional wrestling stable.\n2. Roderick Strong is a member of Diamond Mine.\n3. Therefore, Roderick Strong is part of a professional wrestling stable.\n\nHowever, the question asks for the analysi"
+      },
+      {
+        "idx": 35,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Diamond Mine (stable)\n- Roderick Strong (leader)\n- Creed Brothers (members)\n- Ivy Nile (member)\n- Imperium (opponent)\n\nSTEPS:\n1. All members of Diamond Mine are part of a professional wrestling stable.\n2. Roderick Strong is a member of Diamond Mine.\n3. Therefore, Roderick Strong is part of a professional wrestling stable.\n\nHowever, the question asks for the analysi"
+      },
+      {
+        "idx": 42,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  MODUS PONENS (if P then Q; P; therefore Q) and SYLLOGISM (all X are Y; Z is X; therefore Z is Y) and DISJUNCTIVE (either P or Q; not P; therefore Q)\n\nENTITIES:\n- Key entities: \n  - Iga \u015awi\u0105tek (player)\n  - Women's Tennis Association (organization)\n  - Coco Gauff (player)\n  - Rafael Nadal (player)\n  - Roland Garros 2022 (event)\n  - Female tennis players at Roland Garros 2022 (group)\n  - M"
+      },
+      {
+        "idx": 43,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  MODUS PONENS (if P then Q; P; therefore Q) and SYLLOGISM (all X are Y; Z is X; therefore Z is Y) and DISJUNCTIVE (either P or Q; not P; therefore Q)\n\nENTITIES:\n- Key entities: \n  - Iga \u015awi\u0105tek (player)\n  - Women's Tennis Association (organization)\n  - Coco Gauff (player)\n  - Rafael Nadal (player)\n  - Roland Garros 2022 (event)\n  - Female tennis players at Roland Garros 2022 (group)\n  - M"
+      },
+      {
+        "idx": 44,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  MODUS PONENS (if P then Q; P; therefore Q) and SYLLOGISM (all X are Y; Z is X; therefore Z is Y) and DISJUNCTIVE (either P or Q; not P; therefore Q)\n\nENTITIES:\n- Key entities: \n  - Iga \u015awi\u0105tek (player)\n  - Women's Tennis Association (organization)\n  - Coco Gauff (player)\n  - Rafael Nadal (player)\n  - Roland Garros 2022 (event)\n  - Female tennis players at Roland Garros 2022 (group)\n  - M"
+      },
+      {
+        "idx": 46,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  MODUS PONENS\n\nENTITIES:\n- **Seasons**: Spring, Summer, Fall, Winter\n- **Favorite Seasons**: Emma's favorite season, Mia's favorite season\n- **Vacation**: long vacation, wants to have a long vacation\n\nRELATIONSHIPS:\n- **Favorite Season**: Emma's favorite season is Summer\n- **Vacation Preference**: Students who want a long vacation love Summer the most\n- **Different Seasons**: Mia's favori"
+      },
+      {
+        "idx": 47,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  MODUS PONENS\n\nENTITIES:\n- **Seasons**: Spring, Summer, Fall, Winter\n- **Favorite Seasons**: Emma's favorite season, Mia's favorite season\n- **Vacation**: long vacation, wants to have a long vacation\n\nRELATIONSHIPS:\n- **Favorite Season**: Emma's favorite season is Summer\n- **Vacation Preference**: Students who want a long vacation love Summer the most\n- **Different Seasons**: Mia's favori"
+      },
+      {
+        "idx": 48,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  MODUS PONENS\n\nENTITIES:\n- **Seasons**: Spring, Summer, Fall, Winter\n- **Favorite Seasons**: Emma's favorite season, Mia's favorite season\n- **Vacation**: long vacation, wants to have a long vacation\n\nRELATIONSHIPS:\n- **Favorite Season**: Emma's favorite season is Summer\n- **Vacation Preference**: Students who want a long vacation love Summer the most\n- **Different Seasons**: Mia's favori"
+      },
+      {
+        "idx": 49,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES:\n- Digital media\n- Analog media\n- Printed text\n- Streaming services\n- Hardcover book\n- 1984 (as a streaming service or a hardcover book)\n\nRELATIONSHIPS:\n- Digital media and analog media are mutually exclusive (digital media are not analog, and analog media are not digital)\n- Printed text is a subset of analog media (every printed text is analog)\n- Streaming se"
+      },
+      {
+        "idx": 50,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES:\n- Digital media\n- Analog media\n- Printed text\n- Streaming services\n- Hardcover book\n- 1984 (as a streaming service or a hardcover book)\n\nRELATIONSHIPS:\n- Digital media and analog media are mutually exclusive (digital media are not analog, and analog media are not digital)\n- Printed text is a subset of analog media (every printed text is analog)\n- Streaming se"
+      },
+      {
+        "idx": 51,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES:\n- Digital media\n- Analog media\n- Printed text\n- Streaming services\n- Hardcover book\n- 1984 (as a streaming service or a hardcover book)\n\nRELATIONSHIPS:\n- Digital media and analog media are mutually exclusive (digital media are not analog, and analog media are not digital)\n- Printed text is a subset of analog media (every printed text is analog)\n- Streaming se"
+      },
+      {
+        "idx": 52,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES:\n- Language families\n- Languages\n- Relationships (related, not related)\n\nSTEPS:\n1. All Romance languages are Indo-European languages (premise 1)\n2. French and Spanish are Romance languages (premise 4)\n3. Therefore, French and Spanish are Indo-European languages (inference from 1 and 2)\n4. All Romance languages are a language family (premise 2)\n5. French and Spanish are"
+      },
+      {
+        "idx": 53,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES:\n- Language families\n- Languages\n- Relationships (related, not related)\n\nSTEPS:\n1. All Romance languages are Indo-European languages (premise 1)\n2. French and Spanish are Romance languages (premise 4)\n3. Therefore, French and Spanish are Indo-European languages (inference from 1 and 2)\n4. All Romance languages are a language family (premise 2)\n5. French and Spanish are"
+      },
+      {
+        "idx": 54,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES:\n- Language families\n- Languages\n- Relationships (related, not related)\n\nSTEPS:\n1. All Romance languages are Indo-European languages (premise 1)\n2. French and Spanish are Romance languages (premise 4)\n3. Therefore, French and Spanish are Indo-European languages (inference from 1 and 2)\n4. All Romance languages are a language family (premise 2)\n5. French and Spanish are"
+      },
+      {
+        "idx": 55,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: MODUS PONENS\n\nENTITIES: \n- Robert Lewandowski (player)\n- Striker (position)\n- Bayern Munchen (team)\n\nSTEPS:\n1. From the first premise, we know Robert Lewandowski is a striker.\n2. From the second premise, we know strikers are soccer players.\n3. From the third premise, we know Robert Lewandowski left Bayern Munchen.\n4. From the fourth premise, we know if a player left a team, they no longer"
+      },
+      {
+        "idx": 56,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: MODUS PONENS\n\nENTITIES: \n- Robert Lewandowski (player)\n- Striker (position)\n- Bayern Munchen (team)\n\nSTEPS:\n1. From the first premise, we know Robert Lewandowski is a striker.\n2. From the second premise, we know strikers are soccer players.\n3. From the third premise, we know Robert Lewandowski left Bayern Munchen.\n4. From the fourth premise, we know if a player left a team, they no longer"
+      },
+      {
+        "idx": 57,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: MODUS PONENS\n\nENTITIES: \n- Robert Lewandowski (player)\n- Striker (position)\n- Bayern Munchen (team)\n\nSTEPS:\n1. From the first premise, we know Robert Lewandowski is a striker.\n2. From the second premise, we know strikers are soccer players.\n3. From the third premise, we know Robert Lewandowski left Bayern Munchen.\n4. From the fourth premise, we know if a player left a team, they no longer"
+      },
+      {
+        "idx": 69,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: MODUS PONENS\n\nENTITIES: \n- Badults (sitcom series)\n- Pappy's (group of people)\n- Andrew Collins (script editor)\n- BBC Three (channel)\n- The Secret Dude Society (working title)\n\nSTEPS:\n1. Identify the working title of the sitcom series (The Secret Dude Society).\n2. Identify the script editor of the sitcom series (Andrew Collins).\n3. Identify the channel where the sitcom series piloted (BBC"
+      },
+      {
+        "idx": 70,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: MODUS PONENS\n\nENTITIES: \n- Badults (sitcom series)\n- Pappy's (group of people)\n- Andrew Collins (script editor)\n- BBC Three (channel)\n- The Secret Dude Society (working title)\n\nSTEPS:\n1. Identify the working title of the sitcom series (The Secret Dude Society).\n2. Identify the script editor of the sitcom series (Andrew Collins).\n3. Identify the channel where the sitcom series piloted (BBC"
+      },
+      {
+        "idx": 76,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES:\n- People (P)\n- Student jobs on campus (S)\n- Need to earn money to help pay for college tuition (E)\n- Order takeout frequently in college (O)\n- Enjoy dining hall meals and recipes (D)\n- Not picky eaters (N)\n- Spend a lot of time eating and catching up with friends in campus dining halls (T)\n- Mary (M)\n\nRELATIONSHIPS:\n- P (People) -> S (Student jobs on campus) -"
+      },
+      {
+        "idx": 77,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES:\n- People (P)\n- Student jobs on campus (S)\n- Need to earn money to help pay for college tuition (E)\n- Order takeout frequently in college (O)\n- Enjoy dining hall meals and recipes (D)\n- Not picky eaters (N)\n- Spend a lot of time eating and catching up with friends in campus dining halls (T)\n- Mary (M)\n\nRELATIONSHIPS:\n- P (People) -> S (Student jobs on campus) -"
+      },
+      {
+        "idx": 78,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES:\n- People (P)\n- Student jobs on campus (S)\n- Need to earn money to help pay for college tuition (E)\n- Order takeout frequently in college (O)\n- Enjoy dining hall meals and recipes (D)\n- Not picky eaters (N)\n- Spend a lot of time eating and catching up with friends in campus dining halls (T)\n- Mary (M)\n\nRELATIONSHIPS:\n- P (People) -> S (Student jobs on campus) -"
+      },
+      {
+        "idx": 87,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: MODUS PONENS\n\nENTITIES:\n- **Superhero movies** (category)\n- **Good guys** (category)\n- **Bad guys** (category)\n- **Sir Digby** (character)\n- **The Surprising Adventures of Sir Digby Chicken Caesar** (movie)\n\nRELATIONSHIPS:\n- Superhero movies are categorized as either good guys or bad guys.\n- Sir Digby is a character in a superhero movie.\n- The Surprising Adventures of Sir Digby Chicken Ca"
+      },
+      {
+        "idx": 102,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- People\n- Twins/ Triplets\n- Siblings (same age)\n- Annoying siblings\n- Strong bonds with family members\n- Living at home regularly\n\nRELATIONSHIPS:\n- People can be twins or triplets\n- Twins or triplets have siblings of the same age\n- People with siblings of the same age are twins or triplets\n- People with annoying siblings have siblings of the same age\n- Peopl"
+      },
+      {
+        "idx": 103,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- People\n- Twins/ Triplets\n- Siblings (same age)\n- Annoying siblings\n- Strong bonds with family members\n- Living at home regularly\n\nRELATIONSHIPS:\n- People can be twins or triplets\n- Twins or triplets have siblings of the same age\n- People with siblings of the same age are twins or triplets\n- People with annoying siblings have siblings of the same age\n- Peopl"
+      },
+      {
+        "idx": 104,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- People\n- Twins/ Triplets\n- Siblings (same age)\n- Annoying siblings\n- Strong bonds with family members\n- Living at home regularly\n\nRELATIONSHIPS:\n- People can be twins or triplets\n- Twins or triplets have siblings of the same age\n- People with siblings of the same age are twins or triplets\n- People with annoying siblings have siblings of the same age\n- Peopl"
+      },
+      {
+        "idx": 108,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES:\n- People (P)\n- Food spillers (FS)\n- Tidy people (TP)\n- Foodies (F)\n- Only children (OC)\n- Busy parents (BP)\n- High-income households (HH)\n- Peter (P)\n\nRELATIONSHIPS:\n- People who spill a lot of food on their clothing (FS) are not tidy (FS -> \u00acTP)\n- Foodies are people who spill a lot of food on their clothing (F -> FS)\n- Only children are tidy and enjoy cleanin"
+      },
+      {
+        "idx": 109,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES:\n- People (P)\n- Food spillers (FS)\n- Tidy people (TP)\n- Foodies (F)\n- Only children (OC)\n- Busy parents (BP)\n- High-income households (HH)\n- Peter (P)\n\nRELATIONSHIPS:\n- People who spill a lot of food on their clothing (FS) are not tidy (FS -> \u00acTP)\n- Foodies are people who spill a lot of food on their clothing (F -> FS)\n- Only children are tidy and enjoy cleanin"
+      },
+      {
+        "idx": 110,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES:\n- People (P)\n- Food spillers (FS)\n- Tidy people (TP)\n- Foodies (F)\n- Only children (OC)\n- Busy parents (BP)\n- High-income households (HH)\n- Peter (P)\n\nRELATIONSHIPS:\n- People who spill a lot of food on their clothing (FS) are not tidy (FS -> \u00acTP)\n- Foodies are people who spill a lot of food on their clothing (F -> FS)\n- Only children are tidy and enjoy cleanin"
+      },
+      {
+        "idx": 112,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Picuris Mountains (entity)\n- New Mexico (location)\n- Texas (location)\n- Juan de Onate (person)\n- Harding Pegmatite Mine (entity)\n- Donated (action)\n\nRELATIONSHIPS:\n- Picuris Mountains are in New Mexico or Texas (location relationship)\n- Juan de Onate visited the Picuris Mountains (action relationship)\n- The Harding Pegmatite Mine is in the Picuris Mountains (locati"
+      },
+      {
+        "idx": 113,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Picuris Mountains (entity)\n- New Mexico (location)\n- Texas (location)\n- Juan de Onate (person)\n- Harding Pegmatite Mine (entity)\n- Donated (action)\n\nRELATIONSHIPS:\n- Picuris Mountains are in New Mexico or Texas (location relationship)\n- Juan de Onate visited the Picuris Mountains (action relationship)\n- The Harding Pegmatite Mine is in the Picuris Mountains (locati"
+      },
+      {
+        "idx": 128,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- People\n- Wedding\n- Child\n- Travel to Paris for honeymoon\n- Well-attended wedding\n- July wedding\n\nRELATIONSHIPS:\n- People who have a wedding (P) are people who have at least one child (C).\n- People who travel to Paris for their honeymoon (T) are people who have a wedding (P).\n- Weddings in July (J) belong to people who travel to Paris for their honeymoon (T)"
+      },
+      {
+        "idx": 129,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- People\n- Wedding\n- Child\n- Travel to Paris for honeymoon\n- Well-attended wedding\n- July wedding\n\nRELATIONSHIPS:\n- People who have a wedding (P) are people who have at least one child (C).\n- People who travel to Paris for their honeymoon (T) are people who have a wedding (P).\n- Weddings in July (J) belong to people who travel to Paris for their honeymoon (T)"
+      },
+      {
+        "idx": 130,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- People\n- Wedding\n- Child\n- Travel to Paris for honeymoon\n- Well-attended wedding\n- July wedding\n\nRELATIONSHIPS:\n- People who have a wedding (P) are people who have at least one child (C).\n- People who travel to Paris for their honeymoon (T) are people who have a wedding (P).\n- Weddings in July (J) belong to people who travel to Paris for their honeymoon (T)"
+      },
+      {
+        "idx": 131,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: CONDITIONAL CHAIN\n\nENTITIES: \n- People\n- Wedding\n- Child\n- Travel to Paris for honeymoon\n- Well-attended wedding\n- July wedding\n\nRELATIONSHIPS:\n- People who have a wedding (P) are people who have at least one child (C).\n- People who travel to Paris for their honeymoon (T) are people who have a wedding (P).\n- Weddings in July (J) belong to people who travel to Paris for their honeymoon (T)"
+      },
+      {
+        "idx": 140,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES: \n- Cartoon character (entity)\n- Funny (property)\n- Popular (property)\n- Ugly (property)\n- Loved by children (property)\n- From The Simpsons (property)\n- Yellow (property)\n- Ben (specific entity)\n\nRELATIONSHIPS:\n- A cartoon character can be funny, popular, ugly, loved by children, from The Simpsons, or yellow.\n- Being funny implies being popular.\n- Being ugly i"
+      },
+      {
+        "idx": 141,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES: \n- Cartoon character (entity)\n- Funny (property)\n- Popular (property)\n- Ugly (property)\n- Loved by children (property)\n- From The Simpsons (property)\n- Yellow (property)\n- Ben (specific entity)\n\nRELATIONSHIPS:\n- A cartoon character can be funny, popular, ugly, loved by children, from The Simpsons, or yellow.\n- Being funny implies being popular.\n- Being ugly i"
+      },
+      {
+        "idx": 142,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES: \n- Cartoon character (entity)\n- Funny (property)\n- Popular (property)\n- Ugly (property)\n- Loved by children (property)\n- From The Simpsons (property)\n- Yellow (property)\n- Ben (specific entity)\n\nRELATIONSHIPS:\n- A cartoon character can be funny, popular, ugly, loved by children, from The Simpsons, or yellow.\n- Being funny implies being popular.\n- Being ugly i"
+      },
+      {
+        "idx": 153,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: NEGATION\n\nENTITIES: \n- People who own a large desktop monitor at their home (P)\n- People who work regularly and often at home (Q)\n- People who have a fully stocked and impressive home office (R)\n- People who spend their free time tidying and organizing the spaces in their homes (S)\n- People who visit the office supply store regularly (T)\n- People who go to bed late and wake up every day a"
+      },
+      {
+        "idx": 154,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: NEGATION\n\nENTITIES: \n- People who own a large desktop monitor at their home (P)\n- People who work regularly and often at home (Q)\n- People who have a fully stocked and impressive home office (R)\n- People who spend their free time tidying and organizing the spaces in their homes (S)\n- People who visit the office supply store regularly (T)\n- People who go to bed late and wake up every day a"
+      },
+      {
+        "idx": 155,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: NEGATION\n\nENTITIES: \n- People who own a large desktop monitor at their home (P)\n- People who work regularly and often at home (Q)\n- People who have a fully stocked and impressive home office (R)\n- People who spend their free time tidying and organizing the spaces in their homes (S)\n- People who visit the office supply store regularly (T)\n- People who go to bed late and wake up every day a"
+      },
+      {
+        "idx": 156,
+        "gold_type": "SYLLOGISM",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\nENTITIES: \n- Humans (X)\n- Greeks (Y)\nRELATIONSHIPS: \n- All humans are mortal (X is Y)\n- All Greeks are humans (Y is X)\n\nSTEPS: \n1. All Greeks are humans (premise)\n2. All humans are mortal (premise)\n3. Therefore, all Greeks are mortal (conclusion)"
+      },
+      {
+        "idx": 170,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES:\n- Deadly disease\n- Survival rate\n- Severe cancer\n- Bile duct cancer\n- Cholangiocarcinoma\n- Mild flu\n- Colorectal cancer\n\nRELATIONSHIPS:\n- Deadly disease -> low survival rate\n- Severe cancer -> deadly disease\n- Bile duct cancer -> severe cancer\n- Cholangiocarcinoma -> bile duct cancer\n- Mild flu -> high survival rate\n- Colorectal cancer -> (bile duct cancer or"
+      },
+      {
+        "idx": 171,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES:\n- Deadly disease\n- Survival rate\n- Severe cancer\n- Bile duct cancer\n- Cholangiocarcinoma\n- Mild flu\n- Colorectal cancer\n\nRELATIONSHIPS:\n- Deadly disease -> low survival rate\n- Severe cancer -> deadly disease\n- Bile duct cancer -> severe cancer\n- Cholangiocarcinoma -> bile duct cancer\n- Mild flu -> high survival rate\n- Colorectal cancer -> (bile duct cancer or"
+      },
+      {
+        "idx": 172,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES:\n- Deadly disease\n- Survival rate\n- Severe cancer\n- Bile duct cancer\n- Cholangiocarcinoma\n- Mild flu\n- Colorectal cancer\n\nRELATIONSHIPS:\n- Deadly disease -> low survival rate\n- Severe cancer -> deadly disease\n- Bile duct cancer -> severe cancer\n- Cholangiocarcinoma -> bile duct cancer\n- Mild flu -> high survival rate\n- Colorectal cancer -> (bile duct cancer or"
+      },
+      {
+        "idx": 176,
+        "gold_type": "MODUS-PONENS",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  MODUS PONENS\n\nENTITIES:\n- Olympic games (event)\n- United States (country)\n- Tokyo (location)\n- Medals (award)\n\nSTEPS:\n1. The Olympic games is a sporting event. (Premise 1)\n2. The last Olympic games was in Tokyo. (Premise 2)\n3. The United States won the most medals in Tokyo. (Premise 3)\n4. The Olympic games in Tokyo is a sporting event. (Inference from 1 and 2)\n5. The United States won th"
+      },
+      {
+        "idx": 177,
+        "gold_type": "MODUS-PONENS",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  MODUS PONENS\n\nENTITIES:\n- Olympic games (event)\n- United States (country)\n- Tokyo (location)\n- Medals (award)\n\nSTEPS:\n1. The Olympic games is a sporting event. (Premise 1)\n2. The last Olympic games was in Tokyo. (Premise 2)\n3. The United States won the most medals in Tokyo. (Premise 3)\n4. The Olympic games in Tokyo is a sporting event. (Inference from 1 and 2)\n5. The United States won th"
+      },
+      {
+        "idx": 178,
+        "gold_type": "MODUS-PONENS",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  MODUS PONENS\n\nENTITIES:\n- Olympic games (event)\n- United States (country)\n- Tokyo (location)\n- Medals (award)\n\nSTEPS:\n1. The Olympic games is a sporting event. (Premise 1)\n2. The last Olympic games was in Tokyo. (Premise 2)\n3. The United States won the most medals in Tokyo. (Premise 3)\n4. The Olympic games in Tokyo is a sporting event. (Inference from 1 and 2)\n5. The United States won th"
+      },
+      {
+        "idx": 179,
+        "gold_type": "SYLLOGISM",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Horses (X)\n- Humans (Z)\n- Hooves (Y)\n\nSTEPS:\n1. All horses have hooves (All X are Y)\n2. Humans are horses (Z is X) \n   (Note: This is an assumption, as the premises do not directly state that humans are horses. However, this is the only way to apply the syllogism pattern to the given premises. In a real-world context, this assumption would be incorrect, but for the"
+      },
+      {
+        "idx": 193,
+        "gold_type": "DISJUNCTIVE",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  NEGATION\n\nENTITIES: \n- Events (can be happy or sad)\n- At least one event (happy)\n\nSTEPS: \n1. Identify the negation of the statement \"at least one event is happy\" which is \"all events are not happy\" or \"no event is happy\".\n2. Recognize that if all events are not happy, then all events must be sad.\n3. Conclude that since at least one event is happy, the initial assumption of \"all events ar"
+      },
+      {
+        "idx": 194,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- People (on the leaderboard of the 1992 du Maurier Classic)\n- Steinhauer\n- Descampe\n- Belgium\n\nRELATIONSHIPS:\n- People on the leaderboard participated in the 1992 du Maurier Classic\n- Steinhauer is a person on the leaderboard\n- Descampe is a person from Belgium and on the leaderboard\n- A person from Belgium is on the leaderboard\n\nSTEPS:\n1. All people on the leaderbo"
+      },
+      {
+        "idx": 195,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- People (on the leaderboard of the 1992 du Maurier Classic)\n- Steinhauer\n- Descampe\n- Belgium\n\nRELATIONSHIPS:\n- People on the leaderboard participated in the 1992 du Maurier Classic\n- Steinhauer is a person on the leaderboard\n- Descampe is a person from Belgium and on the leaderboard\n- A person from Belgium is on the leaderboard\n\nSTEPS:\n1. All people on the leaderbo"
+      },
+      {
+        "idx": 196,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES: \n- Animals\n- Jane\n- Dogs\n- KiKi\n- Terricolous (animals that live on land)\n- Legs\n- Jumps\n- Barks\n\nRELATIONSHIPS:\n- Animals can be dogs or not dogs\n- Dogs bark\n- Animals that bark are disliked by Jane\n- Animals that jump are liked by Jane\n- Animals with legs jump\n- Terricolous animals have legs\n- KiKi is either terricolous or has legs, but not both\n\nSTEPS:\n1. "
+      },
+      {
+        "idx": 197,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES: \n- Animals\n- Jane\n- Dogs\n- KiKi\n- Terricolous (animals that live on land)\n- Legs\n- Jumps\n- Barks\n\nRELATIONSHIPS:\n- Animals can be dogs or not dogs\n- Dogs bark\n- Animals that bark are disliked by Jane\n- Animals that jump are liked by Jane\n- Animals with legs jump\n- Terricolous animals have legs\n- KiKi is either terricolous or has legs, but not both\n\nSTEPS:\n1. "
+      },
+      {
+        "idx": 198,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN:  CONDITIONAL CHAIN\n\nENTITIES: \n- Animals\n- Jane\n- Dogs\n- KiKi\n- Terricolous (animals that live on land)\n- Legs\n- Jumps\n- Barks\n\nRELATIONSHIPS:\n- Animals can be dogs or not dogs\n- Dogs bark\n- Animals that bark are disliked by Jane\n- Animals that jump are liked by Jane\n- Animals with legs jump\n- Terricolous animals have legs\n- KiKi is either terricolous or has legs, but not both\n\nSTEPS:\n1. "
+      },
+      {
+        "idx": 199,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Ailton Silva (Ailton)\n- Ailton Silva (Ailton) is a football player\n- Ailton Silva (Ailton) is a Brazillian footballer\n- Nautico\n- Braga\n- Fluminense\n\nRELATIONSHIPS:\n- Ailton is a football player\n- Ailton is a Brazillian footballer\n- Ailton plays for Nautico\n- Nautico and Braga are football clubs\n- Nautico and Fluminense are football clubs\n\nSTEPS:\n1. Ailton is a foo"
+      },
+      {
+        "idx": 200,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Ailton Silva (Ailton)\n- Ailton Silva (Ailton) is a football player\n- Ailton Silva (Ailton) is a Brazillian footballer\n- Nautico\n- Braga\n- Fluminense\n\nRELATIONSHIPS:\n- Ailton is a football player\n- Ailton is a Brazillian footballer\n- Ailton plays for Nautico\n- Nautico and Braga are football clubs\n- Nautico and Fluminense are football clubs\n\nSTEPS:\n1. Ailton is a foo"
+      },
+      {
+        "idx": 201,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Ailton Silva (Ailton)\n- Ailton Silva (Ailton) is a football player\n- Ailton Silva (Ailton) is a Brazillian footballer\n- Nautico\n- Braga\n- Fluminense\n\nRELATIONSHIPS:\n- Ailton is a football player\n- Ailton is a Brazillian footballer\n- Ailton plays for Nautico\n- Nautico and Braga are football clubs\n- Nautico and Fluminense are football clubs\n\nSTEPS:\n1. Ailton is a foo"
+      },
+      {
+        "idx": 202,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Ailton Silva (Ailton)\n- Ailton Silva (Ailton) is a football player\n- Ailton Silva (Ailton) is a Brazillian footballer\n- Nautico\n- Braga\n- Fluminense\n\nRELATIONSHIPS:\n- Ailton is a football player\n- Ailton is a Brazillian footballer\n- Ailton plays for Nautico\n- Nautico and Braga are football clubs\n- Nautico and Fluminense are football clubs\n\nSTEPS:\n1. Ailton is a foo"
+      },
+      {
+        "idx": 203,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "self_structure",
+        "stage1_response": "PATTERN: SYLLOGISM\n\nENTITIES: \n- Ailton Silva (Ailton)\n- Ailton Silva (Ailton) is a football player\n- Ailton Silva (Ailton) is a Brazillian footballer\n- Nautico\n- Braga\n- Fluminense\n\nRELATIONSHIPS:\n- Ailton is a football player\n- Ailton is a Brazillian footballer\n- Ailton plays for Nautico\n- Nautico and Braga are football clubs\n- Nautico and Fluminense are football clubs\n\nSTEPS:\n1. Ailton is a foo"
+      }
+    ],
+    "cot_structure": [
+      {
+        "idx": 12,
+        "gold_type": "MODUS-PONENS",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a chain of reasoning, as it involves multiple premises and a conclusion that follows from those premises.\n\n**Step 2: Identify key logical relationships between premises**\n- Premise 1: A Japanese game company created the game the Legend of Zelda. (This premise is irrelevant to the conclusion, but it provides context.)\n- Premise 2: All games in the Top 10 list are made by Japanese game companies. (This premise is relevant to the conclusi"
+      },
+      {
+        "idx": 13,
+        "gold_type": "MODUS-PONENS",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a chain of reasoning, as we need to connect multiple premises to reach the conclusion.\n\n**Step 2: Identify key logical relationships between premises**\n\n- Premise 1: A Japanese game company created the game the Legend of Zelda.\n- Premise 2: All games in the Top 10 list are made by Japanese game companies.\n- Premise 3: [BG] If a game sells more than one million copies, then it will be selected into the Top 10 list.\n- Premise 4: The Lege"
+      },
+      {
+        "idx": 14,
+        "gold_type": "MODUS-PONENS",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a combination of conditional reasoning (if-then) and negation. The conclusion is a negation of a statement that is based on a conditional statement.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: A Japanese game company created the game the Legend of Zelda. (This premise is not directly related to the Top 10 list, but it provides context about the game's origin.)\n- Premise 2: All games in the Top 10 list are made "
+      },
+      {
+        "idx": 15,
+        "gold_type": "SYLLOGISM",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is universal instantiation, which is a form of categorical syllogism. It involves making a general statement about a category (all squares) based on a characteristic that is true for all members of that category.\n\n**Step 2: Key logical relationships between premises**\n- The first premise states a characteristic of squares (all squares have four sides).\n- The second premise defines what a four-sided thing is (all four-sided things are"
+      },
+      {
+        "idx": 21,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a chain of if-then statements, specifically a series of conditional statements connected by \"if-then\" relationships.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: \"Stranger Things\" is a popular Netflix show. (No direct relationship with other premises)\n- Premise 2: If a Netflix show is popular, Karen will binge-watch it. (Conditional relationship with Premise 1)\n- Premise 3: If and only if Karen binge-watches a "
+      },
+      {
+        "idx": 22,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a chain of if-then statements, specifically a chain of conditionals. We have multiple premises connected by \"if-then\" statements, and we need to follow the chain to reach the conclusion.\n\n**Step 2: Identify key logical relationships between premises**\n\n1. \"Stranger Things\" is a popular Netflix show (premise)\n2. If a Netflix show is popular, Karen will binge-watch it (premise)\n3. If and only if Karen binge-watches a Netflix show, she wi"
+      },
+      {
+        "idx": 23,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a chain of if-then statements, specifically a series of conditional statements connected by \"if-then\" relationships.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: \"Stranger Things\" is a popular Netflix show. (No direct relationship with other premises)\n- Premise 2: If a Netflix show is popular, Karen will binge-watch it. (Conditional statement)\n- Premise 3: If and only if Karen binge-watches a Netflix show, she "
+      },
+      {
+        "idx": 30,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a chain of logical implications, specifically a series of conditional statements (if-then) that lead to the conclusion.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: A person is either a Grand Slam champion or an Oscar-nominated actor.\n- Premise 2: All people who are Grand Slam champions are professional tennis players.\n- Premise 3: All Oscar-nominated actors are celebrities.\n- Premise 4: All professional tennis"
+      },
+      {
+        "idx": 31,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required is a chain of logical implications, as we need to connect the premises to the conclusion through a series of if-then statements.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: A person is either a Grand Slam champion or an Oscar-nominated actor.\n- Premise 2: All people who are Grand Slam champions are professional tennis players.\n- Premise 3: All Oscar-nominated actors are celebrities.\n- Premise 4: All professiona"
+      },
+      {
+        "idx": 32,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required to solve this problem involves a combination of logical operators, including disjunction, negation, and conditional statements. Specifically, we need to use the following logical operators:\n- Disjunction (\u2228): \"or\"\n- Negation (\u00ac): \"not\"\n- Conditional (\u2192): \"if-then\"\n\n**Step 2: Identify key logical relationships between premises**\nFrom the premises, we can identify the following relationships:\n- A person is either a Grand Slam champion or "
+      },
+      {
+        "idx": 33,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe type of reasoning needed is categorical, specifically a categorical syllogism, as it involves a general statement (Diamond Mine is a professional wrestling stable) and a specific instance (Roderick Strong leads Diamond Mine).\n\n**Step 2: Key logical relationships between premises**\n- The first premise establishes the general category (Diamond Mine is a professional wrestling stable).\n- The second premise provides a specific instance within that category (R"
+      },
+      {
+        "idx": 34,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe type of reasoning needed is a form of categorical syllogism, specifically a chain of categorical syllogisms. It involves a series of statements that lead to a conclusion through a logical sequence.\n\n**Step 2: Identify key logical relationships between premises**\n- The first premise states that Diamond Mine is a professional wrestling stable, which is a general statement.\n- The second premise states that Roderick Strong leads Diamond Mine, which is a speci"
+      },
+      {
+        "idx": 35,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "Step 1: The type of reasoning needed is negation, as we are trying to determine what is not true about Imperium's feud.\n\nStep 2: The key logical relationships between premises are:\n- Diamond Mine is a professional wrestling stable.\n- Roderick Strong leads Diamond Mine.\n- Diamond Mine includes the Creed Brothers and Ivy Nile.\n- Imperium has a feud with Diamond Mine.\n\nStep 3: The inference chain from premises to conclusion is:\n- Imperium has a feud with Diamond Mine.\n- Diamond Mine includes Ivy Ni"
+      },
+      {
+        "idx": 42,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning involves a combination of if-then statements, disjunction, and negation. Specifically, it requires:\n\n- Modus Ponens (if-then) to infer conclusions from premises\n- Disjunction to handle the \"or\" statements\n- Negation to handle the \"not\" statements\n- Chain of reasoning to connect the premises to the conclusion\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If A (highly ranked by WTA) then B (among the most active players in "
+      },
+      {
+        "idx": 43,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning involves a combination of if-then statements, disjunction, and negation. Specifically, it requires:\n\n- Modus Ponens (if-then) to infer conclusions from premises\n- Disjunction to handle the \"or\" statements\n- Negation to handle the \"not\" statements\n- Chain of reasoning to connect the premises to the conclusion\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If A (highly ranked by WTA) then B (among the most active players in "
+      },
+      {
+        "idx": 44,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning involves a combination of if-then statements, disjunction, and negation. Specifically, it requires a chain of reasoning to connect the premises to the conclusion.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If A (highly ranked by WTA) then B (among the most active players in major tennis)\n- Premise 2: If C (lost to Iga \u015awi\u0105tek) then D (ranked highly by WTA)\n- Premise 3: E (female tennis players at Roland Garros 2022) ar"
+      },
+      {
+        "idx": 46,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is a combination of universal and disjunction. The first premise establishes a universal relationship between students who want a long vacation and their preference for summer. The second premise introduces a disjunction between Emma's favorite season and Mia's favorite season.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: All students who want a long vacation love summer the most (Universal).\n- Premise 2: Emma"
+      },
+      {
+        "idx": 47,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is a combination of universal and disjunction. The premises involve universal statements (e.g., \"All students who want to have a long vacation love summer the most\") and disjunctions (e.g., \"Mia's favorite season is not the same as Emma's\").\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: No direct relationship.\n- Premise 2: Emma's favorite season is summer.\n- Premise 3: Mia's favorite season is not the same as E"
+      },
+      {
+        "idx": 48,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is a combination of universal and negation. We need to understand the universal relationship between students who want a long vacation and their favorite season (premise 2), and then use negation to infer Mia's favorite season based on the information about Emma's favorite season (premise 3) and the fact that Mia's favorite season is not the same as Emma's (premise 4).\n\n**Step 2: Key logical relationships between premises**\n- Premise"
+      },
+      {
+        "idx": 49,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is a chain of conditional statements (if-then) and a disjunction (or) to connect the premises to the conclusion.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: No digital media are analog.\n- Premise 2: Every printed text is analog.\n- Premise 3: All streaming services are digital.\n- Premise 4: If an object is a hardcover book, then it is printed text.\n- Premise 5: If 1984 is a streaming service, then 1984 is a ha"
+      },
+      {
+        "idx": 50,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is a chain of conditional statements (if-then) and a disjunction (or) to connect the premises to the conclusion.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: No digital media are analog.\n- Premise 2: Every printed text is analog.\n- Premise 3: All streaming services are digital.\n- Premise 4: If an object is a hardcover book, then it is printed text.\n- Premise 5: If 1984 is a streaming service, then 1984 is a ha"
+      },
+      {
+        "idx": 51,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is a chain of implications, specifically a series of conditional statements (if-then) that lead to the conclusion.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: No digital media are analog.\n- Premise 2: Every printed text is analog.\n- Premise 3: All streaming services are digital.\n- Premise 4: If an object is a hardcover book, then it is printed text.\n- Premise 5: If 1984 is a streaming service, then 1984 is a "
+      },
+      {
+        "idx": 52,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is a chain of inference, as we need to follow a series of logical steps to arrive at the conclusion.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: All Romance languages are Indo-European languages (Universal Affirmation)\n- Premise 2: The Romance languages are a language family (Definition of a language family)\n- Premise 3: All languages within a language family are related to each other (Definition of a languag"
+      },
+      {
+        "idx": 53,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is a chain of inference, as we need to connect multiple premises to reach the conclusion.\n\n**Step 2: Key logical relationships between premises**\n- All Romance languages are Indo-European languages (premise 1)\n- The Romance languages are a language family (premise 2)\n- All languages within a language family are related to each other (premise 3)\n- French and Spanish are both Romance languages (premise 4)\n- German is related to Spanish"
+      },
+      {
+        "idx": 54,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is a chain of inference, as we need to connect multiple premises to reach the conclusion.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: All Romance languages are Indo-European languages (Universal Affirmation)\n- Premise 2: The Romance languages are a language family (Definition of a language family)\n- Premise 3: All languages within a language family are related to each other (Definition of a language family)\n"
+      },
+      {
+        "idx": 55,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a chain of inference, as we need to connect multiple premises to reach the conclusion.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: Robert Lewandowski is a striker.\n- Premise 2: Strikers are soccer players.\n- Premise 3: Robert Lewandowski left Bayern Munchen.\n- Premise 4: If a player left a team, they no longer play for that team.\n\nThe key relationship is the implication in Premise 4, which connects the action o"
+      },
+      {
+        "idx": 56,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "Step 1: The type of reasoning needed is negation, as we are dealing with a statement about what is not true (Robert Lewandowski no longer plays for Bayern Munchen).\n\nStep 2: The key logical relationships between premises are:\n- Robert Lewandowski is a striker (BG) and strikers are soccer players (BG) - This is a tautology, as all strikers are soccer players.\n- Robert Lewandowski left Bayern Munchen (P) and if a player left a team, they no longer play for that team (BG) - This is a conditional st"
+      },
+      {
+        "idx": 57,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is a chain of reasoning, as we need to connect multiple premises to reach the conclusion.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: Robert Lewandowski is a striker.\n- Premise 2: Strikers are soccer players.\n- Premise 3: Robert Lewandowski left Bayern Munchen.\n- Premise 4: If a player left a team, they no longer play for that team.\n\nThe key relationship is the connection between Premise 3 and Premise 4, whic"
+      },
+      {
+        "idx": 69,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe type of reasoning needed is a chain of reasoning, as we are given multiple premises and need to connect them to reach the conclusion.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: Badults is a British Sitcom series, starring members of Pappy's.\n- Premise 2: Badults piloted in July 2013 on BBC Three.\n- Premise 3: The Working title \"The Secret Dude Society\" was used for Badults.\n- Premise 4: Andrew Collins was the script editor for Ba"
+      },
+      {
+        "idx": 70,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a form of modus tollens, which is a type of argument form that involves negation and implication. The general form of modus tollens is:\n\nIf P, then Q\nNot Q\n\u2234 Not P\n\nHowever, in this case, we have a more complex argument with multiple premises and a conclusion that involves a universal statement. The reasoning required is a combination of universal instantiation and modus tollens.\n\n**Step 2: Identify key logical relationships between pr"
+      },
+      {
+        "idx": 76,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a combination of disjunction and chain reasoning. Disjunction is used to connect the premises with \"or\" statements, while chain reasoning is used to connect the premises with \"if-then\" statements.\n\n**Step 2: Identify key logical relationships between premises**\n\n- Premise 1: If A (work in student jobs on campus) then B (need to earn money to help pay for college tuition)\n- Premise 2: If C (order takeout frequently in college) then A (w"
+      },
+      {
+        "idx": 77,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a combination of disjunction and chain reasoning. Disjunction is used to connect the premises with \"or\" statements, while chain reasoning is used to connect the premises with \"if-then\" statements.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If A (work in student jobs on campus) then B (need to earn money to help pay for college tuition)\n- Premise 2: If C (order takeout frequently in college) then A (work in st"
+      },
+      {
+        "idx": 78,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a combination of disjunction and chain reasoning. Disjunction is used to connect the premises with \"or\" statements, while chain reasoning is used to connect the premises with \"if-then\" statements.\n\n**Step 2: Identify key logical relationships between premises**\n\n- Premise 1: If A (work in student jobs on campus) then B (need to earn money to help pay for college tuition)\n- Premise 2: If C (order takeout frequently in college) then A (w"
+      },
+      {
+        "idx": 87,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a chain of logical inferences, specifically a series of conditional statements (if-then) and a conclusion based on those conditions.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: Good guys always win in superhero movies.\n- Premise 2: The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\n- Premise 3: Good guys fight bad guys and vice versa.\n- Premise 4: Sir Digby fights his nemesis.\n- Premise"
+      },
+      {
+        "idx": 102,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here is a combination of disjunction and chain reasoning. Disjunction is needed to handle the \"or\" statements, while chain reasoning is required to connect the premises and conclusion through a series of logical steps.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: A -> B (If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings.)\n- Premise 2: B -> C (If peopl"
+      },
+      {
+        "idx": 103,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here is a combination of disjunction and negation, as well as a chain of if-then statements. We need to break down the premises and identify the logical relationships between them.\n\n**Step 2: Identify key logical relationships between premises**\n\n1. Premise 1: If A (twins or triplets) then B (spend a lot of time with siblings)\n2. Premise 2: If B (same age siblings) then A (twins or triplets)\n3. Premise 3: If C (complain about siblings) "
+      },
+      {
+        "idx": 104,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here is a combination of disjunction and negation. We need to break down the possibilities for Luke's situation using disjunction and then eliminate options using negation.\n\n**Step 2: Identify key logical relationships between premises**\n\n- Premise 1: A -> B (twins/triplets -> spend time with siblings)\n- Premise 2: B -> C (same age siblings -> twins/triplets)\n- Premise 3: D -> B (complain about siblings -> same age siblings)\n- Premise 4"
+      },
+      {
+        "idx": 108,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here is a combination of disjunction and negation, as well as a chain of implications. We need to analyze the relationships between the premises and the conclusion to determine the logical structure.\n\n**Step 2: Identify key logical relationships between premises**\n\n- Premise 1: If A (spill a lot of food) then B (tidy consistently and enjoy cleaning)\n- Premise 2: A (spill a lot of food) implies C (foodies who go out frequently)\n- Premise"
+      },
+      {
+        "idx": 109,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a combination of disjunction and chain reasoning. Disjunction is used to connect the two possibilities for Peter in the last premise, and chain reasoning is used to connect the premises to the conclusion.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If-then relationship between spilling food and tidying habits.\n- Premise 2: If-then relationship between being a foodie and spilling food.\n- Premise 3: If-then rela"
+      },
+      {
+        "idx": 110,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required is a combination of disjunction and negation, as well as a chain of implications. The conclusion involves a disjunction, and the premises involve negations and implications.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If A (spill a lot of food) then not B (tidy their spaces consistently and enjoy cleaning)\n- Premise 2: A (spill a lot of food) implies C (foodies who go out frequently to find new food restaurants"
+      },
+      {
+        "idx": 112,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "True",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a combination of disjunction and negation. We need to use the disjunction to combine the possibilities of the location of the Picuris Mountains and then use negation to eliminate the impossible option.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: Picuris Mountains are in New Mexico or Texas (disjunction)\n- Premise 2: Juan de Onate visited the Picuris Mountains (no specific location mentioned)\n- Premise 3: The Ha"
+      },
+      {
+        "idx": 113,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a combination of disjunction and negation. We need to use the disjunction to combine the possibilities of the location of the Picuris Mountains and then use negation to eliminate one of the possibilities based on the information given.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: Picuris Mountains are in New Mexico or Texas (disjunction)\n- Premise 2: Juan de Onate visited the Picuris Mountains (no specific locat"
+      },
+      {
+        "idx": 128,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required to solve this problem involves a combination of conditional statements (if-then) and disjunctions. We need to analyze the conditions under which certain statements are true and how they relate to each other.\n\n**Step 2: Identify key logical relationships between premises**\n\n- Premise 1: All people who have a wedding are people who have at least one child. (Universal statement)\n- Premise 2: All people who travel to Paris for their honeymo"
+      },
+      {
+        "idx": 129,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here involves a combination of conditional statements (if-then) and disjunctions. We need to analyze the conditions and their implications to reach the conclusion.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: All people who have a wedding are people who have at least one child. (Universal)\n- Premise 2: All people who travel to Paris for their honeymoon are people who have a wedding. (Universal)\n- Premise 3: All "
+      },
+      {
+        "idx": 130,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here involves a combination of conditional statements (if-then) and disjunctions. We need to analyze the conditions and their implications to reach the conclusion.\n\n**Step 2: Identify key logical relationships between premises**\n\n- Premise 1: All people who have a wedding are people who have at least one child. (Universal)\n- Premise 2: All people who travel to Paris for their honeymoon are people who have a wedding. (Universal)\n- Premis"
+      },
+      {
+        "idx": 131,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here involves a combination of conditional statements (if-then) and negation. We need to analyze the conditions under which certain events occur and then apply negation to determine the conclusion.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: All people who have a wedding are people who have at least one child. (Universal)\n- Premise 2: All people who travel to Paris for their honeymoon are people who have a wedd"
+      },
+      {
+        "idx": 140,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a combination of modus ponens (if-then) and disjunction (or) reasoning, as well as a chain of inferences.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If a cartoon character is funny, then it is popular. (If-then)\n- Premise 2: If a cartoon character is ugly, then it is not popular. (If-then)\n- Premise 3: If a cartoon character is loved by children, then it is funny. (If-then)\n- Premise 4: If a cartoon character"
+      },
+      {
+        "idx": 141,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a combination of disjunction and chain reasoning. We need to use disjunction to combine the premises and chain reasoning to trace the inference from the premises to the conclusion.\n\n**Step 2: Identify key logical relationships between premises**\n\n- Premise 1: If a cartoon character is funny, then it is popular. (If-then)\n- Premise 2: If a cartoon character is ugly, then it is not popular. (If-then)\n- Premise 3: If a cartoon character i"
+      },
+      {
+        "idx": 142,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here is a combination of disjunction and negation, as well as a chain of implications. We need to use the premises to derive a conclusion that involves disjunction and negation.\n\n**Step 2: Identify key logical relationships between premises**\n\n- Premise 1: If a cartoon character is funny, then it is popular. (Implication)\n- Premise 2: If a cartoon character is ugly, then it is not popular. (Implication)\n- Premise 3: If a cartoon charact"
+      },
+      {
+        "idx": 153,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here is a combination of disjunction and negation, as well as a chain of implications. We need to analyze the relationships between the premises and the conclusion to determine the logical structure.\n\n**Step 2: Identify key logical relationships between premises**\n\n- Premise 1: If people own a large desktop monitor at their home, then they work regularly and often at home. (Implication)\n- Premise 2: All people who have a fully stocked a"
+      },
+      {
+        "idx": 154,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here is a combination of disjunction and chain reasoning. Disjunction is needed to handle the \"or\" statements, while chain reasoning is required to connect the premises to the conclusion.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If P (own a large desktop monitor) then Q (work regularly and often at home)\n- Premise 2: If P (own a large desktop monitor) then R (fully stocked and impressive home office)\n- Premi"
+      },
+      {
+        "idx": 155,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required is a combination of disjunction and negation, as well as a chain of implications. We need to analyze the relationships between the premises and the conclusion to determine the logical structure.\n\n**Step 2: Identify key logical relationships between premises**\n\n- Premise 1: If people own a large desktop monitor at their home, then they work regularly and often at home. (Implication)\n- Premise 2: All people who have a fully stocked and im"
+      },
+      {
+        "idx": 156,
+        "gold_type": "SYLLOGISM",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is a form of categorical syllogism, specifically a universal affirmative syllogism. It involves a universal premise and a conclusion that follows from it.\n\n**Step 2: Key logical relationships between premises**\n- The first premise is a universal statement: \"All humans are mortal.\" This means that every individual that is a human is also mortal.\n- The second premise is also a universal statement: \"All Greeks are humans.\" This means th"
+      },
+      {
+        "idx": 170,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here involves a combination of if-then statements, universal statements, and a chain of inferences. Specifically, it involves:\n\n- Modus Ponens (if-then statements)\n- Universal Instantiation (all A are B)\n- Modus Tollens (if not B, then not A)\n- Chain of Inferences\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If something is a deadly disease, then its survival rate is low. (If-then statement)\n- Premise 2: All sev"
+      },
+      {
+        "idx": 171,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning involves a combination of if-then statements, universal statements, and disjunction. It also involves a chain of inferences and negation.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If-then statement (deadly disease -> low survival rate)\n- Premise 2: If-then statement (severe cancer -> deadly disease)\n- Premise 3: If-then statement (bile duct cancer -> severe cancer)\n- Premise 4: If-then statement (Cholangiocarcinoma ->"
+      },
+      {
+        "idx": 172,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning involves a combination of if-then statements, universal statements, and disjunction. It also involves a chain of inferences and negation.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If-then statement (deadly disease -> low survival rate)\n- Premise 2: If-then statement (severe cancer -> deadly disease)\n- Premise 3: If-then statement (bile duct cancer -> severe cancer)\n- Premise 4: If-then statement (Cholangiocarcinoma ->"
+      },
+      {
+        "idx": 176,
+        "gold_type": "MODUS-PONENS",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe given argument involves a conclusion that is not directly related to the premises. The conclusion is about the world championships, which is not mentioned in the premises. This suggests that the reasoning required is not a simple if-then or universal statement. The conclusion is also not a direct consequence of the premises, so it's not a chain of reasoning. The argument seems to be an example of a non sequitur, but since the conclusion is about a differe"
+      },
+      {
+        "idx": 177,
+        "gold_type": "MODUS-PONENS",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "Step 1: The type of reasoning needed is negation, as the conclusion is a negation of one of the premises.\n\nStep 2: The key logical relationships between premises are:\n- [BG] is a statement about the nature of the Olympic games.\n- The last Olympic games was in Tokyo is a specific instance of the Olympic games.\n- The United States won the most medals in Tokyo is a fact about the last Olympic games.\n\nStep 3: The inference chain from premises to conclusion is:\n- [BG] The Olympic games is a sporting "
+      },
+      {
+        "idx": 178,
+        "gold_type": "MODUS-PONENS",
+        "gold_label": "True",
+        "pred_label": "False",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is a form of categorical syllogism, specifically a categorical syllogism with a universal quantifier. The conclusion makes a general statement about all Olympic games, so we need to identify a universal pattern.\n\n**Step 2: Key logical relationships between premises**\n- [BG] The Olympic games is a sporting event. (This premise is a general statement about the nature of the Olympic games, but it's not directly related to the conclusion"
+      },
+      {
+        "idx": 179,
+        "gold_type": "SYLLOGISM",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed here is negation, specifically a form of negation called \"modus tollens\" or \"denying the consequent.\" This involves denying the consequent of a conditional statement to infer the negation of the antecedent.\n\n**Step 2: Key logical relationships between premises**\nThe premises are:\n- All horses have hooves.\n- No humans have hooves.\n\nThe key relationship is that both premises are universal statements (all A are B and all C are not B), but th"
+      },
+      {
+        "idx": 193,
+        "gold_type": "DISJUNCTIVE",
+        "gold_label": "False",
+        "pred_label": "False",
+        "composed_correct": true,
+        "condition": "cot_structure",
+        "response": "Step 1: The type of reasoning needed is negation, specifically a form of negation that involves a universal quantifier. The conclusion is a universal statement (\"All events are sad\"), and the premises do not directly support this conclusion. However, the conclusion can be reached through a process of elimination, where we negate the possibility of any happy events.\n\nStep 2: The key logical relationship between the premises is the negation of the disjunction. The first premise states that events "
+      },
+      {
+        "idx": 194,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "Step 1: The type of reasoning needed is negation, as we are trying to prove that Steinhauer was not the winner of the 1992 du Maurier Classic.\n\nStep 2: The key logical relationships between premises are:\n- Steinhauer participated in the 1992 du Maurier Classic (P1)\n- Steinhauer was the winner of the 1992 du Maurier Classic (P2)\n- There was a six-way tie on the leaderboard and one person in the six-way tie was from Belgium (P3)\n- Descampe is from Belgium and is on the leaderboard of the 1992 du M"
+      },
+      {
+        "idx": 195,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a combination of universal and disjunction. We need to understand the universal relationship between the participants and the leaderboard, and the disjunction relationship between the six-way tie and the individual participants.\n\n**Step 2: Key logical relationships between premises**\n- Premise 1: Steinhauer participated in the 1992 du Maurier Classic and won.\n- Premise 2: Steinhauer participated in the 1992 du Maurier Classic.\n- Premis"
+      },
+      {
+        "idx": 196,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here involves a combination of if-then statements, universal statements, and negation. It also involves a chain of inferences to reach the conclusion.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If an animal barks, then Jane does not like it. (If-then)\n- Premise 2: All dogs are animals that bark. (Universal)\n- Premise 3: If an animal jumps, then Jane likes it. (If-then)\n- Premise 4: If an animal has legs, then "
+      },
+      {
+        "idx": 197,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here involves a combination of if-then statements, universal statements, and negation. It also involves a chain of inferences to reach the conclusion.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If an animal barks, then Jane does not like it. (If-then)\n- Premise 2: All dogs are animals that bark. (Universal)\n- Premise 3: If an animal jumps, then Jane likes it. (If-then)\n- Premise 4: If an animal has legs, then "
+      },
+      {
+        "idx": 198,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "True",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning required here involves a combination of if-then statements, universal statements, and negation. It also involves a chain of inferences to arrive at the conclusion.\n\n**Step 2: Key logical relationships between premises**\n\n- Premise 1: If an animal barks, then Jane does not like it. (If-then)\n- Premise 2: All dogs are animals that bark. (Universal)\n- Premise 3: If an animal jumps, then Jane likes it. (If-then)\n- Premise 4: If an animal has legs, t"
+      },
+      {
+        "idx": 199,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is negation, as we are trying to prove a negative statement (No one playing for Nautico is Brazilian).\n\n**Step 2: Key logical relationships between premises**\n- Ailton Silva is a Brazilian footballer who plays for Nautico.\n- Ailton is a football player who was loaned out to Braga.\n- Ailton Silva is a Brazillian footballer who plays for Nautico.\n- Nautico is a football club along with Braga.\n- Fluminense is a football club.\n\n**Step 3: Infe"
+      },
+      {
+        "idx": 200,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is negation, as we are trying to prove that Ailton Silva does not play for a football club.\n\n**Step 2: Key logical relationships between premises**\n- Ailton is a football player who was loaned out to Braga (Ailton plays for Braga).\n- Ailton Silva is a Brazillian footballer who plays for Nautico (Ailton plays for Nautico).\n- Nautico is a football club (Nautico is a football club).\n- Fluminense is a football club (Fluminense is a football c"
+      },
+      {
+        "idx": 201,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "False",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "Step 1: The type of reasoning needed is negation, as we are trying to prove that Ailton was not loaned out to a football club.\n\nStep 2: The key logical relationships between premises are:\n- Ailton is a football player who was loaned out to Braga (Ailton is a football player and was loaned out).\n- Ailton Silva is a Brazillian footballer who plays for Nautico (Ailton plays for Nautico).\n- Nautico is a football club (Nautico is a football club).\n- Fluminense is a football club (this premise is irre"
+      },
+      {
+        "idx": 202,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "Unknown",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "Step 1: The type of reasoning needed is disjunction, as we are looking for a conclusion that can be derived from one or more of the premises.\n\nStep 2: The key logical relationships between premises are:\n- Ailton Silva is a football player who was loaned out to Braga (Ailton is a football player and was loaned out to Braga).\n- Ailton Silva is a Brazillian footballer who plays for Nautico (Ailton is a Brazillian footballer and plays for Nautico).\n- Nautico is a football club along with Braga (Naut"
+      },
+      {
+        "idx": 203,
+        "gold_type": "CONDITIONAL-CHAIN",
+        "gold_label": "Uncertain",
+        "pred_label": "True",
+        "composed_correct": false,
+        "condition": "cot_structure",
+        "response": "**Step 1: Type of reasoning needed**\nThe reasoning needed is a chain of inference, as we need to connect multiple premises to reach the conclusion.\n\n**Step 2: Key logical relationships between premises**\n- Ailton Silva is a football player who was loaned out to Braga (premise 2).\n- Ailton Silva is a Brazillian footballer who plays for Nautico (premise 3).\n- Nautico is a football club along with Braga (premise 4).\n- Fluminense is a football club (premise 5, but not relevant to the conclusion).\n- "
+      }
+    ]
+  }
+}
